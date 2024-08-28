@@ -1,0 +1,31 @@
+package com.rumpilstilstkin.gloomhavenhelper.screens
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperNavHost
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            GloomhavenHalperTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    GlHelperNavHost(innerPadding = innerPadding)
+                }
+            }
+        }
+    }
+}
