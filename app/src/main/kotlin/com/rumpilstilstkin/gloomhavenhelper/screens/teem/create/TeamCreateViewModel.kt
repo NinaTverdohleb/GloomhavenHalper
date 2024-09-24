@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.ClassRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.SaveTeamUsecase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.SaveTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamCreateViewModel@Inject constructor(
     private val classRepository: ClassRepository,
-    private val saveTeamUsecase: SaveTeamUsecase
+    private val saveTeamUsecase: SaveTeamUseCase
 ) : ViewModel() {
     private val team = MutableStateFlow(TeamCreateUiState.Empty)
 

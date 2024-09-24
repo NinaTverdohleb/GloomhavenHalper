@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.main
 
 import androidx.compose.runtime.Composable
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioLevelInfoDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.ProsperityDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.ReputationDialog

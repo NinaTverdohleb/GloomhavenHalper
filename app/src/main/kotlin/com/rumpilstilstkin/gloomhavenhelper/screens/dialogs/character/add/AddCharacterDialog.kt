@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.characters.add
+package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -46,7 +46,9 @@ fun AddCharacterDialog(
     if (showDialog) {
         var newCharacterName by rememberSaveable { mutableStateOf("") }
         var selectedIndex by remember { mutableIntStateOf(0) }
-        var level by remember { mutableIntStateOf(0) }
+        var level by remember { mutableIntStateOf(1) }
+
+        if (classes.isEmpty()) return
 
         AlertDialog(
             onDismissRequest = { onDismiss.invoke() },
@@ -79,7 +81,7 @@ fun AddCharacterDialog(
                     NumberPicker(
                         modifier = Modifier.fillMaxWidth(),
                         value = level,
-                        intRange = IntRange(0, 9)
+                        intRange = IntRange(1, 9)
                     ) {
                         level = it
                     }

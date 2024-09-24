@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.characters.add
+package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add
 
 import androidx.lifecycle.ViewModel
 import com.rumpilstilstkin.gloomhavenhelper.data.ClassRepository

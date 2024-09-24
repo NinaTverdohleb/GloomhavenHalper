@@ -24,7 +24,7 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterWithDialogList
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 

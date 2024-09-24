@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f1a79d8872b28eeeba67d473fa4417fd",
+    "identityHash": "e687e8ca7155f3f13bf67958153cadd6",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -88,7 +88,7 @@
       },
       {
         "tableName": "CharacterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `experience` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL, `notes` TEXT NOT NULL, `checkMarkCount` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "characterId",
@@ -109,6 +109,18 @@
             "notNull": true
           },
           {
+            "fieldPath": "experience",
+            "columnName": "experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldCount",
+            "columnName": "goldCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "classId",
             "columnName": "classId",
             "affinity": "INTEGER",
@@ -123,6 +135,18 @@
           {
             "fieldPath": "isAlive",
             "columnName": "isAlive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "checkMarkCount",
+            "columnName": "checkMarkCount",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -326,7 +350,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f1a79d8872b28eeeba67d473fa4417fd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e687e8ca7155f3f13bf67958153cadd6')"
     ]
   }
 }

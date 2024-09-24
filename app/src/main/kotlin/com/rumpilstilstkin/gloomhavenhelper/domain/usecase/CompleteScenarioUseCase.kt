@@ -4,11 +4,9 @@ import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
-import kotlinx.coroutines.flow.take
 import javax.inject.Inject
 
-class CompleteScenarioUsecase @Inject constructor(
+class CompleteScenarioUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository
 ) {
