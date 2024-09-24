@@ -8,8 +8,8 @@ import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.CompleteScenarioUsecase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.GetCurrentTeamUsecase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.CompleteScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
@@ -25,12 +25,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    getCurrentTeamUsecase: GetCurrentTeamUsecase,
+    getCurrentTeamUsecase: GetCurrentTeamUseCase,
     levelInfoRepository: LevelInfoRepository,
     classRepository: ClassRepository,
     private val teamRepository: TeamRepository,
     private val characterRepository: CharacterRepository,
-    private val completeScenarioUsecase: CompleteScenarioUsecase
+    private val completeScenarioUsecase: CompleteScenarioUseCase
 ) : ViewModel() {
     private val _effects = MutableStateFlow(MainScreenEffect())
     val effects: StateFlow<MainScreenEffect> = _effects.asStateFlow()

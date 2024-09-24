@@ -36,7 +36,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterList
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
@@ -129,7 +129,7 @@ fun CharactersContent(
 ) {
     Column(
         modifier = modifier
-            .padding(32.dp)
+            .padding(24.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -137,8 +137,18 @@ fun CharactersContent(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+
+            Button(
+                onClick = {
+                    addCharacter.invoke()
+                },
+                modifier = Modifier
+            ) {
+                Text("Добавить персонажа")
+            }
 
             Icon(
                 modifier = Modifier.clickable {
@@ -147,23 +157,13 @@ fun CharactersContent(
                 imageVector = if (filters.filterAlive) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
                 contentDescription = "isAlive"
             )
-
-
         }
+
         Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                addCharacter.invoke()
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Добавить персонажа")
-        }
-        Spacer(modifier = Modifier.height(32.dp))
 
         Column(
             modifier = Modifier
+                .padding(8.dp)
                 .verticalScroll(rememberScrollState())
                 .weight(weight = 1f, fill = false)
         ) {

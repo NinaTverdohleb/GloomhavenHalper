@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.os.Build
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -39,15 +41,21 @@ abstract class GlHelperDatabase : RoomDatabase() {
 
 fun createGlHelperDatabase(
     context: Context,
-): GlHelperDatabase {
-    val database = Room.databaseBuilder(
-        context,
-        GlHelperDatabase::class.java,
-        DATABASE_NAME
-    ).build()
+): GlHelperDatabase  =
+    if (isDebug) {
+        Room.inMemoryDatabaseBuilder(
+            context,
+            GlHelperDatabase::class.java,
+        ).build()
+    } else {
+        Room.databaseBuilder(
+            context,
+            GlHelperDatabase::class.java,
+            DATABASE_NAME
+        ).build()
+    }
 
-    return database
-}
 
 private const val DATABASE_NAME = "glHelperDatabase"
+private const val isDebug = true
 

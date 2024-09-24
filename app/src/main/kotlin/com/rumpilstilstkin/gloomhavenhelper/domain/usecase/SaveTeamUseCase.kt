@@ -5,7 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import javax.inject.Inject
 
-class SaveTeamUsecase @Inject constructor(
+class SaveTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository
 ){

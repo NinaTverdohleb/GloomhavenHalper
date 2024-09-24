@@ -24,6 +24,9 @@ interface CharacterDao {
     @Query("SELECT * FROM CharacterBd WHERE teamId LIKE :teamId")
     fun findByTeamIdFlow(teamId: Int): Flow<List<CharacterBd>>
 
+    @Query("SELECT * FROM CharacterBd WHERE characterId LIKE :characterId LIMIT 1")
+    fun getCharacterByIdFlow(characterId: Int): Flow<CharacterBd>
+
     @Insert
     suspend fun insert(character: CharacterBd)
 

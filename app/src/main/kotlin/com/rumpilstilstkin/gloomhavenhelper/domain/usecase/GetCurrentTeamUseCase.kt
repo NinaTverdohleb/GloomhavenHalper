@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapConcat
 import javax.inject.Inject
 
-class GetCurrentTeamUsecase @Inject constructor(
+class GetCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val characterRepository: CharacterRepository
 ) {

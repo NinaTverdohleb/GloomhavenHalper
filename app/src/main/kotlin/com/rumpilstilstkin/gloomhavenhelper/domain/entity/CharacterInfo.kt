@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-import kotlin.math.roundToInt
-
 data class CharacterClass(
     val id: Int,
     val image: Int,
@@ -20,7 +18,30 @@ data class CharacterInfo(
     val characterClass: CharacterClass,
     val isAlive: Boolean,
     val id: Int,
-    val team: ShortTeamInfo?
+    val team: ShortTeamInfo?,
+    val experience: Int,
+    val gold: Int,
+    val checkMarks: Int,
+    val notes: String
+)
+
+data class CharacterShortInfo(
+    val name: String,
+    val level: Int,
+    val characterClassId: Int,
+    val isAlive: Boolean,
+    val id: Int,
+    val teamId: Int?,
+    val experience: Int,
+    val gold: Int,
+    val checkMarks: Int,
+    val notes: String
+)
+
+data class CharacterFullInfo(
+    val generalInfo: CharacterInfo,
+    val nextLevelExperience: Int,
+    val isDonateAvailable: Boolean
 )
 
 fun List<Int>.toLevel(): Int {

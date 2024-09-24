@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Text
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.plot.CompanyTab
 
@@ -19,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.start.plot.CompanyTab
 fun StartScreen(
     navController: NavHostController,
 ) {
-    var tabIndex by remember { mutableIntStateOf(0) }
+    var tabIndex by rememberSaveable { mutableIntStateOf(0) }
 
     val tabs = listOf("Компания", "Персонажи")
 

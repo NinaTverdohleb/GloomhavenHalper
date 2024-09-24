@@ -8,7 +8,11 @@ data class CharacterBd(
     @PrimaryKey(autoGenerate = true) val characterId: Int = 0,
     val name: String,
     val level: Int,
+    val experience: Int,
+    val goldCount: Int,
     val classId: Int,
     val teamId: Int?,
     val isAlive: Boolean = true,
+    val notes: String = "",
+    val checkMarkCount: Int = 0
 )

@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
@@ -15,12 +16,15 @@ class DatabaseFiller @Inject constructor(
     val version = preferences.getInt(PREFS_VERSION, 0)
 
     suspend fun fillDatabase() {
-        for (i in version + 1..VERSION) {
+        if(characterClassDao.getAll().isEmpty()){
+            startFill()
+        }
+        /*for (i in version + 1..VERSION) {
             when (i) {
                 1 -> startFill()
                 else -> {}
             }
-        }
+        }*/
         preferences.edit().putInt(PREFS_VERSION, VERSION).apply()
     }
 
