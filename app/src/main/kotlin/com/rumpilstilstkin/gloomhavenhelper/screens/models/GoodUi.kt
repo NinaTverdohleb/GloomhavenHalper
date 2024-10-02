@@ -1,0 +1,40 @@
+package com.rumpilstilstkin.gloomhavenhelper.screens.models
+
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Body
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Arm
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Head
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Smallthing
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Twoarm
+
+data class GoodUi(
+    val id: Int,
+    val number: Int,
+    val name: String,
+    val typeImage: ImageVector,
+    val cost: Int,
+)
+
+fun Good.toUi() = GoodUi(
+    id = this.id,
+    number = this.number,
+    name = this.name,
+    typeImage = this.type.toImage(),
+    cost = this.cost,
+)
+
+fun GoodType.toImage() = when(this) {
+    GoodType.Body -> GloomhavenIcons.GoodTypes.Body
+    GoodType.Head -> GloomhavenIcons.GoodTypes.Head
+    GoodType.Foot -> GloomhavenIcons.GoodTypes.Foot
+    GoodType.Arm -> GloomhavenIcons.GoodTypes.Arm
+    GoodType.DoubleArm -> GloomhavenIcons.GoodTypes.Twoarm
+    GoodType.SmallThing -> GloomhavenIcons.GoodTypes.Smallthing
+}
+
+
+

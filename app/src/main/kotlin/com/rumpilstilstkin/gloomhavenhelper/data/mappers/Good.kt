@@ -1,0 +1,14 @@
+package com.rumpilstilstkin.gloomhavenhelper.data.mappers
+
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodDetailsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
+
+fun GoodBd.toDomain() = Good(
+    id = this.goodId,
+    number = this.number,
+    name = this.name,
+    type = GoodType.valueOf(this.type),
+    cost = this.cost
+)

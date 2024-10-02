@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class CharacterClassBd(
     @PrimaryKey(autoGenerate = true) val characterClassId: Int = 0,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "image") val image: Int
+    @ColumnInfo(name = "type") val type: String
 )

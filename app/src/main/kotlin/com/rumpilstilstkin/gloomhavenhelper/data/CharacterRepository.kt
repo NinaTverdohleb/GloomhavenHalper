@@ -2,6 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
@@ -14,8 +16,23 @@ import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
-    private val classDao: CharacterClassDao
+    private val classDao: CharacterClassDao,
+    private val characterGoodsDao: CharacterGoodsDao
 ) {
+
+    suspend fun addCharacterGood(characterId: Int, goodId: Int) {
+        characterGoodsDao.insert(CharacterGoodBd(characterId = characterId, goodId = goodId))
+
+    }
+
+    suspend fun deleteCharacterGood(characterGoodId: Int) {
+        characterGoodsDao.deleteById(characterGoodId)
+    }
+
+    fun getCharacterGoods(characterId: Int) = characterGoodsDao.getCharacterGoods(characterId).map { goods ->
+        goods.map { it.toDomain() }
+    }
+
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {

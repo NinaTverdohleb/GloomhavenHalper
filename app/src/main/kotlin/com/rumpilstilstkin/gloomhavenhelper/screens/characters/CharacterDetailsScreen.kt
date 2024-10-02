@@ -58,7 +58,7 @@ fun CharacterDetailsScreen(
 
         CharactersTabs(
             showFirstTab = { CharacterGeneralTab(characterId) },
-            showSecondTab = { CharacterItemsTab() },
+            showSecondTab = { CharacterItemsTab(characterId) },
             showThirdTab = { CharacterPerksTab(characterId) }
         )
     }

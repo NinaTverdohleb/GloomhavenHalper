@@ -65,13 +65,7 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val classes = classRepository.getAllClasses().map { classModel ->
-                CharacterClassUI(
-                    id = classModel.id,
-                    name = classModel.name,
-                    imageRes = classModel.image
-                )
-            }
+            val classes = classRepository.getAllClasses().map { it.toUI() }
             _effects.emit(_effects.value.copy(classes = classes))
         }
     }

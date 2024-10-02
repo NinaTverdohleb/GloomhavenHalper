@@ -2,9 +2,10 @@ package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClass
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 
 fun CharacterClassBd.toDomain() = CharacterClass(
     id = this.characterClassId,
-    image = this.image,
+    type = CharacterClassType.valueOf(this.type),
     name = this.name
 )
