@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.ClassRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.SaveTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,13 +25,7 @@ class TeamCreateViewModel@Inject constructor(
 
     init {
         viewModelScope.launch {
-            val classes = classRepository.getAllClasses().map { classModel ->
-                CharacterClassUI(
-                    id = classModel.id,
-                    name = classModel.name,
-                    imageRes = classModel.image
-                )
-            }
+            val classes = classRepository.getAllClasses().map {it.toUI()}
             team.emit(TeamCreateUiState.Empty.copy(classes = classes))
         }
     }
@@ -49,11 +44,7 @@ class TeamCreateViewModel@Inject constructor(
                             id = currentValue.characters.size + 1,
                             name = action.name,
                             level = action.level,
-                            characterClass = CharacterClassUI(
-                                id = classModel.id,
-                                name = classModel.name,
-                                imageRes = classModel.image,
-                            ),
+                            characterClass = classModel.toUI(),
                         )
                         val newValue = currentValue.copy(
                             characters = newCharacterList,

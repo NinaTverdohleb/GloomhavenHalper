@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GameLevelInfoBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 
 object StartFill {
@@ -617,24 +618,23 @@ object StartFill {
         characterClassDao: CharacterClassDao
     ) {
         characterClassDao.insertAll(
-            CharacterClassBd(name = "Инокс, дикарь", image = R.drawable.br),
-            CharacterClassBd(name = "Вермлинг, повелитель зверей", image = R.drawable.bt),
-            CharacterClassBd(name = "Саввас, пустотелый ", image = R.drawable.ch),
-            CharacterClassBd(name = "Орхид, обрекающий", image = R.drawable.ds),
-            CharacterClassBd(name = "Саввас, элементалист", image = R.drawable.el),
-            CharacterClassBd(name = "Куатрил,воспевающая", image = R.drawable.ss),
-            CharacterClassBd(name = "Человек, костоправ", image = R.drawable.sb),
-            CharacterClassBd(name = "Жнец, предвестник чумы", image = R.drawable.ph),
-            CharacterClassBd(name = "Куатрил, изобретатель", image = R.drawable.ti),
-            CharacterClassBd(name = "Эстер, покров ночи", image = R.drawable.ns),
-            CharacterClassBd(name = "Орхид, плетущая чары", image = R.drawable.sw),
-            CharacterClassBd(name = "Эстер, призывающая", image = R.drawable.su),
-            CharacterClassBd(name = "Валрат, хранящая солнце", image = R.drawable.sk),
-            CharacterClassBd(name = "Вермлинг, крадущая разум", image = R.drawable.mt),
-            CharacterClassBd(name = "Валрат, хранящая солнце", image = R.drawable.sk),
-            CharacterClassBd(name = "Человек, плутовка", image = R.drawable.sc),
-            CharacterClassBd(name = "Валрат, интендант", image = R.drawable.qm),
-            CharacterClassBd(name = "Эстрер, прорицательница", image = R.drawable.dr),
+            CharacterClassBd(name = "Инокс, дикарь", type = CharacterClassType.Brute.name),
+            CharacterClassBd(name = "Вермлинг, повелитель зверей", type = CharacterClassType.BeastTyrant.name),
+            CharacterClassBd(name = "Саввас, пустотелый ", type = CharacterClassType.Cragheart.name),
+            CharacterClassBd(name = "Орхид, обрекающий", type = CharacterClassType.Doomstalker.name),
+            CharacterClassBd(name = "Саввас, элементалист", type = CharacterClassType.Elementalist.name),
+            CharacterClassBd(name = "Куатрил,воспевающая", type = CharacterClassType.Soothsinger.name),
+            CharacterClassBd(name = "Человек, костоправ", type = CharacterClassType.Sawbones.name),
+            CharacterClassBd(name = "Жнец, предвестник чумы", type = CharacterClassType.Plagueherald.name),
+            CharacterClassBd(name = "Куатрил, изобретатель", type = CharacterClassType.Tinkerer.name),
+            CharacterClassBd(name = "Эстер, покров ночи", type = CharacterClassType.Nightshroud.name),
+            CharacterClassBd(name = "Орхид, плетущая чары", type = CharacterClassType.Spellweaver.name),
+            CharacterClassBd(name = "Эстер, призывающая", type = CharacterClassType.Summoner.name),
+            CharacterClassBd(name = "Валрат, хранящая солнце", type = CharacterClassType.Sunkeeper.name),
+            CharacterClassBd(name = "Вермлинг, крадущая разум", type = CharacterClassType.Mindthief.name),
+            CharacterClassBd(name = "Человек, плутовка", type = CharacterClassType.Scoundrel.name),
+            CharacterClassBd(name = "Валрат, интендант", type = CharacterClassType.Quartermaster.name),
+            CharacterClassBd(name = "Эстрер, прорицательница", type = CharacterClassType.Diviner.name),
         )
     }
 }

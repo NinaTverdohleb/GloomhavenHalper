@@ -1,11 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-data class CharacterClass(
-    val id: Int,
-    val image: Int,
-    val name: String
-)
-
 data class CharacterForSave(
     val name: String,
     val level: Int,
