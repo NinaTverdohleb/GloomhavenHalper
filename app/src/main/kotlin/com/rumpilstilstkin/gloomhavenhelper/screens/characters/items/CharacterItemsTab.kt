@@ -31,7 +31,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.AddItemDialog
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.AddGoodsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
@@ -42,6 +44,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 @Composable
 fun CharacterItemsTab(
     characterId: Int,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     val viewModel =
@@ -51,28 +54,28 @@ fun CharacterItemsTab(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     CharacterGoods(
-        characterId = characterId,
         goods = uiState,
         modifier = modifier,
-        onGoodDelete = {}
+        onGoodDelete = {
+            viewModel.onAction(CharacterItemsTabActions.DeleteGood(it))
+        },
+        addGoods = {
+            navController.navigate(GlHelperScreens.AddGoodsForCharacter(characterId))
+        }
     )
 }
 
 @Composable
 fun CharacterGoods(
-    characterId: Int,
     goods: List<GoodUi>,
     modifier: Modifier = Modifier,
-    onGoodDelete: (Int) -> Unit
+    onGoodDelete: (Int) -> Unit,
+    addGoods: () -> Unit
 ) {
-    var showAddItemDialog by remember { mutableStateOf(false) }
-    AddItemDialog(characterId = characterId, showDialog = showAddItemDialog) {
-        showAddItemDialog = false
-    }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { showAddItemDialog = true },
+                onClick = { addGoods() },
                 content = {
                     Icon(Icons.Filled.Add, "Добавить предмет")
                 }
@@ -144,7 +147,7 @@ private fun GoodItem(
             Text(text = "" + good.cost + "G")
             IconButton(
                 onClick = {
-                    onDelete(good.id)
+                    good.characterGoodId?.let { onDelete(it) }
                 }
             ) {
                 Icon(Icons.Filled.Delete, "Удалить предмет", tint = MaterialTheme.colorScheme.error)
@@ -159,7 +162,6 @@ private fun GoodItem(
 private fun CharacterItemsTabExample() {
     GloomhavenHalperTheme {
         CharacterGoods(
-            characterId = 1,
             goods = listOf(
                 GoodUi(
                     id = 1,
@@ -176,7 +178,8 @@ private fun CharacterItemsTabExample() {
                     cost = 30,
                 )
             ),
-            onGoodDelete = {}
+            onGoodDelete = {},
+            addGoods = {}
         )
     }
 }

@@ -4,10 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
-import com.rumpilstilstkin.gloomhavenhelper.screens.main.MainScreenUiState
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +22,7 @@ class AddScenarioViewModel @Inject constructor(
         val teamScenarios = scenarioRepository.getAllTeamScenarios(team)
         val avalibleScenarios = scenarioRepository.getAllScenarios().filter { scenario ->
             teamScenarios.none { it.scenarioNumber == scenario.scenarioNumber }
-        }.map { it.toUI() }
+        }.map { it.toUi() }
         AddScenarioUiState(scenarios = avalibleScenarios)
     }.stateIn(
         scope = viewModelScope,

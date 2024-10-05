@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 data class CharacterForSave(
     val name: String,
     val level: Int,
-    val classId: Int
+    val characterType: CharacterClassType
 )
 
 data class CharacterInfo(
@@ -22,7 +22,7 @@ data class CharacterInfo(
 data class CharacterShortInfo(
     val name: String,
     val level: Int,
-    val characterClassId: Int,
+    val characterType: CharacterClassType,
     val isAlive: Boolean,
     val id: Int,
     val teamId: Int?,

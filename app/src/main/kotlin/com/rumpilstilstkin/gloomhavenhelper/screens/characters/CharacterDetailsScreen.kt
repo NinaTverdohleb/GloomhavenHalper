@@ -41,7 +41,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.view.Bage
 fun CharacterDetailsScreen(
     characterId: Int,
     modifier: Modifier = Modifier,
-    navController: NavHostController? = null
+    navController: NavHostController
 ) {
     val viewModel = hiltViewModel<CharacterDetailsViewModel, CharacterDetailsViewModel.Factory> { factory ->
         factory.create(characterId)
@@ -58,7 +58,7 @@ fun CharacterDetailsScreen(
 
         CharactersTabs(
             showFirstTab = { CharacterGeneralTab(characterId) },
-            showSecondTab = { CharacterItemsTab(characterId) },
+            showSecondTab = { CharacterItemsTab(characterId, navController) },
             showThirdTab = { CharacterPerksTab(characterId) }
         )
     }

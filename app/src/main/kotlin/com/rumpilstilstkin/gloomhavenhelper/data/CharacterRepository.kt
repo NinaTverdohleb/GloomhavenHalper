@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
@@ -17,8 +19,24 @@ import javax.inject.Inject
 class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val classDao: CharacterClassDao,
-    private val characterGoodsDao: CharacterGoodsDao
+    private val characterGoodsDao: CharacterGoodsDao,
+    private val characterPerksDao: CharacterPerksDao
 ) {
+
+    suspend fun addCharacterPerk(characterId: Int, perkId: Int) {
+        characterPerksDao.insert(CharacterPerkBd(characterId = characterId, perkId = perkId))
+
+    }
+
+    suspend fun deleteCharacterPerk(characterPerkId: Int) {
+        characterPerksDao.deleteById(characterPerkId)
+    }
+
+    fun getCharacterPerksFlow(characterId: Int) = characterPerksDao.getCharacterPerksFlow(characterId).map { perks ->
+        perks.map { it.toDomain() }
+    }
+
+    suspend fun getCharacterPerks(characterId: Int) = characterPerksDao.getCharacterPerks(characterId).map { it.toDomain() }
 
     suspend fun addCharacterGood(characterId: Int, goodId: Int) {
         characterGoodsDao.insert(CharacterGoodBd(characterId = characterId, goodId = goodId))
@@ -29,20 +47,22 @@ class CharacterRepository @Inject constructor(
         characterGoodsDao.deleteById(characterGoodId)
     }
 
-    fun getCharacterGoods(characterId: Int) = characterGoodsDao.getCharacterGoods(characterId).map { goods ->
+    fun getCharacterGoodsFlow(characterId: Int) = characterGoodsDao.getCharacterGoodsFlow(characterId).map { goods ->
         goods.map { it.toDomain() }
     }
+
+    suspend fun getCharacterGoods(characterId: Int) = characterGoodsDao.getCharacterGoods(characterId).map { it.toDomain() }
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {
-                val classBd = classDao.findById(it.classId)
+                val classBd = classDao.findByType(it.characterType)
                 it.toDomain(classBd)
             }
         }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo> =
-        characterDao.getCharacterByIdFlow(id).map { it.toDomain(classDao.findById(it.classId)) }
+        characterDao.getCharacterByIdFlow(id).map { it.toDomain(classDao.findByType(it.characterType)) }
 
     suspend fun getCharacterById(id: Int): CharacterShortInfo = characterDao.getCharacterById(id).toShortDomain()
 
@@ -93,7 +113,7 @@ class CharacterRepository @Inject constructor(
     fun getAllCharacters(): Flow<List<CharacterInfo>> =
         characterDao.getAllCharacters().map { list ->
             list.map {
-                val classBd = classDao.findById(it.classId)
+                val classBd = classDao.findByType(it.characterType)
                 it.toDomain(classBd)
             }
         }

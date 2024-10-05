@@ -16,4 +16,9 @@ interface GoodsDao {
 
     @Insert
     suspend fun insertAll(vararg users: GoodBd)
+
+    @Transaction
+    @Query("SELECT * FROM GoodBd WHERE goodId IN (:goodId)")
+    suspend fun getGoodsByIds(goodId: List<Int>): List<GoodBd>
+
 }

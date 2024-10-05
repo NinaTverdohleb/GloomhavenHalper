@@ -10,7 +10,7 @@ data class CharacterBd(
     val level: Int,
     val experience: Int,
     val goldCount: Int,
-    val classId: Int,
+    val characterType: String,
     val teamId: Int?,
     val isAlive: Boolean = true,
     val notes: String = "",

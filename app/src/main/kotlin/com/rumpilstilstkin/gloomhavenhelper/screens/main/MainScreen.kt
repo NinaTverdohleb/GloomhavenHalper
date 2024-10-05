@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
@@ -148,7 +149,7 @@ private fun TeamPreview() {
                         name = "Character 1",
                         level = 1,
                         characterClass = CharacterClassUI(
-                            id = 1,
+                            classType = CharacterClassType.Brute,
                             name = "Class 1",
                             imageRes = R.drawable.br
                         )

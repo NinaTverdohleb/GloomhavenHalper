@@ -39,11 +39,11 @@ fun MainDialogs(
     AddCharacterDialog(
         showDialog = effectState.showAddCharacterDialog,
         onDismiss = { onAction(MainScreenAction.HideAddCharacterDialog) },
-        onAdd = { name, level, classId ->
+        onAdd = { name, level, classType ->
             onAction(MainScreenAction.AddCharacter(
                 name = name,
                 level = level,
-                classId = classId
+                classType = classType,
             ))
         }
     )

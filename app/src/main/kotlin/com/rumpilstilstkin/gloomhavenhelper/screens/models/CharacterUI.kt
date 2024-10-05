@@ -11,10 +11,10 @@ data class CharacterUI(
     val isAlive: Boolean = true,
 )
 
-fun CharacterInfo.toUI() = CharacterUI(
+fun CharacterInfo.toUi() = CharacterUI(
     name = this.name,
     level = this.level,
     id = this.id,
-    characterClass = this.characterClass.toUI(),
+    characterClass = this.characterClass.toUi(),
     isAlive = this.isAlive
 )

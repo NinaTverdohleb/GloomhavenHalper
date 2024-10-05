@@ -12,7 +12,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.CompleteScenarioUseCa
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -48,12 +48,12 @@ class MainViewModel @Inject constructor(
                 teamId = team.id,
                 teamName = team.name,
                 teamLevel = team.level,
-                teamScenario = team.scenario.map { it.toUI() },
+                teamScenario = team.scenario.map { it.toUi() },
                 teamReputation = team.reputation,
                 prosperity = team.prosperity,
                 teamAchievements = team.teamAchievement,
                 globalAchievements = team.globalAchievement,
-                characters = team.characters.map { it.toUI() },
+                characters = team.characters.map { it.toUi() },
                 canAddCharacter = team.characters.size < 4
             ),
         )
@@ -65,7 +65,7 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val classes = classRepository.getAllClasses().map { it.toUI() }
+            val classes = classRepository.getAllClasses().map { it.toUi() }
             _effects.emit(_effects.value.copy(classes = classes))
         }
     }
@@ -142,7 +142,7 @@ class MainViewModel @Inject constructor(
                         CharacterForSave(
                             name = action.name,
                             level = action.level,
-                            classId = action.classId
+                            characterType = action.classType
                         )
                     )
                     _effects.emit(_effects.value.copy(showAddCharacterDialog = false))

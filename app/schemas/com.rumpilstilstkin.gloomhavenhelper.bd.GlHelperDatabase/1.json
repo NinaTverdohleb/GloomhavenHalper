@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "69b84282bc2667bd05c69c2ed2b1b54a",
+    "identityHash": "549d5c34897ebe78e6eafee870272d1c",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -56,14 +56,8 @@
       },
       {
         "tableName": "CharacterClassBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterClassId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `characterType` TEXT NOT NULL, PRIMARY KEY(`characterType`))",
         "fields": [
-          {
-            "fieldPath": "characterClassId",
-            "columnName": "characterClassId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "name",
             "columnName": "name",
@@ -71,16 +65,16 @@
             "notNull": true
           },
           {
-            "fieldPath": "type",
-            "columnName": "type",
+            "fieldPath": "characterType",
+            "columnName": "characterType",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
-            "characterClassId"
+            "characterType"
           ]
         },
         "indices": [],
@@ -88,7 +82,7 @@
       },
       {
         "tableName": "CharacterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `experience` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL, `notes` TEXT NOT NULL, `checkMarkCount` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `experience` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `characterType` TEXT NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL, `notes` TEXT NOT NULL, `checkMarkCount` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "characterId",
@@ -121,9 +115,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "classId",
-            "columnName": "classId",
-            "affinity": "INTEGER",
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -348,7 +342,7 @@
       },
       {
         "tableName": "GoodBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `is_drawing` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "goodId",
@@ -377,6 +371,12 @@
           {
             "fieldPath": "cost",
             "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDrawing",
+            "columnName": "is_drawing",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -463,12 +463,140 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "CharacterPerkBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` INTEGER NOT NULL, `perkId` INTEGER NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `CharacterBd`(`characterId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`perkId`) REFERENCES `PerkBd`(`perkId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterId",
+            "columnName": "characterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perkId",
+            "columnName": "perkId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_CharacterPerkBd_characterId",
+            "unique": false,
+            "columnNames": [
+              "characterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPerkBd_characterId` ON `${TABLE_NAME}` (`characterId`)"
+          },
+          {
+            "name": "index_CharacterPerkBd_perkId",
+            "unique": false,
+            "columnNames": [
+              "perkId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPerkBd_perkId` ON `${TABLE_NAME}` (`perkId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterId"
+            ],
+            "referencedColumns": [
+              "characterId"
+            ]
+          },
+          {
+            "table": "PerkBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perkId"
+            ],
+            "referencedColumns": [
+              "perkId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "PerkBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`perkId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `text` TEXT NOT NULL, `characterType` TEXT NOT NULL, FOREIGN KEY(`characterType`) REFERENCES `CharacterClassBd`(`characterType`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "perkId",
+            "columnName": "perkId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "perkId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_PerkBd_characterType",
+            "unique": false,
+            "columnNames": [
+              "characterType"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_PerkBd_characterType` ON `${TABLE_NAME}` (`characterType`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterClassBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterType"
+            ],
+            "referencedColumns": [
+              "characterType"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '69b84282bc2667bd05c69c2ed2b1b54a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '549d5c34897ebe78e6eafee870272d1c')"
     ]
   }
 }

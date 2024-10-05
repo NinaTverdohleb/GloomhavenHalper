@@ -5,7 +5,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClass
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 
 fun CharacterClassBd.toDomain() = CharacterClass(
-    id = this.characterClassId,
-    type = CharacterClassType.valueOf(this.type),
+    type = CharacterClassType.valueOf(this.characterType),
     name = this.name
 )

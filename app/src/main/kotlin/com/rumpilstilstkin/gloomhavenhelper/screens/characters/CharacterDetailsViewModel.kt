@@ -3,10 +3,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -23,7 +24,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<CharacterUI> = getCharacterUseCase(id).map {
-        it.toUI()
+        it.toUi()
     }.stateIn(
         scope = viewModelScope,
         initialValue = CharacterUI(
@@ -31,7 +32,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
             level = 0,
             characterClass = CharacterClassUI(
                 name = "",
-                id = 0,
+                classType = CharacterClassType.Brute,
                 imageRes = R.drawable.br
             ),
             id = id,

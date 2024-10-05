@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
@@ -40,7 +41,7 @@ fun AddCharacterDialog(
     showDialog: Boolean,
     viewModel: AddCharactersDialogViewModel = hiltViewModel(),
     onDismiss: () -> Unit,
-    onAdd: (String, Int, Int) -> Unit
+    onAdd: (String, Int, CharacterClassType) -> Unit
 ) {
     val classes = viewModel.classes
     if (showDialog) {
@@ -94,7 +95,7 @@ fun AddCharacterDialog(
                         onAdd.invoke(
                             newCharacterName,
                             level,
-                            classes[selectedIndex].id
+                            classes[selectedIndex].classType
                         )
                     }
                 ) {

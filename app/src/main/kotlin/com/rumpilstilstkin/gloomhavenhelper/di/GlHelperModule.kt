@@ -64,4 +64,14 @@ object GlHelperModule {
     @Singleton
     @Provides
     fun provideGoodsDao(db: GlHelperDatabase) = db.goodsDao()
+
+    @Singleton
+    @Provides
+    fun providePerksDao(db: GlHelperDatabase) = db.perksDao()
+
+    @Singleton
+    @Provides
+    fun provideCharacterPerksDao(db: GlHelperDatabase) = db.characterPerksDao()
+
+
 }

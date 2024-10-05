@@ -33,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
@@ -49,12 +50,12 @@ fun CharactersTab(
 
     // add characterDialog
     var showAddCharacterDialog by remember { mutableStateOf(false) }
-    val addCharacter: (String, Int, Int) -> Unit = { name, level, classId ->
+    val addCharacter: (String, Int, CharacterClassType) -> Unit = { name, level, classType ->
         viewModel.onAction(
             CharactersTabAction.AddCharacter(
                 name = name,
                 level = level,
-                classId = classId
+                characterType = classType
             )
         )
         showAddCharacterDialog = false
@@ -198,7 +199,7 @@ private fun DataExample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 ),
                 CharacterUI(
@@ -207,7 +208,7 @@ private fun DataExample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 )
             ),
