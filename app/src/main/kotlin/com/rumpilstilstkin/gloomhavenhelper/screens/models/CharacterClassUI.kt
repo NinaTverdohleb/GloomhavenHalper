@@ -6,13 +6,13 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 
 data class CharacterClassUI(
     val name: String,
-    val id: Int,
+    val classType: CharacterClassType,
     val imageRes: Int,
 )
 
-fun CharacterClass.toUI() = CharacterClassUI(
+fun CharacterClass.toUi() = CharacterClassUI(
     name = this.name,
-    id = this.id,
+    classType = this.type,
     imageRes = this.type.toImage(),
 )
 

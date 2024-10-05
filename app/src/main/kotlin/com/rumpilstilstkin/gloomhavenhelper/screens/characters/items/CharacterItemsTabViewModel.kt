@@ -2,7 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.DeleteCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
@@ -13,11 +14,13 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 @HiltViewModel(assistedFactory = CharacterItemsTabViewModel.Factory::class)
 class CharacterItemsTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterGoodsUseCase: GetCharacterGoodsUseCase,
+    private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase
 ) : ViewModel() {
 
     val uiState: StateFlow<List<GoodUi>> = getCharacterGoodsUseCase(id).map {
@@ -28,8 +31,22 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
         started = SharingStarted.WhileSubscribed(100),
     )
 
+    fun onAction(action: CharacterItemsTabActions) {
+        viewModelScope.launch {
+            when (action) {
+                is CharacterItemsTabActions.DeleteGood -> {
+                    deleteCharacterGoodsUseCase(action.characterGoodId)
+                }
+            }
+        }
+    }
+
     @AssistedFactory
     interface Factory {
         fun create(id: Int): CharacterItemsTabViewModel
     }
+}
+
+sealed interface CharacterItemsTabActions {
+    data class DeleteGood(val characterGoodId: Int) : CharacterItemsTabActions
 }

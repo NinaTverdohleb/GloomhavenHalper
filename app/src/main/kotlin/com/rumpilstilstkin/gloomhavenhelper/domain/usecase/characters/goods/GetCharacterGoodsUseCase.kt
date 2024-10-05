@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
@@ -10,8 +10,6 @@ class GetCharacterGoodsUseCase @Inject constructor(
 ) {
 
     operator fun invoke(characterId: Int): Flow<List<Good>> {
-        return characterRepository.getCharacterGoods(characterId)
+        return characterRepository.getCharacterGoodsFlow(characterId)
     }
-
-
 }

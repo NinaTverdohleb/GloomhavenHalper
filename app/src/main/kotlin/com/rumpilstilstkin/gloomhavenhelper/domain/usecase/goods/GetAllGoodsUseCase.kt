@@ -9,6 +9,6 @@ class GetAllGoodsUseCase @Inject constructor(
     private val goodsRepository: GoodsRepository
 ) {
 
-    suspend operator fun invoke() = goodsRepository.getGoods().map { it.toDomain() }
+    suspend operator fun invoke() = goodsRepository.getGoods()
 
 }

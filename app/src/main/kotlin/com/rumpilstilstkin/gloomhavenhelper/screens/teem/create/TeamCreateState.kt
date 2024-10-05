@@ -29,5 +29,5 @@ fun TeamCreateUiState.toTeamForSave(): TeamInfoForSave =
 fun CharacterUI.toCharacterForSave() =  CharacterForSave(
     name = name,
     level = level,
-    classId = characterClass.id
+    characterType = this.characterClass.classType
 )

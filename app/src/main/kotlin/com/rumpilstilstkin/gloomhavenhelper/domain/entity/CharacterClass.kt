@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 data class CharacterClass(
-    val id: Int,
     val type: CharacterClassType,
     val name: String
 )

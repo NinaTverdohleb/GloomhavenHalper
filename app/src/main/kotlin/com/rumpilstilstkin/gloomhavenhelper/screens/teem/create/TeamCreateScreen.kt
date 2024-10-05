@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
@@ -53,12 +54,12 @@ fun TeamCreateScreen(
     AddCharacterDialog(
         showDialog = uiState.showCharacterDialog,
         onDismiss = { viewModel.action(TeamCreateAction.HideCharacterDialog) }
-    ) { name, level, classId ->
+    ) { name, level, classType ->
         viewModel.action(
             TeamCreateAction.AddCharacter(
                 name = name,
                 level = level,
-                classId = classId
+                characterType = classType,
             )
         )
     }
@@ -179,7 +180,7 @@ private fun Sample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 ),
                 CharacterUI(
@@ -188,7 +189,7 @@ private fun Sample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 )
             ),

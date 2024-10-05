@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import javax.inject.Inject
 
@@ -12,6 +14,8 @@ class DatabaseFiller @Inject constructor(
     private val gameLevelInfoDao: GameLevelInfoDao,
     private val scenarioDao: ScenarioDao,
     private val preferences: SharedPreferences,
+    private val goodsDao: GoodsDao,
+    private val perksDao: PerksDao,
 ) {
     val version = preferences.getInt(PREFS_VERSION, 0)
 
@@ -32,6 +36,8 @@ class DatabaseFiller @Inject constructor(
         StartFill.fillCharacterClasses(characterClassDao)
         StartFill.fillGameLevelInfo(gameLevelInfoDao)
         StartFill.fillScenarios(scenarioDao)
+        StartFill.fillGoods(goodsDao)
+        StartFill.fillPerks(perksDao)
     }
 
     companion object {

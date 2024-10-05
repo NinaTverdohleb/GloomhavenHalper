@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -70,7 +71,7 @@ private fun Sample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 ),
                 CharacterUI(
@@ -79,7 +80,7 @@ private fun Sample() {
                     characterClass = CharacterClassUI(
                         imageRes = R.drawable.br,
                         name = "Name",
-                        id = 1
+                        classType = CharacterClassType.Brute
                     )
                 )
             ),

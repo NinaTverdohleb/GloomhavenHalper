@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,7 +40,7 @@ class CharactersTabViewModel @Inject constructor(
                     characters = characters
                         .filter { if (filters.filterAlive) it.isAlive else true }
                         .filter { if (filters.filterTeamId != null) it.team?.teamId == filters.filterTeamId else true }
-                        .map { it.toUI() }
+                        .map { it.toUi() }
                 )
             } else {
                 CharactersTabState.Empty
@@ -59,7 +59,7 @@ class CharactersTabViewModel @Inject constructor(
                         CharacterForSave(
                             name = action.name,
                             level = action.level,
-                            classId = action.classId
+                            characterType = action.characterType
                         )
                     )
                 }

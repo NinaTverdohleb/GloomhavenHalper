@@ -17,6 +17,7 @@ data class GoodUi(
     val name: String,
     val typeImage: ImageVector,
     val cost: Int,
+    val characterGoodId: Int? = null
 )
 
 fun Good.toUi() = GoodUi(
@@ -25,6 +26,7 @@ fun Good.toUi() = GoodUi(
     name = this.name,
     typeImage = this.type.toImage(),
     cost = this.cost,
+    characterGoodId = this.characterGoodId
 )
 
 fun GoodType.toImage() = when(this) {

@@ -13,7 +13,11 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterGoodsDao {
     @Transaction
     @Query("SELECT * FROM CharacterGoodBd WHERE characterId LIKE :characterId")
-    fun getCharacterGoods(characterId: Int): Flow<List<CharacterGoodDetailsBd>>
+    fun getCharacterGoodsFlow(characterId: Int): Flow<List<CharacterGoodDetailsBd>>
+
+    @Transaction
+    @Query("SELECT * FROM CharacterGoodBd WHERE characterId LIKE :characterId")
+    suspend fun getCharacterGoods(characterId: Int): List<CharacterGoodDetailsBd>
 
     @Insert
     suspend fun insert(characterGood: CharacterGoodBd)

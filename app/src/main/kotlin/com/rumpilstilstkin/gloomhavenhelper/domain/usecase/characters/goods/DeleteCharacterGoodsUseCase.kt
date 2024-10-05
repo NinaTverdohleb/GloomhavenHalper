@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import javax.inject.Inject

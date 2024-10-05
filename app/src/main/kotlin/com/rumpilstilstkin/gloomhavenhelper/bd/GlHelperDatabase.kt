@@ -7,16 +7,20 @@ import androidx.room.RoomDatabase
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GameLevelInfoBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
@@ -30,7 +34,9 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
         ScenarioBd::class,
         TeamScenarioBd::class,
         GoodBd::class,
-        CharacterGoodBd::class
+        CharacterGoodBd::class,
+        CharacterPerkBd::class,
+        PerkBd::class
     ],
     version = 1
 )
@@ -43,6 +49,8 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun teamScenarioDao(): TeamScenarioDao
     abstract fun characterGoodsDao(): CharacterGoodsDao
     abstract fun goodsDao(): GoodsDao
+    abstract fun characterPerksDao(): CharacterPerksDao
+    abstract fun perksDao(): PerksDao
 }
 
 fun createGlHelperDatabase(

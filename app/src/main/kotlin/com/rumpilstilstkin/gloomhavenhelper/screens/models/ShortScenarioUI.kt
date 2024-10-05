@@ -9,13 +9,13 @@ data class ShortScenarioUI(
     val scenarioRequirements: String,
 )
 
-fun TeamScenario.toUI() = ShortScenarioUI(
+fun TeamScenario.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
 )
 
-fun ScenarioInfo.toUI() = ShortScenarioUI(
+fun ScenarioInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
