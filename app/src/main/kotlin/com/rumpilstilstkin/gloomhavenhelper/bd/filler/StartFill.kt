@@ -2238,6 +2238,10 @@ object StartFill {
         addTinkererPerks(perksDao)
         addBeastTyrantPerks(perksDao)
         addElementalistPerks(perksDao)
+        addSummonerPerks(perksDao)
+        addSunkeeperPerks(perksDao)
+        addDoomstalkerPerks(perksDao)
+        addSoothsingerPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -2752,8 +2756,7 @@ object StartFill {
             PerkBd(
                 text = "Поменяйте 2 карты #15 на 1 карту #15 #22 и 1 карту #15 #23",
                 characterType = CharacterClassType.Elementalist.name
-            )
-            ,
+            ),
             PerkBd(
                 text = "Поменяйте 2 карты #15 на 1 карту #15 #16 и 1 карту #15 #21",
                 characterType = CharacterClassType.Elementalist.name
@@ -2774,6 +2777,274 @@ object StartFill {
                 text = "Добавьте 1 карту #15 с эффектом \"ДОБАВИТЬ ЦЕЛЬ #13\"",
                 characterType = CharacterClassType.Elementalist.name
             ),
+        )
+    }
+
+    private suspend fun addSummonerPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 кару #02 на 1 карту #15",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 РАНА #14\"",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #22 и 1 карту #07 #21",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #20 и 1 карту #07 #23",
+                characterType = CharacterClassType.Summoner.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев и добавьте 2 карты #03",
+                characterType = CharacterClassType.Summoner.name
+            )
+        )
+    }
+
+    private suspend fun addSunkeeperPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #02 на 1 карту #15",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #19",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #19",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Щит 1 (на себя)\"",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты предметов и добавьте 2 карты #03",
+                characterType = CharacterClassType.Sunkeeper.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Sunkeeper.name
+            )
+        )
+    }
+
+    private suspend fun addDoomstalkerPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #15 на 2 карты #03",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #15 на 2 карты #03",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #15 на 2 карты #03",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 с эффектом \"СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+            PerkBd(
+                text = "Игнорирйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Doomstalker.name
+            ),
+        )
+    }
+
+    private suspend fun addSoothsingerPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Уберите 1 карту #02",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #03 на 1 карту #06",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #03 на 1 карту #06",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #03 с эффектом \"РАЗОРУЖЕНИЕ #11\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 с эффектом \"ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 с эффектом \"ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #05 с эффектом \"СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #15 с эффектом \"ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Добавтье 3 карты #07 #03",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Добавтье 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Soothsinger.name
+            ),
+            PerkBd(
+                text = "Добавтье 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Soothsinger.name
+            )
         )
     }
 }
