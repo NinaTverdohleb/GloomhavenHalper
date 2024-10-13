@@ -48,6 +48,7 @@ android {
     buildFeatures {
         compose = true
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -56,10 +57,6 @@ android {
     room {
         schemaDirectory("$projectDir/schemas")
     }
-}
-
-composeCompiler {
-    enableStrongSkippingMode = true
 }
 
 dependencies {
@@ -79,6 +76,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.collections.immutable)
 
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.ext.compiler)
@@ -88,6 +86,7 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+
 
     testImplementation(libs.junit)
 

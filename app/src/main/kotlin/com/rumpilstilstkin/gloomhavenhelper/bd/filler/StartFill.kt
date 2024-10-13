@@ -2227,6 +2227,126 @@ object StartFill {
                 name = "Резонирующий кристал",
                 type = GoodType.SmallThing.name,
                 cost = 20
+            ),
+            GoodBd(
+                number = 153,
+                name = "Малое противоядие",
+                type = GoodType.SmallThing.name,
+                cost = 25
+            ),
+            GoodBd(
+                number = 153,
+                name = "Малое противоядие",
+                type = GoodType.SmallThing.name,
+                cost = 25
+            ),
+            GoodBd(
+                number = 154,
+                name = "Большое противоядие",
+                type = GoodType.SmallThing.name,
+                cost = 50
+            ),
+            GoodBd(
+                number = 154,
+                name = "Большое противоядие",
+                type = GoodType.SmallThing.name,
+                cost = 50
+            ),
+            GoodBd(
+                number = 155,
+                name = "Оберегающий доспех",
+                type = GoodType.Body.name,
+                cost = 75
+            ),
+            GoodBd(
+                number = 156,
+                name = "Клеймор стихий",
+                type = GoodType.DoubleArm.name,
+                cost = 50
+            ),
+            GoodBd(
+                number = 156,
+                name = "Клеймор стихий",
+                type = GoodType.DoubleArm.name,
+                cost = 50
+            ),
+            GoodBd(
+                number = 157,
+                name = "Древний лук",
+                type = GoodType.DoubleArm.name,
+                cost = 40
+            ),
+            GoodBd(
+                number = 157,
+                name = "Древний лук",
+                type = GoodType.DoubleArm.name,
+                cost = 40
+            ),
+            GoodBd(
+                number = 158,
+                name = "Заживляющие поножи",
+                type = GoodType.Foot.name,
+                cost = 35
+            ),
+            GoodBd(
+                number = 158,
+                name = "Заживляющие поножи",
+                type = GoodType.Foot.name,
+                cost = 35
+            ),
+            GoodBd(
+                number = 159,
+                name = "Свиток проворства",
+                type = GoodType.SmallThing.name,
+                cost = 30
+            ),
+            GoodBd(
+                number = 159,
+                name = "Свиток проворства",
+                type = GoodType.SmallThing.name,
+                cost = 30
+            ),
+            GoodBd(
+                number = 160,
+                name = "Кинжал карманника",
+                type = GoodType.Arm.name,
+                cost = 45
+            ),
+            GoodBd(
+                number = 161,
+                name = "Метательный топор",
+                type = GoodType.Arm.name,
+                cost = 35
+            ),
+            GoodBd(
+                number = 161,
+                name = "Метательный топор",
+                type = GoodType.Arm.name,
+                cost = 35
+            ),
+            GoodBd(
+                number = 162,
+                name = "Генераторо порталов",
+                type = GoodType.SmallThing.name,
+                cost = 50
+            ),
+            GoodBd(
+                number = 163,
+                name = "Кристальная тиара",
+                type = GoodType.Head.name,
+                cost = 75
+            ),
+            GoodBd(
+                number = 164,
+                name = "Чаша пророчества",
+                type = GoodType.DoubleArm.name,
+                cost = 55
+            ),
+            GoodBd(
+                number = 165,
+                name = "Кольцо дуальности",
+                type = GoodType.SmallThing.name,
+                cost = 50
             )
         )
     }
