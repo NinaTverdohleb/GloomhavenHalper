@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.addscenario
 
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

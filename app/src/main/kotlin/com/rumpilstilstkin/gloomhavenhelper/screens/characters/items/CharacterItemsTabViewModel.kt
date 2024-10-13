@@ -23,8 +23,8 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
     private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<List<GoodUi>> = getCharacterGoodsUseCase(id).map {
-        it.map { good -> good.toUi()}
+    val uiState: StateFlow<List<GoodUi>> = getCharacterGoodsUseCase(id).map { item ->
+        item.map { good -> good.toUi() }.sortedBy { it.number }
     }.stateIn(
         scope = viewModelScope,
         initialValue = emptyList(),

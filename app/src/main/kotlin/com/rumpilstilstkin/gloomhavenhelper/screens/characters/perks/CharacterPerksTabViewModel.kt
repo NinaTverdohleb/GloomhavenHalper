@@ -13,6 +13,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -31,8 +32,9 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
 
     val uiState: StateFlow<CharacterPerksScreenState> = getCharacterPerksUseCase(id).map {
         CharacterPerksScreenState(
-            characterPerks = it.sortedBy { id }.map { perk -> perk.toUi() },
+            characterPerks = it.map { perk -> perk.toUi() }.sortedBy { id }.toImmutableList(),
             avaliablePerks = getAvaliableCharacterPerksUseCase(id, it).map { perk -> perk.toUi() }
+                .toImmutableList()
         )
     }.stateIn(
         scope = viewModelScope,

@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.team
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -10,7 +12,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
 
 @Composable
@@ -50,11 +54,13 @@ fun NumberPickerDialog(
 @Preview
 @Composable
 private fun Sample() {
-    NumberPickerDialog(
-        startValue = 0,
-        title = "Репутация",
-        intRange = IntRange(0, 10),
-        onDismiss = {},
-        onNumberSelected = {}
-    )
+    GloomhavenHalperTheme {
+        NumberPickerDialog(
+            startValue = 0,
+            title = "Репутация",
+            intRange = IntRange(0, 10),
+            onDismiss = {},
+            onNumberSelected = {}
+        )
+    }
 }

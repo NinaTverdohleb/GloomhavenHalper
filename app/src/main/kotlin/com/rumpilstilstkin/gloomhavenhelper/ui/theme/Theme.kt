@@ -28,10 +28,12 @@ private val ColorScheme = lightColorScheme(
     surface = Background,
     onSurface = OnBackground,
     surfaceVariant = PurpleGray30,
-    onSurfaceVariant = PurpleGray80,
+    onSurfaceVariant = OnSurfaceVariant,
     inverseSurface = OnBackground,
     inverseOnSurface = Background,
     outline = PurpleGray60,
+    surfaceContainer = Background,
+    surfaceContainerHigh = Background
 )
 
 @Composable
