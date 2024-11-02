@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -199,7 +201,13 @@ fun AddGoodsItem(
     GoodDetailsDialog(
         goodNumber = good.number,
         showDialog = showDetailsDialog,
-        onDismiss = { showDetailsDialog = false }
+        onDismiss = { showDetailsDialog = false },
+        canAdd = !isChecked,
+        onAdd = {
+            onSelectedChanged(good.id)
+            isChecked = true
+            showDetailsDialog = false
+        }
     )
     Row(
         modifier = modifier
@@ -210,9 +218,10 @@ fun AddGoodsItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
+            CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
                 Checkbox(
                     modifier = Modifier.padding(),
                     checked = isChecked,
@@ -239,12 +248,14 @@ fun AddGoodsItem(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier,
                 text = good.name
             )
         }
 
-        Text(text = "" + good.cost + "G")
+        Text(
+            modifier = Modifier,
+            text = "${good.cost} G")
     }
 }
 
@@ -259,7 +270,7 @@ private fun SampleItem() {
                     number = 1,
                     name = "Сапоги большого шага поешь этих сладких французких булок",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
+                    cost = 200,
                 )
             ),
             filterType = GoodType.Arm,

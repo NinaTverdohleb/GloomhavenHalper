@@ -25,6 +25,7 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -258,7 +259,7 @@ fun CheckMarkRow(
         )
 
         Spacer(modifier = Modifier.width(6.dp))
-        CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
+        CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
             for (i in 0..2) {
                 Checkbox(
                     modifier = Modifier,
