@@ -43,8 +43,10 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
         AddGoodsScreenState(
             goods = availableGoods
                 .filter {
-                    if (effects.selectedFilters != null) it.type == effects.selectedFilters
-                    else true
+                    it.filterResult(
+                        goodType = effects.selectedFilters,
+                        search = effects.searchText
+                    )
                 }
                 .map { it.toUi() },
             effects = effects
@@ -95,8 +97,26 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
                         if (action.type == uiState.value.effects.selectedFilters) null else action.type
                     effects.emit(effects.value.copy(selectedFilters = newFilter))
                 }
+
+                is AddGoodsScreenActions.SearchTextChange -> {
+                    effects.emit(effects.value.copy(searchText = action.text))
+                }
             }
         }
+    }
+
+    private fun Good.filterResult(goodType: GoodType?, search: String): Boolean {
+        if (goodType != null && goodType != this.type) return false
+        if (search.isBlank()) return true
+        if (this.name.contains(search, ignoreCase = true)) return true
+
+        val numberRegex = Regex("\\d+")
+        val matchResult = numberRegex.find(search)
+        val number = matchResult?.value?.toIntOrNull()
+
+        return if (number != null) {
+            this.number == number
+        } else false
     }
 
     @AssistedFactory
@@ -113,7 +133,8 @@ internal data class AddGoodsScreenState(
 internal data class AddGoodsScreenEffects(
     val showCantBuyDialog: Boolean = false,
     val isClose: Boolean = false,
-    val selectedFilters: GoodType? = null
+    val selectedFilters: GoodType? = null,
+    val searchText: String = ""
 )
 
 sealed interface AddGoodsScreenActions {
@@ -123,4 +144,5 @@ sealed interface AddGoodsScreenActions {
     data object CloseCantBuyDialog : AddGoodsScreenActions
     data object Close : AddGoodsScreenActions
     data class SelectFilter(val type: GoodType) : AddGoodsScreenActions
+    data class SearchTextChange(val text: String) : AddGoodsScreenActions
 }
