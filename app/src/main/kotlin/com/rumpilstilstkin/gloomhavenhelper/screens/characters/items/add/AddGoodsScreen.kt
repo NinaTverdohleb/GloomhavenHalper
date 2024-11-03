@@ -1,7 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -24,7 +27,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -33,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,7 +61,6 @@ fun AddGoodsScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-
     val viewModel =
         hiltViewModel<AddGoodsScreenViewModel, AddGoodsScreenViewModel.Factory> { factory ->
             factory.create(characterId)
@@ -67,18 +73,20 @@ fun AddGoodsScreen(
 
     AddGoodsView(
         goods = uiState.goods,
+        searchText = uiState.effects.searchText,
         filterType = uiState.effects.selectedFilters,
         modifier = modifier,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
     )
 }
 
 @Composable
 fun AddGoodsView(
+    searchText: String,
     goods: List<GoodUi>,
     filterType: GoodType?,
     modifier: Modifier = Modifier,
-    onAction: (AddGoodsScreenActions) -> Unit
+    onAction: (AddGoodsScreenActions) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -120,9 +128,29 @@ fun AddGoodsView(
             )
         }
         HorizontalDivider(
-            modifier = Modifier.padding(vertical = 12.dp),
+            modifier = Modifier.padding(vertical = 16.dp),
             thickness = 1.dp,
             color = MaterialTheme.colorScheme.outline
+        )
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            value = searchText,
+            onValueChange = { onAction(AddGoodsScreenActions.SearchTextChange(it)) },
+            label = { Text("Название или номер") },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.onSecondary,
+                cursorColor = MaterialTheme.colorScheme.primary,
+
+            )
+        )
+        Spacer(
+            modifier = Modifier.height(16.dp)
         )
         LazyColumn(
             Modifier.weight(1f)
@@ -164,7 +192,6 @@ fun AddGoodsView(
             }
         }
     }
-
 }
 
 @Composable
@@ -189,7 +216,6 @@ fun FilterButton(
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddGoodsItem(
     good: GoodUi,
@@ -245,17 +271,22 @@ fun AddGoodsItem(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(text = "#" + good.number)
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Text(
                 modifier = Modifier,
-                text = good.name
+                text = good.name,
+                style = MaterialTheme.typography.bodyLarge
             )
         }
 
         Text(
-            modifier = Modifier,
-            text = "${good.cost} G")
+            modifier = Modifier.padding(
+                horizontal = 8.dp
+            ),
+            style = MaterialTheme.typography.titleLarge,
+            text = "${good.cost} G"
+        )
     }
 }
 
@@ -263,17 +294,23 @@ fun AddGoodsItem(
 @Composable
 private fun SampleItem() {
     GloomhavenHalperTheme {
-        AddGoodsView(
-            goods = listOf(
-                GoodUi(
-                    id = 1,
-                    number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 200,
-                )
-            ),
-            filterType = GoodType.Arm,
-        ) {}
+        Box(
+            modifier = Modifier.background(MaterialTheme.colorScheme.background)
+        ) {
+            AddGoodsView(
+                searchText = "",
+                goods = listOf(
+                    GoodUi(
+                        id = 1,
+                        number = 1,
+                        name = "Сапоги большого шага поешь этих сладких французких булок",
+                        typeImage = GloomhavenIcons.GoodTypes.Foot,
+                        cost = 20,
+                    )
+                ),
+                filterType = GoodType.Arm,
+                onAction = {},
+            )
+        }
     }
 }
