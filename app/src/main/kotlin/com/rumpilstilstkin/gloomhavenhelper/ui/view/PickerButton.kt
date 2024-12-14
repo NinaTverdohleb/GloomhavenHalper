@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.Minus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
@@ -20,12 +22,19 @@ fun PickerButton(
     type: PickerButtonType,
     modifier: Modifier = Modifier,
     onValueChange: (Int) -> Unit = {},
+    size: PickerSize = PickerSize.M,
 ) {
+    val sizeDp = when (size) {
+        PickerSize.S -> 24.dp
+        PickerSize.M -> 48.dp
+    }
     IconButton(
-        modifier = modifier.background(
-            color = MaterialTheme.colorScheme.primary,
-            shape = CircleShape
-        ),
+        modifier = modifier
+            .background(
+                color = MaterialTheme.colorScheme.primary,
+                shape = CircleShape
+            )
+            .size(sizeDp),
         onClick = {
             onValueChange(
                 type.action(value)

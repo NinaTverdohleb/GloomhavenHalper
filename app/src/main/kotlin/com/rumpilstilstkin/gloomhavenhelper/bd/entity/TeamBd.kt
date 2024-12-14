@@ -4,12 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class TeamBd (
+data class TeamBd(
     @PrimaryKey(autoGenerate = true) val teamId: Int = 0,
     val name: String,
     val teamAchievement: String = "",
     val globalAchievement: String = "",
     val reputation: Int = 0,
     val prosperity: Int = 0,
-
-    )
+)

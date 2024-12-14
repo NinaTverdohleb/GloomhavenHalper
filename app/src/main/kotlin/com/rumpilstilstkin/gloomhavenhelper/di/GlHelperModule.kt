@@ -73,5 +73,11 @@ object GlHelperModule {
     @Provides
     fun provideCharacterPerksDao(db: GlHelperDatabase) = db.characterPerksDao()
 
+    @Singleton
+    @Provides
+    fun providePersonalQuestDao(db: GlHelperDatabase) = db.personalQuestDao()
 
+    @Singleton
+    @Provides
+    fun provideCharacterPersonalQuestDao(db: GlHelperDatabase) = db.characterPersonalQuestDao()
 }
