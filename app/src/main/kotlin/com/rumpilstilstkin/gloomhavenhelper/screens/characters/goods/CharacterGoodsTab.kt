@@ -119,7 +119,7 @@ private fun GoodItem(
         isAction = true,
         buttonText = "Продать",
         onDismiss = { showDetailsDialog = false },
-        onAction = { onSell(good.id) }
+        onAction = { good.characterGoodId?.let { onSell(it) } }
     )
     Row(
         modifier = modifier
