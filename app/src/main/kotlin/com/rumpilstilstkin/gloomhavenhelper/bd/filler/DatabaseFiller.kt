@@ -1,11 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import javax.inject.Inject
 
@@ -16,11 +16,12 @@ class DatabaseFiller @Inject constructor(
     private val preferences: SharedPreferences,
     private val goodsDao: GoodsDao,
     private val perksDao: PerksDao,
+    private val personalQuestDao: PersonalQuestDao,
 ) {
     val version = preferences.getInt(PREFS_VERSION, 0)
 
     suspend fun fillDatabase() {
-        if(characterClassDao.getAll().isEmpty()){
+        if (characterClassDao.getAll().isEmpty()) {
             startFill()
         }
         /*for (i in version + 1..VERSION) {
@@ -33,11 +34,12 @@ class DatabaseFiller @Inject constructor(
     }
 
     private suspend fun startFill() {
-        StartFill.fillCharacterClasses(characterClassDao)
-        StartFill.fillGameLevelInfo(gameLevelInfoDao)
-        StartFill.fillScenarios(scenarioDao)
-        StartFill.fillGoods(goodsDao)
-        StartFill.fillPerks(perksDao)
+        CharacterClassesFiller.fill_v1(characterClassDao)
+        GameLevelInfoFiller.fill_v1(gameLevelInfoDao)
+        ScenariosFiller.fill_v1(scenarioDao)
+        GoodsFiller.fill_v1(goodsDao)
+        PerksFiller.fill_v1(perksDao)
+        QuestsFiller.fill_v1(personalQuestDao)
     }
 
     companion object {

@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.general
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,11 +19,9 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -44,6 +41,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.components.PersonalQuestView
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
 
@@ -94,21 +94,91 @@ fun CharacterGeneralTabContent(
         )
 
         Spacer(modifier = Modifier.height(32.dp))
-        NoticeRow(
+        CheckMarksBlock(
             checkMarkCount = content.checkMarks,
+            onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        PersonalQuest(
+            personalQuest = content.personalQuest,
+            onRetire = { onAction(GeneralTabActions.Retire) },
+            onTaskCheckedChange = { onAction(GeneralTabActions.TaskCheckedChange(it)) },
+            onQuestDetails = { onAction(GeneralTabActions.QuestDetails(it)) },
+            onTaskCountChanged = { i, k -> onAction(GeneralTabActions.TaskCountChanged(i, k)) },
+            choosePersonalQuest = { onAction(GeneralTabActions.ChoosePersonalQuest) },
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        NoticeRow(
             notice = content.notes,
-            onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) },
             onNoticeChanged = { onAction(GeneralTabActions.NoticeChanged(it)) }
         )
     }
 }
 
 @Composable
-fun NoticeRow(
+fun CheckMarksBlock(
     checkMarkCount: Int,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = "Заметки",
+            style = MaterialTheme.typography.titleMedium
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        CheckMarks(checkMarkCount = checkMarkCount, onCheckedChange = onCheckedChange)
+    }
+}
+
+@Composable
+fun PersonalQuest(
+    personalQuest: PersonalQuestUI?,
+    onRetire: () -> Unit,
+    onTaskCheckedChange: (Int) -> Unit,
+    onQuestDetails: (PersonalQuestUI) -> Unit,
+    onTaskCountChanged: (Int, Int) -> Unit,
+    choosePersonalQuest: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = "Личное задание",
+            style = MaterialTheme.typography.titleMedium
+        )
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
+
+        if (personalQuest == null) {
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = choosePersonalQuest
+            ) {
+                Text("Добавить")
+            }
+        } else {
+            PersonalQuestView(
+                task = personalQuest,
+                onRetire = onRetire,
+                onQuestDetails = onQuestDetails,
+                onTaskCheckedChange = onTaskCheckedChange,
+                onTaskCountChanged = onTaskCountChanged
+            )
+        }
+    }
+
+}
+
+@Composable
+fun NoticeRow(
     notice: String,
     modifier: Modifier = Modifier,
-    onCheckedChange: (Boolean) -> Unit,
     onNoticeChanged: (String) -> Unit
 ) {
 
@@ -128,16 +198,6 @@ fun NoticeRow(
     Column(
         modifier = modifier.fillMaxWidth(),
     ) {
-        Text(
-            text = "Заметки",
-            style = MaterialTheme.typography.titleMedium
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-
-        CheckMarks(checkMarkCount = checkMarkCount, onCheckedChange = onCheckedChange)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
         Text(
             text = "Текст",
             style = MaterialTheme.typography.titleSmall
@@ -221,8 +281,8 @@ fun CheckMarks(
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                for (j in 0.. 1) {
-                    val t = i*2 + j
+                for (j in 0..1) {
+                    val t = i * 2 + j
                     val count = if (t < fullCount) 3 else if (t == fullCount) remainder else 0
                     CheckMarkRow(
                         fillCount = count,

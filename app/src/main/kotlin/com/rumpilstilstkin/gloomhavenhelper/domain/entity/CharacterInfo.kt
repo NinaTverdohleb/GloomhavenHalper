@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
+
 data class CharacterForSave(
     val name: String,
     val level: Int,
@@ -35,7 +37,8 @@ data class CharacterShortInfo(
 data class CharacterFullInfo(
     val generalInfo: CharacterInfo,
     val nextLevelExperience: Int,
-    val isDonateAvailable: Boolean
+    val isDonateAvailable: Boolean,
+    val personalQuest: CharacterPersonalQuest?,
 )
 
 fun List<Int>.toLevel(): Int {

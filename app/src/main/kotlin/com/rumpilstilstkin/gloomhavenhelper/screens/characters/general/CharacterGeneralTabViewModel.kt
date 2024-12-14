@@ -9,6 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharact
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -40,7 +41,8 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
             nextLevel = it.nextLevelExperience,
             notes = it.generalInfo.notes,
             checkMarks = it.generalInfo.checkMarks,
-            isDonateAvailable = it.isDonateAvailable
+            isDonateAvailable = it.isDonateAvailable,
+            personalQuest = it.personalQuest?.toUI()
 
         )
     }.stateIn(
@@ -75,6 +77,12 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                 is GeneralTabActions.NoticeChanged -> {
                     updateNotesUseCase.invoke(id, action.notice)
                 }
+
+                GeneralTabActions.ChoosePersonalQuest -> TODO()
+                is GeneralTabActions.QuestDetails -> TODO()
+                GeneralTabActions.Retire -> TODO()
+                is GeneralTabActions.TaskCheckedChange -> TODO()
+                is GeneralTabActions.TaskCountChanged -> TODO()
             }
         }
     }
