@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "24fc19e33d4193c894c1ff30bae4a317",
+    "identityHash": "0e902157bbaf4c09fdd6af1e178a8b43",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -594,7 +594,7 @@
       },
       {
         "tableName": "PersonalQuestBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`questId` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `specialText` TEXT NOT NULL, `characterType` TEXT, `tasks` TEXT NOT NULL, `isRecyclable` INTEGER NOT NULL, PRIMARY KEY(`questId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`questId` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `specialText` TEXT NOT NULL, `characterType` TEXT, `tasks` TEXT NOT NULL, PRIMARY KEY(`questId`))",
         "fields": [
           {
             "fieldPath": "questId",
@@ -630,12 +630,6 @@
             "fieldPath": "tasks",
             "columnName": "tasks",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "isRecyclable",
-            "columnName": "isRecyclable",
-            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -732,7 +726,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '24fc19e33d4193c894c1ff30bae4a317')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0e902157bbaf4c09fdd6af1e178a8b43')"
     ]
   }
 }

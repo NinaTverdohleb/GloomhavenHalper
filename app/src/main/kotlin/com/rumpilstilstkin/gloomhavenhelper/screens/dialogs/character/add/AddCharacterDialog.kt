@@ -62,6 +62,18 @@ fun AddCharacterDialog(
 
         if (classes.isEmpty()) return
 
+        CharacterDialog(
+            selectedIndex = selectedIndex,
+            characterName = newCharacterName,
+            level = level,
+            classes = classes,
+            onClassSelect = {selectedIndex = it},
+            onCharacterNameChanged = {newCharacterName = it},
+            onDismiss = onDismiss,
+            onLevelChanged = {level = it},
+            onAdd = onAdd
+        )
+
         AlertDialog(
             onDismissRequest = { onDismiss.invoke() },
             title = {
@@ -73,7 +85,6 @@ fun AddCharacterDialog(
             },
             text = {
                 Surface {
-
                     Column(
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -117,6 +128,76 @@ fun AddCharacterDialog(
             }
         )
     }
+}
+
+@Composable
+private fun CharacterDialog(
+    selectedIndex: Int,
+    characterName: String,
+    level: Int,
+    classes: List<CharacterClassUI>,
+    onClassSelect: (Int) -> Unit,
+    onCharacterNameChanged: (String) -> Unit,
+    onDismiss: () -> Unit,
+    onLevelChanged: (Int) -> Unit,
+    onAdd: (String, Int, CharacterClassType) -> Unit,
+    ) {
+    AlertDialog(
+        onDismissRequest = { onDismiss.invoke() },
+        title = {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Добавить персонажа",
+                textAlign = TextAlign.Center
+            )
+        },
+        text = {
+            Surface {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    DropdownWithIconAndText(
+                        modifier = Modifier,
+                        items = classes,
+                        selectedIndex = selectedIndex
+                    ) {
+                        onClassSelect.invoke(classes.indexOf(it))
+                        //selectedIndex = classes.indexOf(it)
+                    }
+                    OutlinedTextField(
+                        value = characterName,
+                        onValueChange = {
+                            onCharacterNameChanged.invoke(it)
+                        },
+                        label = { Text("Имя") }
+                    )
+                    Text("Уровень персонажа")
+                    NumberPicker(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = level,
+                        intRange = IntRange(1, 9)
+                    ) {
+                        onLevelChanged(it)
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    onAdd.invoke(
+                        characterName,
+                        level,
+                        classes[selectedIndex].classType
+                    )
+                }
+            ) {
+                Text("Добавить")
+            }
+        }
+    )
 }
 
 @Composable
@@ -185,21 +266,16 @@ fun DropdownWithIconAndText(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        DropdownWithIconAndText(
-            items = listOf(
-                CharacterClassUI(
-                    name = "Allan Ball",
-                    classType = CharacterClassType.Plagueherald,
-                    imageRes = R.drawable.ph
-                ),
-                CharacterClassUI(
-                    name = "Allan Ball2",
-                    classType = CharacterClassType.Brute,
-                    imageRes = R.drawable.br
-                )
-            ),
+        CharacterDialog(
             selectedIndex = 0,
-            onItemSelected = {}
+            characterName = "Unknown",
+            level = 0,
+            classes = listOf(),
+            onClassSelect = {},
+            onCharacterNameChanged = {},
+            onDismiss = {},
+            onLevelChanged = {},
+            onAdd = { _: String, _: Int, _: CharacterClassType -> }
         )
     }
 

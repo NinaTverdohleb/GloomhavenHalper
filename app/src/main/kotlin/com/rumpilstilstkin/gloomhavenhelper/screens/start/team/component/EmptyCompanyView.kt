@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.start.plot
+package com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,22 +17,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
-fun CompanyTab(
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-) {
-    EmptyCompanyTab() {}
-
-}
-
-
-@Composable
-fun EmptyCompanyTab(
+fun EmptyCompanyView(
     modifier: Modifier = Modifier,
     startGame: () -> Unit
 ) {
@@ -59,24 +48,10 @@ fun EmptyCompanyTab(
     }
 }
 
-@Composable
-fun ContentCompanyTab(modifier: Modifier = Modifier) {
-
-}
-
-
 @Preview
 @Composable
 private fun EmptySample() {
     GloomhavenHalperTheme {
-        EmptyCompanyTab() {}
-    }
-}
-
-@Preview
-@Composable
-private fun ContentSample() {
-    GloomhavenHalperTheme {
-        ContentCompanyTab()
+        EmptyCompanyView() {}
     }
 }

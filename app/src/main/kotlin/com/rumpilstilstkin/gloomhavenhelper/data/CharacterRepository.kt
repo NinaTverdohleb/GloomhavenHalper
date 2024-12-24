@@ -5,6 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPersonalQuestDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
@@ -15,11 +16,13 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val classDao: CharacterClassDao,
+    private val teamDao: TeamDao,
     private val characterGoodsDao: CharacterGoodsDao,
     private val characterPerksDao: CharacterPerksDao,
     private val characterQuestDao: CharacterPersonalQuestDao
@@ -62,14 +65,16 @@ class CharacterRepository @Inject constructor(
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {
+                val team = teamDao.findById(teamId).toDomain()
                 val classBd = classDao.findByType(it.characterType)
-                it.toDomain(classBd)
+                it.toDomain(classBd, team)
             }
         }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo> =
-        characterDao.getCharacterByIdFlow(id).map {
-            it.toDomain(classDao.findByType(it.characterType))
+        characterDao.getCharacterByIdFlow(id).map { character ->
+            val team = character.teamId?.let { teamDao.findById(it).toDomain() }
+            character.toDomain(classDao.findByType(character.characterType), team)
         }
 
     fun getCharacterPersonalQuestFlow(characterId: Int) =
@@ -124,9 +129,16 @@ class CharacterRepository @Inject constructor(
 
     fun getAllCharacters(): Flow<List<CharacterInfo>> =
         characterDao.getAllCharacters().map { list ->
-            list.map {
-                val classBd = classDao.findByType(it.characterType)
-                it.toDomain(classBd)
+            list.map { character ->
+                val classBd = classDao.findByType(character.characterType)
+                val team = character.teamId?.let { teamDao.findById(it).toDomain() }
+                character.toDomain(classBd, team)
             }
         }
+
+    suspend fun setTeam(characterId: Int, teamId: Int) {
+        characterDao.getCharacterById(characterId).let {
+            characterDao.update(it.copy(teamId = teamId))
+        }
+    }
 }

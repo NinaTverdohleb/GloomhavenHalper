@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository

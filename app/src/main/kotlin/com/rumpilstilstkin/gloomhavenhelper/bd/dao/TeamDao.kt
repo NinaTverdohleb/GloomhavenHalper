@@ -15,6 +15,9 @@ interface TeamDao {
     @Query("SELECT * FROM TeamBd")
     suspend fun getAll(): List<TeamBd>
 
+    @Query("SELECT * FROM TeamBd")
+    fun getAllFlow(): Flow<List<TeamBd>>
+
     @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
     suspend fun findById(id: Int): TeamBd
 

@@ -34,7 +34,6 @@ fun Bage(
             style = MaterialTheme.typography.bodyLarge,
             text = text,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSecondary
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,17 +16,29 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperNavHost
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val viewModel: MainActivityViewModel by viewModels()
+
+    @Inject
+    lateinit var currentTeamDatasource: CurrentTeamDatasource
+
+    override fun onStart() {
+        super.onStart()
+        //for test
+        currentTeamDatasource.saveCurrentTeam(CurrentTeamDatasource.EMPTY_TEAM)
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

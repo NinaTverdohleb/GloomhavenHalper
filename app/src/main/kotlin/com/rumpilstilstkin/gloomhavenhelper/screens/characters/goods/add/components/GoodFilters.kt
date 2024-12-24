@@ -34,45 +34,24 @@ fun GoodFilters(
         modifier = modifier
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             val selectedFilter: (GoodType) -> Unit = {
                 onAction(AddGoodsScreenActions.SelectFilter(it))
             }
-            FilterButton(
-                type = GoodType.Head,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
-            FilterButton(
-                type = GoodType.Foot,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
-            FilterButton(
-                type = GoodType.Body,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
-            FilterButton(
-                type = GoodType.Arm,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
-            FilterButton(
-                type = GoodType.DoubleArm,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
-            FilterButton(
-                type = GoodType.SmallThing,
-                selectedFilter = filterType,
-                onSelectedChanged = selectedFilter
-            )
+            GoodType.entries.forEach {
+                FilterButton(
+                    type = it,
+                    selectedFilter = filterType,
+                    onSelectedChanged = selectedFilter
+                )
+            }
         }
         Spacer(
-            modifier =Modifier.height(4.dp)
+            modifier = Modifier.height(4.dp)
         )
 
         OutlinedTextField(
@@ -82,13 +61,6 @@ fun GoodFilters(
             value = searchText,
             onValueChange = { onAction(AddGoodsScreenActions.SearchTextChange(it)) },
             label = { Text("Название или номер") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = MaterialTheme.colorScheme.primary,
-                unfocusedBorderColor = MaterialTheme.colorScheme.primary,
-                focusedLabelColor = MaterialTheme.colorScheme.primary,
-                unfocusedLabelColor = MaterialTheme.colorScheme.onSecondary,
-                cursorColor = MaterialTheme.colorScheme.primary,
-            )
         )
     }
 }
@@ -109,7 +81,7 @@ fun FilterButton(
             },
         imageVector = type.toImage(),
         contentDescription = null,
-        tint = if (isChecked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
+        tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
     )
 
 }

@@ -3,12 +3,15 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.ClassRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.SaveTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SaveTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,9 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamCreateViewModel@Inject constructor(
     private val classRepository: ClassRepository,
-    private val saveTeamUsecase: SaveTeamUseCase
+    private val saveTeamUseCase: SaveTeamUseCase
 ) : ViewModel() {
     private val team = MutableStateFlow(TeamCreateUiState.Empty)
+
+    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
+    val navigationEvents = _navigationEvents.asSharedFlow()
 
     val uiState: StateFlow<TeamCreateUiState> = team.asStateFlow()
 
@@ -56,8 +62,8 @@ class TeamCreateViewModel@Inject constructor(
                 }
 
                 is TeamCreateAction.Save -> {
-                    saveTeamUsecase.execute(currentValue.toTeamForSave())
-                    team.emit(currentValue.copy(done = true))
+                    saveTeamUseCase.execute(currentValue.toTeamForSave())
+                    _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
                 is TeamCreateAction.ShowCharacterDialog -> {
