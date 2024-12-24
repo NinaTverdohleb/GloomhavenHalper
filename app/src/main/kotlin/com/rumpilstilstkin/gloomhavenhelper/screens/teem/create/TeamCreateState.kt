@@ -9,7 +9,6 @@ data class TeamCreateUiState(
     val name: String,
     val classes: List<CharacterClassUI> = emptyList(),
     val characters: List<CharacterUI> = emptyList(),
-    val done: Boolean = false,
     val showCharacterDialog: Boolean = false,
     val canAdd: Boolean = true,
 ) {

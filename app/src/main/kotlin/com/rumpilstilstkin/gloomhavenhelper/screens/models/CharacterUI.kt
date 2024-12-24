@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 
-
 data class CharacterUI(
     val name: String,
     val level: Int,

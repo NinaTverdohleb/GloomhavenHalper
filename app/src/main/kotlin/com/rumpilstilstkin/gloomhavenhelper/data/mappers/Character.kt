@@ -20,7 +20,7 @@ fun CharacterForSave.toBd(teamId: Int? = null) = CharacterBd(
 
 fun CharacterBd.toDomain(
     characterClassBd: CharacterClassBd,
-    team: ShortTeamInfo? = null
+    team: ShortTeamInfo?
 ) = CharacterInfo(
     name = this.name,
     level = this.level,

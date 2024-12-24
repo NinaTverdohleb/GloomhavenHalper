@@ -18,7 +18,21 @@ data class ShortTeamInfo(
     val globalAchievement: List<String>,
     val reputation: Int,
     val prosperity: Int,
-)
+) {
+    companion object{
+        fun fixture(
+            teamId: Int = 1,
+            teamName: String = "Name"
+        ) = ShortTeamInfo(
+            teamId = teamId,
+            name = teamName,
+            teamAchievement = listOf("Achievement 1", "Achievement 2"),
+            globalAchievement = listOf("Achievement 3", "Achievement 4"),
+            reputation = 10,
+            prosperity = 20
+        )
+    }
+}
 
 data class TeamInfoWithScenario(
     val teamId: Int,

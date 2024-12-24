@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.main
+package com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -53,7 +53,7 @@ fun AchievementBlock(
             style = MaterialTheme.typography.titleMedium,
         )
         Text(
-            text = achievement.split(",").map { it.trim() }.joinToString("\n"),
+            text = achievement.split(",").joinToString("\n") { it.trim() },
             style = MaterialTheme.typography.bodyMedium,
         )
         Spacer(modifier = Modifier.height(16.dp))

@@ -9,7 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.CompleteScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.GetCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi

@@ -45,6 +45,8 @@ class TeamRepository @Inject constructor(
 
     suspend fun getTeam(id: Int): ShortTeamInfo = teamDao.findById(id).toDomain()
 
+    fun getTeams(): Flow<List<ShortTeamInfo>> = teamDao.getAllFlow().map { teams -> teams.map { it.toDomain() } }
+
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
         currentTeamDatasource.saveCurrentTeam(savedTeamId)
@@ -79,7 +81,7 @@ class TeamRepository @Inject constructor(
 
     private suspend fun updateCurrentTeam() {
         if (currentTeamDatasource.currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
-            teamDao.findById(currentTeamDatasource.currentTeam).let { team ->
+            teamDao.findById(currentTeamDatasource.currentTeam)?.let { team ->
                 _currentTeam.emit(
                     Result.success(team.teamId)
                 )

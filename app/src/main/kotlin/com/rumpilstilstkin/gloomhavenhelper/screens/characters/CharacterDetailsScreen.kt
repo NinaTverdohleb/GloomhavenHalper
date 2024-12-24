@@ -25,6 +25,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -40,6 +42,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.CharacterGeneralTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.CharacterItemsTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.perks.CharacterPerksTab
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamListDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.Bage
 
@@ -54,6 +57,15 @@ fun CharacterDetailsScreen(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var showTeamsDialog by remember { mutableStateOf(false) }
+
+    TeamListDialog(
+        showDialog = showTeamsDialog,
+        onDismiss = { showTeamsDialog = false },
+        selectTeam = {
+            viewModel.onAction(CharacterDetailsAction.ChangeTeam(it))
+        }
+    )
 
     CharacterDetailsMain(
         classImg = uiState.characterClass.imageRes,
@@ -65,7 +77,7 @@ fun CharacterDetailsScreen(
         showSecondTab = { CharacterItemsTab(characterId, navController) },
         showThirdTab = { CharacterPerksTab(characterId) },
         onNameClick = { /*viewModel.onAction(CharacterDetailsActions.EditName)*/ },
-        onTeamClick = { /*viewModel.onAction(CharacterDetailsActions.EditTeam)*/ }
+        onTeamClick = { showTeamsDialog = true }
     )
 
 }

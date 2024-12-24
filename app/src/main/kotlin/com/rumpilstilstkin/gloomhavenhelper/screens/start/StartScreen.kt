@@ -7,14 +7,13 @@ import androidx.compose.material3.TabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Text
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTab
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.plot.CompanyTab
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTab
 
 @Composable
 fun StartScreen(
@@ -34,7 +33,7 @@ fun StartScreen(
             }
         }
         when (tabIndex) {
-            0 -> CompanyTab(navController)
+            0 -> TeamTab(navController)
             1 -> CharactersTab(navController)
         }
     }
