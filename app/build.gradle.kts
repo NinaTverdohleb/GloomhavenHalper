@@ -12,7 +12,7 @@ plugins {
 
 android {
     namespace = "com.rumpilstilstkin.gloomhavenhelper"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
