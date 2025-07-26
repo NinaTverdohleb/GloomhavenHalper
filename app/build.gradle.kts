@@ -17,7 +17,7 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
         minSdk = 31
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -87,9 +87,9 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
 
-
     testImplementation(libs.junit)
 
+    androidTestImplementation(libs.room.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

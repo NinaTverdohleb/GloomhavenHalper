@@ -29,6 +29,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
 
 @TypeConverters(
@@ -69,20 +70,13 @@ abstract class GlHelperDatabase : RoomDatabase() {
 fun createGlHelperDatabase(
     context: Context,
 ): GlHelperDatabase =
-    if (isDebug) {
-        Room.inMemoryDatabaseBuilder(
-            context,
-            GlHelperDatabase::class.java,
-        ).build()
-    } else {
-        Room.databaseBuilder(
-            context,
-            GlHelperDatabase::class.java,
-            DATABASE_NAME
-        ).build()
-    }
+    Room.databaseBuilder(
+        context,
+        GlHelperDatabase::class.java,
+        DATABASE_NAME
+    )
+        .addMigrations(*ALL_MIGRATIONS)
+        .build()
 
 
 private const val DATABASE_NAME = "glHelperDatabase"
-private const val isDebug = true
-
