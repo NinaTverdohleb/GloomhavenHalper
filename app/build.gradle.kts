@@ -12,7 +12,7 @@ plugins {
 
 android {
     namespace = "com.rumpilstilstkin.gloomhavenhelper"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
@@ -87,9 +87,9 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
 
-
     testImplementation(libs.junit)
 
+    androidTestImplementation(libs.room.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
