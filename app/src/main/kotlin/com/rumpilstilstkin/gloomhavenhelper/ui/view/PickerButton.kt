@@ -30,10 +30,6 @@ fun PickerButton(
     }
     IconButton(
         modifier = modifier
-            .background(
-                color = MaterialTheme.colorScheme.primary,
-                shape = CircleShape
-            )
             .size(sizeDp),
         onClick = {
             onValueChange(
@@ -42,9 +38,11 @@ fun PickerButton(
         },
     ) {
         Icon(
+            modifier = modifier
+                .size(sizeDp),
             imageVector = type.image,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimary
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 }

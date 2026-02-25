@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class MonsterBd(
     @PrimaryKey(autoGenerate = true) val monsterId: Int = 0,
     val name: String,
+    val deckName: String,
 )

@@ -23,6 +23,10 @@ erDiagram
     GoodBd ||--o{ CharacterGoodBd : "referenced by"
     PerkBd ||--o{ CharacterPerkBd : "referenced by"
     PersonalQuestBd ||--o{ CharacterPersonalQuestBd : "referenced by"
+    MonsterBd ||--o{ MonsterStatsBd : "has stats"
+    MonsterBd }o--o{ MonsterAbilityCardBd : "uses deck by deckName"
+    ScenarioBd ||--o{ ScenarioMonsterBd : "has"
+    MonsterBd ||--o{ ScenarioMonsterBd : "appears in"
 
     TeamBd {
         int teamId PK "AUTOINCREMENT"
@@ -118,6 +122,34 @@ erDiagram
         int characterId FK
         string questId FK
         string tasks "JSON"
+    }
+
+    MonsterBd {
+        int monsterId PK "AUTOINCREMENT"
+        string name
+        string deckName "references ability card deck"
+    }
+
+    MonsterStatsBd {
+        int monsterId PK_FK
+        int scenarioLevel PK
+        boolean isElite PK
+        int life
+        string stats "JSON"
+    }
+
+    MonsterAbilityCardBd {
+        int cardId PK "AUTOINCREMENT"
+        string deckName "deck identifier"
+        int initiative
+        string actions "JSON"
+        boolean needsShuffle
+    }
+
+    ScenarioMonsterBd {
+        int id PK "AUTOINCREMENT"
+        int scenarioNumber FK
+        int monsterId FK
     }
 ```
 
@@ -250,6 +282,54 @@ erDiagram
 - `index_CharacterPersonalQuestBd_characterId` on `characterId`
 - `index_CharacterPersonalQuestBd_questId` on `questId`
 
+#### MonsterBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `monsterId` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `name` | TEXT | NOT NULL |
+| `deckName` | TEXT | NOT NULL, references ability card deck |
+
+**Note:** Multiple monsters can share the same `deckName`, allowing different monster types to use the same ability card deck.
+
+#### MonsterStatsBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `monsterId` | INTEGER | PRIMARY KEY (composite), FK → MonsterBd(monsterId), ON DELETE CASCADE |
+| `scenarioLevel` | INTEGER | PRIMARY KEY (composite), NOT NULL |
+| `isElite` | INTEGER | PRIMARY KEY (composite), NOT NULL |
+| `life` | INTEGER | NOT NULL |
+| `stats` | TEXT | NOT NULL, JSON serialized List<MonsterStat> |
+
+**Indices:**
+- `index_MonsterStatsBd_monsterId` on `monsterId`
+
+#### MonsterAbilityCardBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `cardId` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `deckName` | TEXT | NOT NULL, deck identifier |
+| `initiative` | INTEGER | NOT NULL |
+| `actions` | TEXT | NOT NULL, JSON serialized List<CardAction> |
+| `needsShuffle` | INTEGER | NOT NULL, default 0 |
+
+**Indices:**
+- `index_MonsterAbilityCardBd_deckName` on `deckName`
+
+**Note:** Cards are grouped by `deckName`. Monsters reference cards through their `deckName` field, enabling multiple monsters to share the same ability deck.
+
+#### ScenarioMonsterBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `id` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `scenarioNumber` | INTEGER | FK → ScenarioBd(scenarioNumber), ON DELETE CASCADE |
+| `monsterId` | INTEGER | FK → MonsterBd(monsterId), ON DELETE CASCADE |
+
+**Indices:**
+- `index_ScenarioMonsterBd_scenarioNumber` on `scenarioNumber`
+- `index_ScenarioMonsterBd_monsterId` on `monsterId`
+
+**Note:** Junction table linking scenarios to monsters that appear in them.
+
 ### TypeConverters
 
 #### ListCharacterTaskItemTypeConverter
@@ -263,6 +343,30 @@ class ListCharacterTaskItemTypeConverter {
 }
 ```
 Serializes `List<CharacterTaskItem>` to JSON string for storage in `PersonalQuestBd.tasks` and `CharacterPersonalQuestBd.tasks`.
+
+#### MonsterStatsTypeConverter
+```kotlin
+class MonsterStatsTypeConverter {
+    @TypeConverter
+    fun fromList(list: List<MonsterStat>): String = json.encodeToString(list)
+
+    @TypeConverter
+    fun toList(value: String): List<MonsterStat> = json.decodeFromString(value)
+}
+```
+Serializes `List<MonsterStat>` to JSON string for storage in `MonsterStatsBd.stats`.
+
+#### CardActionsTypeConverter
+```kotlin
+class CardActionsTypeConverter {
+    @TypeConverter
+    fun fromList(list: List<CardAction>): String = json.encodeToString(list)
+
+    @TypeConverter
+    fun toList(value: String): List<CardAction> = json.decodeFromString(value)
+}
+```
+Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardBd.actions`.
 
 ### DAO Interfaces
 
@@ -368,6 +472,27 @@ Serializes `List<CharacterTaskItem>` to JSON string for storage in `PersonalQues
 | `findByType(characterType)` | `@Query` | `SELECT * FROM CharacterClassBd WHERE characterType LIKE :characterType LIMIT 1` |
 | `insertAll(vararg users)` | `@Insert` | — |
 
+#### MonsterDao
+| Method | Annotation | Query |
+|--------|-----------|-------|
+| `getAllMonsters()` | `@Query` | `SELECT * FROM MonsterBd` |
+| `getMonsterById(id)` | `@Query` | `SELECT * FROM MonsterBd WHERE monsterId = :id` |
+| `insertMonster(monster)` | `@Insert` | — |
+| `insertMonsters(vararg monsters)` | `@Insert` | — |
+| `getStatsByMonsterId(monsterId)` | `@Query` | `SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId` |
+| `getStats(monsterId, level, isElite)` | `@Query` | `SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId AND scenarioLevel = :level AND isElite = :isElite` |
+| `insertStats(stats)` | `@Insert` | — |
+| `insertAllStats(vararg stats)` | `@Insert` | — |
+| `getCardsByDeckName(deckName)` | `@Query` | `SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName` |
+| `getCardById(cardId)` | `@Query` | `SELECT * FROM MonsterAbilityCardBd WHERE cardId = :cardId` |
+| `insertCard(card)` | `@Insert` | — |
+| `insertCards(vararg cards)` | `@Insert` | — |
+| `getMonstersByScenario(scenarioNumber)` | `@Query` | `SELECT * FROM ScenarioMonsterBd WHERE scenarioNumber = :scenarioNumber` |
+| `getMonstersForScenario(scenarioNumber)` | `@Query` | JOIN MonsterBd with ScenarioMonsterBd |
+| `getMonstersForScenarioFlow(scenarioNumber)` | `@Query` | JOIN MonsterBd with ScenarioMonsterBd → `Flow` |
+| `insertScenarioMonster(scenarioMonster)` | `@Insert` | — |
+| `insertScenarioMonsters(vararg scenarioMonsters)` | `@Insert` | — |
+
 ---
 
 ## Business Logic & Architecture
@@ -391,6 +516,7 @@ flowchart TB
                 GoodsDao
                 CharacterGoodsDao
                 PerksDao
+                MonsterDao
                 CharacterPerksDao
                 PersonalQuestDao
                 CharacterPersonalQuestDao

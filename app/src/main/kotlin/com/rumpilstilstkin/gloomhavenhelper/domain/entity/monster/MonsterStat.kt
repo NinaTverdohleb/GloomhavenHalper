@@ -3,14 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MonsterStat(
-    val type: MonsterStatType,
-    val value: Int,
-)
-
-@Serializable
 enum class MonsterStatType {
-    LIFE,
     ATTACK,
     MOVE,
     RANGE,
@@ -26,4 +19,6 @@ enum class MonsterStatType {
     CURSE,
     STRENGTHEN,
     INVISIBLE,
+    HEAL,
+    PUSH,
 }

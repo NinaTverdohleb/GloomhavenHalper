@@ -6,15 +6,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val colors = darkColorScheme(
-    primary = Color(0xFF00382E), // Тон 80: Текст, иконки на темном фоне
+    primary = Green, // Тон 80: Текст, иконки на темном фоне
     onPrimary = Color(0xFFFFFFFF), // Тон 20: Иконки на primary фоне
     primaryContainer = Color(0xFF105D54), // Тон 30: Заливка кнопок (Continue Adventure)
     onPrimaryContainer = Color(0xFFFFFFFF), // Тон 90: Текст внутри кнопок
 
     // Secondary (Золотой)
-    secondary = Color(0xFFE1C36B), // Тон 80: Акценты, FAB (+)
+    secondary = Gold, // Тон 80: Акценты, FAB (+)
     onSecondary = Color(0xFF3D2E00), // Тон 20: Иконка внутри FAB
-    secondaryContainer = Color(0xFF584400), // Тон 30: Выделенные состояния
+    secondaryContainer = SurfaceContainer, // Тон 30: Выделенные состояния
     onSecondaryContainer = Color(0xFFFFE088), // Тон 90: Золотой текст (Заголовки, Золото)
 
     // Tertiary (Приглушенный морской - для третьего уровня акцентов, например XP)
@@ -24,15 +24,15 @@ private val colors = darkColorScheme(
     onTertiaryContainer = Color(0xFFC5ECDF),
 
     // Error (Стандартный красный M3 для темной темы)
-    error = Color(0xFFFFB4AB),
-    onError = Color(0xFF690005),
-    errorContainer = Color(0xFF93000A),
+    error = Red,
+    onError = Color(0xFFFFFFFF),
+    errorContainer = Color(0x4493000A),
     onErrorContainer = Color(0xFFFFDAD6),
 
     // Базовые фоны (Нейтральные темно-зеленые оттенки)
     background = Background, // Тон 10: Самый темный фон (подложка приложения)
     onBackground = Color.White, // Тон 90: Основной текст
-    surface = Background, // Тон 10: Совпадает с background
+    surface = SurfaceContainer, // Тон 10: Совпадает с background
     onSurface = Color.White, // Тон 90: Основной текст на surface
 
     // Поверхности карточек и списков

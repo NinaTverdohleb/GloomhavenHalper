@@ -2,9 +2,12 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.*
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.*
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamTabViewModel @Inject constructor(
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
+    private val completeScenarioUseCase: CompleteScenarioUseCase
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -50,12 +54,30 @@ class TeamTabViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 TeamTabAction.AddTeam -> {
-                    _navigationEvents.emit(GlHelperEvent.Screen(GlHelperScreens.TeamCreate))
-                }
-                is TeamTabAction.CharacterDetails -> {
-                    _navigationEvents.emit(GlHelperEvent.Screen(GlHelperScreens.CharacterDetails(characterId = action.characterId)))
+                    _navigationEvents.emit(Screen(GlHelperScreens.TeamCreate))
                 }
 
+                is TeamTabAction.CharacterDetails -> {
+                    _navigationEvents.emit(
+                        Screen(
+                            CharacterDetails(
+                                characterId = action.characterId
+                            )
+                        )
+                    )
+                }
+
+                is TeamTabAction.StartScenario -> {
+                    _navigationEvents.emit(Screen(Scenario(scenarioId = action.scenarioId)))
+                }
+
+                TeamTabAction.AddScenario -> {
+                    //show select scenario dialog
+                }
+
+                is TeamTabAction.CompleteScenario -> {
+                    completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
+                }
             }
         }
     }
@@ -64,4 +86,7 @@ class TeamTabViewModel @Inject constructor(
 sealed interface TeamTabAction {
     data object AddTeam : TeamTabAction
     data class CharacterDetails(val characterId: Int) : TeamTabAction
+    data class StartScenario(val scenarioId: Int) : TeamTabAction
+    data object AddScenario : TeamTabAction
+    data class CompleteScenario(val scenarioId: Int) : TeamTabAction
 }
