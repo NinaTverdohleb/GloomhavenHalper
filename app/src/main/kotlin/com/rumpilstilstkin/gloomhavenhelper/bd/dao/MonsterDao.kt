@@ -39,8 +39,8 @@ interface MonsterDao {
     suspend fun insertAllStats(vararg stats: MonsterStatsBd)
 
     // Monster Ability Cards
-    @Query("SELECT * FROM MonsterAbilityCardBd WHERE monsterId = :monsterId")
-    suspend fun getCardsByMonsterId(monsterId: Int): List<MonsterAbilityCardBd>
+    @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName")
+    suspend fun getCardsByDeckName(deckName: String): List<MonsterAbilityCardBd>
 
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE cardId = :cardId")
     suspend fun getCardById(cardId: Int): MonsterAbilityCardBd

@@ -55,7 +55,17 @@ fun Content(
                 team = state.currentTeam,
                 characterDetails = {
                     action.invoke(TeamTabAction.CharacterDetails(it))
+                },
+                completeScenario = {
+                    action.invoke(TeamTabAction.CompleteScenario(it))
+                },
+                startScenario = {
+                    action.invoke(TeamTabAction.StartScenario(it))
+                },
+                addScenario = {
+                    action.invoke(TeamTabAction.AddScenario)
                 }
+
             )
         }
 

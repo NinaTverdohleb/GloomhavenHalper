@@ -1,0 +1,77 @@
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+
+@Composable
+fun AddMonsterCard(
+    modifier: Modifier = Modifier,
+    addMonster: () -> Unit,
+) {
+    BasicCard(
+        modifier = modifier
+    ) {
+        Column(
+            modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(72.dp)
+                    .clip(CircleShape)
+                    .background(CardColors.Surface),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_complete),
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp),
+                    tint = CardColors.IconTint,
+                )
+            }
+            Spacer(modifier = Modifier.size(24.dp))
+
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = addMonster,
+                colors = ButtonDefaults.buttonColors(containerColor = CardColors.ButtonGold),
+            ) {
+                Text("Добавить монстра", fontSize = 12.sp)
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun AddMonsterCardPreview() {
+    GloomhavenHalperTheme {
+        AddMonsterCard(
+            addMonster = {}
+        )
+    }
+}

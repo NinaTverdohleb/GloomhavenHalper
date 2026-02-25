@@ -1,0 +1,1240 @@
+[
+  {
+    "name": "Ожившие кости",
+    "deckName": "living-bones",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 1
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 1
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 7,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 6
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "TARGET",
+            "value": 2
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 6
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "TARGET",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Разбойник-страж",
+    "deckName": "guard",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "SHIELD",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          },
+          {
+            "type": "MUDDLE"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 12,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          },
+          {
+            "type": "MUDDLE"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "SHIELD",
+            "value": 2
+          },
+          {
+            "type": "MUDDLE"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 16,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 5
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "SHIELD",
+            "value": 3
+          },
+          {
+            "type": "MUDDLE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Разбойник-лучница",
+    "deckName": "archer",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 4,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "RANGE",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "RANGE",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 7,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 2
+          },
+          {
+            "type": "RANGE",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "RANGE",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 12,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "RANGE",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "RANGE",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 3
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "RANGE",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 17,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 4
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "RANGE",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Оживший труп",
+    "deckName": "living-corpse",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 1
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 11,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 15,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 13,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 17,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 4
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 21,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 15,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 5
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 25,
+        "stats": [
+          {
+            "type": "MOVE",
+            "value": 2
+          },
+          {
+            "type": "ATTACK",
+            "value": 6
+          },
+          {
+            "type": "POISON"
+          }
+        ]
+      }
+    ]
+  }
+]

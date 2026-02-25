@@ -1,0 +1,313 @@
+[
+  {
+    "deckName": "boss",
+    "cards": [
+      {
+        "initiative": 11,
+        "actions": [
+          { "kind": "text", "content": "Способность 2" }
+        ]
+      },
+      {
+        "initiative": 14,
+        "actions": [
+          { "kind": "text", "content": "Способность 2" }
+        ]
+      },
+      {
+        "initiative": 17,
+        "actions": [
+          { "kind": "text", "content": "Способность 2" }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 85,
+        "actions": [
+          { "kind": "text", "content": "Способность 1" }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 79,
+        "actions": [
+          { "kind": "text", "content": "Способность 1" }
+        ]
+      },
+      {
+        "initiative": 73,
+        "actions": [
+          { "kind": "text", "content": "Способность 1" }
+        ]
+      },
+      {
+        "initiative": 36,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 52,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1", "subAction": [{ "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "TARGET", "modifier": "2" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "deckName": "living-bones",
+    "cards": [
+      {
+        "initiative": 64,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" }
+        ]
+      },
+      {
+        "initiative": 20,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-2" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" },
+          { "kind": "action", "statType": "HEAL", "modifier": "2", "subAction": [{"kind": "text", "content": "На себя"}] }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 25,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1" }
+        ]
+      },
+      {
+        "initiative": 45,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 45,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 74,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0", "subAction": [{"kind": "text", "content": "Все атаки в одну цель"}] }
+        ]
+      },
+      {
+        "initiative": 81,
+        "actions": [
+          { "kind": "action", "statType": "ATTACK", "modifier": "+2" }
+        ]
+      },
+      {
+        "initiative": 12,
+        "actions": [
+          { "kind": "action", "statType": "SHIELD", "modifier": "1" },
+          { "kind": "action", "statType": "HEAL", "modifier": "2", "subAction": [{"kind": "text", "content": "На себя"}] }
+        ],
+        "needsShuffle": true
+      }
+    ]
+  },
+  {
+    "deckName": "guard",
+    "cards": [
+      {
+        "initiative": 15,
+        "actions": [
+          { "kind": "action", "statType": "SHIELD", "modifier": "1" },
+          { "kind": "action", "statType": "RETALIATE", "modifier": "2" }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 30,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1" }
+        ]
+      },
+      {
+        "initiative": 35,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0", "subAction": [{ "kind": "action", "statType": "RANGE", "modifier": "2" }] }
+        ]
+      },
+      {
+        "initiative": 50,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 50,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 70,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" }
+        ]
+      },
+      {
+        "initiative": 55,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" },
+          { "kind": "action", "statType": "STRENGTHEN", "modifier": "", "subAction": [{"kind": "text", "content": "На себя"}]  }
+        ]
+      },
+      {
+        "initiative": 15,
+        "actions": [
+          { "kind": "action", "statType": "SHIELD", "modifier": "1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0", "subAction": [{"kind": "action", "statType": "POISON", "modifier": ""}] }
+        ],
+        "needsShuffle": true
+      }
+    ]
+  },
+  {
+    "deckName": "archer",
+    "cards": [
+      {
+        "initiative": 16,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1" }
+        ]
+      },
+      {
+        "initiative": 31,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ]
+      },
+      {
+        "initiative": 32,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1", "subAction": [{ "kind": "action", "statType": "RANGE", "modifier": "-1" }] }
+        ]
+      },
+      {
+        "initiative": 44,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" }
+        ]
+      },
+      {
+        "initiative": 56,
+        "actions": [
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1", "subAction": [{ "kind": "action", "statType": "TARGET", "modifier": "2" }] }
+        ]
+      },
+      {
+        "initiative": 68,
+        "actions": [
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" , "subAction": [{ "kind": "action", "statType": "RANGE", "modifier": "+1" }]}
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 14,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1", "subAction": [{"kind": "text", "content": "Создает ловушку на 3 урона в ближайшей к врагу области"}] }
+        ]
+      },
+      {
+        "initiative": 29,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1", "subAction": [{ "kind": "action", "statType": "RANGE", "modifier": "+1" }, { "kind": "action", "statType": "IMMOBILIZE", "modifier": "" }] }
+        ],
+        "needsShuffle": true
+      }
+    ]
+  },
+  {
+    "deckName": "living-corpse",
+    "cards": [
+      {
+        "initiative": 21,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "IMMOBILIZE", "modifier": "" },
+          { "kind": "action", "statType": "MUDDLE", "modifier": "" },
+          { "kind": "text", "content": "Цель один враг" }
+        ]
+      },
+      {
+        "initiative": 47,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "-1" }
+        ]
+      },
+      {
+        "initiative": 66,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 66,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+0" }
+        ],
+        "needsShuffle": true
+      },
+      {
+        "initiative": 82,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "-1" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" }
+        ]
+      },
+      {
+        "initiative": 91,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+1" },
+          { "kind": "text", "content": "Зомби получает 1 урон" }
+        ]
+      },
+      {
+        "initiative": 71,
+        "actions": [
+          { "kind": "action", "statType": "MOVE", "modifier": "+0" },
+          { "kind": "action", "statType": "ATTACK", "modifier": "+1" },
+          { "kind": "action", "statType": "POISON", "modifier": "", "subAction": [{ "kind": "text", "content": "Отравляет всех соседних врагов" }] }
+        ]
+      },
+      {
+        "initiative": 32,
+        "actions": [
+          { "kind": "action", "statType": "ATTACK", "modifier": "+2", "subAction": [{ "kind": "action", "statType": "PUSH", "modifier": "1" }] },
+          { "kind": "text", "content": "Зомби получает 1 урон" }
+        ]
+      }
+    ]
+  }
+]

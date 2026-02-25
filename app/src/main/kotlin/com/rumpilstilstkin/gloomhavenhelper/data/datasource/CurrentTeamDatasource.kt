@@ -13,12 +13,10 @@ class CurrentTeamDatasource @Inject constructor(
 
     fun saveCurrentTeam(team: Int) {
         preference.edit(commit = true) { putInt(CURRENT_TEAM, team) }
-        Log.d("PREFS", "save prefs team: $team")
     }
 
     fun getCurrentTeam(): Int{
         val currentTeam = preference.getInt(CURRENT_TEAM, EMPTY_TEAM)
-        Log.d("PREFS", "get team: $currentTeam")
         return currentTeam
     }
 

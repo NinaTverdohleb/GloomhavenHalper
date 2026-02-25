@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStat
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 
 @Entity(
     primaryKeys = ["monsterId", "scenarioLevel", "isElite"],
@@ -24,5 +24,7 @@ data class MonsterStatsBd(
     val monsterId: Int,
     val scenarioLevel: Int,
     val isElite: Boolean,
-    val stats: List<MonsterStat>,
+    val life: Int,
+    val stats: List<MonsterAction>,
+    val isBoss: Boolean = false
 )

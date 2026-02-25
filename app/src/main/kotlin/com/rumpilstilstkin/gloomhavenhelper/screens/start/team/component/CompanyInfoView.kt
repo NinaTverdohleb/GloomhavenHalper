@@ -23,6 +23,9 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun CompanyInfoView(
     team: TeamUI,
     characterDetails: (Int) -> Unit,
+    completeScenario: (Int) -> Unit,
+    startScenario: (Int) -> Unit,
+    addScenario: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -81,9 +84,9 @@ fun CompanyInfoView(
 
             ScenarioBlock(
                 scenarios = team.teamScenario,
-                completeScenario = {},
-                startScenario = {},
-                addScenario = {}
+                completeScenario =  completeScenario,
+                startScenario = startScenario,
+                addScenario = addScenario
             )
         }
     }
@@ -123,7 +126,10 @@ private fun ContentSample() {
                     )
                 ),
             ),
-            characterDetails = {}
+            characterDetails = {},
+            completeScenario = {},
+            startScenario = {},
+            addScenario = {}
         )
     }
 }

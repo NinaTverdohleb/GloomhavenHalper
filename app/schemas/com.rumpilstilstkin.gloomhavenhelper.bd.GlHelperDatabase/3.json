@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 2,
-    "identityHash": "94b138def6b17f25113bf5d83b15e680",
+    "version": 3,
+    "identityHash": "c19e439f71adc455996d1bb571be987a",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -708,7 +708,7 @@
       },
       {
         "tableName": "MonsterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "monsterId",
@@ -719,6 +719,12 @@
           {
             "fieldPath": "name",
             "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deckName",
+            "columnName": "deckName",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -732,7 +738,7 @@
       },
       {
         "tableName": "MonsterStatsBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER NOT NULL, `scenarioLevel` INTEGER NOT NULL, `isElite` INTEGER NOT NULL, `stats` TEXT NOT NULL, PRIMARY KEY(`monsterId`, `scenarioLevel`, `isElite`), FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER NOT NULL, `scenarioLevel` INTEGER NOT NULL, `isElite` INTEGER NOT NULL, `life` INTEGER NOT NULL, `stats` TEXT NOT NULL, PRIMARY KEY(`monsterId`, `scenarioLevel`, `isElite`), FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "monsterId",
@@ -747,14 +753,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "life",
-            "columnName": "life",
+            "fieldPath": "isElite",
+            "columnName": "isElite",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "isElite",
-            "columnName": "isElite",
+            "fieldPath": "life",
+            "columnName": "life",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -800,7 +806,7 @@
       },
       {
         "tableName": "MonsterAbilityCardBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `monsterId` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `actions` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL, FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckName` TEXT NOT NULL, `initiative` INTEGER NOT NULL, `actions` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "cardId",
@@ -809,9 +815,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "monsterId",
-            "columnName": "monsterId",
-            "affinity": "INTEGER",
+            "fieldPath": "deckName",
+            "columnName": "deckName",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -841,26 +847,13 @@
         },
         "indices": [
           {
-            "name": "index_MonsterAbilityCardBd_monsterId",
+            "name": "index_MonsterAbilityCardBd_deckName",
             "unique": false,
             "columnNames": [
-              "monsterId"
+              "deckName"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_monsterId` ON `${TABLE_NAME}` (`monsterId`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "MonsterBd",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "monsterId"
-            ],
-            "referencedColumns": [
-              "monsterId"
-            ]
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_deckName` ON `${TABLE_NAME}` (`deckName`)"
           }
         ]
       },
@@ -941,7 +934,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94b138def6b17f25113bf5d83b15e680')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c19e439f71adc455996d1bb571be987a')"
     ]
   }
 }

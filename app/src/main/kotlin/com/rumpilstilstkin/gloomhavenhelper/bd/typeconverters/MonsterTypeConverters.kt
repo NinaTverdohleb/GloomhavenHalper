@@ -1,9 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters
 
 import androidx.room.TypeConverter
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.CardAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStat
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 private val json = Json {
@@ -21,8 +20,8 @@ class MonsterStatsTypeConverter {
 
 class CardActionsTypeConverter {
     @TypeConverter
-    fun fromList(list: List<CardAction>): String = json.encodeToString(list)
+    fun fromList(list: List<MonsterAction>): String = json.encodeToString(list)
 
     @TypeConverter
-    fun toList(value: String): List<CardAction> = json.decodeFromString(value)
+    fun toList(value: String): List<MonsterAction> = json.decodeFromString(value)
 }

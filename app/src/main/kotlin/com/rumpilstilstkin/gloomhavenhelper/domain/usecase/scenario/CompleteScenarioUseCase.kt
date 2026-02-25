@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
 import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
