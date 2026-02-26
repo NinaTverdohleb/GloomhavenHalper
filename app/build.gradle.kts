@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.collections.immutable)
+    implementation(libs.coil.compose)
 
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.ext.compiler)

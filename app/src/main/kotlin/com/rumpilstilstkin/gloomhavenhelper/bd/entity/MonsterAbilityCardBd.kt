@@ -13,7 +13,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 data class MonsterAbilityCardBd(
     @PrimaryKey(autoGenerate = true) val cardId: Int = 0,
     val deckName: String,
-    val initiative: Int,
-    val actions: List<MonsterAction>,
+    val imageName: String,
     val needsShuffle: Boolean = false,
 )

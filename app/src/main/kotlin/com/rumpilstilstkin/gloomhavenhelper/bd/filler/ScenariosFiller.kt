@@ -59,18 +59,36 @@ object ScenariosFiller {
                 scenarioNumber = 5,
                 name = "Зловещий склеп",
                 newScenarios = "10, 14, 19",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Культист",
+                    "Ночной демон",
+                    "Огненный демон",
+                    "Морозный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 6,
                 name = "Обветшалый склеп",
                 newScenarios = "8",
                 teamAchievement = "Планы Джексеры, Темная награда",
+                monsters = listOf(
+                    "Оживший дух",
+                    "Оживший труп",
+                    "Ожившие кости",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 7,
                 name = "Цветущий грот",
                 newScenarios = "20",
                 requirements = "Получены общие достижения Возможость улучшений и Сбежавшая торговка",
+                monsters = listOf(
+                    "Лесной бес",
+                    "Пещерный медведь",
+                    "Инокс-шаман",
+                    "Земляной демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 8,
