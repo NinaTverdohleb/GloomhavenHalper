@@ -72,7 +72,9 @@ class DatabaseFiller @Inject constructor(
             val monsterId = monsterDao.insertMonster(
                 MonsterBd(
                     name = monster.name,
-                    deckName = monster.deckName
+                    deckName = monster.deckName,
+                    isBoss = monster.isBoss,
+                    immunity = monster.immunity ?: emptyList()
                 )
             ).toInt()
 

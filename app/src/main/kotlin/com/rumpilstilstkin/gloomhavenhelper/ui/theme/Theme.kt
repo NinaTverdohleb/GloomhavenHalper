@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 private val colors = darkColorScheme(
     primary = Green, // Тон 80: Текст, иконки на темном фоне
     onPrimary = Color(0xFFFFFFFF), // Тон 20: Иконки на primary фоне
-    primaryContainer = Color(0xFF105D54), // Тон 30: Заливка кнопок (Continue Adventure)
+    primaryContainer = primaryContainer, // Тон 30: Заливка кнопок (Continue Adventure)
     onPrimaryContainer = Color(0xFFFFFFFF), // Тон 90: Текст внутри кнопок
 
     // Secondary (Золотой)
@@ -40,8 +40,8 @@ private val colors = darkColorScheme(
     onSurfaceVariant = OnSurfaceVariant, // Тон 80: Второстепенный текст (LVL, описания)
 
     // Обводки и разделители
-    outline = Color(0xFF89938F), // Тон 50: Активные границы (фокус)
-    outlineVariant = Color(0xFF3F4946), // Тон 30: Тонкие неактивные рамки карточек
+    outline = Divider, // Тон 50: Активные границы (фокус)
+    outlineVariant = DividerVariant, // Тон 30: Тонкие неактивные рамки карточек
 
     // Инвертированные цвета (Снэкбары)
     inverseSurface = Color(0xFFE0E3E1),

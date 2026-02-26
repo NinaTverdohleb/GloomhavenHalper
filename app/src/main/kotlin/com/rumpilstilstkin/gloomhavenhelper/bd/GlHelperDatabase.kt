@@ -37,12 +37,12 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
-import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatsTypeConverter
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeConverter
 
 @TypeConverters(
     ListCharacterTaskItemTypeConverter::class,
-    MonsterStatsTypeConverter::class,
     CardActionsTypeConverter::class,
+    MonsterStatTypeConverter::class,
 )
 @Database(
     entities = [

@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 
 data class MonsterItem(
     val id: Int,
@@ -30,7 +31,8 @@ data class MonsterUnit(
     val maxLife: Int,
     val stats: List<EffectItem>,
     val isSpecial: Boolean,
-    val effects: List<ActionUi> = emptyList()
+    val effects: List<ActionUi> = emptyList(),
+    val immunity: List<ActionUi> = emptyList()
 )
 
 data class MonsterAbilityCard(

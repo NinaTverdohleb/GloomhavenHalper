@@ -38,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.ui.dialogs.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,12 +52,12 @@ fun SpawnMonsterDialog(
     var selectedTier by remember { mutableStateOf(UnitTier.Normal) }
     var selectedIds by remember { mutableStateOf<List<Int>>(emptyList()) }
 
-    BasicAlertDialog(
-        modifier = Modifier
-            .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(20.dp),
-        onDismissRequest = onDismiss
+    GloomAlertDialog(
+        onDismissRequest = onDismiss,
+        onConfirmRequest = {
+            onSpawn(selectedIds, selectedTier == UnitTier.Elite)
+        },
+        confirmEnabled = selectedIds.isNotEmpty()
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -89,51 +90,13 @@ fun SpawnMonsterDialog(
                 ids = availableIds,
                 selectedIds = selectedIds,
                 onSelect = { number ->
-                    if(selectedIds.contains(number)){
-                        selectedIds = selectedIds - number
-                    }else {
-                        selectedIds = selectedIds + number
+                    selectedIds = if (selectedIds.contains(number)) {
+                        selectedIds - number
+                    } else {
+                        selectedIds + number
                     }
                 },
             )
-
-            // ── Buttons ────────────────────────────────────────────────────
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                // Cancel
-                OutlinedButton(
-                    onClick = onDismiss,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(1.dp, Color(0xFF374151)),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        containerColor = Color.Transparent,
-                        contentColor = Color(0xFF9CA3AF),
-                    ),
-                ) {
-                    Text("Закрыть", fontSize = 12.sp)
-                }
-
-                // Spawn
-                Button(
-                    onClick = { onSpawn(selectedIds, selectedTier == UnitTier.Elite) },
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(8.dp),
-                    enabled = selectedIds.isNotEmpty(),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
-                    ),
-                ) {
-                    Text(
-                        "Выбрать",
-                        fontSize = 12.sp,
-                    )
-                }
-            }
         }
     }
 }
@@ -151,7 +114,7 @@ private fun TierSelector(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(Color(0xFF0F1F18))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
             .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -162,7 +125,7 @@ private fun TierSelector(
                     .weight(1f)
                     .clip(RoundedCornerShape(6.dp))
                     .background(
-                        if (isSelected) Color(0xFFC9A84C) else Color.Transparent
+                        if (isSelected) MaterialTheme.colorScheme.secondary else Color.Transparent
                     )
                     .clickable { onSelect(tier) }
                     .padding(vertical = 8.dp),
@@ -172,19 +135,21 @@ private fun TierSelector(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
+                    val contentColor =
+                        if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
                     if (tier == UnitTier.Elite) {
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = null,
-                            tint = if (isSelected) Color.White else Color(0xFF6B7280),
+                            tint = contentColor,
                             modifier = Modifier.size(12.dp),
                         )
                     }
                     Text(
                         text = tier.text,
                         fontSize = 13.sp,
-                        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-                        color = if (isSelected) Color.White else Color(0xFF6B7280),
+                        fontWeight = FontWeight.Normal,
+                        color = contentColor,
                     )
                 }
             }
@@ -233,15 +198,16 @@ private fun UnitIdCell(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val cyan = Color(0xFF4DD0E1)
     Box(
         modifier = modifier
             .aspectRatio(1f)
             .clip(RoundedCornerShape(8.dp))
-            .background(if (isSelected) Color(0xFF0F2A2A) else Color(0xFF0F1F18))
-            .then(
-                if (isSelected) Modifier.border(1.dp, cyan, RoundedCornerShape(8.dp))
-                else Modifier
+            .background(
+                if (isSelected) {
+                    MaterialTheme.colorScheme.secondary
+                } else {
+                    MaterialTheme.colorScheme.surfaceVariant
+                }
             )
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
@@ -250,7 +216,7 @@ private fun UnitIdCell(
             text = id.toString(),
             fontSize = 14.sp,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-            color = if (isSelected) cyan else Color(0xFF6B7280),
+            color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

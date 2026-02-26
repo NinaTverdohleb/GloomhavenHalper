@@ -22,7 +22,7 @@ fun BasicCard(
             containerColor = CardColors.Background,
         ),
         border = BorderStroke(
-            0.5.dp,
+            1.dp,
             CardColors.Gold
         )
     ) {

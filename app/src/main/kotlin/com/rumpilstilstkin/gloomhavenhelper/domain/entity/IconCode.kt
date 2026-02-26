@@ -29,7 +29,6 @@ private object IconCode {
     const val CURSE = "26"
 }
 
-
 enum class IconVectorCode(val id: String) {
     NEXT(IconCode.NEXT),
     PUSH(IconCode.PUSH),

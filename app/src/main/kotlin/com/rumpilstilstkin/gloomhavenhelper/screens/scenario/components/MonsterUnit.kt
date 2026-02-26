@@ -52,6 +52,27 @@ fun MonsterUnitCard(
     deleteUnit: (unitNumber: Int) -> Unit
 ) {
     UnitCard(modifier = modifier) {
+        if (unit.immunity.isNotEmpty()) {
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 4.dp, horizontal = 16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                unit.immunity.forEach { effect ->
+                    Icon(
+                        modifier = Modifier.size(32.dp),
+                        painter = painterResource(id = effect.iconRes),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                }
+            }
+            Spacer(
+                modifier.height(8.dp)
+            )
+        }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -95,13 +116,16 @@ fun MonsterUnitCard(
         Spacer(
             modifier.height(16.dp)
         )
+
         Row(
             modifier = Modifier
                 .padding(vertical = 4.dp, horizontal = 16.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ActionGroups.effectsPack.forEach { effect ->
+            val immunitySet = unit.immunity.toSet()
+            ActionGroups.effectsPack.filter { it !in immunitySet}.forEach { effect ->
                 val tint =
                     if (unit.effects.contains(effect)) {
                         MaterialTheme.colorScheme.secondary
@@ -110,17 +134,16 @@ fun MonsterUnitCard(
                     }
                 IconButton(
                     onClick = { switchEffect(unit.number, effect) },
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(32.dp),
                 ) {
 
                     Icon(
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(32.dp),
                         painter = painterResource(id = effect.iconRes),
                         contentDescription = null,
                         tint = tint
                     )
                 }
-                Spacer(modifier = Modifier.width(12.dp))
             }
         }
         Spacer(
@@ -137,7 +160,7 @@ fun MonsterUnitCard(
                     .padding(vertical = 4.dp, horizontal = 16.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.SpaceAround,
             ) {
                 unit.stats.forEach { stat ->
                     if (stat is EffectItem.Action) {
@@ -178,7 +201,7 @@ fun MonsterUnitCard(
                     texts.forEach { stat ->
                         Text(
                             text = stat.content,
-                            fontSize = 12.sp,
+                            fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -308,7 +331,7 @@ private fun MonsterUnitPreview() {
             isBoss = false,
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
-            deleteUnit = {_ -> }
+            deleteUnit = { _ -> }
         )
     }
 }
@@ -332,22 +355,21 @@ private fun MonsterUnitBossPreview() {
                         type = ActionUi.ATTACK,
                         modifier = "4"
                     ),
-                    EffectItem.Action(
-                        type = ActionUi.SHIELD,
-                        modifier = "2"
-                    ),
                     EffectItem.Text(
                         content = "Способность 1: Убивает всех"
                     ),
                     EffectItem.Text(
                         content = "Способность 2: Убивает всех"
-                    ),
+                    )
+                ),
+                immunity = listOf(
+                    ActionUi.POISON
                 )
             ),
             isBoss = true,
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
-            deleteUnit = {_ -> }
+            deleteUnit = { _ -> }
         )
     }
 }

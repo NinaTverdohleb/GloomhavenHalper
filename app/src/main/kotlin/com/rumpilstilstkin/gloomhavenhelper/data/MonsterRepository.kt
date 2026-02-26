@@ -20,21 +20,27 @@ class MonsterRepository @Inject constructor(
                 level = level,
                 isElite = false
             )
-            val eliteStats = monsterDao.getStats(
-                monsterId = monster.monsterId,
-                level = level,
-                isElite = true
-            )
+            val eliteStats = if (monster.isBoss) {
+                null
+            } else {
+                monsterDao.getStats(
+                    monsterId = monster.monsterId,
+                    level = level,
+                    isElite = true
+                )
+            }
             val cards = monsterDao.getCardsByDeckName(monster.deckName)
             Monster(
                 id = monster.monsterId,
                 name = monster.name,
                 life = regularStats.life,
                 stats = regularStats.stats,
-                eliteLife = eliteStats.life,
-                eliteStats = eliteStats.stats,
+                eliteLife = eliteStats?.life ?: 0,
+                eliteStats = eliteStats?.stats ?: emptyList(),
                 cards = cards.map { it.toDomain() },
-                deckName = monster.deckName
+                deckName = monster.deckName,
+                isBoss = monster.isBoss,
+                immunity = monster.immunity
             )
         }
 }
