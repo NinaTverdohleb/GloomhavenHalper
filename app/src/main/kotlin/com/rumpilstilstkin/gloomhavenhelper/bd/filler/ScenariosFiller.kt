@@ -13,12 +13,23 @@ object ScenariosFiller {
                 name = "Черный курган",
                 newScenarios = "2",
                 teamAchievement = "Первые шаги",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Ожившие кости"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 2,
                 name = "Подземное логово",
                 newScenarios = "3, 4",
-                requirements = "Получено достижение отряда Первые шаги"
+                requirements = "Получено достижение отряда Первые шаги",
+                monsters = listOf(
+                    "Разбойник-лучница",
+                    "Ожившие кости",
+                    "Оживший труп",
+                    "Главарь разбойников"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 3,
@@ -26,11 +37,23 @@ object ScenariosFiller {
                 newScenarios = "8, 9",
                 requirements = "Не получено общее достижение Сбежавшая торговка",
                 teamAchievement = "Планы Джексеры",
+                monsters = listOf(
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                    "Инокс-шаман",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 4,
                 name = "Склеп проклятых",
                 newScenarios = "5, 6",
+                monsters = listOf(
+                    "Разбойник-лучница",
+                    "Ожившие кости",
+                    "Культист",
+                    "Земляной демон",
+                    "Воздушный демон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 5,

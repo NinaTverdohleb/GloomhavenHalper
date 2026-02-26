@@ -31,18 +31,19 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioMonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeConverter
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConverter
 
 @TypeConverters(
     ListCharacterTaskItemTypeConverter::class,
     CardActionsTypeConverter::class,
     MonsterStatTypeConverter::class,
+    StringListTypeConverter::class,
 )
 @Database(
     entities = [
@@ -61,9 +62,8 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeCon
         MonsterBd::class,
         MonsterStatsBd::class,
         MonsterAbilityCardBd::class,
-        ScenarioMonsterBd::class,
     ],
-    version = 3
+    version = 1
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao

@@ -25,3 +25,11 @@ class MonsterStatTypeConverter {
     @TypeConverter
     fun toList(value: String): List<MonsterStatType> = json.decodeFromString(value)
 }
+
+class StringListTypeConverter {
+    @TypeConverter
+    fun fromList(list: List<String>): String = json.encodeToString(list)
+
+    @TypeConverter
+    fun toList(value: String): List<String> = json.decodeFromString(value)
+}

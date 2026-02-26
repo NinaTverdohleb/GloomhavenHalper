@@ -76,6 +76,14 @@ enum class ActionUi(
     CURSE(
         title = "Проклятье",
         iconRes = R.drawable.curse
+    ),
+    BLESS(
+        title = "Благословение",
+        iconRes = R.drawable.dr // TODO
+    ),
+    PULL(
+        title = "Оттолкнуть",
+        iconRes = R.drawable.dr // TODO
     )
     ;
 
@@ -99,6 +107,8 @@ enum class ActionUi(
             MonsterStatType.INVISIBLE -> INVISIBLE
             MonsterStatType.HEAL -> HEAL
             MonsterStatType.PUSH -> PUSH
+            MonsterStatType.BLESS -> BLESS
+            MonsterStatType.PULL -> PULL
         }
     }
 }

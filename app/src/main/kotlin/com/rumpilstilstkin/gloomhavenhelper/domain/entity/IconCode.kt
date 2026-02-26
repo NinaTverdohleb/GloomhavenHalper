@@ -27,6 +27,16 @@ private object IconCode {
     const val INVISIBILITY = "24"
     const val POISON = "25"
     const val CURSE = "26"
+    const val AREA_0 = "27"
+    const val SPEND_FROST = "28"
+    const val SPEND_SUN = "29"
+    const val SPEND_MOON = "30"
+    const val SPEND_AIR = "31"
+    const val SPEND_FIRE = "32"
+    const val SPEND_EARTH = "33"
+    const val SPEND_ANY = "34"
+    const val AREA_1 = "35"
+    const val AREA_2 = "36"
 }
 
 enum class IconVectorCode(val id: String) {
@@ -59,4 +69,13 @@ enum class IconResCode(val id: String) {
     AIR(IconCode.AIR),
     FIRE(IconCode.FIRE),
     EARTH(IconCode.EARTH),
+    SPEND_FROST(IconCode.SPEND_FROST),
+    SPEND_SUN(IconCode.SPEND_SUN),
+    SPEND_MOON(IconCode.SPEND_MOON),
+    SPEND_AIR(IconCode.SPEND_AIR),
+    SPEND_FIRE(IconCode.SPEND_FIRE),
+    SPEND_EARTH(IconCode.SPEND_EARTH),
+    SPEND_ANY(IconCode.SPEND_ANY),
+    AREA_0(IconCode.AREA_0),
+    AREA_1(IconCode.AREA_1)
 }

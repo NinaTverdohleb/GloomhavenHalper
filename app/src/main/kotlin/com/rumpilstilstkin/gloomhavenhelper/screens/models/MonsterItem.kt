@@ -60,9 +60,10 @@ sealed interface EffectItem {
         override val subLines: List<EffectItem>? = null
     ) : EffectItem
 
-    data class Text(val content: String) : EffectItem {
+    data class Text(
+        val content: String,
         override val subLines: List<EffectItem>? = null
-    }
+    ) : EffectItem
 
     companion object {
         fun fromCardAction(action: MonsterAction): EffectItem = when (action) {
@@ -73,7 +74,8 @@ sealed interface EffectItem {
             )
 
             is MonsterAction.Text -> Text(
-                content = action.content
+                content = action.content,
+                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
             )
         }
     }

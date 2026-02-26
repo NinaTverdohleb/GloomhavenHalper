@@ -6,8 +6,6 @@ import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioMonsterBd
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MonsterDao {
@@ -19,6 +17,9 @@ interface MonsterDao {
     @Query("SELECT * FROM MonsterBd WHERE monsterId = :id")
     suspend fun getMonsterById(id: Int): MonsterBd
 
+    @Query("SELECT * FROM MonsterBd WHERE name = :name")
+    suspend fun getMonsterByName(name: String): MonsterBd
+
     @Insert
     suspend fun insertMonster(monster: MonsterBd): Long
 
@@ -26,8 +27,6 @@ interface MonsterDao {
     suspend fun insertMonsters(vararg monsters: MonsterBd)
 
     // Monster Stats
-    @Query("SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId")
-    suspend fun getStatsByMonsterId(monsterId: Int): List<MonsterStatsBd>
 
     @Query("SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId AND scenarioLevel = :level AND isElite = :isElite")
     suspend fun getStats(monsterId: Int, level: Int, isElite: Boolean): MonsterStatsBd
@@ -50,28 +49,4 @@ interface MonsterDao {
 
     @Insert
     suspend fun insertCards(vararg cards: MonsterAbilityCardBd)
-
-    // Scenario Monsters
-    @Query("SELECT * FROM ScenarioMonsterBd WHERE scenarioNumber = :scenarioNumber")
-    suspend fun getMonstersByScenario(scenarioNumber: Int): List<ScenarioMonsterBd>
-
-    @Query("""
-        SELECT m.* FROM MonsterBd m
-        INNER JOIN ScenarioMonsterBd sm ON m.monsterId = sm.monsterId
-        WHERE sm.scenarioNumber = :scenarioNumber
-    """)
-    suspend fun getMonstersForScenario(scenarioNumber: Int): List<MonsterBd>
-
-    @Query("""
-        SELECT m.* FROM MonsterBd m
-        INNER JOIN ScenarioMonsterBd sm ON m.monsterId = sm.monsterId
-        WHERE sm.scenarioNumber = :scenarioNumber
-    """)
-    fun getMonstersForScenarioFlow(scenarioNumber: Int): Flow<List<MonsterBd>>
-
-    @Insert
-    suspend fun insertScenarioMonster(scenarioMonster: ScenarioMonsterBd)
-
-    @Insert
-    suspend fun insertScenarioMonsters(vararg scenarioMonsters: ScenarioMonsterBd)
 }

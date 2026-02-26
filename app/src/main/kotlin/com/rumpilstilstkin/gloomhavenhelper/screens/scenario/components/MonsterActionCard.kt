@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.perks.perkEffectsInlineContentMap
+import com.rumpilstilstkin.gloomhavenhelper.ui.perks.replacePerkTextWithIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
@@ -127,8 +129,10 @@ private fun CardEffectItem(line: EffectItem, isSubLine: Boolean = false) {
         }
 
         is EffectItem.Text -> {
+            val textWithIcons = replacePerkTextWithIcons(line.content)
             Text(
-                text = line.content,
+                text = textWithIcons,
+                inlineContent = perkEffectsInlineContentMap,
                 color = fontColor,
                 fontSize = fontSize,
                 textAlign = TextAlign.Center
@@ -152,6 +156,7 @@ private fun MonsterActionCardPreview() {
                         "",
                         listOf(EffectItem.Text("Себя"))
                     ),
+                    EffectItem.Text("#23")
                 ),
                 needsShuffle = true
             )
