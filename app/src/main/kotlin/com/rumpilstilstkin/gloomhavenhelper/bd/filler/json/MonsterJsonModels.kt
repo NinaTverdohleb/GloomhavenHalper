@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.serialization.Serializable
 
 /**
@@ -27,7 +28,9 @@ data class AbilityCardJson(
 data class MonsterJson(
     val name: String,
     val deckName: String,
-    val stats: List<MonsterStatsJson>
+    val stats: List<MonsterStatsJson>,
+    val isBoss: Boolean,
+    val immunity: List<MonsterStatType>? = null
 )
 
 @Serializable
@@ -36,7 +39,6 @@ data class MonsterStatsJson(
     val isElite: Boolean,
     val life: Int,
     val stats: List<MonsterAction>,
-    val isBoss: Boolean,
 )
 
 /**

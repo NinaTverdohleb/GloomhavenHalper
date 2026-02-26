@@ -64,6 +64,9 @@ fun ScenarioRoute(
         nextRound = {
             viewModel.onAction(ScenarioActions.NextRound)
         },
+        clickMagic = { magic ->
+            viewModel.onAction(ScenarioActions.UpdateMagic((magic)))
+        }
     )
 
     MonsterListDialog(

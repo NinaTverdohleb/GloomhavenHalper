@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @HiltViewModel(assistedFactory = ScenarioViewModel.Factory::class)
 class ScenarioViewModel @AssistedInject constructor(
@@ -33,7 +34,11 @@ class ScenarioViewModel @AssistedInject constructor(
     private val _logicState = MutableStateFlow<ScenarioLogicState?>(null)
     val uiState: StateFlow<ScenarioUIState> = _logicState
         .filterNotNull()
-        .map { it.toUIState() }
+        .map {
+            withContext(Dispatchers.Default) {
+                it.toUIState()
+            }
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
@@ -57,55 +62,56 @@ class ScenarioViewModel @AssistedInject constructor(
     }
 
     fun onAction(action: ScenarioActions) {
-        _logicState.value ?: return
+        val state = _logicState.value ?: return
         viewModelScope.launch(Dispatchers.Default) {
-            _logicState.update { state ->
-                state?.let {
-                    when (action) {
-                        is ScenarioActions.AddMonster -> it.addMonster(action.monsterId)
-                        is ScenarioActions.RemoveMonster -> it.removeMonster(action.monsterId)
-                        is ScenarioActions.AddUnits -> it.addUnits(
-                            numbers = action.numbers,
-                            monsterId = action.monsterId,
-                            isSpecial = action.isElite
-                        )
+            val newState = state.let {
+                when (action) {
+                    is ScenarioActions.AddMonster -> it.addMonster(action.monsterIds)
+                    is ScenarioActions.RemoveMonster -> it.removeMonster(action.monsterId)
+                    is ScenarioActions.AddUnits -> it.addUnits(
+                        numbers = action.numbers,
+                        monsterId = action.monsterId,
+                        isSpecial = action.isElite
+                    )
 
-                        is ScenarioActions.RemoveUnit -> it.removeUnit(
-                            number = action.number,
-                            monsterId = action.monsterId
-                        )
+                    is ScenarioActions.RemoveUnit -> it.removeUnit(
+                        number = action.number,
+                        monsterId = action.monsterId
+                    )
 
-                        is ScenarioActions.UpdateUnitLife -> it.updateUnitLife(
-                            number = action.unitNumber,
-                            monsterId = action.monsterId,
-                            newValue = action.newValue
-                        )
+                    is ScenarioActions.UpdateUnitLife -> it.updateUnitLife(
+                        number = action.unitNumber,
+                        monsterId = action.monsterId,
+                        newValue = action.newValue
+                    )
 
-                        is ScenarioActions.NextRound -> it.nextRound()
-                        is ScenarioActions.SwitchUnitEffect -> it.addEffect(
-                            number = action.unitNumber,
-                            monsterId = action.monsterId,
-                            effect = action.effect
-                        )
+                    is ScenarioActions.NextRound -> it.nextRound()
+                    is ScenarioActions.SwitchUnitEffect -> it.addEffect(
+                        number = action.unitNumber,
+                        monsterId = action.monsterId,
+                        effect = action.effect
+                    )
 
-                        is ScenarioActions.CompleteScenario -> {
-                            viewModelScope.launch {
-                                completeScenarioUseCase(scenarioNumber)
-                                _navigationEvents.emit(GlHelperEvent.Back)
-                            }
-                            it
+                    is ScenarioActions.CompleteScenario -> {
+                        viewModelScope.launch {
+                            completeScenarioUseCase(scenarioNumber)
+                            _navigationEvents.emit(GlHelperEvent.Back)
                         }
-
-                        ScenarioActions.CloseMonstersDialog -> it.copy(
-                            showMonsterDialog = false
-                        )
-
-                        ScenarioActions.OpenMonstersDialog -> it.copy(
-                            showMonsterDialog = true
-                        )
+                        it
                     }
+
+                    ScenarioActions.CloseMonstersDialog -> it.copy(
+                        showMonsterDialog = false
+                    )
+
+                    ScenarioActions.OpenMonstersDialog -> it.copy(
+                        showMonsterDialog = true
+                    )
+
+                    is ScenarioActions.UpdateMagic -> it.updateMagic(action.magic)
                 }
             }
+            _logicState.update { newState }
         }
     }
 

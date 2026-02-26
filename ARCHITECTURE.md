@@ -344,18 +344,6 @@ class ListCharacterTaskItemTypeConverter {
 ```
 Serializes `List<CharacterTaskItem>` to JSON string for storage in `PersonalQuestBd.tasks` and `CharacterPersonalQuestBd.tasks`.
 
-#### MonsterStatsTypeConverter
-```kotlin
-class MonsterStatsTypeConverter {
-    @TypeConverter
-    fun fromList(list: List<MonsterStat>): String = json.encodeToString(list)
-
-    @TypeConverter
-    fun toList(value: String): List<MonsterStat> = json.decodeFromString(value)
-}
-```
-Serializes `List<MonsterStat>` to JSON string for storage in `MonsterStatsBd.stats`.
-
 #### CardActionsTypeConverter
 ```kotlin
 class CardActionsTypeConverter {

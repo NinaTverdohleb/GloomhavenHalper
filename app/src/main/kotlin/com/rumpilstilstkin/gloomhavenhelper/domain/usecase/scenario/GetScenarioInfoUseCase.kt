@@ -29,6 +29,7 @@ class GetScenarioInfoUseCase @Inject constructor(
                 golds = goldByLevel(team.level),
                 exp = expByLevel(team.level),
                 trapDamage = trapDamageByLevel(team.level),
+                gamersCount = team.characters.size
             )
         }
     }

@@ -26,5 +26,4 @@ data class MonsterStatsBd(
     val isElite: Boolean,
     val life: Int,
     val stats: List<MonsterAction>,
-    val isBoss: Boolean = false
 )

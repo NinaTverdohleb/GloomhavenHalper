@@ -1,21 +1,50 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
 
+import android.R
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Icon
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.dialogs.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 
@@ -24,36 +53,74 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun MonsterListDialog(
     showDialog: Boolean,
     monsters: List<MonsterItem>,
-    selectMonster: (Int) -> Unit,
+    selectMonster: (List<Int>) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    if (showDialog) {
-        BasicAlertDialog(
-            content = {
-                Card(
-                    shape = RoundedCornerShape(16.dp),
+    var selectedIds by remember { mutableStateOf(emptyList<Int>()) }
 
-                    ) {
-                    Column(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .align(Alignment.CenterHorizontally),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        monsters.forEach { monster ->
-                            MonsterListItem(
-                                monsterItem = monster,
-                                modifier = Modifier.clickable {
-                                    selectMonster(monster.id)
-                                    onDismiss()
+    if (showDialog) {
+        GloomAlertDialog(
+            onDismissRequest = onDismiss,
+            onConfirmRequest = { selectMonster(selectedIds) },
+            confirmEnabled = selectedIds.isNotEmpty(),
+            title = "Выберете тип врагов"
+        ) {
+            Column {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 420.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    items(monsters.size) { index ->
+                        MonsterClassItem(
+                            name = monsters[index].name,
+                            isSelected = selectedIds.contains(monsters[index].id) || index == 1,
+                            onClick = {
+                                selectedIds = if (selectedIds.contains(monsters[index].id)) {
+                                    selectedIds - monsters[index].id
+                                } else {
+                                    selectedIds + monsters[index].id
                                 }
-                            )
-                        }
+                            },
+                        )
                     }
                 }
-            },
-            onDismissRequest = { onDismiss() },
+
+            }
+        }
+    }
+}
+
+@Composable
+private fun MonsterClassItem(
+    name: String,
+    isSelected: Boolean,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 18.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            text = name,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface,
         )
+        if (isSelected) {
+            Icon(
+                imageVector = Icons.Default.CheckCircle,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.size(20.dp),
+            )
+        }
     }
 }
 
@@ -63,7 +130,9 @@ fun MonsterListItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.padding(8.dp).fillMaxWidth()
+        modifier = modifier
+            .padding(8.dp)
+            .fillMaxWidth()
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
