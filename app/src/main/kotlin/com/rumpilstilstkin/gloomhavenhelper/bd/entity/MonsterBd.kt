@@ -10,5 +10,6 @@ data class MonsterBd(
     val name: String,
     val deckName: String,
     val isBoss: Boolean,
+    val fly: Boolean = false,
     val immunity: List<MonsterStatType> = emptyList()
 )

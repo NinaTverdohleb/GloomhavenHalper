@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0e902157bbaf4c09fdd6af1e178a8b43",
+    "identityHash": "25b797c300242e42e0c4218c8c8e6f91",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -50,9 +50,7 @@
           "columnNames": [
             "teamId"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "CharacterClassBd",
@@ -76,9 +74,7 @@
           "columnNames": [
             "characterType"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "CharacterBd",
@@ -123,8 +119,7 @@
           {
             "fieldPath": "teamId",
             "columnName": "teamId",
-            "affinity": "INTEGER",
-            "notNull": false
+            "affinity": "INTEGER"
           },
           {
             "fieldPath": "isAlive",
@@ -150,9 +145,7 @@
           "columnNames": [
             "characterId"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "GameLevelInfoBd",
@@ -194,13 +187,11 @@
           "columnNames": [
             "level"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "ScenarioBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, `monsters` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
         "fields": [
           {
             "fieldPath": "scenarioNumber",
@@ -237,6 +228,12 @@
             "columnName": "requirements",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "monsters",
+            "columnName": "monsters",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -244,9 +241,7 @@
           "columnNames": [
             "scenarioNumber"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "TeamScenarioBd",
@@ -386,9 +381,7 @@
           "columnNames": [
             "goodId"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "CharacterGoodBd",
@@ -623,8 +616,7 @@
           {
             "fieldPath": "characterType",
             "columnName": "characterType",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "tasks",
@@ -638,9 +630,7 @@
           "columnNames": [
             "questId"
           ]
-        },
-        "indices": [],
-        "foreignKeys": []
+        }
       },
       {
         "tableName": "CharacterPersonalQuestBd",
@@ -721,12 +711,180 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "MonsterBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL, `isBoss` INTEGER NOT NULL, `fly` INTEGER NOT NULL, `immunity` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deckName",
+            "columnName": "deckName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBoss",
+            "columnName": "isBoss",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fly",
+            "columnName": "fly",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "immunity",
+            "columnName": "immunity",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "monsterId"
+          ]
+        }
+      },
+      {
+        "tableName": "MonsterStatsBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER NOT NULL, `scenarioLevel` INTEGER NOT NULL, `isElite` INTEGER NOT NULL, `life` INTEGER NOT NULL, `stats` TEXT NOT NULL, PRIMARY KEY(`monsterId`, `scenarioLevel`, `isElite`), FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioLevel",
+            "columnName": "scenarioLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isElite",
+            "columnName": "isElite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "life",
+            "columnName": "life",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats",
+            "columnName": "stats",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "monsterId",
+            "scenarioLevel",
+            "isElite"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_MonsterStatsBd_monsterId",
+            "unique": false,
+            "columnNames": [
+              "monsterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterStatsBd_monsterId` ON `${TABLE_NAME}` (`monsterId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "MonsterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "monsterId"
+            ],
+            "referencedColumns": [
+              "monsterId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "MonsterAbilityCardBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckName` TEXT NOT NULL, `initiative` INTEGER NOT NULL, `actions` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "cardId",
+            "columnName": "cardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deckName",
+            "columnName": "deckName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiative",
+            "columnName": "initiative",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actions",
+            "columnName": "actions",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "needsShuffle",
+            "columnName": "needsShuffle",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "cardId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_MonsterAbilityCardBd_deckName",
+            "unique": false,
+            "columnNames": [
+              "deckName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_deckName` ON `${TABLE_NAME}` (`deckName`)"
+          }
+        ]
       }
     ],
-    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0e902157bbaf4c09fdd6af1e178a8b43')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '25b797c300242e42e0c4218c8c8e6f91')"
     ]
   }
 }

@@ -18,5 +18,6 @@ sealed interface MonsterAction {
     @SerialName("text")
     data class Text(
         val content: String,
+        val subAction: List<MonsterAction>? = null,
     ) : MonsterAction
 }

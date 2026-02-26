@@ -21,4 +21,6 @@ enum class MonsterStatType {
     INVISIBLE,
     HEAL,
     PUSH,
+    BLESS,
+    PULL,
 }
