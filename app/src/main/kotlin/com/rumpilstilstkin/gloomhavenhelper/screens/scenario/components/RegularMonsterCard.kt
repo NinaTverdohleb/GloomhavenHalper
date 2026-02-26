@@ -20,12 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import kotlin.collections.filter
 
 @Composable
 fun RegularMonsterCard(
@@ -126,19 +124,7 @@ private fun RegularMonsterCardPreview() {
             item = MonsterItem(
                 id = 1,
                 name = "Хвостожабка",
-                currentCard = MonsterAbilityCard(
-                    id = 524,
-                    initiative = 15,
-                    lines = listOf(
-                        EffectItem.Action(ActionUi.MOVE, "-1"),
-                        EffectItem.Action(
-                            ActionUi.STRENGTH,
-                            "",
-                            listOf(EffectItem.Text("Себя"))
-                        ),
-                    ),
-                    needsShuffle = true
-                ),
+                currentCard = null,
                 units = listOf(
                     MonsterUnit(
                         number = 2,

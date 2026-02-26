@@ -6,7 +6,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction.Action
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction.Text
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType.*
 
 object MonstersFiller {
@@ -341,284 +340,390 @@ object MonstersFiller {
             MonsterStatsBd(airDemonId, 7, false, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"))),
             MonsterStatsBd(airDemonId, 7, true, 13, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(RANGE, "4"), Action(SHIELD, "3"), Action(DISARM, ""))),
         )
+
+        val livingSpiritId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Оживший дух",
+                deckName = "living-spirit",
+                isBoss = false,
+                fly = true,
+            )
+
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(livingSpiritId, 0, false, 2, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(RANGE, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(livingSpiritId, 0, true, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(livingSpiritId, 1, false, 2, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(RANGE, "2"), Action(SHIELD, "2"))),
+            MonsterStatsBd(livingSpiritId, 1, true, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "3"))),
+
+            MonsterStatsBd(livingSpiritId, 2, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(livingSpiritId, 2, true, 3, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+
+            MonsterStatsBd(livingSpiritId, 3, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(livingSpiritId, 3, true, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+
+            MonsterStatsBd(livingSpiritId, 4, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "3"))),
+            MonsterStatsBd(livingSpiritId, 4, true, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "4"))),
+
+            MonsterStatsBd(livingSpiritId, 5, false, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+            MonsterStatsBd(livingSpiritId, 5, true, 6, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "4"))),
+
+            MonsterStatsBd(livingSpiritId, 6, false, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+            MonsterStatsBd(livingSpiritId, 6, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RANGE, "5"), Action(SHIELD, "4"))),
+
+            MonsterStatsBd(livingSpiritId, 7, false, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+            MonsterStatsBd(livingSpiritId, 7, true, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RANGE, "5"), Action(SHIELD, "4"))),
+        )
+
+        val nightDemonId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Ночной демон",
+                deckName = "night-demon",
+                isBoss = false,
+            )
+
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(nightDemonId, 0, false, 3, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(nightDemonId, 0, true, 5, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(nightDemonId, 1, false, 5, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(nightDemonId, 1, true, 8, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(nightDemonId, 2, false, 6, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "3"), Action(ATTACK, "4"))),
+            MonsterStatsBd(nightDemonId, 2, true, 11, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(nightDemonId, 3, false, 7, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "3"), Action(ATTACK, "4"))),
+            MonsterStatsBd(nightDemonId, 3, true, 13, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "5"))),
+
+            MonsterStatsBd(nightDemonId, 4, false, 7, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(nightDemonId, 4, true, 8, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(DISARM, ""))),
+
+            MonsterStatsBd(nightDemonId, 5, false, 9, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "2"))),
+            MonsterStatsBd(nightDemonId, 5, true, 11, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "5"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(DISARM, ""))),
+
+            MonsterStatsBd(nightDemonId, 6, false, 10, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+            MonsterStatsBd(nightDemonId, 6, true, 12, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "5"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"), Action(DISARM, ""))),
+
+            MonsterStatsBd(nightDemonId, 7, false, 11, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"))),
+            MonsterStatsBd(nightDemonId, 7, true, 13, listOf(Text("Атаки по демону проходят с помехой"), Action(MOVE, "5"), Action(ATTACK, "5"), Action(RANGE, "4"), Action(SHIELD, "3"), Action(DISARM, ""))),
+        )
+        val flameDemonId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Огненный демон",
+                deckName = "flame-demon",
+                isBoss = false,
+                fly = true,
+            )
+
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(flameDemonId, 0, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(flameDemonId, 0, true, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "3"))),
+
+            MonsterStatsBd(flameDemonId, 1, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "3"))),
+            MonsterStatsBd(flameDemonId, 1, true, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "4"), Text("Ответный удар 2 с дальностью 2"))),
+
+            MonsterStatsBd(flameDemonId, 2, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(SHIELD, "3"))),
+            MonsterStatsBd(flameDemonId, 2, true, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "4"), Text("Ответный удар 3 с дальностью 2"))),
+
+            MonsterStatsBd(flameDemonId, 3, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "3"), Text("Ответный удар 2 с дальностью 2"))),
+            MonsterStatsBd(flameDemonId, 3, true, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(SHIELD, "4"), Text("Ответный удар 3 с дальностью 3"))),
+
+            MonsterStatsBd(flameDemonId, 4, false, 3, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "3"), Text("Ответный удар 3 с дальностью 2"))),
+            MonsterStatsBd(flameDemonId, 4, true, 5, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "4"), Text("Ответный удар 4 с дальностью 3"))),
+
+            MonsterStatsBd(flameDemonId, 5, false, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "4"), Text("Ответный удар 3 с дальностью 2"))),
+            MonsterStatsBd(flameDemonId, 5, true, 6, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "5"), Text("Ответный удар 4 с дальностью 3"))),
+
+            MonsterStatsBd(flameDemonId, 6, false, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "4"), Text("Ответный удар 4 с дальностью 2"))),
+            MonsterStatsBd(flameDemonId, 6, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RANGE, "5"), Action(SHIELD, "5"), Text("Ответный удар 5 с дальностью 3"))),
+
+            MonsterStatsBd(flameDemonId, 7, false, 5, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "4"), Text("Ответный удар 4 с дальностью 3"))),
+            MonsterStatsBd(flameDemonId, 7, true, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RANGE, "6"), Action(SHIELD, "5"), Text("Ответный удар 5 с дальностью 4"))),
+        )
+
+        val frostDemonId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Морозный демон",
+                deckName = "frost-demon",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(frostDemonId, 0, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "3"))),
+            MonsterStatsBd(frostDemonId, 0, true, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(frostDemonId, 1, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(frostDemonId, 1, true, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(frostDemonId, 2, false, 7, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(frostDemonId, 2, true, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(frostDemonId, 3, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(frostDemonId, 3, true, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(frostDemonId, 4, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(frostDemonId, 4, true, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(frostDemonId, 5, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+            MonsterStatsBd(frostDemonId, 5, true, 20, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(frostDemonId, 6, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RETALIATE, "3"))),
+            MonsterStatsBd(frostDemonId, 6, true, 22, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RETALIATE, "4"))),
+
+            MonsterStatsBd(frostDemonId, 7, false, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RETALIATE, "3"))),
+            MonsterStatsBd(frostDemonId, 7, true, 25, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(RETALIATE, "4"))),
+        )
+
+        val impId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Лесной бес",
+                deckName = "imp",
+                isBoss = false,
+                fly = true,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(impId, 0, false, 1, listOf(Action(MOVE, "3"), Action(ATTACK, "1"), Action(RANGE, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(impId, 0, true, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "1"), Action(RANGE, "3"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(impId, 1, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "1"), Action(RANGE, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(impId, 1, true, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(impId, 2, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(impId, 2, true, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(SHIELD, "1"), Action(CURSE, ""))),
+
+            MonsterStatsBd(impId, 3, false, 3, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "1"))),
+            MonsterStatsBd(impId, 3, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "1"), Action(CURSE, ""))),
+
+            MonsterStatsBd(impId, 4, false, 3, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "2"))),
+            MonsterStatsBd(impId, 4, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+
+            MonsterStatsBd(impId, 5, false, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+            MonsterStatsBd(impId, 5, true, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+
+            MonsterStatsBd(impId, 6, false, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+            MonsterStatsBd(impId, 6, true, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+
+            MonsterStatsBd(impId, 7, false, 6, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+            MonsterStatsBd(impId, 7, true, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "2"), Action(CURSE, ""))),
+        )
+
+        val caveBearId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Пещерный медведь",
+                deckName = "cave-bear",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(caveBearId, 0, false, 7, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(caveBearId, 0, true, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(caveBearId, 1, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(caveBearId, 1, true, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(caveBearId, 2, false, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "3"))),
+            MonsterStatsBd(caveBearId, 2, true, 17, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(caveBearId, 3, false, 13, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+            MonsterStatsBd(caveBearId, 3, true, 20, listOf(Action(MOVE, "4"), Action(ATTACK, "5"))),
+
+            MonsterStatsBd(caveBearId, 4, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+            MonsterStatsBd(caveBearId, 4, true, 21, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+
+            MonsterStatsBd(caveBearId, 5, false, 17, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(WOUND, ""))),
+            MonsterStatsBd(caveBearId, 5, true, 24, listOf(Action(MOVE, "5"), Action(ATTACK, "6"), Action(WOUND, ""))),
+
+            MonsterStatsBd(caveBearId, 6, false, 19, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+            MonsterStatsBd(caveBearId, 6, true, 28, listOf(Action(MOVE, "5"), Action(ATTACK, "7"), Action(WOUND, ""))),
+
+            MonsterStatsBd(caveBearId, 7, false, 22, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+            MonsterStatsBd(caveBearId, 7, true, 33, listOf(Action(MOVE, "5"), Action(ATTACK, "7"), Action(WOUND, ""))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
         // Boss deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "boss", initiative = 11, actions = listOf(Text("Способность 2"))),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 14, actions = listOf(Text("Способность 2"))),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 17, actions = listOf(Text("Способность 2")), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 85, actions = listOf(Text("Способность 1")), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 79, actions = listOf(Text("Способность 1"))),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 73, actions = listOf(Text("Способность 1"))),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 36, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "boss", initiative = 52, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1", listOf(Action(RANGE, "3"), Action(TARGET, "2")))
-            )),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_1.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_2.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_4.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_5.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_6.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_7.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_8.webp"),
         )
 
         // living-bones deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 64, actions = listOf(Action(MOVE, "-1"), Action(ATTACK, "+1"))),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 20, actions = listOf(
-                Action(MOVE, "-2"),
-                Action(ATTACK, "+0"),
-                Action(HEAL, "2", listOf(Text("На себя")))
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 25, actions = listOf(Action(MOVE, "+1"), Action(ATTACK, "-1"))),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 45, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 45, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 74, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0", listOf(Text("Все атаки в одну цель")))
-            )),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 81, actions = listOf(Action(ATTACK, "+2"))),
-            MonsterAbilityCardBd(deckName = "living-bones", initiative = 12, actions = listOf(
-                Action(SHIELD, "1"),
-                Action(HEAL, "2", listOf(Text("На себя")))
-            ), needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_1.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_3.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_4.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_5.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_6.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_7.webp"),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_8.webp", needsShuffle = true),
         )
 
         // guard deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "guard", initiative = 15, actions = listOf(
-                Action(SHIELD, "1"),
-                Action(RETALIATE, "2")
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 30, actions = listOf(Action(MOVE, "+1"), Action(ATTACK, "-1"))),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 35, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+0", listOf(Action(RANGE, "2")))
-            )),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 50, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 50, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 70, actions = listOf(Action(MOVE, "+1"), Action(ATTACK, "+1"))),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 55, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+0"),
-                Action(STRENGTHEN, "", listOf(Text("На себя")))
-            )),
-            MonsterAbilityCardBd(deckName = "guard", initiative = 15, actions = listOf(
-                Action(SHIELD, "1"),
-                Action(ATTACK, "+0", listOf(Action(POISON, "")))
-            ), needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_1.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_2.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_3.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_4.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_5.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_6.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_7.webp"),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_8.webp", needsShuffle = true),
         )
 
         // archer deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "archer", initiative = 16, actions = listOf(Action(MOVE, "+1"), Action(ATTACK, "-1"))),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 31, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0"))),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 32, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+1", listOf(Action(RANGE, "-1")))
-            )),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 44, actions = listOf(Action(MOVE, "-1"), Action(ATTACK, "+1"))),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 56, actions = listOf(
-                Action(ATTACK, "-1", listOf(Action(TARGET, "2")))
-            )),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 68, actions = listOf(
-                Action(ATTACK, "+1", listOf(Action(RANGE, "+1")))
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 14, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1", listOf(Text("Создает ловушку на 3 урона в ближайшей к врагу области")))
-            )),
-            MonsterAbilityCardBd(deckName = "archer", initiative = 29, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "-1", listOf(Action(RANGE, "+1"), Action(IMMOBILIZE, "")))
-            ), needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_1.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_2.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_3.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_4.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_5.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_7.webp"),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_8.webp", needsShuffle = true),
         )
 
         // living-corpse deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 21, actions = listOf(
-                Action(MOVE, "+1"),
-                Action(IMMOBILIZE, ""),
-                Action(MUDDLE, ""),
-                Text("Цель один враг")
-            )),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 47, actions = listOf(Action(MOVE, "+1"), Action(ATTACK, "-1"))),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 66, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0")), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 66, actions = listOf(Action(MOVE, "+0"), Action(ATTACK, "+0")), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 82, actions = listOf(Action(MOVE, "-1"), Action(ATTACK, "+1"))),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 91, actions = listOf(
-                Action(MOVE, "+1"),
-                Text("Зомби получает 1 урон")
-            )),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 71, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+1"),
-                Action(POISON, "", listOf(Text("Отравляет всех соседних врагов")))
-            )),
-            MonsterAbilityCardBd(deckName = "living-corpse", initiative = 32, actions = listOf(
-                Action(ATTACK, "+2", listOf(Action(PUSH, "1"))),
-                Text("Зомби получает 1 урон")
-            )),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_1.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_2.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_4.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_5.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_6.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_7.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_8.webp"),
         )
 
         // shaman deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 8, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "-1", subAction = listOf(Action(DISARM, "")))
-            )),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 8, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+0", subAction = listOf(Action(IMMOBILIZE, "")))
-            )),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 23, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(HEAL, "3", listOf(Action(RANGE, "3")))
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 23, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(HEAL, "3", listOf(Action(RANGE, "3")))
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 62, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0"))
-            ),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 74, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+1")
-            )),
-
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 89, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(HEAL, "1", listOf(Text("Все рядомстоязие союзники"))),
-                Action(BLESS, "", listOf(Text("Себя")))
-            )),
-            MonsterAbilityCardBd(deckName = "shaman", initiative = 9, actions = listOf(
-                Action(MOVE, "+1"),
-                Action(ATTACK, "-1", listOf(Action(CURSE, ""), Action(TARGET, "2")))
-            ))
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_1.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_2.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_4.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_5.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_6.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_7.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_8.webp"),
         )
 
         // cultist deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 10, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1"),
-                Text(content = "При смерти:", subAction = listOf(Text("#27"), Action(ATTACK, "+2")))
-            )),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 10, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1"),
-                Text(content = "При смерти:", subAction = listOf(Text("#27"), Action(ATTACK, "+2")))
-            )),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 27, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0"),
-            )),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 27, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0"),
-            )),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 39, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+0"),
-                Action(HEAL, "1", subAction = listOf(Text("Себя")))
-            )),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 63, actions = listOf(
-                Text("Призывает ожившие кости"),
-                Text("Культист получает 2 повреждения"),
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 63, actions = listOf(
-                Text("Призывает ожившие кости"),
-                Text("Культист получает 2 повреждения"),
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cultist", initiative = 9, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(HEAL, "3", listOf(Action(RANGE, "3")))
-            ))
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_1.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_2.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_3.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_4.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_5.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_7.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_8.webp"),
         )
 
         // earth-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 40, actions = listOf(
-                Action(HEAL, "3", subAction = listOf(Text("Себя"))),
-                Text("#33", subAction = listOf(Action(IMMOBILIZE, ""), Action(RANGE, "3")))
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 42, actions = listOf(
-                Action(MOVE, "+1"),
-                Action(ATTACK, "-1"),
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 62, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0"),
-                Text("#23")
-            )),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 71, actions = listOf(
-                Action(ATTACK, "+0", subAction = listOf(Action(RANGE, "4"))),
-                Text("#33", subAction = listOf(Action(TARGET, "2")))
-            )),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 83, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+1"),
-                Text("#23")
-            )),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 93, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1", subAction = listOf(Text("Цели все соседние враги"))),
-                Text("#33", subAction = listOf(Action(PUSH, "1")))
-            )),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 79, actions = listOf(
-                Action(MOVE, "+1"),
-                Action(ATTACK, "+0"),
-                Text("#31", subAction = listOf(Action(ATTACK, "-2")))
-            )),
-            MonsterAbilityCardBd(deckName = "earth-demon", initiative = 87, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "-1", listOf(Text("#35"))),
-                Text("#34: #23")
-            ))
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_1.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_3.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_4.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_5.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_6.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_7.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_8.webp"),
         )
 
         // wind-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 9, actions = listOf(
-                Action(ATTACK, "-1"),
-                Action(HEAL, "1", subAction = listOf(Text("Себя"))),
-                Text("#31", subAction = listOf(Action(INVISIBLE, "Себя")))
-            )),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 21, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0", subAction = listOf(Action(PULL,"1"))),
-                Text("#21")
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 21, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0", subAction = listOf(Action(PULL,"1"))),
-                Text("#21")
-            ), needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 29, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "-1", subAction = listOf(Action(TARGET, "2"))),
-                Text("#31", subAction = listOf(Action(PUSH, "2")))
-            )),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 37, actions = listOf(
-                Action(MOVE, "+0"),
-                Action(ATTACK, "+0", subAction = listOf(Text("#35"))),
-                Text("#31", subAction = listOf(Action(ATTACK, "+1"),Text("#36")))
-            )),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 43, actions = listOf(
-                Action(MOVE, "-1"),
-                Action(ATTACK, "+1"),
-                Text("#31", subAction = listOf(Action(TARGET, "2")))
-            )),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 43, actions = listOf(
-                Action(PUSH, "1", subAction = listOf(Text("Цели все соседние враги"))),
-                Action(ATTACK, "+0"),
-                Text("#33", subAction = listOf(Action(RANGE, "-2")))
-            )),
-            MonsterAbilityCardBd(deckName = "wind-demon", initiative = 2, actions = listOf(
-                Action(SHIELD, "1"),
-                Action(MOVE, "-1"),
-                Action(ATTACK, "-1"),
-                Text("#33: #21"),
-            ))
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_1.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_4.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_5.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_6.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_7.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_8.webp"),
+        )
+
+        // living-spirit deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_1.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_2.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_3.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_4.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_5.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_7.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_8.webp"),
+        )
+
+        // night-demon deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_1.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_2.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_3.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_4.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_5.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_7.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_8.webp"),
+        )
+
+        // flame-demon deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_1.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_2.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_4.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_5.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_6.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_7.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_8.webp"),
+        )
+
+        // frost-demon deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_1.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_2.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_3.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_4.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_5.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_7.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_8.webp"),
+        )
+
+        // imp deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_1.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_2.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_3.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_4.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_5.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_6.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_7.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_8.webp"),
+        )
+
+        // cave-bear deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_1.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_2.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_4.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_5.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_7.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_8.webp"),
         )
     }
 }

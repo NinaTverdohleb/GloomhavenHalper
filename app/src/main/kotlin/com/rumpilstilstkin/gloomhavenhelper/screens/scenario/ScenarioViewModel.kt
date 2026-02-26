@@ -66,7 +66,10 @@ class ScenarioViewModel @AssistedInject constructor(
         viewModelScope.launch(Dispatchers.Default) {
             val newState = state.let {
                 when (action) {
-                    is ScenarioActions.AddMonster -> it.addMonster(action.monsterIds)
+                    is ScenarioActions.AddMonster -> it
+                        .addMonster(action.monsterIds)
+                        .copy(showMonsterDialog = false)
+
                     is ScenarioActions.RemoveMonster -> it.removeMonster(action.monsterId)
                     is ScenarioActions.AddUnits -> it.addUnits(
                         numbers = action.numbers,

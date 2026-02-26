@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "25b797c300242e42e0c4218c8c8e6f91",
+    "identityHash": "e840873b47b856d06bca9fd4f8722ca8",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -830,7 +830,7 @@
       },
       {
         "tableName": "MonsterAbilityCardBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckName` TEXT NOT NULL, `initiative` INTEGER NOT NULL, `actions` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckName` TEXT NOT NULL, `imageName` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "cardId",
@@ -845,14 +845,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "initiative",
-            "columnName": "initiative",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "actions",
-            "columnName": "actions",
+            "fieldPath": "imageName",
+            "columnName": "imageName",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -884,7 +878,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '25b797c300242e42e0c4218c8c8e6f91')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e840873b47b856d06bca9fd4f8722ca8')"
     ]
   }
 }

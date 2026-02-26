@@ -293,15 +293,7 @@ private fun ScenarioScreenPreview() {
                         name = "Хвостожабка",
                         currentCard = MonsterAbilityCard(
                             id = 524,
-                            initiative = 15,
-                            lines = listOf(
-                                EffectItem.Action(ActionUi.MOVE, "-1"),
-                                EffectItem.Action(
-                                    ActionUi.STRENGTH,
-                                    "",
-                                    listOf(EffectItem.Text("Себя"))
-                                ),
-                            ),
+                            imageName = "",
                             needsShuffle = true
                         ),
                         units = listOf(
@@ -372,15 +364,7 @@ private fun ScenarioScreenPreview() {
                         name = "Скелет",
                         currentCard = MonsterAbilityCard(
                             id = 524,
-                            initiative = 15,
-                            lines = listOf(
-                                EffectItem.Action(ActionUi.MOVE, "-1"),
-                                EffectItem.Action(
-                                    ActionUi.STRENGTH,
-                                    "",
-                                    listOf(EffectItem.Text("Себя"))
-                                ),
-                            ),
+                            imageName = "",
                             needsShuffle = true
                         ),
                         units = listOf(

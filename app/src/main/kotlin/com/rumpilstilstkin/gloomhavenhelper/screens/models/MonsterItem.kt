@@ -37,15 +37,16 @@ data class MonsterUnit(
 
 data class MonsterAbilityCard(
     val id: Int,
-    val initiative: Int,
-    val lines: List<EffectItem>,
+    val imageName: String,
     val needsShuffle: Boolean = false
 ) {
+    val imagePath
+        get() = "file:///android_asset/image/monster_cards/$imageName"
+
     companion object {
         fun createFromMonsterCard(card: MonsterCard) = MonsterAbilityCard(
             id = card.cardId,
-            initiative = card.initiative,
-            lines = card.actions.map { EffectItem.fromCardAction(it) },
+            imageName = card.imageName,
             needsShuffle = card.needsShuffle
         )
     }
