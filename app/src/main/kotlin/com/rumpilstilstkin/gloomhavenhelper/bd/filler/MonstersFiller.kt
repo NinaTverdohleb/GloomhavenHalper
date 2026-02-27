@@ -721,6 +721,98 @@ object MonstersFiller {
             MonsterStatsBd(sunDemonId, 7, false, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
             MonsterStatsBd(sunDemonId, 7, true, 22, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
         )
+
+        val cityGuardId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Городской страж",
+                deckName = "guard",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(cityGuardId, 0, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "2"))),
+            MonsterStatsBd(cityGuardId, 0, true, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(cityGuardId, 1, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityGuardId, 1, true, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(cityGuardId, 2, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityGuardId, 2, true, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(cityGuardId, 3, false, 8, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityGuardId, 3, true, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(SHIELD, "2"), Action(RETALIATE, "1"))),
+
+            MonsterStatsBd(cityGuardId, 4, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityGuardId, 4, true, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(cityGuardId, 5, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(cityGuardId, 5, true, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "3"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(cityGuardId, 6, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"))),
+            MonsterStatsBd(cityGuardId, 6, true, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(SHIELD, "3"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(cityGuardId, 7, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"))),
+            MonsterStatsBd(cityGuardId, 7, true, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(SHIELD, "3"), Action(RETALIATE, "3"))),
+        )
+
+        val cityArcherId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Городской лучник",
+                deckName = "archer",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(cityArcherId, 0, false, 4, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "3"))),
+            MonsterStatsBd(cityArcherId, 0, true, 6, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"))),
+
+            MonsterStatsBd(cityArcherId, 1, false, 5, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "4"))),
+            MonsterStatsBd(cityArcherId, 1, true, 6, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(SHIELD, "1"), Action(PIERCE, "1"))),
+
+            MonsterStatsBd(cityArcherId, 2, false, 6, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"))),
+            MonsterStatsBd(cityArcherId, 2, true, 7, listOf(Action(MOVE, "1"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "1"), Action(PIERCE, "2"))),
+
+            MonsterStatsBd(cityArcherId, 3, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityArcherId, 3, true, 8, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "2"), Action(PIERCE, "2"))),
+
+            MonsterStatsBd(cityArcherId, 4, false, 8, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityArcherId, 4, true, 10, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "6"), Action(SHIELD, "2"), Action(PIERCE, "2"))),
+
+            MonsterStatsBd(cityArcherId, 5, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "1"))),
+            MonsterStatsBd(cityArcherId, 5, true, 11, listOf(Action(MOVE, "2"), Action(ATTACK, "5"), Action(RANGE, "6"), Action(SHIELD, "2"), Action(PIERCE, "3"))),
+
+            MonsterStatsBd(cityArcherId, 6, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(SHIELD, "2"))),
+            MonsterStatsBd(cityArcherId, 6, true, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "6"), Action(SHIELD, "2"), Action(PIERCE, "3"))),
+
+            MonsterStatsBd(cityArcherId, 7, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "6"), Action(SHIELD, "2"))),
+            MonsterStatsBd(cityArcherId, 7, true, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "7"), Action(SHIELD, "3"), Action(PIERCE, "3"))),
+        )
+
+        val guardCaptainId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Начальник стражи",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, DISARM, WOUND, MUDDLE)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(guardCaptainId, 0, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 1, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 2, false, 11, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 3, false, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 4, false, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 5, false, 20, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 6, false, 21, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+
+            MonsterStatsBd(guardCaptainId, 7, false, 25, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Text("Способность 1: Лечит на 2 себя и всех союзников"), Text("Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
