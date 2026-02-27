@@ -1358,8 +1358,7 @@ object MonstersFiller {
                 immunity = listOf(STUN, PUSH, PULL, DISARM, CURSE, MUDDLE)
             )
         ).toInt()
-        monsterDao.run {
-            insertAllStats(
+        monsterDao.insertAllStats(
                 MonsterStatsBd(sightlessEyeId, 0, false, 7, listOf( Action(ATTACK, "5"), Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
 
                 MonsterStatsBd(sightlessEyeId, 1, false, 8, listOf(Action(ATTACK, "6"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
@@ -1376,7 +1375,86 @@ object MonstersFiller {
 
                 MonsterStatsBd(sightlessEyeId, 7, false, 20, listOf(Action(ATTACK, "9"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
             )
-        }
+
+        // Темный всадник (босс)
+        val darkRiderId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Темный всадник",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, IMMOBILIZE, DISARM, POISON)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(darkRiderId, 0, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 1, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 2, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "3+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 3, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "4+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 4, false, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "4+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 5, false, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "5+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 6, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "5+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+            MonsterStatsBd(darkRiderId, 7, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "6+X"), Text("Способность 1: Движение +2, Атака +0"), Text("Способность 2: Движение +0, Призывает беса, Атака -1"),  Text("X = Количество пройденых клеток перед ударом"))),
+        )
+
+        // Мрак (босс)
+        val gloomId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Мрак",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, IMMOBILIZE, DISARM, CURSE, MUDDLE, POISON, WOUND)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(gloomId, 0, false, 20, listOf(Action(MOVE, "2"), Action(ATTACK, "5"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 1, false, 25, listOf(Action(MOVE, "2"), Action(ATTACK, "5"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 2, false, 29, listOf(Action(MOVE, "2"), Action(ATTACK, "6"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 3, false, 35, listOf(Action(MOVE, "2"), Action(ATTACK, "6"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 4, false, 39, listOf(Action(MOVE, "3"), Action(ATTACK, "7"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 5, false, 46, listOf(Action(MOVE, "3"), Action(ATTACK, "7"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 6, false, 50, listOf(Action(MOVE, "3"), Action(ATTACK, "8"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+            MonsterStatsBd(gloomId, 7, false, 56, listOf(Action(MOVE, "3"), Action(ATTACK, "9"), Text("Способность 1: Движение +9, Атака +9"), Text("Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"))),
+        )
+
+        // Предатель (босс)
+        val betrayerId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Предатель",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, WOUND, DISARM, CURSE, POISON)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(betrayerId, 0, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "3"), Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 1, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "3"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 2, false, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "4"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 3, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "7"), Action(RANGE, "4"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 4, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "8"), Action(RANGE, "4"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 5, false, 20, listOf(Action(MOVE, "5"), Action(ATTACK, "8"), Action(RANGE, "5"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 6, false, 23, listOf(Action(MOVE, "5"), Action(ATTACK, "9"), Action(RANGE, "5"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+            MonsterStatsBd(betrayerId, 7, false, 27, listOf(Action(MOVE, "5"), Action(ATTACK, "9"), Action(RANGE, "5"),Text("Способность 1: Призывает гигантскую гадюку и вызывает ужас"), Text("Способность 2: Контроль разума"))),
+        )
+
+        // Бесцветный (босс)
+        val colorlessId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Бесцветный",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, WOUND, POISON, CURSE, MUDDLE)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(colorlessId, 0, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 1, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 2, false, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 3, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 4, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 5, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 6, false, 17, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+            MonsterStatsBd(colorlessId, 7, false, 19, listOf(Action(MOVE, "5"), Action(ATTACK, "7"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
