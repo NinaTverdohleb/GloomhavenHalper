@@ -1098,6 +1098,72 @@ object MonstersFiller {
 
             MonsterStatsBd(archdemonId, 7, false, 22, listOf(Action(MOVE, "5"), Action(ATTACK, "8"), Text("Способность 1: Алтарь двигается, призывает демона, движение +2, атака -1"), Text("Способность 2: Алтарь двигается, призывает демона, движение +2, атака -1"))),
         )
+
+        val ancientArtilleryId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Древняя пушка",
+                deckName = "ancient-artillery",
+                isBoss = false
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(ancientArtilleryId, 0, false, 4, listOf(Action(ATTACK, "2"), Action(RANGE, "4"))),
+            MonsterStatsBd(ancientArtilleryId, 0, true, 7, listOf(Action(ATTACK, "3"), Action(RANGE, "5"))),
+
+            MonsterStatsBd(ancientArtilleryId, 1, false, 6, listOf(Action(ATTACK, "2"), Action(RANGE, "4"))),
+            MonsterStatsBd(ancientArtilleryId, 1, true, 9, listOf(Action(ATTACK, "3"), Action(RANGE, "5"))),
+
+            MonsterStatsBd(ancientArtilleryId, 2, false, 7, listOf(Action(ATTACK, "2"), Action(RANGE, "5"))),
+            MonsterStatsBd(ancientArtilleryId, 2, true, 11, listOf(Action(ATTACK, "3"), Action(RANGE, "6"))),
+
+            MonsterStatsBd(ancientArtilleryId, 3, false, 8, listOf(Action(ATTACK, "3"), Action(RANGE, "5"))),
+            MonsterStatsBd(ancientArtilleryId, 3, true, 13, listOf(Action(ATTACK, "4"), Action(RANGE, "6"))),
+
+            MonsterStatsBd(ancientArtilleryId, 4, false, 9, listOf(Action(ATTACK, "4"), Action(RANGE, "5"))),
+            MonsterStatsBd(ancientArtilleryId, 4, true, 13, listOf(Action(ATTACK, "4"), Action(RANGE, "6"), Action(TARGET, "2"))),
+
+            MonsterStatsBd(ancientArtilleryId, 5, false, 11, listOf(Action(ATTACK, "4"), Action(RANGE, "6"))),
+            MonsterStatsBd(ancientArtilleryId, 5, true, 15, listOf(Action(ATTACK, "4"), Action(RANGE, "7"), Action(TARGET, "2"))),
+
+            MonsterStatsBd(ancientArtilleryId, 6, false, 14, listOf(Action(ATTACK, "4"), Action(RANGE, "6"))),
+            MonsterStatsBd(ancientArtilleryId, 6, true, 16, listOf(Action(ATTACK, "5"), Action(RANGE, "7"), Action(TARGET, "2"))),
+
+            MonsterStatsBd(ancientArtilleryId, 7, false, 16, listOf(Action(ATTACK, "4"), Action(RANGE, "7"))),
+            MonsterStatsBd(ancientArtilleryId, 7, true, 20, listOf(Action(ATTACK, "5"), Action(RANGE, "7"), Action(TARGET, "2"))),
+        )
+
+        val rendingDrakeId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Когтистый дрейк",
+                deckName = "rending-drake",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(rendingDrakeId, 0, false, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(rendingDrakeId, 0, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(rendingDrakeId, 1, false, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 1, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 2, false, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 2, true, 9, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 3, false, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 3, true, 10, listOf(Action(MOVE, "5"), Action(ATTACK, "6"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 4, false, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 4, true, 11, listOf(Action(MOVE, "6"), Action(ATTACK, "6"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 5, false, 10, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 5, true, 14, listOf(Action(MOVE, "6"), Action(ATTACK, "6"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 6, false, 11, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 6, true, 15, listOf(Action(MOVE, "6"), Action(ATTACK, "7"), Action(WOUND, ""))),
+
+            MonsterStatsBd(rendingDrakeId, 7, false, 14, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
+            MonsterStatsBd(rendingDrakeId, 7, true, 18, listOf(Action(MOVE, "6"), Action(ATTACK, "7"), Action(WOUND, ""))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -1387,6 +1453,30 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_6.webp", needsShuffle = true),
             MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_7.webp"),
             MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_8.webp"),
+        )
+
+        // ancient-artillery deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_1.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_4.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_5.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_6.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_7.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_8.webp"),
+        )
+
+        // rending-drake deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_1.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_3.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_4.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_5.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_6.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_7.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_8.webp"),
         )
     }
 }
