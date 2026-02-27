@@ -133,6 +133,13 @@ object ScenariosFiller {
                 newScenarios = "16, 18",
                 globalAchievement = "Городское правление: торговцы, Конец вторжения",
                 requirements = "Не получено общее достижение Конец вторжения",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Оживший труп",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Начальник стражи"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 12,

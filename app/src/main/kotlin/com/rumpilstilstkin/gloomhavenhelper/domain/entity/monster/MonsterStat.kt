@@ -23,4 +23,5 @@ enum class MonsterStatType {
     PUSH,
     BLESS,
     PULL,
+    PIERCE
 }
