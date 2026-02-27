@@ -1264,6 +1264,39 @@ object MonstersFiller {
             MonsterStatsBd(lurkerId, 7, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "3"), Action(SHIELD, "1"))),
             MonsterStatsBd(lurkerId, 7, true, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(TARGET, "2"), Action(PIERCE, "4"), Action(SHIELD, "2"))),
         )
+
+        val savvasLavaflowId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Саввас Поток лавы",
+                deckName = "savvas-lavaflow",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(savvasLavaflowId, 0, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(savvasLavaflowId, 0, true, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(savvasLavaflowId, 1, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(POISON, ""))),
+            MonsterStatsBd(savvasLavaflowId, 1, true, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 2, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""))),
+            MonsterStatsBd(savvasLavaflowId, 2, true, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 3, false, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""))),
+            MonsterStatsBd(savvasLavaflowId, 3, true, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 4, false, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(POISON, ""))),
+            MonsterStatsBd(savvasLavaflowId, 4, true, 24, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 5, false, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
+            MonsterStatsBd(savvasLavaflowId, 5, true, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 6, false, 20, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
+            MonsterStatsBd(savvasLavaflowId, 6, true, 30, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""))),
+
+            MonsterStatsBd(savvasLavaflowId, 7, false, 24, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
+            MonsterStatsBd(savvasLavaflowId, 7, true, 35, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -1601,6 +1634,18 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_6.webp"),
             MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_7.webp"),
             MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_8.webp", needsShuffle = true),
+        )
+
+        // savvas-lavaflow deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_1.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_2.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_3.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_4.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_5.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_6.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_7.webp"),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_8.webp", needsShuffle = true),
         )
     }
 }
