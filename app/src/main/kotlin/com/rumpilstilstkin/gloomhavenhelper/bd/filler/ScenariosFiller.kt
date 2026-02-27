@@ -164,7 +164,7 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Пещерный медведь",
                     "Оживший дух",
-                    "Шипящй дрейк",
+                    "Шипящий дрейк",
                 )
             ),
             ScenarioBd(
@@ -597,42 +597,83 @@ object ScenariosFiller {
                 name = "Тенистая чаща",
                 requirements = "Получено достижение отряда Помощь Красношипа",
                 newScenarios = "51",
-                globalAchievement = "Конец упадка"
+                globalAchievement = "Конец упадка",
+                monsters = listOf(
+                    "Лесной бес",
+                    "Земляной демон",
+                    "Жнец заразитель",
+                    "Темный всадник",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 49,
                 name = "Лагерь повстанцев",
                 requirements = "Получено общее достижение Городское правление: демоны",
-                globalAchievement = "Уничтожение порядка"
+                globalAchievement = "Уничтожение порядка",
+                monsters = listOf(
+                    "Гигантская гадюка",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Древняя пушка"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 50,
                 name = "Призрачная крепость",
                 requirements = "Получено общее достижение Городское правление: демоны и не получено общее достижение Уничтожение порядка",
-                globalAchievement = "Городское правление: военные"
+                globalAchievement = "Городское правление: военные",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Солнечный демон",
+                    "Земляной демон",
+                    "Воздушный демон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 51,
                 name = "Пустота",
                 requirements = "Получено общее достижение Конец упадка",
-                globalAchievement = "Конец эпохи Мрака"
+                globalAchievement = "Конец эпохи Мрака",
+                monsters = listOf(
+                    "Мрак",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 52,
                 name = "Жуткий погреб",
                 requirements = "Личное задание Последователь зорна",
                 newScenarios = "53",
+                monsters = listOf(
+                    "Шипящий дрейк",
+                    "Слизь",
+                    "Вермлинг-разведчик",
+                    "Вермлинг-шаман",
+                    "Оживший труп"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 53,
                 name = "Подвал склепа",
                 requirements = "Личное задание Последователь зорна",
                 newScenarios = "54",
+                monsters = listOf(
+                    "Слизь",
+                    "Оживший труп",
+                    "Оживший дух",
+                    "Ожившие кости",
+                    "Гигантская гадюка"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 54,
                 name = "Ледяной дворец",
                 requirements = "Личное задание Последователь зорна, предмет Посох Зорна находится в инвентаре",
+                monsters = listOf(
+                    "Пещерный медведь",
+                    "Оживший дух",
+                    "Морозный демон",
+                    "Жнец заразитель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 55,
@@ -644,191 +685,427 @@ object ScenariosFiller {
                 scenarioNumber = 56,
                 name = "Разбойничья пуща",
                 requirements = "Личное задание Возвращение леса",
+                monsters = listOf(
+                    "Гончая",
+                    "Разбойник-лучница",
+                    "Когтистый дрейк",
+                    "Разбойник-страж",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 57,
                 name = "Расследование",
                 requirements = "Личное задание Месть",
                 newScenarios = "58",
+                monsters = listOf(
+                    "Гончая",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Жнец заразитель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 58,
                 name = "Кровавая хижина",
                 requirements = "Личное задание Месть",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Городской страж",
+                    "Черный бес",
+                    "Жнец заразитель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 59,
                 name = "Забытая роща",
                 requirements = "Личное задание В Поисках лекарства",
                 newScenarios = "60",
+                monsters = listOf(
+                    "Гончая",
+                    "Пещерный медведь",
+                    "Лесной бес",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 60,
                 name = "Алхимическая лаборатория",
                 requirements = "Личное задание В Поисках лекарства",
+                monsters = listOf(
+                    "Гончая",
+                    "Гигантская гадюка",
+                    "Слизь",
+                    "Когтистый дрейк",
+                    "Шипящий дрейк",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 61,
                 name = "Исчезающий маяк",
                 requirements = "Личное задание Грехопадение",
                 newScenarios = "62",
+                monsters = listOf(
+                    "Слизь",
+                    "Гигантская гадюка",
+                    "Морозный демон",
+                    "Огненный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 62,
                 name = "Колодец душ",
                 requirements = "Личное задание Грехопадение",
+                monsters = listOf(
+                    "Оживший дух",
+                    "Ожившие кости",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 63,
                 name = "Жерло вулкана",
+                monsters = listOf(
+                    "Вермлинг-разведчик",
+                    "Огненный демон",
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 64,
                 name = "Подводная лагуна",
                 requirements = "Получено общее достижение Подводное дыхание",
+                monsters = listOf(
+                    "Слизь",
+                    "Лесной бес",
+                    "Когтистый дрейк",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 65,
                 name = "Серная шахта",
-                globalAchievement = "Древняя технология"
+                globalAchievement = "Древняя технология",
+                monsters = listOf(
+                    "Вермлинг-разведчик",
+                    "Гончая",
+                    "Инокс-шаман",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 66,
                 name = "Заводное побережье",
-                globalAchievement = "Древняя технология"
+                globalAchievement = "Древняя технология",
+                monsters = listOf(
+                    "Слизь",
+                    "Древняя пушка",
+                    "Каменный голем",
+                    "Оживший дух"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 67,
                 name = "Мистическая библиотека",
-                globalAchievement = "Древняя технология"
+                globalAchievement = "Древняя технология",
+                monsters = listOf(
+                    "Лесной бес",
+                    "Пещерный медведь",
+                    "Каменный голем",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 68,
                 name = "Ядовитая трясина",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Черный бес",
+                    "Гигантская гадюка",
+                    "Оживший труп",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 69,
                 name = "Колодец несчастий",
+                monsters = listOf(
+                    "Вермлинг-разведчик",
+                    "Вермлинг-шаман",
+                    "Лесной бес",
+                    "Каменный голем",
+                    "Оживший дух"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 70,
                 name = "Прикованный остров",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Воздушный демон",
+                    "Оживший дух"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 71,
                 name = "Подветренное нагорье",
+                monsters = listOf(
+                    "Шипящий дрейк",
+                    "Воздушный демон",
+                    "Солнечный демон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 72,
                 name = "Скользкая роща",
+                monsters = listOf(
+                    "Слизь",
+                    "Гигантская гадюка",
+                    "Лесной бес",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 73,
                 name = "Гряда камнепадов",
+                monsters = listOf(
+                    "Древняя пушка",
+                    "Инокс-шаман",
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                    "Гончая",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 74,
                 name = "Торговый корабль",
                 requirements = "Получено достижение отряда Морской конвой",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Скрытень",
+                    "Невыносимый ужас",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 75,
                 name = "Заросшее кладбище",
                 requirements = "Получено достижение отряда Гробокопатели",
+                monsters = listOf(
+                    "Оживший дух",
+                    "Оживший труп",
+                    "Ожившие кости",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 76,
                 name = "Улей жнецов",
                 requirements = "храбрость",
+                monsters = listOf(
+                    "Гигантская гадюка",
+                    "Ночной демон",
+                    "Ожившие кости",
+                    "Жнец заразитель"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 77,
                 name = "Хранилище тайн",
+                monsters = listOf(
+                    "Гончая",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Каменный голем",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 78,
                 name = "Темница жертвоприношений",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Культист",
+                    "Ожившие кости",
+                    "Черный бес"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 79,
                 name = "Затерянный храм",
                 requirements = "Получено достижение отряда Сомнительный помощник",
+                monsters = listOf(
+                    "Каменный голем",
+                    "Гигантская гадюка",
+                    "Предатель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 80,
                 name = "Цитадель караула",
+                monsters = listOf(
+                    "Гончая",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Древняя пушка",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 81,
                 name = "Храм затмения",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Солнечный демон",
+                    "Каменный голем",
+                    "Древняя пушка",
+                    "Бесцветный"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 82,
                 name = "Пылающая гора",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Каменный голем",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 83,
                 name = "Обитель теней",
                 requirements = "Получено достижение отряда Дурное знамение",
+                monsters = listOf(
+                    "Гончая",
+                    "Культист",
+                    "Ожившие кости",
+                    "Оживший дух",
+                    "Огненный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 84,
                 name = "Пещера кристалов",
                 requirements = "Получено достижение отряда Дрожь земли",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Морозный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 85,
                 name = "Храм солнца",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Солнечный демон",
+                    "Гончая",
+                    "Черный бес"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 86,
                 name = "Разграбленная деревня",
                 newScenarios = "87",
                 teamAchievement = "Источник отравы",
+                monsters = listOf(
+                    "Пещерный медведь",
+                    "Вермлинг-шаман",
+                    "Вермлинг-разведчик",
+                    "Скрытень"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 87,
                 name = "Злосчастное побережье",
                 requirements = "Получено достижение отряда Источник отравы",
+                monsters = listOf(
+                    "Скрытень",
+                    "Невыносимый ужас",
+                    "Слизь",
+                    "Черный бес"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 88,
                 name = "Водное измерение",
                 requirements = "Получено достижение отряда Подводное дыхание и достижение отряда Посох воды",
+                monsters = listOf(
+                    "Морозный демон",
+                    "Слизь",
+                    "Скрытень",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 89,
                 name = "Убежище синдиката",
                 requirements = "Получено достижение отряда Син-Ра",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Культист",
+                    "Гигантская гадюка",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 90,
                 name = "Демонический портал",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Воздушный демон",
+                    "Ночной демон",
+                    "Оживший дух"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 91,
                 name = "Дикая схватка",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Пещерный медведь",
+                    "Оживший дух",
+                    "Гончая",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 92,
                 name = "Потасовка в переулке",
                 requirements = "Получено достижение отряда Возвращение долга",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Разбойник-лучница",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Инокс-стражница",
+                    "Саввас Поток лавы"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 93,
                 name = "Затонувшее судно",
                 requirements = "Получено достижение отряда Карта сокровищ",
+                monsters = listOf(
+                    "Скрытень",
+                    "Морозный демон",
+                    "Оживший дух",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 94,
                 name = "Жилище вермлингов",
                 newScenarios = "95",
                 teamAchievement = "Путь через жилище",
+                monsters = listOf(
+                    "Пещерный медведь",
+                    "Гончая",
+                    "Вермлинг-разведчик",
+                    "Вермлинг-шаман",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 95,
                 name = "Час расплаты",
                 requirements = "Получено достижение отряда Путь через жилище",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Невыносимый ужас",
+                    "Саввас Поток лавы"
+                )
             ),
         )
     }
