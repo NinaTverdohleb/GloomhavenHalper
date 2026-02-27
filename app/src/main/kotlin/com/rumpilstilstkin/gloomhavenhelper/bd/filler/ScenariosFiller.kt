@@ -213,6 +213,11 @@ object ScenariosFiller {
                 scenarioNumber = 18,
                 name = "Заброшенная канализация",
                 newScenarios = "14, 23, 26, 43",
+                monsters = listOf(
+                    "Вермлинг-разведчик",
+                    "Гигантская гадюка",
+                    "Слизь",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 19,
@@ -220,18 +225,40 @@ object ScenariosFiller {
                 newScenarios = "27",
                 requirements = "Получено общее достижение Возможость улучшений",
                 teamAchievement = "Кадило Каменолома",
+                monsters = listOf(
+                    "Культист",
+                    "Ожившие кости",
+                    "Оживший дух",
+                    "Оживший труп",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 20,
                 name = "Прибежище некромантки",
                 newScenarios = "16, 18, 28",
                 requirements = "Получено общее достижение Сбежавшая торговка",
+                monsters = listOf(
+                    "Культист",
+                    "Ожившие кости",
+                    "Ночной демон",
+                    "Оживший труп",
+                    "Джексера",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 21,
                 name = "Дьявольский трон",
                 requirements = "Не получено общее достижение Портал обезврежен",
                 globalAchievement = "Портал обезврежен, Артефакт: найден",
+                monsters = listOf(
+                    "Солнечный демон",
+                    "Морозный демон",
+                    "Ночной демон",
+                    "Воздушный демон",
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Архидемон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 22,
