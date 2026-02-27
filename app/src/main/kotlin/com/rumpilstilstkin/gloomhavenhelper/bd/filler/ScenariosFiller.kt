@@ -266,19 +266,38 @@ object ScenariosFiller {
                 newScenarios = "31, 35, 36",
                 requirements = "Получено достижение отряда Задание демона или По следам",
                 globalAchievement = "Артефакт: найден",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Культист",
+                    "Морозный демон",
+                    "Воздушный демон",
+                    "Земляной демон",
+                    "Огненный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 23,
                 name = "Глубокие руины",
                 newScenarios = "26",
                 globalAchievement = "Древняя технология",
-                teamAchievement = "Путь через руины"
+                teamAchievement = "Путь через руины",
+                monsters = listOf(
+                    "Каменный голем",
+                    "Древняя пушка",
+                    "Ожившие кости",
+                    "Оживший дух",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 24,
                 name = "Шепчущая галерея",
                 newScenarios = "30, 32",
-                teamAchievement = "Веление Голоса"
+                teamAchievement = "Веление Голоса",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Слизь",
+                    "Оживший дух",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 25,
