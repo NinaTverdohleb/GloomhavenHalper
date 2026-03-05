@@ -98,6 +98,7 @@ internal enum class StartScreenTab(
 ) : NavItem {
     TEAM("Команда", R.drawable.ic_company),
     CHARACTERS("Персонажи", R.drawable.ic_characters),
+    SHOP("Магазин", R.drawable.ic_shop),
     SCENARIOS("Сценарии", R.drawable.ic_scenario),
 }
 

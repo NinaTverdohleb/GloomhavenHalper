@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -20,6 +23,9 @@ import javax.inject.Inject
 class CharactersTabViewModel @Inject constructor(
     private val characterRepository: CharacterRepository,
 ) : ViewModel() {
+
+    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
+    val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val charactersList: StateFlow<List<CharacterInfo>> =
         characterRepository.getAllCharacters().map { characters ->
@@ -43,11 +49,11 @@ class CharactersTabViewModel @Inject constructor(
                         .map { it.toUi() }
                 )
             } else {
-                CharactersTabState.Empty
+                CharactersTabState.Empty(false)
             }
         }.stateIn(
             scope = viewModelScope,
-            initialValue = CharactersTabState.Empty,
+            initialValue = CharactersTabState.Empty(false),
             started = SharingStarted.WhileSubscribed(0),
         )
 

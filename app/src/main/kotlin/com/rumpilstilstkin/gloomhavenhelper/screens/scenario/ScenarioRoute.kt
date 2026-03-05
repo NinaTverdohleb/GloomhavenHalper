@@ -20,6 +20,15 @@ fun ScenarioRoute(
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(navigationEvents) {
+        navigationEvents?.let { event ->
+            GlHelperEventHelper.event(
+                event = event,
+                navController = navController
+            )
+        }
+    }
+
     ScenarioScreen(
         state = uiState,
         addMonster = { viewModel.onAction(ScenarioActions.OpenMonstersDialog) },
@@ -75,14 +84,5 @@ fun ScenarioRoute(
             selectMonster = { viewModel.onAction(ScenarioActions.AddMonster(it)) },
             onDismiss = { viewModel.onAction(ScenarioActions.CloseMonstersDialog) },
         )
-    }
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController
-            )
-        }
     }
 }

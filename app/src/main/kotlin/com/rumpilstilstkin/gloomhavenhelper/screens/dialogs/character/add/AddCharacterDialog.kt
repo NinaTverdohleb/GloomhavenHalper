@@ -43,85 +43,82 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
 fun AddCharacterDialog(
-    showDialog: Boolean,
     viewModel: AddCharactersDialogViewModel = hiltViewModel(),
     onDismiss: () -> Unit,
     onAdd: (String, Int, CharacterClassType) -> Unit
 ) {
     val classes = viewModel.classes
-    if (showDialog) {
-        var newCharacterName by rememberSaveable { mutableStateOf("") }
-        var selectedIndex by remember { mutableIntStateOf(0) }
-        var level by remember { mutableIntStateOf(1) }
+    var newCharacterName by rememberSaveable { mutableStateOf("") }
+    var selectedIndex by remember { mutableIntStateOf(0) }
+    var level by remember { mutableIntStateOf(1) }
 
-        if (classes.isEmpty()) return
+    if (classes.isEmpty()) return
 
-        CharacterDialog(
-            selectedIndex = selectedIndex,
-            characterName = newCharacterName,
-            level = level,
-            classes = classes,
-            onClassSelect = {selectedIndex = it},
-            onCharacterNameChanged = {newCharacterName = it},
-            onDismiss = onDismiss,
-            onLevelChanged = {level = it},
-            onAdd = onAdd
-        )
+    CharacterDialog(
+        selectedIndex = selectedIndex,
+        characterName = newCharacterName,
+        level = level,
+        classes = classes,
+        onClassSelect = { selectedIndex = it },
+        onCharacterNameChanged = { newCharacterName = it },
+        onDismiss = onDismiss,
+        onLevelChanged = { level = it },
+        onAdd = onAdd
+    )
 
-        AlertDialog(
-            onDismissRequest = { onDismiss.invoke() },
-            title = {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Добавить персонажа",
-                    textAlign = TextAlign.Center
-                )
-            },
-            text = {
-                Surface {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        DropdownWithIconAndText(
-                            modifier = Modifier,
-                            items = classes,
-                            selectedIndex = selectedIndex
-                        ) {
-                            selectedIndex = classes.indexOf(it)
-                        }
-                        OutlinedTextField(
-                            value = newCharacterName,
-                            onValueChange = { newCharacterName = it },
-                            label = { Text("Имя") }
-                        )
-                        Text("Уровень персонажа")
-                        NumberPicker(
-                            modifier = Modifier.fillMaxWidth(),
-                            value = level,
-                            intRange = IntRange(1, 9)
-                        ) {
-                            level = it
-                        }
-                    }
-                }
-            },
-            confirmButton = {
-                Button(
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        onAdd.invoke(
-                            newCharacterName,
-                            level,
-                            classes[selectedIndex].classType
-                        )
-                    }
+    AlertDialog(
+        onDismissRequest = { onDismiss.invoke() },
+        title = {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Добавить персонажа",
+                textAlign = TextAlign.Center
+            )
+        },
+        text = {
+            Surface {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Добавить")
+                    DropdownWithIconAndText(
+                        modifier = Modifier,
+                        items = classes,
+                        selectedIndex = selectedIndex
+                    ) {
+                        selectedIndex = classes.indexOf(it)
+                    }
+                    OutlinedTextField(
+                        value = newCharacterName,
+                        onValueChange = { newCharacterName = it },
+                        label = { Text("Имя") }
+                    )
+                    Text("Уровень персонажа")
+                    NumberPicker(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = level,
+                        intRange = IntRange(1, 9)
+                    ) {
+                        level = it
+                    }
                 }
             }
-        )
-    }
+        },
+        confirmButton = {
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    onAdd.invoke(
+                        newCharacterName,
+                        level,
+                        classes[selectedIndex].classType
+                    )
+                }
+            ) {
+                Text("Добавить")
+            }
+        }
+    )
 }
 
 @Composable
@@ -135,7 +132,7 @@ private fun CharacterDialog(
     onDismiss: () -> Unit,
     onLevelChanged: (Int) -> Unit,
     onAdd: (String, Int, CharacterClassType) -> Unit,
-    ) {
+) {
     AlertDialog(
         onDismissRequest = { onDismiss.invoke() },
         title = {

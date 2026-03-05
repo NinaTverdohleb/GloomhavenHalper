@@ -1,12 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,109 +17,49 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterList
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
-fun CharactersTab(
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-    viewModel: CharactersTabViewModel = hiltViewModel()
+internal fun CharactersTab(
+    uiState: CharactersTabState,
+    addCharacter: () -> Unit,
+    openCharacterDetails: (Int) -> Unit,
+    switchAlive: () -> Unit,
 ) {
-
-    // add characterDialog
-    var showAddCharacterDialog by remember { mutableStateOf(false) }
-    val addCharacter: (String, Int, CharacterClassType) -> Unit = { name, level, classType ->
-        viewModel.onAction(
-            CharactersTabAction.AddCharacter(
-                name = name,
-                level = level,
-                characterType = classType
-            )
-        )
-        showAddCharacterDialog = false
-    }
-    AddCharacterDialog(
-        showDialog = showAddCharacterDialog,
-        onDismiss = { showAddCharacterDialog = false },
-        onAdd = addCharacter
-    )
-
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     when (uiState) {
         is CharactersTabState.Empty -> {
-            EmptyCharactersTab(modifier) {
-                showAddCharacterDialog = true
-            }
-
+            EmptyCharacters(
+                addCharacter = addCharacter
+            )
         }
 
         is CharactersTabState.Data -> {
-            val data = (uiState as CharactersTabState.Data)
             CharactersContent(
-                filters = data.filters,
-                characters = data.characters,
-                modifier = modifier,
-                switchAlive = {viewModel.onAction(CharactersTabAction.SwitchAlive)},
-                addCharacter = {showAddCharacterDialog = true},
-                openCharacterDetails = {navController.navigate(GlHelperScreens.CharacterDetails(it))}
+                filterAlive = uiState.filterAlive,
+                characters = uiState.characters,
+                switchAlive = switchAlive,
+                addCharacter = addCharacter,
+                openCharacterDetails = openCharacterDetails
             )
         }
     }
 }
 
-
-@Composable
-fun EmptyCharactersTab(
-    modifier: Modifier = Modifier,
-    addCharacter: () -> Unit
-) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Image(painter = painterResource(id = R.drawable.logo), contentDescription = "logo")
-        Spacer(modifier = Modifier.height(48.dp))
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = {
-                addCharacter.invoke()
-            }) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = "Добавить персонажа",
-                fontSize = 20.sp
-            )
-        }
-    }
-}
 
 @Composable
 fun CharactersContent(
-    filters: Filters,
+    filterAlive: Boolean,
     characters: List<CharacterUI>,
     modifier: Modifier = Modifier,
     switchAlive: () -> Unit,
@@ -155,7 +93,7 @@ fun CharactersContent(
                 modifier = Modifier.clickable {
                     switchAlive.invoke()
                 },
-                imageVector = if (filters.filterAlive) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
+                imageVector = if (filterAlive) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
                 contentDescription = "isAlive"
             )
         }
@@ -175,23 +113,12 @@ fun CharactersContent(
     }
 }
 
-
-@Preview
-@Composable
-private fun EmptyExample() {
-    GloomhavenHalperTheme {
-        EmptyCharactersTab {
-            // nope
-        }
-    }
-}
-
 @Preview
 @Composable
 private fun DataExample() {
     GloomhavenHalperTheme {
         CharactersContent(
-            filters = Filters(),
+            filterAlive = true,
             characters = listOf(
                 CharacterUI(
                     name = "Name",
@@ -200,7 +127,7 @@ private fun DataExample() {
                         imageRes = R.drawable.br,
                         name = "Name",
                         classType = CharacterClassType.Brute
-                    ),teamName = null
+                    ), teamName = null
 
                 ),
                 CharacterUI(
