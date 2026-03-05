@@ -9,7 +9,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTab
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabRoute
 
 @Composable
@@ -40,8 +40,9 @@ fun StartScreenRoute(
         selectTab = { selectedTab ->
             when (selectedTab) {
                 StartScreenTab.TEAM -> TeamTabRoute(navController)
-                StartScreenTab.CHARACTERS -> CharactersTab(navController)
-                StartScreenTab.SCENARIOS -> CharactersTab(navController) //TODO
+                StartScreenTab.CHARACTERS -> CharactersTabRoute(navController)
+                StartScreenTab.SCENARIOS -> CharactersTabRoute(navController) //TODO
+                StartScreenTab.SHOP -> CharactersTabRoute(navController) //TODO
             }
         }
     )
