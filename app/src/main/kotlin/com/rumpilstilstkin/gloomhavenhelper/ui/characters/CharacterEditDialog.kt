@@ -52,7 +52,7 @@ fun CharacterEditDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        painter = painterResource(id = character.characterClass.classType.toImage()),
+                        painter = painterResource(id = character.characterClass.image),
                         contentDescription = null,
                         modifier = Modifier.size(32.dp)
                     )

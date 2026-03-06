@@ -6,8 +6,6 @@ sealed interface GlHelperScreens {
     @Serializable
     data object Start : GlHelperScreens
     @Serializable
-    data object TeamCreate : GlHelperScreens
-    @Serializable
     data object TeamDetails : GlHelperScreens
     @Serializable
     data class Scenario(val scenarioId: Int) : GlHelperScreens

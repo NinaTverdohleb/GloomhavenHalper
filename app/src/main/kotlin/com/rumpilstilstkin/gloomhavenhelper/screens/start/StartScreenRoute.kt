@@ -4,11 +4,15 @@ import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.AddTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabRoute
 
@@ -19,6 +23,8 @@ fun StartScreenRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+
+    var showAddTeamDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(navigationEvents) {
         navigationEvents?.let { event ->
@@ -32,7 +38,7 @@ fun StartScreenRoute(
     StartScreen(
         state = uiState,
         addTeam = {
-            viewModel.onAction(StartScreenAction.CreateTeam)
+            showAddTeamDialog = true
         },
         back = {
             (context as? Activity)?.finishAffinity()
@@ -46,4 +52,13 @@ fun StartScreenRoute(
             }
         }
     )
+
+    if (showAddTeamDialog) {
+        AddTeamDialog(
+            onDismiss = { showAddTeamDialog = false }
+        ) { name ->
+            viewModel.onAction(StartScreenAction.CreateTeam(name))
+            showAddTeamDialog = false
+        }
+    }
 }

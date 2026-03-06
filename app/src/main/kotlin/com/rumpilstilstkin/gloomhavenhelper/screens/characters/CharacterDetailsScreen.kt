@@ -70,7 +70,7 @@ fun CharacterDetailsScreen(
     )
 
     CharacterDetailsMain(
-        classImg = uiState.characterClass.classType.toImage(),
+        classImg = uiState.characterClass.image,
         name = uiState.name,
         teamName = uiState.teamName ?: "Укажите команду...",
         level = uiState.level,

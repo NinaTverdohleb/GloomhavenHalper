@@ -32,7 +32,10 @@ fun ScenarioDialog(
     GloomAlertDialog(
         onDismissRequest = onDismiss,
         onConfirmRequest = startScenario,
+        onNeutralRequest = null,
+        onNegativeRequest = completeScenario,
         confirmText = "Играть",
+        negativeText = "Завершить",
         content = {
             ScenarioInfoItem(
                 scenarioNumber = scenarioNumber,
@@ -56,22 +59,6 @@ fun ScenarioDialog(
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
-            }
-            OutlinedButton(
-                onClick = completeScenario,
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color(0xFF9CA3AF),
-                ),
-            ) {
-                Text(
-                    text = "Завершить сценарий",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.error
-                )
             }
         }
     )

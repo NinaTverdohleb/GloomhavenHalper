@@ -6,7 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.SetTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
@@ -33,10 +33,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
         initialValue = CharacterUI(
             name = "",
             level = 0,
-            characterClass = CharacterClassUI(
-                name = "",
-                classType = CharacterClassType.Brute,
-            ),
+            characterClass = CharacterClassTypeUI.Quartermaster,
             id = id,
             isAlive = false,
             teamName = null

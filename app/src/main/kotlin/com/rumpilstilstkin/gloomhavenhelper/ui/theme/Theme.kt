@@ -14,7 +14,7 @@ private val colors = darkColorScheme(
     // Secondary
     secondary = Color(0xFFDAC3A1),
     onSecondary = Color(0xFF3C2E16),
-    secondaryContainer = secondaryContainer,
+    secondaryContainer = Color(0x66000000),
     onSecondaryContainer = Color(0xFFFFE088),
 
     // Tertiary (Приглушенный морской - для третьего уровня акцентов, например XP)

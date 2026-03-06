@@ -15,7 +15,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGood
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.TeamCreateScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
 
 @Composable
@@ -32,11 +31,6 @@ fun GlHelperNavHost(
     ) {
         composable<GlHelperScreens.Start> {
             StartScreenRoute(
-                navController = navController
-            )
-        }
-        composable<GlHelperScreens.TeamCreate> {
-            TeamCreateScreen(
                 navController = navController
             )
         }

@@ -37,11 +37,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun AddCharacterDialog(
@@ -110,10 +111,10 @@ fun AddCharacterDialog(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    onAdd.invoke(
+                    onAdd(
                         newCharacterName,
                         level,
-                        classes[selectedIndex].classType
+                        classes[selectedIndex].type
                     )
                 }
             ) {
@@ -128,7 +129,7 @@ private fun CharacterDialog(
     selectedIndex: Int,
     characterName: String,
     level: Int,
-    classes: List<CharacterClassUI>,
+    classes: List<CharacterClassTypeUI>,
     onClassSelect: (Int) -> Unit,
     onCharacterNameChanged: (String) -> Unit,
     onDismiss: () -> Unit,
@@ -183,7 +184,7 @@ private fun CharacterDialog(
                     onAdd.invoke(
                         characterName,
                         level,
-                        classes[selectedIndex].classType
+                        classes[selectedIndex].type
                     )
                 }
             ) {
@@ -195,10 +196,10 @@ private fun CharacterDialog(
 
 @Composable
 fun DropdownWithIconAndText(
-    items: List<CharacterClassUI>,
+    items: List<CharacterClassTypeUI>,
     selectedIndex: Int,
     modifier: Modifier = Modifier,
-    onItemSelected: (CharacterClassUI) -> Unit
+    onItemSelected: (CharacterClassTypeUI) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -221,7 +222,7 @@ fun DropdownWithIconAndText(
             Icon(
                 modifier = Modifier
                     .size(72.dp),
-                painter = painterResource(id = items[selectedIndex].classType.toImage()),
+                painter = painterResource(id = items[selectedIndex].image),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.secondary,
 
@@ -238,7 +239,7 @@ fun DropdownWithIconAndText(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                painter = painterResource(id = items[index].classType.toImage()),
+                                painter = painterResource(id = items[index].image),
                                 contentDescription = null,
                                 modifier = Modifier.size(24.dp)
                             )
@@ -263,7 +264,7 @@ private fun Sample() {
             selectedIndex = 0,
             characterName = "Unknown",
             level = 0,
-            classes = listOf(),
+            classes = persistentListOf(),
             onClassSelect = {},
             onCharacterNameChanged = {},
             onDismiss = {},

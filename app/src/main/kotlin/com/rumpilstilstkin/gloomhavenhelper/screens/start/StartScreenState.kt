@@ -8,6 +8,5 @@ sealed interface StartScreenState {
     data class Team(
         val id: Int,
         val name: String,
-        val showSelectTeamDialog: Boolean = false
     ) : StartScreenState
 }
