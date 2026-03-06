@@ -7,14 +7,7 @@ import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(foreignKeys = [
-    ForeignKey(
-        entity = CharacterClassBd::class,
-        parentColumns = arrayOf("characterType"),
-        childColumns = arrayOf("characterType"),
-        onDelete = CASCADE
-    ),
-],
+@Entity(
     indices = [
         Index("characterType"),
     ]

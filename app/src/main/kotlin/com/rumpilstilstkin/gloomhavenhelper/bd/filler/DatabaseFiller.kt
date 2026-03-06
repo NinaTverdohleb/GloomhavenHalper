@@ -2,21 +2,17 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.JsonDataLoader
 import javax.inject.Inject
 
+//TODO fill from json
 class DatabaseFiller @Inject constructor(
-    private val characterClassDao: CharacterClassDao,
     private val gameLevelInfoDao: GameLevelInfoDao,
     private val scenarioDao: ScenarioDao,
     private val preferences: SharedPreferences,
@@ -29,14 +25,13 @@ class DatabaseFiller @Inject constructor(
     val version = preferences.getInt(PREFS_VERSION, 0)
 
     suspend fun fillDatabase() {
-        if (characterClassDao.getAll().isEmpty()) {
+        if (version == 0) {
             startFill()
         }
         preferences.edit { putInt(PREFS_VERSION, VERSION) }
     }
 
     private suspend fun startFill() {
-        CharacterClassesFiller.fill_v1(characterClassDao)
         GameLevelInfoFiller.fill_v1(gameLevelInfoDao)
         ScenariosFiller.fill_v1(scenarioDao)
         GoodsFiller.fill_v1(goodsDao)

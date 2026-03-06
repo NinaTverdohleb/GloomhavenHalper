@@ -80,7 +80,7 @@ fun CharacterItem(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = character.characterClass.name,
+                text = character.characterClass.title,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )

@@ -34,7 +34,7 @@ fun CharacterInfo.toUi() = CharacterUI(
     name = this.name,
     level = this.level,
     id = this.id,
-    characterClass = this.characterClass.type.toCharacterClassTypeUI(),
+    characterClass = this.characterType.toCharacterClassTypeUI(),
     isAlive = this.isAlive,
     teamName = this.team?.name
 

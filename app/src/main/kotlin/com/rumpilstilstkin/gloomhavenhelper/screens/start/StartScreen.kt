@@ -19,6 +19,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabStateUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
@@ -26,6 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun StartScreen(
@@ -109,7 +112,7 @@ private fun StartScreenEmptyPreview() {
     }
 }
 
-@Preview
+@Preview(device = "spec:width=411dp,height=891dp")
 @Composable
 private fun StartScreenPreview() {
     GloomhavenHalperTheme {
@@ -120,12 +123,12 @@ private fun StartScreenPreview() {
             ),
             addTeam = {},
             selectTab = {
-                TeamTabScreen(
-                    state = TeamTabUiState.Data.fixture(),
-                    completeScenario = {},
-                    startScenario = {},
-                    updateProsperity = {},
-                    updateReputation = {},
+                CharactersTabScreen(
+                    state = CharactersTabStateUi.fixture(),
+                    switchAlive = {},
+                    addCharacter = {},
+                    openCharacterDetails = {},
+                    toggleClass = {}
                 )
             },
             back = {},

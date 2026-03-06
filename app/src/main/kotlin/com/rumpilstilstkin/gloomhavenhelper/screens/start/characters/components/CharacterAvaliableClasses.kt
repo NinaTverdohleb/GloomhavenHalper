@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -12,10 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -23,12 +23,14 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun CharacterAvailableClasses(
     availableClasses: ImmutableList<CharacterClassTypeUI>,
+    onToggle: (CharacterClassTypeUI) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val availableTypes = availableClasses.toSet()
 
     GloomVariantCard(modifier = modifier) {
         LazyVerticalGrid(
+            modifier = Modifier.padding(4.dp),
             columns = GridCells.Adaptive(48.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -37,8 +39,10 @@ fun CharacterAvailableClasses(
                 val isAvailable = classType in availableTypes
                 Icon(
                     painter = painterResource(id = classType.image),
-                    contentDescription = null,
-                    modifier = Modifier.size(32.dp),
+                    contentDescription = classType.title,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clickable { onToggle(classType) },
                     tint = if (isAvailable) {
                         MaterialTheme.colorScheme.primary
                     } else {
@@ -60,6 +64,7 @@ private fun CharacterAvailableClassesPreview() {
                 CharacterClassTypeUI.Spellweaver,
                 CharacterClassTypeUI.Scoundrel,
             ),
+            onToggle = {},
         )
     }
 }

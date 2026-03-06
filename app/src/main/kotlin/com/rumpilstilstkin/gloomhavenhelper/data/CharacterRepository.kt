@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
@@ -16,12 +15,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
-    private val classDao: CharacterClassDao,
     private val teamDao: TeamDao,
     private val characterGoodsDao: CharacterGoodsDao,
     private val characterPerksDao: CharacterPerksDao,
@@ -66,15 +63,14 @@ class CharacterRepository @Inject constructor(
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {
                 val team = teamDao.findById(teamId).toDomain()
-                val classBd = classDao.findByType(it.characterType)
-                it.toDomain(classBd, team)
+                it.toDomain(team)
             }
         }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo> =
         characterDao.getCharacterByIdFlow(id).map { character ->
             val team = character.teamId?.let { teamDao.findById(it).toDomain() }
-            character.toDomain(classDao.findByType(character.characterType), team)
+            character.toDomain(team)
         }
 
     fun getCharacterPersonalQuestFlow(characterId: Int) =

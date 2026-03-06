@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.rumpilstilstkin.gloomhavenhelper.bd.GlHelperDatabase
 import com.rumpilstilstkin.gloomhavenhelper.bd.createGlHelperDatabase
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
@@ -41,10 +40,6 @@ object GlHelperModule {
     @Singleton
     @Provides
     fun provideTeamDao(db: GlHelperDatabase): TeamDao = db.teamDao()
-
-    @Singleton
-    @Provides
-    fun provideCharacterClassDao(db: GlHelperDatabase): CharacterClassDao = db.characterClassDao()
 
     @Singleton
     @Provides
@@ -85,4 +80,8 @@ object GlHelperModule {
     @Singleton
     @Provides
     fun provideMonsterDao(db: GlHelperDatabase) = db.monsterDao()
+
+    @Singleton
+    @Provides
+    fun provideTeamCharacterClassDao(db: GlHelperDatabase) = db.teamCharacterClassDao()
 }

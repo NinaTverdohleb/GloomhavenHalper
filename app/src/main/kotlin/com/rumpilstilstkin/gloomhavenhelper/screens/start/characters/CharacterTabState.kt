@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -11,7 +12,8 @@ data class CharactersTabStateUi(
     val showAddCharacterDialog: Boolean = false,
     val filterAlive: Boolean = true,
     val canAdd: Boolean = true,
-    val characters: ImmutableList<CharacterUI> = persistentListOf()
+    val characters: ImmutableList<CharacterUI> = persistentListOf(),
+    val avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf()
 ) {
     companion object {
         fun fixture(
@@ -23,10 +25,15 @@ data class CharactersTabStateUi(
                 CharacterUI.fixture(
                     name = "Character 2"
                 )
+            ),
+            avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(
+                CharacterClassTypeUI.Brute,
+                CharacterClassTypeUI.Elementalist
             )
         ) = CharactersTabStateUi(
             characters = characters,
-            filterAlive = filterAlive
+            filterAlive = filterAlive,
+            avaliableClasses = avaliableClasses
         )
     }
 }
@@ -41,11 +48,12 @@ sealed interface CharactersTabAction {
     data class AddCharacter(
         val name: String,
         val level: Int,
-        val characterType: CharacterClassType
+        val characterType: CharacterClassTypeUI
     ) : CharactersTabAction
 
     data object SwitchAlive : CharactersTabAction
     data object ShowAddCharacterDialog : CharactersTabAction
     data object CloseAddCharacterDialog : CharactersTabAction
     data class CharacterDetails(val characterId: Int) : CharactersTabAction
+    data class SwitchClassAvailability(val type: CharacterClassTypeUI) : CharactersTabAction
 }

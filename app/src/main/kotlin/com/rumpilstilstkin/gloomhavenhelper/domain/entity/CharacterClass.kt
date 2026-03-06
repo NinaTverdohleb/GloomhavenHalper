@@ -1,11 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-data class CharacterClass(
-    val type: CharacterClassType,
-    val name: String
-)
-
-enum class CharacterClassType() {
+enum class CharacterClassType {
     Brute,
     BeastTyrant,
     Cragheart,

@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
@@ -16,10 +15,10 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamCharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPersonalQuestBd
@@ -32,6 +31,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamCharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
@@ -48,7 +48,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
 @Database(
     entities = [
         TeamBd::class,
-        CharacterClassBd::class,
         CharacterBd::class,
         GameLevelInfoBd::class,
         ScenarioBd::class,
@@ -62,12 +61,12 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         MonsterBd::class,
         MonsterStatsBd::class,
         MonsterAbilityCardBd::class,
+        TeamCharacterClassBd::class,
     ],
     version = 1
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
-    abstract fun characterClassDao(): CharacterClassDao
     abstract fun teamDao(): TeamDao
     abstract fun gameLevelInfoDao(): GameLevelInfoDao
     abstract fun scenarioDao(): ScenarioDao
@@ -79,6 +78,7 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun personalQuestDao(): PersonalQuestDao
     abstract fun characterPersonalQuestDao(): CharacterPersonalQuestDao
     abstract fun monsterDao(): MonsterDao
+    abstract fun teamCharacterClassDao(): TeamCharacterClassDao
 }
 
 fun createGlHelperDatabase(
