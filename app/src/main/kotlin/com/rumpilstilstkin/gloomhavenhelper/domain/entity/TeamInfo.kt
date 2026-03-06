@@ -68,7 +68,7 @@ data class TeamInfoWithScenario(
 
 data class TeamInfoForSave(
     val name: String,
-    val characters: List<CharacterForSave>
+    val characters: List<CharacterForSave> = emptyList()
 )
 
 

@@ -5,7 +5,7 @@ data class CharacterClass(
     val name: String
 )
 
-enum class CharacterClassType {
+enum class CharacterClassType() {
     Brute,
     BeastTyrant,
     Cragheart,

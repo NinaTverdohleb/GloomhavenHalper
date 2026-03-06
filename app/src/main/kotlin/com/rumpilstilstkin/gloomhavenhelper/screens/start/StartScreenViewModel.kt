@@ -2,9 +2,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SaveTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.CharacterDetails
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
@@ -27,13 +29,14 @@ import javax.inject.Inject
 @HiltViewModel
 class StartScreenViewModel @Inject constructor(
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
-    val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase
+    val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
+    val saveTeamUseCase: SaveTeamUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<StartScreenState> = getCurrentTeamUseCase.invoke().map { team ->
+    val uiState: StateFlow<StartScreenState> = getCurrentTeamUseCase().map { team ->
         StartScreenState.Team(
             name = team.name,
             id = team.id
@@ -47,8 +50,8 @@ class StartScreenViewModel @Inject constructor(
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {
             when (action) {
-                StartScreenAction.CreateTeam -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.TeamCreate))
+                is StartScreenAction.CreateTeam -> {
+                    saveTeamUseCase(TeamInfoForSave(action.teamName))
                 }
 
                 is StartScreenAction.SelectTeam -> {
@@ -60,6 +63,6 @@ class StartScreenViewModel @Inject constructor(
 }
 
 sealed interface StartScreenAction {
-    data object CreateTeam : StartScreenAction
+    data class CreateTeam(val teamName: String) : StartScreenAction
     data class SelectTeam(val teamId: Int) : StartScreenAction
 }

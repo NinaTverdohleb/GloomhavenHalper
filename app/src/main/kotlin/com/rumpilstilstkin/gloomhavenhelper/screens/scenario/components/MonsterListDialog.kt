@@ -49,7 +49,7 @@ fun MonsterListDialog(
             selectMonster(selectedIds)
         },
         confirmEnabled = selectedIds.isNotEmpty(),
-        title = "Выберете врагов"
+        title = "Выберете врагов",
     ) {
         Column {
             LazyColumn(

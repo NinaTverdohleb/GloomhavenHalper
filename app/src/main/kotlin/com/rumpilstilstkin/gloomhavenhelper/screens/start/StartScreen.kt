@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -20,17 +19,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable

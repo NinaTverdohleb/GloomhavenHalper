@@ -65,7 +65,7 @@ fun CharacterItem(
         ) {
             Icon(
                 modifier = Modifier.size(40.dp),
-                painter = painterResource(character.characterClass.classType.toImage()),
+                painter = painterResource(character.characterClass.image),
                 contentDescription = null
             )
         }

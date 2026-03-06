@@ -33,14 +33,17 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GloomAlertDialog(
-    onDismissRequest: () -> Unit,
-    onConfirmRequest: () -> Unit,
     modifier: Modifier = Modifier,
     confirmEnabled: Boolean = true,
-    cancelText: String = "Закрыть",
-    confirmText: String = "Выбрать",
     title: String? = null,
     titleIcon: ImageVector? = null,
+    neutralText: String = "Закрыть",
+    confirmText: String = "Выбрать",
+    negativeText: String = "Удалить",
+    onDismissRequest: () -> Unit,
+    onConfirmRequest: () -> Unit,
+    onNegativeRequest: (() -> Unit)? = null,
+    onNeutralRequest: (() -> Unit)? = onDismissRequest,
     content: @Composable () -> Unit,
 ) = BasicAlertDialog(
     onDismissRequest = onDismissRequest,
@@ -84,17 +87,36 @@ fun GloomAlertDialog(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                OutlinedButton(
-                    onClick = onDismissRequest,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(16.dp),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        containerColor = Color.Transparent,
-                        contentColor = Color(0xFF9CA3AF),
-                    ),
-                ) {
-                    Text(text = cancelText, style = MaterialTheme.typography.bodyMedium )
+
+                if (onNegativeRequest != null) {
+                    OutlinedButton(
+                        onClick = onDismissRequest,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Transparent,
+                            contentColor = MaterialTheme.colorScheme.error,
+                        ),
+                    ) {
+                        Text(
+                            text = negativeText, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+
+                if (onNeutralRequest != null) {
+                    OutlinedButton(
+                        onClick = onNeutralRequest,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Transparent,
+                            contentColor = MaterialTheme.colorScheme.onSurface,
+                        ),
+                    ) {
+                        Text(text = neutralText, style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
 
                 Button(
@@ -126,6 +148,7 @@ private fun GloomAlertDialogPreview() {
         GloomAlertDialog(
             onDismissRequest = {},
             onConfirmRequest = {},
+            onNegativeRequest = {},
             content = {},
             title = "Title"
         )
