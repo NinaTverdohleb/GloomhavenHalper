@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
@@ -35,93 +39,84 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun AddCharacterDialog(
-    viewModel: AddCharactersDialogViewModel = hiltViewModel(),
+    avaliableClasses: ImmutableList<CharacterClassTypeUI>,
     onDismiss: () -> Unit,
-    onAdd: (String, Int, CharacterClassType) -> Unit
+    addCharacter: (name: String, level: Int, characterClass: CharacterClassTypeUI) -> Unit
 ) {
-    val classes = viewModel.classes
     var newCharacterName by rememberSaveable { mutableStateOf("") }
-    var selectedIndex by remember { mutableIntStateOf(0) }
+    var selectedClass by remember { mutableStateOf<CharacterClassTypeUI?>(null) }
     var level by remember { mutableIntStateOf(1) }
 
-    if (classes.isEmpty()) return
-
-    CharacterDialog(
-        selectedIndex = selectedIndex,
-        characterName = newCharacterName,
-        level = level,
-        classes = classes,
-        onClassSelect = { selectedIndex = it },
-        onCharacterNameChanged = { newCharacterName = it },
-        onDismiss = onDismiss,
-        onLevelChanged = { level = it },
-        onAdd = onAdd
-    )
-
-    AlertDialog(
-        onDismissRequest = { onDismiss.invoke() },
-        title = {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = "Добавить персонажа",
-                textAlign = TextAlign.Center
-            )
-        },
-        text = {
-            Surface {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    DropdownWithIconAndText(
-                        modifier = Modifier,
-                        items = classes,
-                        selectedIndex = selectedIndex
-                    ) {
-                        selectedIndex = classes.indexOf(it)
-                    }
-                    OutlinedTextField(
-                        value = newCharacterName,
-                        onValueChange = { newCharacterName = it },
-                        label = { Text("Имя") }
-                    )
-                    Text("Уровень персонажа")
-                    NumberPicker(
-                        modifier = Modifier.fillMaxWidth(),
-                        value = level,
-                        intRange = IntRange(1, 9)
-                    ) {
-                        level = it
-                    }
-                }
-            }
-        },
-        confirmButton = {
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    onAdd(
-                        newCharacterName,
-                        level,
-                        classes[selectedIndex].type
-                    )
-                }
-            ) {
-                Text("Добавить")
+    GloomAlertDialog(
+        confirmEnabled = selectedClass != null,
+        confirmText = "Добавтить",
+        onDismissRequest = onDismiss,
+        onConfirmRequest = {
+            selectedClass?.let {
+                addCharacter(
+                    newCharacterName,
+                    level,
+                    it
+                )
             }
         }
-    )
+    ) {
+        GloomVariantCard {
+            LazyVerticalGrid(
+                modifier = Modifier.padding(4.dp),
+                columns = GridCells.Adaptive(48.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(avaliableClasses) { classType ->
+                    val isSelected = classType == selectedClass
+                    Icon(
+                        painter = painterResource(id = classType.image),
+                        contentDescription = classType.title,
+                        modifier = Modifier
+                            .size(32.dp)
+                            .clickable {
+                                selectedClass = if (isSelected) {
+                                    null
+                                } else {
+                                    classType
+                                }
+                            },
+                        tint = if (isSelected) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.outlineVariant
+                        },
+                    )
+                }
+            }
+        }
+
+        OutlinedTextField(
+            value = newCharacterName,
+            onValueChange = { newCharacterName = it },
+            label = { Text("Имя") }
+        )
+        Text("Уровень персонажа")
+        NumberPicker(
+            modifier = Modifier.fillMaxWidth(),
+            value = level,
+            intRange = IntRange(1, 9)
+        ) {
+            level = it
+        }
+    }
 }
 
 @Composable
@@ -258,19 +253,15 @@ fun DropdownWithIconAndText(
 
 @Preview
 @Composable
-private fun Sample() {
+private fun AddCharacterDialogPreview() {
     GloomhavenHalperTheme {
-        CharacterDialog(
-            selectedIndex = 0,
-            characterName = "Unknown",
-            level = 0,
-            classes = persistentListOf(),
-            onClassSelect = {},
-            onCharacterNameChanged = {},
+        AddCharacterDialog(
+            avaliableClasses = persistentListOf(
+                CharacterClassTypeUI.Brute,
+                CharacterClassTypeUI.Spellweaver
+            ),
             onDismiss = {},
-            onLevelChanged = {},
-            onAdd = { _: String, _: Int, _: CharacterClassType -> }
+            addCharacter = { _, _, _ -> }
         )
     }
-
 }

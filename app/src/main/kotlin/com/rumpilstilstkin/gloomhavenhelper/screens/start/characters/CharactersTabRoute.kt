@@ -27,16 +27,18 @@ fun CharactersTabRoute(
     }
 
     CharactersTabScreen(
-        uiState = uiState,
+        state = uiState,
         addCharacter = { viewModel.onAction(CharactersTabAction.ShowAddCharacterDialog) },
         openCharacterDetails = { viewModel.onAction(CharactersTabAction.CharacterDetails(it)) },
-        switchAlive = { viewModel.onAction(CharactersTabAction.SwitchAlive) }
+        switchAlive = { viewModel.onAction(CharactersTabAction.SwitchAlive) },
+        toggleClass = { viewModel.onAction(CharactersTabAction.SwitchClassAvailability(it)) }
     )
 
     if (uiState.showAddCharacterDialog) {
         AddCharacterDialog(
+            avaliableClasses = uiState.avaliableClasses,
             onDismiss = { viewModel.onAction(CharactersTabAction.CloseAddCharacterDialog) },
-            onAdd = { name, level, classType ->
+            addCharacter = { name, level, classType ->
                 viewModel.onAction(
                     CharactersTabAction.AddCharacter(
                         name = name,

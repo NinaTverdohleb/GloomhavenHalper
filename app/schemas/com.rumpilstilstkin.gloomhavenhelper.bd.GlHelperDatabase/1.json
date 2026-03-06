@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5497fe2e28371a8c2d7f56f793744050",
+    "identityHash": "ed77255cc337e10654fcce44b037c1b2",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -49,30 +49,6 @@
           "autoGenerate": true,
           "columnNames": [
             "teamId"
-          ]
-        }
-      },
-      {
-        "tableName": "CharacterClassBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `characterType` TEXT NOT NULL, PRIMARY KEY(`characterType`))",
-        "fields": [
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "characterType",
-            "columnName": "characterType",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": false,
-          "columnNames": [
-            "characterType"
           ]
         }
       },
@@ -551,7 +527,7 @@
       },
       {
         "tableName": "PerkBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`perkId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `text` TEXT NOT NULL, `characterType` TEXT NOT NULL, FOREIGN KEY(`characterType`) REFERENCES `CharacterClassBd`(`characterType`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`perkId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `text` TEXT NOT NULL, `characterType` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "perkId",
@@ -587,19 +563,6 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_PerkBd_characterType` ON `${TABLE_NAME}` (`characterType`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "CharacterClassBd",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "characterType"
-            ],
-            "referencedColumns": [
-              "characterType"
-            ]
           }
         ]
       },
@@ -892,11 +855,65 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_deckName` ON `${TABLE_NAME}` (`deckName`)"
           }
         ]
+      },
+      {
+        "tableName": "TeamCharacterClassBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `characterType` TEXT NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_TeamCharacterClassBd_teamId",
+            "unique": false,
+            "columnNames": [
+              "teamId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamCharacterClassBd_teamId` ON `${TABLE_NAME}` (`teamId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TeamBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5497fe2e28371a8c2d7f56f793744050')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ed77255cc337e10654fcce44b037c1b2')"
     ]
   }
 }

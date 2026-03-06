@@ -13,7 +13,7 @@ data class CharacterForSave(
 data class CharacterInfo(
     val name: String,
     val level: Int,
-    val characterClass: CharacterClass,
+    val characterType: CharacterClassType,
     val isAlive: Boolean,
     val id: Int,
     val team: ShortTeamInfo?,

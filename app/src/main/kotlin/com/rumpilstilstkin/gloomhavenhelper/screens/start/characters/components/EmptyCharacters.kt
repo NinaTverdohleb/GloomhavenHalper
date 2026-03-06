@@ -36,7 +36,7 @@ internal fun EmptyCharacters(
     Box(
         modifier =
             Modifier
-                .size(120.dp)
+                .size(96.dp)
                 .background(
                     color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f),
                     shape = CircleShape
