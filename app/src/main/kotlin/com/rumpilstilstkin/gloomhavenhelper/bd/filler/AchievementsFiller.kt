@@ -259,6 +259,41 @@ object AchievementsFiller {
                 pack = PackType.MAIN.name,
                 isGlobal = false
             ),
+            AchievementBd(
+                name = "Личное задание: Последователь зорна",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Посох Зорна находится в инвентаре",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Личное задание: Возвращение леса",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Личное задание: Месть",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Личное задание: В Поисках лекарства",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Личное задание: Грехопадение",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Храбрость",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
         )
     }
 }

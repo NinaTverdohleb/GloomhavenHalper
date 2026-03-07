@@ -26,7 +26,7 @@ object ScenariosFiller {
                 scenarioNumber = 2,
                 name = "Подземное логово",
                 newScenarios = "3, 4",
-                requirements = "Получено достижение отряда Первые шаги",
+                requirements = "Первые шаги",
                 monsters = listOf(
                     "Разбойник-лучница",
                     "Ожившие кости",
@@ -40,7 +40,7 @@ object ScenariosFiller {
                 scenarioNumber = 3,
                 name = "Лагерь иноксов",
                 newScenarios = "8, 9",
-                requirements = "Не получено общее достижение Сбежавшая торговка",
+                requirements = "!Сбежавшая торговка",
                 teamAchievement = "Планы Джексеры",
                 monsters = listOf(
                     "Инокс-стражница",
@@ -95,7 +95,7 @@ object ScenariosFiller {
                 scenarioNumber = 7,
                 name = "Цветущий грот",
                 newScenarios = "20",
-                requirements = "Получены общие достижения Возможость улучшений и Сбежавшая торговка",
+                requirements = "Возможость улучшений && Сбежавшая торговка",
                 monsters = listOf(
                     "Лесной бес",
                     "Пещерный медведь",
@@ -110,7 +110,7 @@ object ScenariosFiller {
                 name = "Склад мрачной гавани",
                 newScenarios = "7, 13, 14",
                 globalAchievement = "Сбежавшая торговка",
-                requirements = "Получено достижение отряда Планы Джексеры и не получено общее достижение Вторжение мертвецов",
+                requirements = "Планы Джексеры && !Вторжение мертвецов",
                 monsters = listOf(
                     "Ожившие кости",
                     "Оживший труп",
@@ -125,7 +125,7 @@ object ScenariosFiller {
                 name = "Алмазная шахта",
                 newScenarios = "11, 12",
                 globalAchievement = "Вторжение мертвецов",
-                requirements = "Не получено общее достижение Сбежавшая торговка",
+                requirements = "!Сбежавшая торговка",
                 monsters = listOf(
                     "Гончая",
                     "Вермлинг-разведчик",
@@ -139,7 +139,7 @@ object ScenariosFiller {
                 name = "Измерение силы стихий",
                 newScenarios = "21, 22",
                 teamAchievement = "Задание демона",
-                requirements = "Не получено общее достижение Портал обезврежен",
+                requirements = "!Портал обезврежен",
                 monsters = listOf(
                     "Огненный демон",
                     "Земляной демон",
@@ -153,7 +153,7 @@ object ScenariosFiller {
                 name = "Площадь Мрачной гавани А",
                 newScenarios = "16, 18",
                 globalAchievement = "Городское правление: торговцы, Конец вторжения",
-                requirements = "Не получено общее достижение Конец вторжения",
+                requirements = "!Конец вторжения",
                 monsters = listOf(
                     "Ожившие кости",
                     "Оживший труп",
@@ -169,7 +169,7 @@ object ScenariosFiller {
                 name = "Площадь Мрачной гавани Б",
                 newScenarios = "16, 18, 28",
                 globalAchievement = "Конец вторжения",
-                requirements = "Не получено общее достижение Конец вторжения",
+                requirements = "!Конец вторжения",
                 monsters = listOf(
                     "Ожившие кости",
                     "Оживший труп",
@@ -260,7 +260,7 @@ object ScenariosFiller {
                 scenarioNumber = 19,
                 name = "Забытый склеп",
                 newScenarios = "27",
-                requirements = "Получено общее достижение Возможость улучшений",
+                requirements = "Возможость улучшений",
                 teamAchievement = "Кадило Каменолома",
                 monsters = listOf(
                     "Культист",
@@ -275,7 +275,7 @@ object ScenariosFiller {
                 scenarioNumber = 20,
                 name = "Прибежище некромантки",
                 newScenarios = "16, 18, 28",
-                requirements = "Получено общее достижение Сбежавшая торговка",
+                requirements = "Сбежавшая торговка",
                 monsters = listOf(
                     "Культист",
                     "Ожившие кости",
@@ -289,7 +289,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 21,
                 name = "Дьявольский трон",
-                requirements = "Не получено общее достижение Портал обезврежен",
+                requirements = "Портал обезврежен",
                 globalAchievement = "Портал обезврежен, Артефакт: найден",
                 monsters = listOf(
                     "Солнечный демон",
@@ -307,7 +307,7 @@ object ScenariosFiller {
                 scenarioNumber = 22,
                 name = "Храм стихий",
                 newScenarios = "31, 35, 36",
-                requirements = "Получено достижение отряда Задание демона или По следам",
+                requirements = "Задание демона || По следам",
                 globalAchievement = "Артефакт: найден",
                 monsters = listOf(
                     "Ожившие кости",
@@ -364,7 +364,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 26,
                 name = "Древний резервуар",
-                requirements = "Получено общее достижение Подводное дыхание или Путь через руины",
+                requirements = "Подводное дыхание || Путь через руины",
                 newScenarios = "22",
                 teamAchievement = "По следам",
                 monsters = listOf(
@@ -379,7 +379,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 27,
                 name = "Зловещий портал",
-                requirements = "Не получено общее достижение Артефакт: потерян и получено достижение отряда Кадило Каменолома",
+                requirements = "!Артефакт: потерян && Кадило Каменолома",
                 globalAchievement = "Портал обезврежен",
                 monsters = listOf(
                     "Ночной демон",
@@ -395,7 +395,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 28,
                 name = "Внешнее капище",
-                requirements = "Получено общее достижение Темная награда",
+                requirements = "Темная награда",
                 newScenarios = "29",
                 teamAchievement = "Приглашение",
                 monsters = listOf(
@@ -411,7 +411,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 29,
                 name = "Обитель Мрака",
-                requirements = "Получено достижение отряда Приглашение",
+                requirements = "Приглашение",
                 globalAchievement = "На грани тьмы",
                 monsters = listOf(
                     "Ожившие кости",
@@ -425,7 +425,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 30,
                 name = "Святилище глубин",
-                requirements = "Получено достижение отряда Веление Голоса",
+                requirements = "Веление Голоса",
                 newScenarios = "42",
                 teamAchievement = "Голос и скипитер",
                 monsters = listOf(
@@ -439,7 +439,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 31,
                 name = "Ночное измерение",
-                requirements = "Получено общее достижение Возможость улучшений и Артефакт: найден",
+                requirements = "Возможость улучшений && Артефакт: найден",
                 newScenarios = "37, 38, 39, 43",
                 globalAchievement = "Артефакт: очищен",
                 monsters = listOf(
@@ -453,7 +453,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 32,
                 name = "Ветхая пуща",
-                requirements = "Получено достижение отряда Веление Голоса",
+                requirements = "Веление Голоса",
                 newScenarios = "33, 40",
                 monsters = listOf(
                     "Жнец заразитель",
@@ -467,7 +467,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 33,
                 name = "Оружейная саввасов",
-                requirements = "Получено достижение отряда Веление Голоса или Предложение дрейка",
+                requirements = "Веление Голоса || Предложение дрейка",
                 teamAchievement = "Сокровище голоса, Сокровище дрейка",
                 monsters = listOf(
                     "Саввас Ледяной шторм",
@@ -483,7 +483,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 34,
                 name = "Выжженнная вершина",
-                requirements = "Получено достижение отряда Предложение дрейка и не получено общее достижение Помощь дрейку",
+                requirements = "Предложение дрейка && !Помощь дрейку",
                 teamAchievement = "(-)Предложение дрейка",
                 globalAchievement = "Убийство дрейка",
                 monsters = listOf(
@@ -497,7 +497,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 35,
                 name = "Бойницы Мрачной гавани А",
-                requirements = "Получено достижение отряда Задание демона и не получено общее достижение Портал обезврежен",
+                requirements = "Задание демона && !Портал обезврежен",
                 newScenarios = "45",
                 teamAchievement = "(-)Задание демона",
                 globalAchievement = "Городское правление: демоны, Артефакт: потерян",
@@ -516,7 +516,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 36,
                 name = "Бойницы Мрачной гавани Б",
-                requirements = "Получено достижение отряда Задание демона и не получено общее достижение Портал обезврежен",
+                requirements = "Задание демона && !Портал обезврежен",
                 teamAchievement = "(-)Задание демона",
                 globalAchievement = "Портал обезврежен",
                 monsters = listOf(
@@ -533,7 +533,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 37,
                 name = "Гиблая впадина",
-                requirements = "Получено общее достижение Подводное дыхание",
+                requirements = "Подводное дыхание",
                 newScenarios = "47",
                 teamAchievement = "Путь через впадину",
                 monsters = listOf(
@@ -576,7 +576,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 40,
                 name = "Древние защитные механизмы",
-                requirements = "Получены достижения отряда Веление Голоса и Сокровище голоса",
+                requirements = "Веление Голоса && Сокровище голоса",
                 newScenarios = "41",
                 globalAchievement = "Древняя технология",
                 monsters = listOf(
@@ -592,7 +592,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 41,
                 name = "Вековая гробница",
-                requirements = "Получено достижение отряда Веление Голоса",
+                requirements = "Веление Голоса",
                 globalAchievement = "Голос освобожден",
                 monsters = listOf(
                     "Древняя пушка",
@@ -606,7 +606,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 42,
                 name = "Царство Голоса",
-                requirements = "Получено достижение отряда Голос и скипитер и не получено общее достижение Голос освобожден",
+                requirements = "Голос и скипитер && !Голос освобожден",
                 teamAchievement = "(-)Веление Голоса",
                 globalAchievement = "Голос умолк",
                 monsters = listOf(
@@ -620,7 +620,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 43,
                 name = "Гнездо дрейков",
-                requirements = "Получено общее достижение Возможость улучшений",
+                requirements = "Возможость улучшений",
                 globalAchievement = "Подводное дыхание",
                 monsters = listOf(
                     "Когтистый дрейк",
@@ -633,7 +633,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 44,
                 name = "Нападение племени",
-                requirements = "Получено достижение отряда Помощь Красношипа",
+                requirements = "Помощь Красношипа",
                 monsters = listOf(
                     "Инокс-стражница",
                     "Инокс-лучник",
@@ -646,7 +646,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 45,
                 name = "Привал подводных повстанцев",
-                requirements = "Получено общее достижение Городское правление: демоны",
+                requirements = "Городское правление: демоны",
                 newScenarios = "49, 50",
                 monsters = listOf(
                     "Городской страж",
@@ -659,7 +659,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 46,
                 name = "Пик кошмара",
-                requirements = "Получено достижение отряда Путь через пропасть",
+                requirements = "Путь через пропасть",
                 newScenarios = "51",
                 globalAchievement = "Конец упадка",
                 monsters = listOf(
@@ -675,7 +675,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 47,
                 name = "Логово невидящего ока",
-                requirements = "Получено достижение отряда Путь через впадину",
+                requirements = "Путь через впадину",
                 newScenarios = "51",
                 globalAchievement = "Конец упадка",
                 monsters = listOf(
@@ -690,7 +690,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 48,
                 name = "Тенистая чаща",
-                requirements = "Получено достижение отряда Помощь Красношипа",
+                requirements = "Помощь Красношипа",
                 newScenarios = "51",
                 globalAchievement = "Конец упадка",
                 monsters = listOf(
@@ -705,7 +705,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 49,
                 name = "Лагерь повстанцев",
-                requirements = "Получено общее достижение Городское правление: демоны",
+                requirements = "Городское правление: демоны",
                 globalAchievement = "Уничтожение порядка",
                 monsters = listOf(
                     "Гигантская гадюка",
@@ -719,7 +719,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 50,
                 name = "Призрачная крепость",
-                requirements = "Получено общее достижение Городское правление: демоны и не получено общее достижение Уничтожение порядка",
+                requirements = "Городское правление: демоны && !Уничтожение порядка",
                 globalAchievement = "Городское правление: военные",
                 monsters = listOf(
                     "Ночной демон",
@@ -733,7 +733,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 51,
                 name = "Пустота",
-                requirements = "Получено общее достижение Конец упадка",
+                requirements = "Конец упадка",
                 globalAchievement = "Конец эпохи Мрака",
                 monsters = listOf(
                     "Мрак",
@@ -744,7 +744,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 52,
                 name = "Жуткий погреб",
-                requirements = "Личное задание Последователь зорна",
+                requirements = "Личное задание: Последователь зорна",
                 newScenarios = "53",
                 monsters = listOf(
                     "Шипящий дрейк",
@@ -759,7 +759,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 53,
                 name = "Подвал склепа",
-                requirements = "Личное задание Последователь зорна",
+                requirements = "Личное задание: Последователь зорна",
                 newScenarios = "54",
                 monsters = listOf(
                     "Слизь",
@@ -774,7 +774,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 54,
                 name = "Ледяной дворец",
-                requirements = "Личное задание Последователь зорна, предмет Посох Зорна находится в инвентаре",
+                requirements = "Личное задание: Последователь зорна && Посох Зорна находится в инвентаре",
                 monsters = listOf(
                     "Пещерный медведь",
                     "Оживший дух",
@@ -787,7 +787,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 55,
                 name = "Туманные заросли",
-                requirements = "Личное задание Возвращение леса",
+                requirements = "Личное задание: Возвращение леса",
                 newScenarios = "56",
                 location = "Кинжальный лес",
                 pack = PackType.MAIN.name,
@@ -795,7 +795,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 56,
                 name = "Разбойничья пуща",
-                requirements = "Личное задание Возвращение леса",
+                requirements = "Личное задание: Возвращение леса",
                 monsters = listOf(
                     "Гончая",
                     "Разбойник-лучница",
@@ -808,7 +808,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 57,
                 name = "Расследование",
-                requirements = "Личное задание Месть",
+                requirements = "Личное задание: Месть",
                 newScenarios = "58",
                 monsters = listOf(
                     "Гончая",
@@ -822,7 +822,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 58,
                 name = "Кровавая хижина",
-                requirements = "Личное задание Месть",
+                requirements = "Личное задание: Месть",
                 monsters = listOf(
                     "Земляной демон",
                     "Городской страж",
@@ -835,7 +835,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 59,
                 name = "Забытая роща",
-                requirements = "Личное задание В Поисках лекарства",
+                requirements = "Личное задание: В Поисках лекарства",
                 newScenarios = "60",
                 monsters = listOf(
                     "Гончая",
@@ -848,7 +848,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 60,
                 name = "Алхимическая лаборатория",
-                requirements = "Личное задание В Поисках лекарства",
+                requirements = "Личное задание: В Поисках лекарства",
                 monsters = listOf(
                     "Гончая",
                     "Гигантская гадюка",
@@ -862,7 +862,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 61,
                 name = "Исчезающий маяк",
-                requirements = "Личное задание Грехопадение",
+                requirements = "Личное задание: Грехопадение",
                 newScenarios = "62",
                 monsters = listOf(
                     "Слизь",
@@ -876,7 +876,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 62,
                 name = "Колодец душ",
-                requirements = "Личное задание Грехопадение",
+                requirements = "Личное задание: Грехопадение",
                 monsters = listOf(
                     "Оживший дух",
                     "Ожившие кости",
@@ -899,7 +899,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 64,
                 name = "Подводная лагуна",
-                requirements = "Получено общее достижение Подводное дыхание",
+                requirements = "Подводное дыхание",
                 monsters = listOf(
                     "Слизь",
                     "Лесной бес",
@@ -1019,7 +1019,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 74,
                 name = "Торговый корабль",
-                requirements = "Получено достижение отряда Морской конвой",
+                requirements = "Морской конвой",
                 monsters = listOf(
                     "Разбойник-страж",
                     "Разбойник-лучница",
@@ -1032,7 +1032,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 75,
                 name = "Заросшее кладбище",
-                requirements = "Получено достижение отряда Гробокопатели",
+                requirements = "Гробокопатели",
                 monsters = listOf(
                     "Оживший дух",
                     "Оживший труп",
@@ -1044,7 +1044,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 76,
                 name = "Улей жнецов",
-                requirements = "храбрость",
+                requirements = "Храбрость",
                 monsters = listOf(
                     "Гигантская гадюка",
                     "Ночной демон",
@@ -1082,7 +1082,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 79,
                 name = "Затерянный храм",
-                requirements = "Получено достижение отряда Сомнительный помощник",
+                requirements = "Сомнительный помощник",
                 monsters = listOf(
                     "Каменный голем",
                     "Гигантская гадюка",
@@ -1130,7 +1130,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 83,
                 name = "Обитель теней",
-                requirements = "Получено достижение отряда Дурное знамение",
+                requirements = "Дурное знамение",
                 monsters = listOf(
                     "Гончая",
                     "Культист",
@@ -1144,7 +1144,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 84,
                 name = "Пещера кристалов",
-                requirements = "Получено достижение отряда Дрожь земли",
+                requirements = "Дрожь земли",
                 monsters = listOf(
                     "Земляной демон",
                     "Огненный демон",
@@ -1182,7 +1182,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 87,
                 name = "Злосчастное побережье",
-                requirements = "Получено достижение отряда Источник отравы",
+                requirements = "Источник отравы",
                 monsters = listOf(
                     "Скрытень",
                     "Невыносимый ужас",
@@ -1195,7 +1195,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 88,
                 name = "Водное измерение",
-                requirements = "Получено достижение отряда Подводное дыхание и достижение отряда Посох воды",
+                requirements = "Подводное дыхание && Посох воды",
                 monsters = listOf(
                     "Морозный демон",
                     "Слизь",
@@ -1207,7 +1207,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 89,
                 name = "Убежище синдиката",
-                requirements = "Получено достижение отряда Син-Ра",
+                requirements = "Син-Ра",
                 monsters = listOf(
                     "Разбойник-страж",
                     "Разбойник-лучница",
@@ -1245,7 +1245,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 92,
                 name = "Потасовка в переулке",
-                requirements = "Получено достижение отряда Возвращение долга",
+                requirements = "Возвращение долга",
                 monsters = listOf(
                     "Разбойник-страж",
                     "Разбойник-лучница",
@@ -1262,7 +1262,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 93,
                 name = "Затонувшее судно",
-                requirements = "Получено достижение отряда Карта сокровищ",
+                requirements = "Карта сокровищ",
                 monsters = listOf(
                     "Скрытень",
                     "Морозный демон",
@@ -1288,7 +1288,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 95,
                 name = "Час расплаты",
-                requirements = "Получено достижение отряда Путь через жилище",
+                requirements = "Путь через жилище",
                 monsters = listOf(
                     "Земляной демон",
                     "Огненный демон",
