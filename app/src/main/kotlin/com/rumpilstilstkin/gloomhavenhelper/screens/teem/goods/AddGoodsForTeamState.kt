@@ -4,7 +4,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 
-
 data class AddGoodsForTeamUiState(
     val goodsState: AddGoodsViewState = AddGoodsViewState(),
 )

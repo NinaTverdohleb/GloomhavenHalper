@@ -20,9 +20,9 @@ class GetCurrentTeamUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamInfo> =
-        teamRepository.currentTeamId.flatMapLatest { teamId ->
-            characterRepository.getCharacterByTeamId(teamId)
-                .combine(teamRepository.getTeamWithScenarioFlow(teamId)) { characters, team ->
+        teamRepository.currentTeam.flatMapLatest { team ->
+            characterRepository.getCharacterByTeamId(team.teamId)
+                .combine(teamRepository.getTeamWithScenarioFlow(team.teamId)) { characters, team ->
                     val activeCharacters = characters.filter { it.isAlive }
                     val teamScenarios = filterTeamScenariosUseCase(team)
                     TeamInfo(
@@ -35,7 +35,8 @@ class GetCurrentTeamUseCase @Inject constructor(
                         prosperity = getTeamProsperityUseCase(team.prosperity),
                         activeScenario = teamScenarios.activeScenarios,
                         characters = activeCharacters,
-                        shopDiscount = getDiscountByReputation(team.reputation)
+                        shopDiscount = getDiscountByReputation(team.reputation),
+                        packs = team.packs
                     )
                 }
         }

@@ -33,5 +33,6 @@ data class TeamScenarioBd(
     val scenarioName: String,
     val scenarioRequirements: String,
     val completed: Boolean = false,
-    val location: String = ""
+    val location: String = "",
+    val pack: String
 )

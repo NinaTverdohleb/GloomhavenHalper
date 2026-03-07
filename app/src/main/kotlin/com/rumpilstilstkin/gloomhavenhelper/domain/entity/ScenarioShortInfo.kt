@@ -6,6 +6,7 @@ data class ScenarioShortInfo(
     val scenarioRequirements: LogicalCondition,
     val isCompleted: Boolean,
     val location: String,
+    val pack: PackType
 )
 
 data class ScenarioInfo(
@@ -16,4 +17,5 @@ data class ScenarioInfo(
     val teamAchievements: List<String>,
     val globalAchievements: List<String>,
     val location: String,
+    val pack: PackType
 )

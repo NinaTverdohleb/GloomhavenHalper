@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

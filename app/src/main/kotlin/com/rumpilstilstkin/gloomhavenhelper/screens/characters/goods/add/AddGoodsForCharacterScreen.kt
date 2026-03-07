@@ -12,40 +12,18 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.compone
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-
-@Composable
-fun AddGoodsForCharacterScreenRoute(
-    characterId: Int,
-    navController: NavHostController,
-) {
-    val viewModel =
-        hiltViewModel<AddGoodsScreenViewModel, AddGoodsScreenViewModel.Factory> { factory ->
-            factory.create(characterId)
-        }
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-    if (uiState.isClose) {
-        navController.popBackStack()
-    }
-
-    AddGoodsScreen(
-        uiState = uiState,
-        onAction = { viewModel.onAction(it) }
-    )
-}
-
 @Composable
 internal fun AddGoodsScreen(
-    uiState: AddGoodsScreenUiState,
-    onAction: (AddGoodsScreenActions) -> Unit,
+    uiState: AddGoodsForCharacterScreenUiState,
+    onAction: (AddGoodsForCharacterScreenActions) -> Unit,
 ) {
     AddGoodsView(
         state = uiState.goodsState,
         modifier = Modifier.fillMaxWidth(),
-        selectFilter = { onAction(AddGoodsScreenActions.SelectFilter(it)) },
-        changeSearchText = { onAction(AddGoodsScreenActions.SearchTextChange(it)) },
-        selectGood = { onAction(AddGoodsScreenActions.SelectGood(it.id)) },
-        unselectGood = { onAction(AddGoodsScreenActions.UnselectGood(it.id)) }
+        selectFilter = { onAction(AddGoodsForCharacterScreenActions.SelectFilter(it)) },
+        changeSearchText = { onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it)) },
+        selectGood = { onAction(AddGoodsForCharacterScreenActions.SelectGood(it)) },
+        unselectGood = { onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) }
     ) {
         AddGoodsStatusRow(
             allGold = uiState.allGold,
@@ -60,7 +38,7 @@ internal fun AddGoodsScreen(
 private fun AddGoodsScreenPreview() {
     GloomhavenHalperTheme {
         AddGoodsScreen(
-            uiState = AddGoodsScreenUiState(
+            uiState = AddGoodsForCharacterScreenUiState(
                 goodsState = AddGoodsViewState.fixture()
             ),
             onAction = {}

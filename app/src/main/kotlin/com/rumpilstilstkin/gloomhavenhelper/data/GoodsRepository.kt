@@ -5,15 +5,21 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import kotlin.collections.contains
 
 class GoodsRepository @Inject constructor(
     private val goodsDao: GoodsDao,
     private val teamGoodDao: TeamGoodDao,
 ) {
-    suspend fun getGoods(): List<Good> = goodsDao.getAll().map { it.toDomain() }
+    suspend fun getGoods(packs: Set<PackType>): List<Good> =
+        goodsDao
+            .getAll()
+            .map { it.toDomain() }
+            .filter { it.pack in packs }
 
     suspend fun getGoodByIds(ids: List<Int>) = goodsDao.getGoodsByIds(ids)
 

@@ -14,9 +14,9 @@ class AddCharacterClassForTeamUseCase @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend operator fun invoke(type: CharacterClassType) {
-        val teamId = teamRepository.currentTeamId.first()
+        val team = teamRepository.currentTeam.first()
         characterClassRepository.addAvailableClass(
-            teamId = teamId,
+            teamId = team.teamId,
             type = type
         )
     }

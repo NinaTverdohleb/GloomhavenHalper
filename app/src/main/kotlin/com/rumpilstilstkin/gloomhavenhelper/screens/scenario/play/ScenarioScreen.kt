@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.AddMonsterCard
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.RegularMonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf

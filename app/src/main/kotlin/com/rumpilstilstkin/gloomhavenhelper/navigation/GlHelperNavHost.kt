@@ -13,7 +13,7 @@ import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.CharacterDetailsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute

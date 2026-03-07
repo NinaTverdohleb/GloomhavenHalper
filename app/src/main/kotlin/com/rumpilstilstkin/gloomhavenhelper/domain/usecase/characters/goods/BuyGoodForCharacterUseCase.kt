@@ -9,20 +9,20 @@ class BuyGoodForCharacterUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
 ) {
 
-    suspend operator fun invoke(goods: List<Good>, characterId: Int): Result<Unit> {
+    suspend operator fun invoke(goodIdToCosts: List<Pair<Int, Int>>, characterId: Int): Result<Unit> {
         val character = characterRepository.getCharacterById(characterId)
 
-        val goodsCost = goods.sumOf { it.cost }
+        val goodsCost = goodIdToCosts.sumOf { it.second }
 
         if (goodsCost > character.goldCount) {
             Log.d("Dto", "Не хватает денег, нужно $goodsCost, у вас ${character.goldCount}")
             return Result.failure(Exception())
         }
 
-        goods.forEach { good ->
+        goodIdToCosts.forEach { good ->
             characterRepository.addCharacterGood(
                 characterId = characterId,
-                goodId = good.id
+                goodId = good.first
             )
         }
 

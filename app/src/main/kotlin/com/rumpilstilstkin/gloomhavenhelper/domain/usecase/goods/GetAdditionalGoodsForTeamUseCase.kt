@@ -15,10 +15,10 @@ class GetAdditionalGoodsForTeamUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
-        teamRepository.currentTeamId
-            .flatMapLatest { teamId ->
-                val allGoods = goodsRepository.getGoods()
-                goodsRepository.getGoodsForTeam(teamId)
+        teamRepository.currentTeam
+            .flatMapLatest { team ->
+                val allGoods = goodsRepository.getGoods(team.packs.toSet())
+                goodsRepository.getGoodsForTeam(team.teamId)
                     .map { goods -> (allGoods - goods.toSet()) }
             }
 }

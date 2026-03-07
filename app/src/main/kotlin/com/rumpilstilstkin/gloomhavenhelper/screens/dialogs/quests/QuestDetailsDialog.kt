@@ -39,8 +39,8 @@ import kotlinx.collections.immutable.persistentListOf
 fun QuestDetailsDialog(
     quest: PersonalQuestUI,
     showDialog: Boolean,
-    onAction: ((String) -> Unit)? = null,
     modifier: Modifier = Modifier,
+    onAction: ((String) -> Unit)? = null,
     onDismiss: () -> Unit = {},
     buttonText: String = "Выбрать",
 ) {

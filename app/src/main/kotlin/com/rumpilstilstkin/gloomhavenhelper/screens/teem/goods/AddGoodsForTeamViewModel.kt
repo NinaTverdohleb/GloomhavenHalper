@@ -1,17 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodToTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetAdditionalGoodsForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetAllGoodsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState

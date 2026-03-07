@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,7 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.MonsterListDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
 
 @Composable
 fun ScenarioRoute(

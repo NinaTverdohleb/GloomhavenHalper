@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.shop
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
