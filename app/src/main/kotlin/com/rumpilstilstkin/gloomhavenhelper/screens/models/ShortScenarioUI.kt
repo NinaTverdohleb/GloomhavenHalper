@@ -26,13 +26,13 @@ data class ShortScenarioUI(
 fun ScenarioShortInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements,
+    scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
     location = this.location
 )
 
 fun ScenarioInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements,
+    scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
     location = this.location
 )

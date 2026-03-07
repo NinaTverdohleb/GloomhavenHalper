@@ -5,7 +5,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenarios
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-//TODO change
 class FilterTeamScenariosUseCase @Inject constructor() {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(team: TeamInfoWithScenario): TeamScenarios {
@@ -21,11 +20,7 @@ class FilterTeamScenariosUseCase @Inject constructor() {
         val avaliable = team.scenario
             .filter { !it.isCompleted }.toSet()
         val (active, blocked) = avaliable.partition { scenario ->
-            val requirements = scenario.scenarioRequirements
-                .split(",")
-                .map { it.trim() }
-                .filter { it.isNotEmpty() }
-            requirements.isEmpty() || requirements.all { it in allAchievement }
+            scenario.scenarioRequirements.evaluate(allAchievement)
         }
         return TeamScenarios(
             activeScenarios = active,
