@@ -17,9 +17,9 @@ class GetGoodsForCurrentTeamUseCase @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
-        teamRepository.currentTeamId
-            .flatMapLatest { teamId ->
-                goodsRepository.getGoodsForTeam(teamId)
+        teamRepository.currentTeam
+            .flatMapLatest { team ->
+                goodsRepository.getGoodsForTeam(team.teamId)
                     .map { goods -> goods.distinctBy { it.number } }
             }
 }

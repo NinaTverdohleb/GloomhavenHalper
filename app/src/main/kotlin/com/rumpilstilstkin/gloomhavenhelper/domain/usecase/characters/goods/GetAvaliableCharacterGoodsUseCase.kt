@@ -2,28 +2,23 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.GoodsRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class GetAvaliableCharacterGoodsUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
-    private val goodsRepository: GoodsRepository,
+    private val getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase
 ) {
-
-    suspend operator fun invoke(characterId: Int): List<Good> {
-        val character = characterRepository.getCharacterById(characterId)
-        val characterGoods = characterRepository.getCharacterGoods(characterId)
-        return if (character.teamId == null) {
-            goodsRepository.getGoods()
-                .filter { good -> good.id !in characterGoods.map { it.id } }
-                .sortedBy { it.number }
-                .distinctBy { it.number }
-        } else {
-            // TODO
-            goodsRepository.getGoods()
-                .filter { good -> good.id !in characterGoods.map { it.id } }
-                .sortedBy { it.number }
-                .distinctBy { it.number }
+    operator fun invoke(characterId: Int): Flow<List<Good>> =
+        combine(
+            getGoodsForCurrentTeamUseCase(),
+            characterRepository.getCharacterGoodsFlow(characterId)
+        ) { teamGoods, characterGoods ->
+            teamGoods.filter { good -> good.id !in characterGoods.map { it.id } }
         }
-    }
 }

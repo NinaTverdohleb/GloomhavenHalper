@@ -11,4 +11,5 @@ data class TeamBd(
     val globalAchievement: String = "",
     val reputation: Int = 0,
     val prosperity: Int = 0,
+    val packs: List<String>
 )

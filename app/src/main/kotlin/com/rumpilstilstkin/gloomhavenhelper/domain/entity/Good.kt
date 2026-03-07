@@ -8,6 +8,7 @@ data class Good(
     val cost: Int,
     val image: String,
     val characterGoodId: Int? = null,
+    val pack: PackType
 ) {
     fun filterResult(goodType: GoodType?, search: String): Boolean {
         if (goodType != null && goodType != this.type) return false

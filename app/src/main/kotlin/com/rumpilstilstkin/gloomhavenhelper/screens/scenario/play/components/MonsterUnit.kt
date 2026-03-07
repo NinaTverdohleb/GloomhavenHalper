@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

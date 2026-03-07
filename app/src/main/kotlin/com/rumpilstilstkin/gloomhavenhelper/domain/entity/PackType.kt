@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 enum class PackType {
-    MAIN
+    MAIN,
+    FORGOTTEN_CIRCLES
 }

@@ -16,7 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreenActions
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun SelectedGoodsView(
     selectedGoods: ImmutableList<GoodUi>,
-    onAction: (AddGoodsScreenActions) -> Unit,
+    onAction: (AddGoodsForCharacterScreenActions) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
@@ -61,7 +61,7 @@ fun SelectedGoodsView(
         GoodDetailsDialog(
             dismiss = { selectedGood = null },
             confirm = {
-                onAction(AddGoodsScreenActions.UnselectGood(good.id))
+                onAction(AddGoodsForCharacterScreenActions.UnselectGood(good))
                 selectedGood = null
             },
             buttonText = "Убрать",

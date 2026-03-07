@@ -29,7 +29,8 @@ class TeamRepository @Inject constructor(
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
 
-    val currentTeamId: Flow<Int> = _currentTeam.map { it.getOrNull() }.filterNotNull()
+    val currentTeam: Flow<ShortTeamInfo> =
+        _currentTeam.map { id -> id.getOrNull()?.let { getTeam(it) } }.filterNotNull()
 
     init {
         externalScope.launch {

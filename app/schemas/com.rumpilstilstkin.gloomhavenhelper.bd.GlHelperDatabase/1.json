@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8fa5bdfc36556a9d02acbbfd2a9bcafd",
+    "identityHash": "fbb18e4903346fed8996caf101046389",
     "entities": [
       {
         "tableName": "TeamBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL, `packs` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "teamId",
@@ -42,6 +42,12 @@
             "fieldPath": "prosperity",
             "columnName": "prosperity",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packs",
+            "columnName": "packs",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -233,7 +239,7 @@
       },
       {
         "tableName": "TeamScenarioBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, `location` TEXT NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, `location` TEXT NOT NULL, `pack` TEXT NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -274,6 +280,12 @@
           {
             "fieldPath": "location",
             "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -331,7 +343,7 @@
       },
       {
         "tableName": "GoodBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `image` TEXT NOT NULL, `is_drawing` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `image` TEXT NOT NULL, `pack` TEXT NOT NULL, `is_drawing` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "goodId",
@@ -366,6 +378,12 @@
           {
             "fieldPath": "image",
             "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -574,7 +592,7 @@
       },
       {
         "tableName": "PersonalQuestBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`questId` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `specialText` TEXT NOT NULL, `characterType` TEXT, `tasks` TEXT NOT NULL, PRIMARY KEY(`questId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`questId` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `specialText` TEXT NOT NULL, `characterType` TEXT, `tasks` TEXT NOT NULL, `pack` TEXT NOT NULL, PRIMARY KEY(`questId`))",
         "fields": [
           {
             "fieldPath": "questId",
@@ -608,6 +626,12 @@
           {
             "fieldPath": "tasks",
             "columnName": "tasks",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -701,7 +725,7 @@
       },
       {
         "tableName": "MonsterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL, `isBoss` INTEGER NOT NULL, `fly` INTEGER NOT NULL, `immunity` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL, `isBoss` INTEGER NOT NULL, `fly` INTEGER NOT NULL, `immunity` TEXT NOT NULL, `pack` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "monsterId",
@@ -736,6 +760,12 @@
           {
             "fieldPath": "immunity",
             "columnName": "immunity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -1019,7 +1049,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8fa5bdfc36556a9d02acbbfd2a9bcafd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fbb18e4903346fed8996caf101046389')"
     ]
   }
 }

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color

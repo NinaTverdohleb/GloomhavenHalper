@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
@@ -51,7 +52,12 @@ class StartScreenViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is StartScreenAction.CreateTeam -> {
-                    saveTeamUseCase(TeamInfoForSave(action.teamName))
+                    saveTeamUseCase(
+                        TeamInfoForSave(
+                            action.teamName,
+                            packs = listOf(PackType.MAIN)
+                        )
+                    )
                 }
 
                 is StartScreenAction.SelectTeam -> {

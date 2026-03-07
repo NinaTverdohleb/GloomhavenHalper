@@ -14,51 +14,50 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreenActions
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenActions
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
 fun AddGoodsStatusRow(
     allGold: Int,
     goodsGold: Int,
-    onAction: (AddGoodsScreenActions) -> Unit,
-) {
-    Column{
+    onAction: (AddGoodsForCharacterScreenActions) -> Unit,
+) = GloomVariantCard {
+    Text(
+        modifier = Modifier.align(Alignment.CenterHorizontally),
+        text = "Доступно : $allGold G",
+    )
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = "Доступно : $allGold G",
+            text = "Стоимость : $goodsGold G",
         )
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
         ) {
-            Text(
-                text = "Стоимость : $goodsGold G",
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End,
+            Button(
+                enabled = goodsGold <= allGold,
+                modifier = Modifier,
+                onClick = {
+                    onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
+                }
             ) {
-                Button(
-                    enabled = goodsGold <= allGold,
-                    modifier = Modifier,
-                    onClick = {
-                        onAction(AddGoodsScreenActions.BuySelectedGoods)
-                    }
-                ) {
-                    Text("Купить")
+                Text("Купить")
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Button(
+                modifier = Modifier,
+                onClick = {
+                    onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-                Button(
-                    modifier = Modifier,
-                    onClick = {
-                        onAction(AddGoodsScreenActions.AddSelectedGoods)
-                    }
-                ) {
-                    Text("Добавить")
-                }
+            ) {
+                Text("Добавить")
             }
         }
     }

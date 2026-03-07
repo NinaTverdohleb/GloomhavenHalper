@@ -25,7 +25,8 @@ class ScenarioRepository @Inject constructor(
                 scenarioNumber = scenario.scenarioNumber,
                 scenarioName = scenario.scenarioName,
                 scenarioRequirements = scenario.scenarioRequirements.condition,
-                location = scenario.location
+                location = scenario.location,
+                pack = scenario.pack.name
             )
         )
     }

@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-import kotlin.Int
-
 data class TeamInfo(
     val id: Int,
     val name: String,
@@ -13,6 +11,7 @@ data class TeamInfo(
     val characters: List<CharacterInfo>,
     val shopDiscount: Int,
     val prosperity: Prosperity,
+    val packs: List<PackType>
 )
 
 data class Prosperity(
@@ -23,6 +22,7 @@ data class Prosperity(
 ) {
     val isStartValue = prosperityLevel == 0 && prosperityLevelValue == 0
     val isMax = prosperityLevel == 9
+
     companion object {
         fun fixture() = Prosperity(
             prosperityLevelValue = 2,
@@ -40,6 +40,7 @@ data class ShortTeamInfo(
     val globalAchievement: List<String>,
     val reputation: Int,
     val prosperity: Int,
+    val packs: List<PackType>
 ) {
     companion object {
         fun fixture(
@@ -51,7 +52,8 @@ data class ShortTeamInfo(
             teamAchievement = listOf("Achievement 1", "Achievement 2"),
             globalAchievement = listOf("Achievement 3", "Achievement 4"),
             reputation = 10,
-            prosperity = 20
+            prosperity = 20,
+            packs = listOf(PackType.MAIN)
         )
     }
 }
@@ -63,12 +65,14 @@ data class TeamInfoWithScenario(
     val globalAchievement: String,
     val reputation: Int,
     val prosperity: Int,
-    val scenario: List<ScenarioShortInfo>
+    val scenario: List<ScenarioShortInfo>,
+    val packs: List<PackType>
 )
 
 data class TeamInfoForSave(
     val name: String,
-    val characters: List<CharacterForSave> = emptyList()
+    val characters: List<CharacterForSave> = emptyList(),
+    val packs: List<PackType>
 )
 
 

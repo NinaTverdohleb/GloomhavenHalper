@@ -2,12 +2,14 @@ package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamWithScenariosBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
 
 fun TeamInfoForSave.toBd() = TeamBd(
     name = this.name,
+    packs = this.packs.map { it.name }
 )
 
 fun TeamWithScenariosBd.toDomain() = TeamInfoWithScenario(
@@ -17,7 +19,8 @@ fun TeamWithScenariosBd.toDomain() = TeamInfoWithScenario(
     globalAchievement = this.team.globalAchievement,
     reputation = this.team.reputation,
     prosperity = this.team.prosperity,
-    scenario = this.scenarios.map { it.toDomain() }
+    scenario = this.scenarios.map { it.toDomain() },
+    packs = this.team.packs.map { PackType.valueOf(it) }
 )
 
 fun TeamBd.toDomain() = ShortTeamInfo(
@@ -27,6 +30,7 @@ fun TeamBd.toDomain() = ShortTeamInfo(
     globalAchievement = this.globalAchievement.split(","),
     reputation = this.reputation,
     prosperity = this.prosperity,
+    packs = this.packs.map { PackType.valueOf(it) }
 )
 
 fun ShortTeamInfo.toBd() = TeamBd(
@@ -36,4 +40,5 @@ fun ShortTeamInfo.toBd() = TeamBd(
     globalAchievement = this.globalAchievement.joinToString(","),
     reputation = this.reputation,
     prosperity = this.prosperity,
+    packs = this.packs.map { it.name }
 )

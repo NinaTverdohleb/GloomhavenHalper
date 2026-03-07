@@ -4,6 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction.Action
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction.Text
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType.*
@@ -21,7 +22,8 @@ object MonstersFiller {
                 name = "Главарь разбойников",
                 deckName = "boss",
                 isBoss = true,
-                immunity = listOf(STUN, IMMOBILIZE, CURSE)
+                immunity = listOf(STUN, IMMOBILIZE, CURSE),
+                pack = PackType.MAIN.name,
             )
         ).toInt()
         monsterDao.insertAllStats(
@@ -39,7 +41,8 @@ object MonstersFiller {
             MonsterBd(
                 name = "Ожившие кости",
                 deckName = "living-bones",
-                isBoss = false)
+                isBoss = false,
+                pack = PackType.MAIN.name,)
 
         ).toInt()
         monsterDao.insertAllStats(

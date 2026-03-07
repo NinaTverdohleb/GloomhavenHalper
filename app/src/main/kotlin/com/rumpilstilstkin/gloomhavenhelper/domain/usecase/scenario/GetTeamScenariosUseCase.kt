@@ -14,8 +14,8 @@ class GetTeamScenariosUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamScenarios> =
-        teamRepository.currentTeamId.flatMapLatest { teamId ->
-            teamRepository.getTeamWithScenarioFlow(teamId).map { teamInfoWithScenario ->
+        teamRepository.currentTeam.flatMapLatest { team ->
+            teamRepository.getTeamWithScenarioFlow(team.teamId).map { teamInfoWithScenario ->
                 filterTeamScenariosUseCase(teamInfoWithScenario)
             }
         }

@@ -15,8 +15,8 @@ class GetCharactersForCurrentTeamUseCase @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<CharacterInfo>> =
-        teamRepository.currentTeamId
-            .flatMapLatest { teamId ->
-                characterRepository.getCharacterByTeamId(teamId)
+        teamRepository.currentTeam
+            .flatMapLatest { team ->
+                characterRepository.getCharacterByTeamId(team.teamId)
             }
 }
