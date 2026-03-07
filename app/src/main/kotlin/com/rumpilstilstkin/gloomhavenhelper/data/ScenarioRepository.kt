@@ -5,7 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenario
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import javax.inject.Inject
 
 class ScenarioRepository @Inject constructor(
@@ -14,7 +14,7 @@ class ScenarioRepository @Inject constructor(
 ){
     suspend fun getAllScenarios(): List<ScenarioInfo> = scenarioDao.getAll().map { it.toDomain() }
 
-    suspend fun getAllTeamScenarios(teamId: Int): List<TeamScenario> = teamScenarioDao.getTeamScenarios(teamId).map { it.toDomain() }
+    suspend fun getAllTeamScenarios(teamId: Int): List<ScenarioShortInfo> = teamScenarioDao.getTeamScenarios(teamId).map { it.toDomain() }
 
     suspend fun getScenario(scenarioNumber: Int): ScenarioInfo = scenarioDao.getScenario(scenarioNumber).toDomain()
 

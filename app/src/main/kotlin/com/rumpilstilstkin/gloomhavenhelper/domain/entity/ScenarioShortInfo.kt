@@ -1,6 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-data class TeamScenario(
+data class ScenarioShortInfo(
     val scenarioNumber: Int,
     val scenarioName: String,
     val scenarioRequirements: String,

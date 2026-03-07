@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f580d2c91223939057b28e19e7cf6154",
+    "identityHash": "8fa5bdfc36556a9d02acbbfd2a9bcafd",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -167,7 +167,7 @@
       },
       {
         "tableName": "ScenarioBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, `monsters` TEXT NOT NULL, `location` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, `monsters` TEXT NOT NULL, `location` TEXT NOT NULL, `pack` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
         "fields": [
           {
             "fieldPath": "scenarioNumber",
@@ -214,6 +214,12 @@
           {
             "fieldPath": "location",
             "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -967,11 +973,53 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "AchievementBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`achievementId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `pack` TEXT NOT NULL, `maxRang` INTEGER NOT NULL, `isGlobal` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "achievementId",
+            "columnName": "achievementId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack",
+            "columnName": "pack",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxRang",
+            "columnName": "maxRang",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isGlobal",
+            "columnName": "isGlobal",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "achievementId"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f580d2c91223939057b28e19e7cf6154')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8fa5bdfc36556a9d02acbbfd2a9bcafd')"
     ]
   }
 }

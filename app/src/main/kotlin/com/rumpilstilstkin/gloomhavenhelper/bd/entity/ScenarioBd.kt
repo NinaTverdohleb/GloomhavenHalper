@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 
 @Entity
 data class ScenarioBd(
@@ -13,4 +14,5 @@ data class ScenarioBd(
     val requirements: String = "",
     val monsters: List<String> = emptyList(),
     val location: String = "",
+    val pack: String,
 )

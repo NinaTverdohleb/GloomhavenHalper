@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 
 object ScenariosFiller {
     suspend fun fill_v1(
@@ -18,7 +19,8 @@ object ScenariosFiller {
                     "Разбойник-лучница",
                     "Ожившие кости"
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 2,
@@ -31,7 +33,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Главарь разбойников"
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 3,
@@ -44,7 +47,8 @@ object ScenariosFiller {
                     "Инокс-лучник",
                     "Инокс-шаман",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 4,
@@ -57,7 +61,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Воздушный демон"
                 ),
-                location = "Тихая река"
+                location = "Тихая река",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 5,
@@ -70,7 +75,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Морозный демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 6,
@@ -82,7 +88,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Ожившие кости",
                 ),
-                location = "Тихая река"
+                location = "Тихая река",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 7,
@@ -95,7 +102,8 @@ object ScenariosFiller {
                     "Инокс-шаман",
                     "Земляной демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 8,
@@ -109,7 +117,8 @@ object ScenariosFiller {
                     "Инокс-телохранитель - 1",
                     "Инокс-телохранитель - 2",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 9,
@@ -122,7 +131,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Жестокий надзиратель",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 10,
@@ -135,7 +145,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Солнечный демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 11,
@@ -150,7 +161,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Начальник стражи"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 12,
@@ -166,7 +178,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Джексера"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 13,
@@ -178,7 +191,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Шипящий дрейк",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 14,
@@ -190,7 +204,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Морозный демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 15,
@@ -202,7 +217,8 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Жнец заразитель",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 16,
@@ -214,7 +230,8 @@ object ScenariosFiller {
                     "Инокс-стражница",
                     "Инокс-лучник",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 17,
@@ -224,7 +241,8 @@ object ScenariosFiller {
                     "Вермлинг-шаман",
                     "Пещерный медведь",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 18,
@@ -235,7 +253,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Слизь",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 19,
@@ -249,7 +268,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Оживший труп",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 20,
@@ -263,7 +283,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Джексера",
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 21,
@@ -279,7 +300,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Архидемон"
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 22,
@@ -295,7 +317,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Огненный демон",
                 ),
-                location = "Река Змеиный поцелуй"
+                location = "Река Змеиный поцелуй",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 23,
@@ -309,7 +332,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Оживший дух",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 24,
@@ -321,7 +345,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Оживший дух",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 25,
@@ -333,7 +358,8 @@ object ScenariosFiller {
                     "Шипящий дрейк",
                     "Гончая",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 26,
@@ -347,7 +373,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Черный бес"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 27,
@@ -362,7 +389,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Огненный демон"
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 28,
@@ -377,7 +405,8 @@ object ScenariosFiller {
                     "Солнечный демон",
                     "Культист",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 29,
@@ -390,7 +419,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Черный бес",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 30,
@@ -403,7 +433,8 @@ object ScenariosFiller {
                     "Скрытень",
                     "Невыносимый ужас",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 31,
@@ -416,7 +447,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Невыносимый ужас",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 32,
@@ -429,7 +461,8 @@ object ScenariosFiller {
                     "Невыносимый ужас",
                     "Черный бес",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 33,
@@ -444,20 +477,22 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Земляной демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 34,
                 name = "Выжженнная вершина",
                 requirements = "Получено достижение отряда Предложение дрейка и не получено общее достижение Помощь дрейку",
                 teamAchievement = "(-)Предложение дрейка",
-                globalAchievement = "Убийство дракона",
+                globalAchievement = "Убийство дрейка",
                 monsters = listOf(
                     "Когтистый дрейк",
                     "Шипящий дрейк",
                     "Дрейк-патриарх",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 35,
@@ -475,7 +510,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Начальник стражи"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 36,
@@ -491,7 +527,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Архидемон"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 37,
@@ -504,7 +541,8 @@ object ScenariosFiller {
                     "Невыносимый ужас",
                     "Жнец заразитель",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 38,
@@ -517,7 +555,8 @@ object ScenariosFiller {
                     "Инокс-шаман",
                     "Каменный голем"
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 39,
@@ -531,7 +570,8 @@ object ScenariosFiller {
                     "Культист",
                     "Ожившие кости"
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 40,
@@ -546,7 +586,8 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Огненный демон"
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 41,
@@ -559,7 +600,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Каменный голем",
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 42,
@@ -572,7 +614,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Оживший дух",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 43,
@@ -584,7 +627,8 @@ object ScenariosFiller {
                     "Шипящий дрейк",
                     "Огненный демон",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 44,
@@ -596,7 +640,8 @@ object ScenariosFiller {
                     "Инокс-шаман",
                     "Гончая"
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 45,
@@ -608,7 +653,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Гончая",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 46,
@@ -623,7 +669,8 @@ object ScenariosFiller {
                     "Саввас Ледяной шторм",
                     "Крылатый ужас"
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 47,
@@ -637,7 +684,8 @@ object ScenariosFiller {
                     "Невидящее око",
                     "Жнец заразитель"
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 48,
@@ -651,7 +699,8 @@ object ScenariosFiller {
                     "Жнец заразитель",
                     "Темный всадник",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 49,
@@ -664,7 +713,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Древняя пушка"
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 50,
@@ -677,7 +727,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Воздушный демон"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 51,
@@ -687,7 +738,8 @@ object ScenariosFiller {
                 monsters = listOf(
                     "Мрак",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 52,
@@ -701,7 +753,8 @@ object ScenariosFiller {
                     "Вермлинг-шаман",
                     "Оживший труп"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 53,
@@ -715,7 +768,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Гигантская гадюка"
                 ),
-                location = "Тихая река"
+                location = "Тихая река",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 54,
@@ -727,14 +781,16 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Жнец заразитель",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 55,
                 name = "Туманные заросли",
                 requirements = "Личное задание Возвращение леса",
                 newScenarios = "56",
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 56,
@@ -746,7 +802,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Разбойник-страж",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 57,
@@ -759,7 +816,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Жнец заразитель",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 58,
@@ -771,7 +829,8 @@ object ScenariosFiller {
                     "Черный бес",
                     "Жнец заразитель",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 59,
@@ -783,7 +842,8 @@ object ScenariosFiller {
                     "Пещерный медведь",
                     "Лесной бес",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 60,
@@ -796,7 +856,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Шипящий дрейк",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 61,
@@ -809,7 +870,8 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Огненный демон",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 62,
@@ -819,7 +881,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Ожившие кости",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 63,
@@ -830,7 +893,8 @@ object ScenariosFiller {
                     "Инокс-стражница",
                     "Инокс-лучник",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 64,
@@ -841,7 +905,8 @@ object ScenariosFiller {
                     "Лесной бес",
                     "Когтистый дрейк",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 65,
@@ -852,7 +917,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Инокс-шаман",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 66,
@@ -864,7 +930,8 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Оживший дух"
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 67,
@@ -875,7 +942,8 @@ object ScenariosFiller {
                     "Пещерный медведь",
                     "Каменный голем",
                 ),
-                location = "Восточный тракт"
+                location = "Восточный тракт",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 68,
@@ -886,7 +954,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Оживший труп",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 69,
@@ -898,7 +967,8 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Оживший дух"
                 ),
-                location = "Каменистый тракт"
+                location = "Каменистый тракт",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 70,
@@ -908,7 +978,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Оживший дух"
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 71,
@@ -918,7 +989,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Солнечный демон"
                 ),
-                location = "Река Змеиный поцелуй"
+                location = "Река Змеиный поцелуй",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 72,
@@ -928,7 +1000,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Лесной бес",
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 73,
@@ -940,7 +1013,8 @@ object ScenariosFiller {
                     "Инокс-лучник",
                     "Гончая",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 74,
@@ -952,7 +1026,8 @@ object ScenariosFiller {
                     "Скрытень",
                     "Невыносимый ужас",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 75,
@@ -963,7 +1038,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Ожившие кости",
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 76,
@@ -975,7 +1051,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Жнец заразитель"
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 77,
@@ -986,7 +1063,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Каменный голем",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 78,
@@ -998,7 +1076,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Черный бес"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 79,
@@ -1009,7 +1088,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Предатель",
                 ),
-                location = "Вечное болото"
+                location = "Вечное болото",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 80,
@@ -1020,7 +1100,8 @@ object ScenariosFiller {
                     "Городской лучник",
                     "Древняя пушка",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 81,
@@ -1032,7 +1113,8 @@ object ScenariosFiller {
                     "Древняя пушка",
                     "Бесцветный"
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 82,
@@ -1042,7 +1124,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Каменный голем",
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 83,
@@ -1055,7 +1138,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Огненный демон",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 84,
@@ -1066,7 +1150,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Морозный демон",
                 ),
-                location = "Медные хребты"
+                location = "Медные хребты",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 85,
@@ -1077,7 +1162,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Черный бес"
                 ),
-                location = "Сторожевые горы"
+                location = "Сторожевые горы",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 86,
@@ -1090,7 +1176,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Скрытень"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 87,
@@ -1102,7 +1189,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Черный бес"
                 ),
-                location = "Бухта торговцев"
+                location = "Бухта торговцев",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 88,
@@ -1113,7 +1201,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Скрытень",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 89,
@@ -1125,7 +1214,8 @@ object ScenariosFiller {
                     "Культист",
                     "Гигантская гадюка",
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 90,
@@ -1136,7 +1226,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Оживший дух"
                 ),
-                location = "Река Змеиный поцелуй"
+                location = "Река Змеиный поцелуй",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 91,
@@ -1148,7 +1239,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Гончая",
                 ),
-                location = "Кинжальный лес"
+                location = "Кинжальный лес",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 92,
@@ -1164,7 +1256,8 @@ object ScenariosFiller {
                     "Инокс-стражница",
                     "Саввас Поток лавы"
                 ),
-                location = "Мрачная гавань"
+                location = "Мрачная гавань",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 93,
@@ -1175,7 +1268,8 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Оживший дух",
                 ),
-                location = "Туманное море"
+                location = "Туманное море",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 94,
@@ -1188,7 +1282,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Вермлинг-шаман",
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
             ScenarioBd(
                 scenarioNumber = 95,
@@ -1200,7 +1295,8 @@ object ScenariosFiller {
                     "Невыносимый ужас",
                     "Саввас Поток лавы"
                 ),
-                location = "Мертволесье"
+                location = "Мертволесье",
+                pack = PackType.MAIN.name,
             ),
         )
     }
