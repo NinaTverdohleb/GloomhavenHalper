@@ -9,8 +9,7 @@ import kotlinx.collections.immutable.persistentMapOf
 
 @Immutable
 data class ScenariosTabStateUi(
-    val sections: ImmutableMap<ScenarioSectionType, ScenariosSection>,
-    val showScenarioDialog: Boolean,
+    val sections: ImmutableMap<ScenarioSectionType, ScenariosSection> = persistentMapOf(),
 ) {
     companion object {
         fun fixture(
@@ -18,10 +17,8 @@ data class ScenariosTabStateUi(
                 ScenarioSectionType.ACCESS to ScenariosSection.fixture(isExpanded = true),
                 ScenarioSectionType.FINISHED to ScenariosSection.fixture()
             ),
-            showScenarioDialog: Boolean = false
         ) = ScenariosTabStateUi(
             sections = sections,
-            showScenarioDialog = showScenarioDialog
         )
     }
 
@@ -52,4 +49,5 @@ enum class ScenarioSectionType(val title: String, val isActive: Boolean) {
 sealed interface ScenariosTabAction {
     data class StartScenario(val scenarioId: Int) : ScenariosTabAction
     data class CompleteScenario(val scenarioId: Int) : ScenariosTabAction
+    data class ToggleSection(val sectionType: ScenarioSectionType) : ScenariosTabAction
 }

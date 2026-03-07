@@ -23,7 +23,7 @@ class GetScenarioInfoUseCase @Inject constructor(
             )
             ScenarioBattleInfo(
                 number = scenarioNumber,
-                name = team.scenario.firstOrNull { it.scenarioNumber == scenarioNumber }?.scenarioName
+                name = team.activeScenario.firstOrNull { it.scenarioNumber == scenarioNumber }?.scenarioName
                     ?: "",
                 monsters = monsters,
                 golds = goldByLevel(team.level),

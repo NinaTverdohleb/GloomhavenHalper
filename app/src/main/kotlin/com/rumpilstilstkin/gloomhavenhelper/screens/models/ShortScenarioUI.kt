@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenario
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 
 @Immutable
 data class ShortScenarioUI(
@@ -23,7 +23,7 @@ data class ShortScenarioUI(
     }
 }
 
-fun TeamScenario.toUi() = ShortScenarioUI(
+fun ScenarioShortInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,

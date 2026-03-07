@@ -4,10 +4,10 @@ import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.toLevel
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.FilterTeamScenariosUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
@@ -15,7 +15,8 @@ class GetCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val characterRepository: CharacterRepository,
     private val getDiscountByReputation: GetDiscountByReputationUseCase,
-    private val getTeamProsperityUseCase: GetTeamProsperityUseCase
+    private val getTeamProsperityUseCase: GetTeamProsperityUseCase,
+    private val filterTeamScenariosUseCase: FilterTeamScenariosUseCase,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamInfo> =
@@ -23,7 +24,7 @@ class GetCurrentTeamUseCase @Inject constructor(
             characterRepository.getCharacterByTeamId(teamId)
                 .combine(teamRepository.getTeamWithScenarioFlow(teamId)) { characters, team ->
                     val activeCharacters = characters.filter { it.isAlive }
-                    val activeScenarios = team.scenario.filter { !it.isCompleted }
+                    val teamScenarios = filterTeamScenariosUseCase(team)
                     TeamInfo(
                         id = team.teamId,
                         name = team.name,
@@ -32,7 +33,7 @@ class GetCurrentTeamUseCase @Inject constructor(
                         globalAchievement = team.globalAchievement,
                         reputation = team.reputation,
                         prosperity = getTeamProsperityUseCase(team.prosperity),
-                        scenario = activeScenarios,
+                        activeScenario = teamScenarios.activeScenarios,
                         characters = activeCharacters,
                         shopDiscount = getDiscountByReputation(team.reputation)
                     )

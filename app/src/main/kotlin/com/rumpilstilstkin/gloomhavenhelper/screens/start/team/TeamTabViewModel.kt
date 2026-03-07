@@ -39,7 +39,7 @@ class TeamTabViewModel @Inject constructor(
                 teamId = team.id,
                 teamName = team.name,
                 teamLevel = team.level,
-                teamScenario = team.scenario.map { it.toUi() }.toImmutableList(),
+                teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
                 teamReputation = team.reputation,
                 prosperity = team.prosperity,
                 teamAchievements = team.teamAchievement,

@@ -27,8 +27,8 @@ fun ScenariosTabRoute(
 
     ScenariosTabScreen(
         state = uiState,
-        completeScenario = {},
-        startScenario = {},
-        toggleSection = {},
+        completeScenario = { viewModel.onAction(ScenariosTabAction.CompleteScenario(it)) },
+        startScenario = { viewModel.onAction(ScenariosTabAction.StartScenario(it)) },
+        toggleSection = { viewModel.onAction(ScenariosTabAction.ToggleSection(it)) },
     )
 }

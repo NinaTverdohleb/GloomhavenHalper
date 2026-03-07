@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.AchievementDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterGoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
@@ -19,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamCharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
@@ -65,6 +67,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         MonsterAbilityCardBd::class,
         TeamCharacterClassBd::class,
         TeamGoodBd::class,
+        AchievementBd::class,
     ],
     version = 1
 )
@@ -83,6 +86,7 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun monsterDao(): MonsterDao
     abstract fun teamCharacterClassDao(): TeamCharacterClassDao
     abstract fun teamGoodDao(): TeamGoodDao
+    abstract fun achievementDao(): AchievementDao
 }
 
 fun createGlHelperDatabase(

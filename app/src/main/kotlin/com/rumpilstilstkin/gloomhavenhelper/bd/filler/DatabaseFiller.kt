@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.AchievementDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
@@ -20,6 +21,7 @@ class DatabaseFiller @Inject constructor(
     private val perksDao: PerksDao,
     private val personalQuestDao: PersonalQuestDao,
     private val monsterDao: MonsterDao,
+    private val achievementDao: AchievementDao,
     private val jsonDataLoader: JsonDataLoader,
 ) {
     val version = preferences.getInt(PREFS_VERSION, 0)
@@ -38,6 +40,7 @@ class DatabaseFiller @Inject constructor(
         PerksFiller.fill_v1(perksDao)
         QuestsFiller.fill_v1(personalQuestDao)
         MonstersFiller.fill_v1(monsterDao)
+        AchievementsFiller.fill_v1(achievementDao)
     }
 
     companion object {

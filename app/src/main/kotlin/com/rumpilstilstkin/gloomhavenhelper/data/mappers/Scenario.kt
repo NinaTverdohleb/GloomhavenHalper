@@ -3,9 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenario
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 
-fun TeamScenarioBd.toDomain() = TeamScenario(
+fun TeamScenarioBd.toDomain() = ScenarioShortInfo(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,

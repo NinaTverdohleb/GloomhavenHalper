@@ -9,7 +9,7 @@ data class TeamInfo(
     val teamAchievement: String,
     val globalAchievement: String,
     val reputation: Int,
-    val scenario: List<TeamScenario>,
+    val activeScenario: List<ScenarioShortInfo>,
     val characters: List<CharacterInfo>,
     val shopDiscount: Int,
     val prosperity: Prosperity,
@@ -63,7 +63,7 @@ data class TeamInfoWithScenario(
     val globalAchievement: String,
     val reputation: Int,
     val prosperity: Int,
-    val scenario: List<TeamScenario>
+    val scenario: List<ScenarioShortInfo>
 )
 
 data class TeamInfoForSave(
