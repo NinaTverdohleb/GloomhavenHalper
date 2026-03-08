@@ -2,13 +2,15 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConverter
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 
 @Entity
 data class TeamBd(
     @PrimaryKey(autoGenerate = true) val teamId: Int = 0,
     val name: String,
-    val teamAchievement: String = "",
-    val globalAchievement: String = "",
+    val teamAchievement: List<Achievement> = emptyList(),
+    val globalAchievement: List<Achievement> = emptyList(),
     val reputation: Int = 0,
     val prosperity: Int = 0,
     val packs: List<String>

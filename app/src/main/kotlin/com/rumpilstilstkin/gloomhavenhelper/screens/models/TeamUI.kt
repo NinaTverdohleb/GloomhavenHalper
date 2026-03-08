@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import kotlinx.collections.immutable.ImmutableList
@@ -15,8 +16,8 @@ data class TeamUI(
     val teamReputation: Int,
     val prosperity: Prosperity,
     val shopDiscount: Int,
-    val teamAchievements: String,
-    val globalAchievements: String,
+    val teamAchievements: ImmutableList<Achievement>,
+    val globalAchievements: ImmutableList<Achievement>,
     val teamScenario: ImmutableList<ShortScenarioUI>,
     val characters: ImmutableList<CharacterUI>,
     val canAddCharacter: Boolean = false,
@@ -28,8 +29,14 @@ data class TeamUI(
             teamName = "Team 1",
             teamReputation = 1,
             prosperity = Prosperity.fixture(),
-            teamAchievements = "Первые шаги",
-            globalAchievements = "Сбежавшая торговка",
+            teamAchievements = persistentListOf(
+                Achievement.fixture("Achievement 1"),
+                Achievement.fixture("Achievement 2")
+            ),
+            globalAchievements = persistentListOf(
+                Achievement.fixture("Achievement 1"),
+                Achievement.fixture("Achievement 2")
+            ),
             shopDiscount = 0,
             teamScenario = persistentListOf(
                 ShortScenarioUI.fixture(1),

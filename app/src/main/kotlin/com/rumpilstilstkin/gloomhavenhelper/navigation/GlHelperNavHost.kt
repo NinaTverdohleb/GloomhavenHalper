@@ -15,7 +15,9 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGood
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global.GlobalAchievementsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAchievementsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
 
@@ -76,6 +78,16 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.AddScenarioForTeam> {
             AddScenarioForTeamRoute(
+                navController = navController
+            )
+        }
+        composable<GlHelperScreens.TeamAchievements> {
+            TeamAchievementsRoute(
+                navController = navController
+            )
+        }
+        composable<GlHelperScreens.GlobalAchievements> {
+            GlobalAchievementsRoute(
                 navController = navController
             )
         }

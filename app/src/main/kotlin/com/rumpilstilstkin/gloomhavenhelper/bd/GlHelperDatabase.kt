@@ -38,6 +38,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamCharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeConverter
@@ -48,6 +49,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
     CardActionsTypeConverter::class,
     MonsterStatTypeConverter::class,
     StringListTypeConverter::class,
+    AchievementConverter::class,
 )
 @Database(
     entities = [

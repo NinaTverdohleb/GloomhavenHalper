@@ -46,8 +46,8 @@ class TeamTabViewModel @Inject constructor(
                     teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
                     teamReputation = team.reputation,
                     prosperity = team.prosperity,
-                    teamAchievements = team.teamAchievement,
-                    globalAchievements = team.globalAchievement,
+                    teamAchievements = team.teamAchievement.toImmutableList(),
+                    globalAchievements = team.globalAchievement.toImmutableList(),
                     characters = team.characters.map { it.toUi() }.toImmutableList(),
                     canAddCharacter = team.characters.size < 4,
                     shopDiscount = team.shopDiscount
@@ -88,6 +88,13 @@ class TeamTabViewModel @Inject constructor(
                 TeamTabAction.AddScenario -> {
                     _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
                 }
+
+                TeamTabAction.OpenGlobalAchievements -> {
+                    _navigationEvents.emit(Screen(GlHelperScreens.GlobalAchievements))
+                }
+                TeamTabAction.OpenTeamAchievements -> {
+                    _navigationEvents.emit(Screen(GlHelperScreens.TeamAchievements))
+                }
             }
         }
     }
@@ -99,4 +106,6 @@ sealed interface TeamTabAction {
     data class UpdateReputation(val value: Int) : TeamTabAction
     data class UpdateProsperity(val value: Int) : TeamTabAction
     data object AddScenario : TeamTabAction
+    data object OpenTeamAchievements : TeamTabAction
+    data object OpenGlobalAchievements : TeamTabAction
 }

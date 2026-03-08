@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,16 +11,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun GlobalAchievement(
-    globalAchievements: String,
-    modifier: Modifier = Modifier
+    globalAchievements: ImmutableList<Achievement>,
+    modifier: Modifier = Modifier,
+    clickGlobalAchievement: () -> Unit
 ) = GloomCard(
-    modifier = modifier
-){
+    modifier = modifier.clickable { clickGlobalAchievement() }
+) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = "Общие достижения",
@@ -30,23 +35,27 @@ internal fun GlobalAchievement(
     Spacer(
         modifier = Modifier.height(16.dp)
     )
-    Text(
-        text = globalAchievements
-            .split(",")
-            .map { it.trim() }
-            .filter { it.isNotEmpty() }
-            .joinToString("\n") { it.trim() },
-        style = MaterialTheme.typography.bodyMedium,
-    )
+    globalAchievements.forEach { achievement ->
+        val text = if(achievement.maxValue > 1){
+            "${achievement.name} - ${achievement.value}"
+        } else {
+            achievement.name
+        }
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
 }
 
 @Composable
 internal fun TeamAchievement(
-    teamAchievements: String,
-    modifier: Modifier = Modifier
+    teamAchievements: ImmutableList<Achievement>,
+    modifier: Modifier = Modifier,
+    clickTeamAchievement: () -> Unit
 ) = GloomCard(
-    modifier = modifier
-){
+    modifier = modifier.clickable { clickTeamAchievement() }
+) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = "Достижения отряда",
@@ -57,14 +66,17 @@ internal fun TeamAchievement(
     Spacer(
         modifier = Modifier.height(16.dp)
     )
-    Text(
-        text = teamAchievements
-            .split(",")
-            .map { it.trim() }
-            .filter { it.isNotEmpty() }
-            .joinToString("\n") { it.trim() },
-        style = MaterialTheme.typography.bodyMedium,
-    )
+    teamAchievements.forEach { achievement ->
+        val text = if(achievement.maxValue > 1){
+            "${achievement.name} - ${achievement.value}"
+        } else {
+            achievement.name
+        }
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
 }
 
 @Preview
@@ -73,7 +85,11 @@ private fun GlobalAchievementPreview() {
     GloomhavenHalperTheme {
         GlobalAchievement(
             modifier = Modifier.fillMaxWidth(),
-            globalAchievements = " Нашествие мертвецов, Голос: умолк",
+            globalAchievements = persistentListOf(
+                Achievement.fixture("Нашествие мертвецов"),
+                Achievement.fixture("Голос: умолк", value = 2)
+            ),
+            clickGlobalAchievement = {}
         )
     }
 }
@@ -84,7 +100,11 @@ private fun TeamAchievementPreview() {
     GloomhavenHalperTheme {
         TeamAchievement(
             modifier = Modifier.fillMaxWidth(),
-            teamAchievements = "Нашествие мертвецов, Голос: умолк",
+            teamAchievements = persistentListOf(
+                Achievement.fixture("Нашествие мертвецов"),
+                Achievement.fixture("Голос: умолк", value = 2, maxValue = 3),
+            ),
+            clickTeamAchievement = {}
         )
     }
 }
