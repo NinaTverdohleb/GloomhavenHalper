@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
@@ -35,6 +37,7 @@ internal fun ScenariosTabScreen(
     completeScenario: (Int) -> Unit,
     startScenario: (Int) -> Unit,
     toggleSection: (ScenarioSectionType) -> Unit,
+    addScenario: () -> Unit,
 ) = Column(
     modifier = Modifier.fillMaxSize(),
 ) {
@@ -90,6 +93,19 @@ internal fun ScenariosTabScreen(
             }
         }
     }
+
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        onClick = addScenario,
+        contentPadding = PaddingValues(16.dp)
+    ) {
+        Text(
+            text = "Добавить сценарий",
+            fontSize = 16.sp
+        )
+    }
     selectedActiveScenario?.let { scenario ->
         ScenarioActionDialog(
             scenarioNumber = scenario.scenarioNumber,
@@ -128,6 +144,7 @@ private fun ScenariosTabScreenPreview() {
             completeScenario = {},
             startScenario = {},
             toggleSection = {},
+            addScenario = {},
         )
     }
 }

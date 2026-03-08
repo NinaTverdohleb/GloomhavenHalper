@@ -5,16 +5,25 @@ import kotlinx.serialization.Serializable
 sealed interface GlHelperScreens {
     @Serializable
     data object Start : GlHelperScreens
+
     @Serializable
     data object TeamDetails : GlHelperScreens
+
     @Serializable
     data class Scenario(val scenarioId: Int) : GlHelperScreens
+
     @Serializable
-    data class CharacterDetails(val characterId: Int): GlHelperScreens
+    data class CharacterDetails(val characterId: Int) : GlHelperScreens
+
     @Serializable
-    data class AddGoodsForCharacter(val characterId: Int): GlHelperScreens
+    data class AddGoodsForCharacter(val characterId: Int) : GlHelperScreens
+
     @Serializable
-    data class SearchPersonalQuest(val characterId: Int): GlHelperScreens
+    data class SearchPersonalQuest(val characterId: Int) : GlHelperScreens
+
     @Serializable
-    data object AddGoodsForTeam: GlHelperScreens
+    data object AddGoodsForTeam : GlHelperScreens
+
+    @Serializable
+    data object AddScenarioForTeam : GlHelperScreens
 }

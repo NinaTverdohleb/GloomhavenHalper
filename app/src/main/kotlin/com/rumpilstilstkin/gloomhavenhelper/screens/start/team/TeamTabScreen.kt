@@ -29,6 +29,7 @@ internal fun TeamTabScreen(
     startScenario: (Int) -> Unit,
     updateProsperity: (Int) -> Unit,
     updateReputation: (Int) -> Unit,
+    addScenario: () -> Unit,
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
@@ -66,6 +67,7 @@ internal fun TeamTabScreen(
                         scenarios = team.teamScenario,
                         completeScenario = completeScenario,
                         startScenario = startScenario,
+                        addScenario = addScenario
                     )
                 }
                 if (team.globalAchievements.isNotBlank()) {
@@ -100,6 +102,7 @@ private fun TeamTabScreenPreview() {
             startScenario = {},
             updateProsperity = {},
             updateReputation = {},
+            addScenario = {},
         )
     }
 }

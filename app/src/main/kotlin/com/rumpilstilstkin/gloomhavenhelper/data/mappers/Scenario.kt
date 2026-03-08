@@ -27,3 +27,12 @@ fun ScenarioBd.toDomain() = ScenarioInfo(
     location = this.location,
     pack = PackType.valueOf(this.pack)
 )
+
+fun ScenarioBd.toShortDomain() = ScenarioShortInfo(
+    scenarioNumber = this.scenarioNumber,
+    scenarioName = this.name,
+    scenarioRequirements = LogicalCondition(this.requirements),
+    location = this.location,
+    pack = PackType.valueOf(this.pack),
+    isCompleted = false,
+)
