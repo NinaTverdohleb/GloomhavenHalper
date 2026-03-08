@@ -15,8 +15,9 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGood
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
 
 @Composable
 fun GlHelperNavHost(
@@ -36,7 +37,7 @@ fun GlHelperNavHost(
             )
         }
         composable<GlHelperScreens.TeamDetails> {
-            TeamDetailsScreen()
+            TeamEditRoute()
         }
         composable<GlHelperScreens.Scenario> {
             val args = it.toRoute<GlHelperScreens.Scenario>()
@@ -68,6 +69,11 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.AddGoodsForTeam> {
             AddGoodsForTeamScreenRoute(
+                navController = navController
+            )
+        }
+        composable<GlHelperScreens.AddScenarioForTeam> {
+            AddScenarioForTeamRoute(
                 navController = navController
             )
         }

@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScen
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
@@ -79,6 +80,10 @@ class TeamTabViewModel @Inject constructor(
                 is TeamTabAction.CompleteScenario -> {
                     completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
                 }
+
+                TeamTabAction.AddScenario -> {
+                    _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
+                }
             }
         }
     }
@@ -89,4 +94,5 @@ sealed interface TeamTabAction {
     data class CompleteScenario(val scenarioId: Int) : TeamTabAction
     data class UpdateReputation(val value: Int) : TeamTabAction
     data class UpdateProsperity(val value: Int) : TeamTabAction
+    data object AddScenario : TeamTabAction
 }

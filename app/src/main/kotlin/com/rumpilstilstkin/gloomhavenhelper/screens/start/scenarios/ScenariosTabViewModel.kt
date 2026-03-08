@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetTeamScenariosUseCase
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
@@ -100,6 +101,8 @@ class ScenariosTabViewModel @Inject constructor(
             is ScenariosTabAction.CompleteScenario ->
                 completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
 
+            ScenariosTabAction.AddScenario ->
+                _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
         }
     }
 }

@@ -36,5 +36,6 @@ fun TeamTabRoute(
         startScenario = { scenarioId -> viewModel.onAction(TeamTabAction.StartScenario(scenarioId)) },
         updateProsperity = { newValue -> viewModel.onAction(TeamTabAction.UpdateProsperity(newValue)) },
         updateReputation = { newValue -> viewModel.onAction(TeamTabAction.UpdateReputation(newValue)) },
+        addScenario = { viewModel.onAction(TeamTabAction.AddScenario) }
     )
 }
