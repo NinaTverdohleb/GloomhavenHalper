@@ -26,4 +26,9 @@ sealed interface GlHelperScreens {
 
     @Serializable
     data object AddScenarioForTeam : GlHelperScreens
+
+    @Serializable
+    data object TeamAchievements : GlHelperScreens
+    @Serializable
+    data object GlobalAchievements : GlHelperScreens
 }

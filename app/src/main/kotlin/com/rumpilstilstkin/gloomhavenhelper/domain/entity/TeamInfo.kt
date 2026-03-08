@@ -4,8 +4,8 @@ data class TeamInfo(
     val id: Int,
     val name: String,
     val level: Int,
-    val teamAchievement: String,
-    val globalAchievement: String,
+    val teamAchievement: List<Achievement>,
+    val globalAchievement: List<Achievement>,
     val reputation: Int,
     val activeScenario: List<ScenarioShortInfo>,
     val characters: List<CharacterInfo>,
@@ -36,8 +36,8 @@ data class Prosperity(
 data class ShortTeamInfo(
     val teamId: Int,
     val name: String,
-    val teamAchievement: List<String>,
-    val globalAchievement: List<String>,
+    val teamAchievement: List<Achievement>,
+    val globalAchievement: List<Achievement>,
     val reputation: Int,
     val prosperity: Int,
     val packs: List<PackType>
@@ -49,8 +49,8 @@ data class ShortTeamInfo(
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
-            teamAchievement = listOf("Achievement 1", "Achievement 2"),
-            globalAchievement = listOf("Achievement 3", "Achievement 4"),
+            teamAchievement = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
+            globalAchievement = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN)
@@ -61,8 +61,8 @@ data class ShortTeamInfo(
 data class TeamInfoWithScenario(
     val teamId: Int,
     val name: String,
-    val teamAchievement: String,
-    val globalAchievement: String,
+    val teamAchievement: List<Achievement> ,
+    val globalAchievement: List<Achievement> ,
     val reputation: Int,
     val prosperity: Int,
     val scenario: List<ScenarioShortInfo>,

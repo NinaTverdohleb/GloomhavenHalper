@@ -30,6 +30,8 @@ internal fun TeamTabScreen(
     updateProsperity: (Int) -> Unit,
     updateReputation: (Int) -> Unit,
     addScenario: () -> Unit,
+    openTeamAchievements: () -> Unit,
+    openGlobalAchievements: () -> Unit,
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
@@ -70,20 +72,18 @@ internal fun TeamTabScreen(
                         addScenario = addScenario
                     )
                 }
-                if (team.globalAchievements.isNotBlank()) {
-                    item {
-                        GlobalAchievement(
-                            globalAchievements = team.globalAchievements,
-                        )
-                    }
+                item {
+                    GlobalAchievement(
+                        globalAchievements = team.globalAchievements,
+                        clickGlobalAchievement = openGlobalAchievements
+                    )
                 }
 
-                if (team.teamAchievements.isNotBlank()) {
-                    item {
-                        TeamAchievement(
-                            teamAchievements = team.teamAchievements
-                        )
-                    }
+                item {
+                    TeamAchievement(
+                        teamAchievements = team.teamAchievements,
+                        clickTeamAchievement = openTeamAchievements
+                    )
                 }
             }
         }
@@ -103,6 +103,8 @@ private fun TeamTabScreenPreview() {
             updateProsperity = {},
             updateReputation = {},
             addScenario = {},
+            openTeamAchievements = {},
+            openGlobalAchievements = {}
         )
     }
 }

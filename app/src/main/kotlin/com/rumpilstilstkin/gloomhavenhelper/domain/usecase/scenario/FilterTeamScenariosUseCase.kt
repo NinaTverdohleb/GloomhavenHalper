@@ -8,11 +8,8 @@ import javax.inject.Inject
 class FilterTeamScenariosUseCase @Inject constructor() {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(team: TeamInfoWithScenario): TeamScenarios {
-        val allAchievement = sequenceOf(
-            team.teamAchievement,
-            team.globalAchievement
-        )
-            .flatMap { it.splitToSequence(",") }
+        val allAchievement = (team.teamAchievement + team.globalAchievement)
+            .map { it.name }
             .map { it.trim() }
             .filter { it.isNotEmpty() }
             .toSet()
