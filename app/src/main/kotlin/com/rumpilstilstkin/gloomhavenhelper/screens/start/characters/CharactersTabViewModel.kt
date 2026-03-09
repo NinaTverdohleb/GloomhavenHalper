@@ -73,6 +73,8 @@ class CharactersTabViewModel @Inject constructor(
                 showAddCharacterDialog = logicState.showAddCharacterDialog,
                 filterAlive = logicState.filterAlive,
                 characters = (if (logicState.filterAlive) alive else characters)
+                    .sortedBy { it.id}
+                    .sortedBy { !it.isAlive }
                     .map { it.toUi() }
                     .toImmutableList(),
                 canAdd = alive.size < 4,

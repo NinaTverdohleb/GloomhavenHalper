@@ -41,24 +41,28 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<CharacterGeneralTabState> = getCharacterUseCase(id).map {
-        CharacterGeneralTabState(
-            experience = it.generalInfo.experience,
-            goldCount = it.generalInfo.goldCount,
-            hasTeam = it.generalInfo.team != null,
-            teamName = it.generalInfo.team?.name,
-            nextLevel = it.nextLevelExperience,
-            notes = it.generalInfo.notes,
-            checkMarkCount = it.generalInfo.checkMarkCount,
-            isDonateAvailable = it.isDonateAvailable,
-            personalQuest = it.personalQuest?.toUI()
+    val uiState: StateFlow<CharacterGeneralTabState> =
+        getCharacterUseCase(id).map {
+            if (it == null) {
+                return@map CharacterGeneralTabState.Empty
+            }
+            CharacterGeneralTabState(
+                experience = it.generalInfo.experience,
+                goldCount = it.generalInfo.goldCount,
+                hasTeam = it.generalInfo.team != null,
+                teamName = it.generalInfo.team?.name,
+                nextLevel = it.nextLevelExperience,
+                notes = it.generalInfo.notes,
+                checkMarkCount = it.generalInfo.checkMarkCount,
+                isDonateAvailable = it.isDonateAvailable,
+                personalQuest = it.personalQuest?.toUI()
 
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = CharacterGeneralTabState.Empty,
+            started = SharingStarted.WhileSubscribed(100),
         )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = CharacterGeneralTabState.Empty,
-        started = SharingStarted.WhileSubscribed(100),
-    )
 
     fun onAction(action: GeneralTabActions) {
         viewModelScope.launch {
