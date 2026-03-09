@@ -55,7 +55,7 @@ fun AddCharacterDialog(
     addCharacter: (name: String, level: Int, characterClass: CharacterClassTypeUI) -> Unit
 ) {
     var newCharacterName by rememberSaveable { mutableStateOf("") }
-    var selectedClass by remember { mutableStateOf<CharacterClassTypeUI?>(null) }
+    var selectedClass by remember { mutableStateOf(avaliableClasses.firstOrNull()) }
     var level by remember { mutableIntStateOf(1) }
 
     GloomAlertDialog(
@@ -74,7 +74,7 @@ fun AddCharacterDialog(
     ) {
         GloomVariantCard {
             LazyVerticalGrid(
-                modifier = Modifier.Companion.padding(4.dp),
+                modifier = Modifier.padding(4.dp),
                 columns = GridCells.Adaptive(48.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -84,7 +84,7 @@ fun AddCharacterDialog(
                     Icon(
                         painter = painterResource(id = classType.image),
                         contentDescription = classType.title,
-                        modifier = Modifier.Companion
+                        modifier = Modifier
                             .size(32.dp)
                             .clickable {
                                 selectedClass = if (isSelected) {
@@ -105,13 +105,14 @@ fun AddCharacterDialog(
 
         selectedClass?.let {
             Text(
-                modifier = Modifier.Companion.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 text = it.title,
-                textAlign = TextAlign.Companion.Center
+                textAlign = TextAlign.Center
             )
         }
 
         OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = newCharacterName,
             onValueChange = { newCharacterName = it },
             label = { Text("Имя") }

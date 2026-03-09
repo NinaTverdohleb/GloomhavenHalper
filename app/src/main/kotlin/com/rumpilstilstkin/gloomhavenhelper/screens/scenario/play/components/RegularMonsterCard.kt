@@ -20,7 +20,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -61,7 +60,7 @@ fun RegularMonsterCard(
                     text = "Активные враги",
                     fontSize = 9.sp,
                     letterSpacing = 1.sp,
-                    color = CardColors.TextMuted,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(vertical = 2.dp),
                 )
             }
@@ -110,7 +109,7 @@ fun RegularMonsterCard(
 
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun RegularMonsterCardPreview() {
     GloomhavenHalperTheme {

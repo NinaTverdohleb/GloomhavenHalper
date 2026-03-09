@@ -67,10 +67,10 @@ class CharacterRepository @Inject constructor(
             }
         }
 
-    fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo> =
+    fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
         characterDao.getCharacterByIdFlow(id).map { character ->
-            val team = character.teamId?.let { teamDao.findById(it).toDomain() }
-            character.toDomain(team)
+            val team = character?.teamId?.let { teamDao.findById(it).toDomain() }
+            character?.toDomain(team)
         }
 
     fun getCharacterPersonalQuestFlow(characterId: Int) =

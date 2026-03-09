@@ -37,12 +37,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionGroups
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.iconsInlineContentMap
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.replaceTextWithIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -154,7 +152,7 @@ fun MonsterUnitCard(
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = cardColors(
-                containerColor = CardColors.UnitEffectsBackground,
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
             ),
         ) {
             Row(
@@ -194,19 +192,15 @@ fun MonsterUnitCard(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = cardColors(
-                    containerColor = CardColors.UnitEffectsBackground,
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
                 ),
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)
                 ) {
                     texts.forEachIndexed { index, stat ->
-                        val textWithIcons = replaceTextWithIcons(stat.content)
-                        Text(
-                            text = textWithIcons,
-                            inlineContent = iconsInlineContentMap,
-                            fontSize = 14.sp,
-                            color = MaterialTheme.colorScheme.onSurface
+                        TextWithImagesByCode(
+                            text = stat.content
                         )
                         if (index != texts.lastIndex) {
                             Spacer(
@@ -263,11 +257,11 @@ private fun UnitCard(
     Card(
         modifier = modifier,
         colors = cardColors(
-            containerColor = CardColors.MonsterCardBg,
+            containerColor = MaterialTheme.colorScheme.surface,
         ),
         border = BorderStroke(
             0.5.dp,
-            CardColors.CardBorder
+            MaterialTheme.colorScheme.outlineVariant
         )
     ) {
         Column(
@@ -295,7 +289,7 @@ private fun UnitNumberBadge(
                 width = 1.dp
             )
             .background(
-                color = CardColors.SurfaceVariant,
+                color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = RoundedCornerShape(10.dp),
             ),
         contentAlignment = Alignment.Center,

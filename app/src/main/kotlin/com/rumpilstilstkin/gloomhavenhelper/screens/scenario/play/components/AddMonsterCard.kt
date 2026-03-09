@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -42,7 +41,7 @@ fun AddMonsterCard(
                 modifier = Modifier
                     .size(120.dp)
                     .clip(CircleShape)
-                    .background(CardColors.Surface),
+                    .background(MaterialTheme.colorScheme.secondaryContainer),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(

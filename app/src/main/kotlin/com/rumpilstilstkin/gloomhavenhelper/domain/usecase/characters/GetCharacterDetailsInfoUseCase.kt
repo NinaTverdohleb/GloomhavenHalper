@@ -11,14 +11,16 @@ import javax.inject.Inject
 class GetCharacterDetailsInfoUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
-    operator fun invoke(characterId: Int): Flow<CharacterFullInfo> =
+    operator fun invoke(characterId: Int): Flow<CharacterFullInfo?> =
         characterRepository.getCharacterByIdFlow(characterId)
             .combine(characterRepository.getCharacterPersonalQuestFlow(characterId)) { characterInfo, quest ->
-                CharacterFullInfo(
-                    generalInfo = characterInfo,
-                    nextLevelExperience = getNextLevel(characterInfo.level),
-                    isDonateAvailable = characterInfo.goldCount >= 10,
-                    personalQuest = quest
-                )
+                characterInfo?.let {
+                    CharacterFullInfo(
+                        generalInfo = characterInfo,
+                        nextLevelExperience = getNextLevel(characterInfo.level),
+                        isDonateAvailable = characterInfo.goldCount >= 10,
+                        personalQuest = quest
+                    )
+                }
             }
 }

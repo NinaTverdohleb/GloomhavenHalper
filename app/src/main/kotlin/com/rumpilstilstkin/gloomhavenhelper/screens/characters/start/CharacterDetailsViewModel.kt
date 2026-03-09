@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -42,19 +43,19 @@ class CharacterDetailsViewModel @AssistedInject constructor(
 
     val uiState: StateFlow<CharacterDetailsStateUi> =
         combine(
-            getCharacterUseCase(id),
+            getCharacterUseCase(id).filterNotNull(),
             logicState
         ) { character, logic ->
-            CharacterDetailsStateUi(
-                level = character.level,
-                name = character.name,
-                teamName = character.team?.name ?: "",
-                type = character.characterType.toCharacterClassTypeUI(),
-                showDeleteDialog = logic.showDeleteDialog,
-                showNameDialog = logic.showNameDialog,
-                showChangeLevelDialog = logic.showChangeLevelDialog,
-                isActive = character.isAlive
-            )
+                CharacterDetailsStateUi(
+                    level = character.level,
+                    name = character.name,
+                    teamName = character.team?.name ?: "",
+                    type = character.characterType.toCharacterClassTypeUI(),
+                    showDeleteDialog = logic.showDeleteDialog,
+                    showNameDialog = logic.showNameDialog,
+                    showChangeLevelDialog = logic.showChangeLevelDialog,
+                    isActive = character.isAlive
+                )
         }.stateIn(
             scope = viewModelScope,
             initialValue = CharacterDetailsStateUi(),
