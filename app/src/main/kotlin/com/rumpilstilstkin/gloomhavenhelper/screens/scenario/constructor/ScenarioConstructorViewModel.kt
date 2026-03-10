@@ -86,7 +86,7 @@ class ScenarioConstructorViewModel @Inject constructor(
                         _navigationEvents.emit(
                             GlHelperEvent.Screen(
                                 GlHelperScreens.Scenario(
-                                    scenarioId = null,
+                                    scenarioId = action.scenarioId,
                                     monsters = selectedMonsters
                                 )
                             )

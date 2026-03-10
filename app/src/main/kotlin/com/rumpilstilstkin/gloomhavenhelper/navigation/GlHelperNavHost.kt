@@ -100,7 +100,9 @@ fun GlHelperNavHost(
             )
         }
         composable<GlHelperScreens.ScenarioConstructor> {
+            val args = it.toRoute<GlHelperScreens.ScenarioConstructor>()
             ScenarioConstructorRoute(
+                scenarioId = args.scenarioId,
                 navController = navController
             )
         }
