@@ -1377,10 +1377,82 @@ object ScenariosFiller {
                 pack = PackType.FORGOTTEN_CIRCLES.name,
             ),
             ScenarioBd(
-                scenarioNumber = 103,
-                name = "Нужный момент",
-                monsters = listOf(),
+                scenarioNumber = 102,
+                name = "Ярмарка знаний",
+                requirements = "Знание-сила", // 2
                 location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 103,
+                requirements = "Знание-сила", // 2
+                name = "Нужный момент",
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 104,
+                requirements = "Знание-сила", // 2
+                name = "Зияющая рана",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Жнец заразитель",
+                    "Скрытень",
+                    "Солнечный демон",
+                    "Шипящий дрейк",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 105,
+                requirements = "Знание-сила && !Охота на охотников", // 2
+                name = "Ужасы культа",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Разбойник-страж",
+                    "Валрат-следопыт",
+                    "Гончая",
+                    "Валрат-варвар"
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 106,
+                requirements = "Знание-сила", // 2
+                name = "Причудливая конструкция",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Эстер-разведчик",
+                    "Древняя пушка",
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Саввас Поток лавы",
+                    "Морозный демон",
+                    "Воздушный демон",
+                    "Саввас Ледяной шторм"
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 107,
+                requirements = "Знание-сила", // 2
+                name = "Гений механики",
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 108,
+                requirements = "Знание-сила", // 2
+                name = "Гений механики",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Городской лучник",
+                    "Городской страж",
+                    "Полководец людей",
+                    "Полководец валратов",
+                    "Валрат-варвар",
+                    "Валрат-следопыт",
+                ),
                 pack = PackType.FORGOTTEN_CIRCLES.name,
             ),
         )

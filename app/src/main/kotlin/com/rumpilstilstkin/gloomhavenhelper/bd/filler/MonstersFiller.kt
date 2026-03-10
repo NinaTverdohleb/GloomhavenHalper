@@ -1529,6 +1529,77 @@ object MonstersFiller {
             MonsterStatsBd(valrathSavageId, 7, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(SHIELD, "3"))),
             MonsterStatsBd(valrathSavageId, 7, true, 28, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Text("Все союзники на соседних клетка добавляют +2 ко всем атакам"))),
         )
+
+        val valrathTrackerId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Валрат-следопыт",
+                deckName = "tracker",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(valrathTrackerId, 0, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(RANGE, "2"))),
+            MonsterStatsBd(valrathTrackerId, 0, true, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "4"))),
+
+            MonsterStatsBd(valrathTrackerId, 1, false, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(RANGE, "2"))),
+            MonsterStatsBd(valrathTrackerId, 1, true, 11, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(PIERCE, "1"))),
+
+            MonsterStatsBd(valrathTrackerId, 2, false, 7, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "2"))),
+            MonsterStatsBd(valrathTrackerId, 2, true, 12, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(PIERCE, "1"))),
+
+            MonsterStatsBd(valrathTrackerId, 3, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(RANGE, "3"), Text("Преимущество"))),
+            MonsterStatsBd(valrathTrackerId, 3, true, 14, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "6"), Action(PIERCE, "1"), Action(PUSH, "1"))),
+
+            MonsterStatsBd(valrathTrackerId, 4, false, 10, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RANGE, "3"), Text("Преимущество"))),
+            MonsterStatsBd(valrathTrackerId, 4, true, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "7"), Action(PIERCE, "2"), Action(PUSH, "1"))),
+
+            MonsterStatsBd(valrathTrackerId, 5, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "3"), Text("Преимущество"))),
+            MonsterStatsBd(valrathTrackerId, 5, true, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "7"), Action(PIERCE, "2"), Action(PUSH, "1"))),
+
+            MonsterStatsBd(valrathTrackerId, 6, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(RANGE, "4"), Text("Преимущество"))),
+            MonsterStatsBd(valrathTrackerId, 6, true, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "8"), Action(PIERCE, "2"), Action(PUSH, "2"))),
+
+            MonsterStatsBd(valrathTrackerId, 7, false, 17, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(RANGE, "4"), Text("Преимущество"))),
+            MonsterStatsBd(valrathTrackerId, 7, true, 24, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "8"), Action(PIERCE, "3"), Action(PUSH, "2"))),
+        )
+
+        val humanCommanderId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Полководец людей",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, DISARM, POISON, WOUND, IMMOBILIZE, CURSE),
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(humanCommanderId, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(SHIELD, "2"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 1, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 2, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(SHIELD, "2"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 3, false, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(SHIELD, "3"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 4, false, 13, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(SHIELD, "3"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 5, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(SHIELD, "4"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 6, false, 17, listOf(Action(MOVE, "4"), Action(ATTACK, "7"), Action(SHIELD, "4"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+            MonsterStatsBd(humanCommanderId, 7, false, 20, listOf(Action(MOVE, "5"), Action(ATTACK, "8"), Action(SHIELD, "4"), Text("Способность 1: Движение +0, атака +0. Призывает городского стража"), Text("Способность 2: Призывает городского лучника. Движение -1, Щит 1 на всех союзников на соседних клетках"))),
+        )
+
+        val valrathCommanderId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Полководец валратов",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, DISARM, MUDDLE, WOUND, IMMOBILIZE, CURSE),
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(valrathCommanderId, 0, false, 10, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "3"), Action(WOUND, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 1, false, 12, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "3"), Action(WOUND, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 2, false, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "3"), Action(WOUND, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 3, false, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "3"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 4, false, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "4"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 5, false, 24, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "4"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 6, false, 28, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(RANGE, "4"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+            MonsterStatsBd(valrathCommanderId, 7, false, 33, listOf(Action(MOVE, "4"), Action(ATTACK, "7"), Action(RANGE, "5"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -1890,6 +1961,18 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_6.webp", initiative = 46),
             MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_7.webp", initiative = 60),
             MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_8.webp", needsShuffle = true, initiative = 72),
+        )
+
+        // tracker deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_1.webp", initiative = 12),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_2.webp", initiative = 18),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_3.webp", initiative = 27),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_4.webp", needsShuffle = true, initiative = 33),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_5.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_6.webp", initiative = 48),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_7.webp", initiative = 55),
+            MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_8.webp", needsShuffle = true, initiative = 69),
         )
     }
 }
