@@ -330,7 +330,12 @@ object AchievementsFiller {
             ),
             AchievementBd(
                 name = "Помощь Диамаре",
-                pack = PackType.MAIN.name,
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Охота на охотников",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
                 isGlobal = false
             ),
         )
