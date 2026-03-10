@@ -14,19 +14,21 @@ import javax.inject.Inject
 class GetScenarioInfoUseCase @Inject constructor(
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
     private val levelInfoRepository: LevelInfoRepository,
+    private val monsterRepository: MonsterRepository,
 ) {
     suspend operator fun invoke(
         scenarioNumber: Int?,
-        monsters: List<Monster>,
+        monsters: List<String>,
     ): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
                 val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
+                val scenarioMonsters = monsterRepository.getMonstersByNames(monsters, team.level)
                 ScenarioBattleInfo(
                     name = scenarioNumber?.let { number ->
                         team.activeScenario.firstOrNull { it.scenarioNumber == number }?.scenarioName
                     } ?: "Своя карта",
-                    monsters = monsters,
+                    monsters = scenarioMonsters,
                     golds = levelInfo?.goldCount ?: 0,
                     exp = levelInfo?.experience ?: 0,
                     trapDamage = levelInfo?.trapDamage ?: 0,

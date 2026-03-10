@@ -3,8 +3,10 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBdDetailsBd
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,12 +17,18 @@ interface TeamScenarioDao {
     @Update
     suspend fun update(team: TeamScenarioBd)
 
+    @Transaction
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber LIMIT 1")
-    suspend fun getTeamScenario(teamId: Int, scenarioNumber: Int): TeamScenarioBd
+    suspend fun getTeamScenario(teamId: Int, scenarioNumber: Int): TeamScenarioBdDetailsBd
 
-    @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId")
-    suspend fun getTeamScenarios(teamId: Int): List<TeamScenarioBd>
+    @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber LIMIT 1")
+    suspend fun getTeamScenarioClear(teamId: Int, scenarioNumber: Int): TeamScenarioBd
 
+    @Transaction
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId")
-    fun getTeamScenariosFlow(teamId: Int): Flow<List<TeamScenarioBd>>
+    suspend fun getTeamScenarios(teamId: Int): List<TeamScenarioBdDetailsBd>
+
+    @Transaction
+    @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId")
+    fun getTeamScenariosFlow(teamId: Int): Flow<List<TeamScenarioBdDetailsBd>>
 }

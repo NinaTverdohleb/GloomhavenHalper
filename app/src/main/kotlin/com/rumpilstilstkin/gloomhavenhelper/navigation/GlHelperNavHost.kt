@@ -6,20 +6,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
-import com.rumpilstilstkin.gloomhavenhelper.navigation.navtypes.MonsterListType
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.constructor.ScenarioConstructorRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global.GlobalAchievementsRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAchievementsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
 import kotlin.reflect.typeOf
@@ -48,7 +48,7 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.Scenario>(
             typeMap = mapOf(
-                typeOf<List<Monster>>() to MonsterListType
+                typeOf<List<String>>() to NavType.StringListType
             )
         ) {
             val args = it.toRoute<GlHelperScreens.Scenario>()
@@ -96,6 +96,11 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.GlobalAchievements> {
             GlobalAchievementsRoute(
+                navController = navController
+            )
+        }
+        composable<GlHelperScreens.ScenarioConstructor> {
+            ScenarioConstructorRoute(
                 navController = navController
             )
         }

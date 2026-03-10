@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
@@ -16,8 +15,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -31,6 +28,7 @@ class TeamRepository @Inject constructor(
     private val currentTeamDatasource: CurrentTeamDatasource,
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
+    private val scenarioRepository: ScenarioRepository,
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
@@ -51,9 +49,11 @@ class TeamRepository @Inject constructor(
         }
     }
 
-    fun getTeamWithScenarioFlow(id: Int): Flow<TeamInfoWithScenario> {
-        return teamDao.getTeamWithScenariosFlow(id)
-            .map { it.toDomain() }
+    suspend fun getTeamWithScenarioFlow(id: Int): Flow<TeamInfoWithScenario> {
+        return teamDao.getTeamFlow(id)
+            .combine(scenarioRepository.getTeamScenariosFlow(id)) { team, scenarios ->
+                team.toDomain(scenarios)
+            }
     }
 
     suspend fun setCurrentTeam(teamId: Int) {

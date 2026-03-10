@@ -1,10 +1,12 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 @Entity(foreignKeys = [
         ForeignKey(
@@ -30,9 +32,14 @@ data class TeamScenarioBd(
     val id: Int = 0,
     val teamId: Int,
     val scenarioNumber: Int,
-    val scenarioName: String,
-    val scenarioRequirements: String,
     val completed: Boolean = false,
-    val location: String = "",
-    val pack: String
+)
+
+data class TeamScenarioBdDetailsBd(
+    @Embedded val teamScenario: TeamScenarioBd,
+    @Relation(
+        parentColumn = "scenarioNumber",
+        entityColumn = "scenarioNumber"
+    )
+    val scenario: ScenarioBd
 )

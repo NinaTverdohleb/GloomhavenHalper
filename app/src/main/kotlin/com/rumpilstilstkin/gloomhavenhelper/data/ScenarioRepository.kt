@@ -4,6 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
+import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import kotlinx.coroutines.flow.Flow
@@ -19,11 +20,21 @@ class ScenarioRepository @Inject constructor(
     suspend fun getAllScenarios(): List<ScenarioInfo> = scenarioDao.getAll().map { it.toDomain() }
 
     suspend fun getAllTeamScenarios(teamId: Int): List<ScenarioShortInfo> =
-        teamScenarioDao.getTeamScenarios(teamId).map { it.toDomain() }
+        teamScenarioDao.getTeamScenarios(teamId).map {
+            it.scenario.toShortDomain(
+                isCompleted = it.teamScenario.completed
+            )
+        }
 
-    suspend fun getTeamScenariosFlow(teamId: Int): Flow<List<ScenarioShortInfo>> =
+    fun getTeamScenariosFlow(teamId: Int): Flow<List<ScenarioShortInfo>> =
         teamScenarioDao.getTeamScenariosFlow(teamId)
-            .map { scenarioBds -> scenarioBds.map { it.toDomain() } }
+            .map { scenarioBds ->
+                scenarioBds.map {
+                    it.scenario.toShortDomain(
+                        isCompleted = it.teamScenario.completed
+                    )
+                }
+            }
 
     suspend fun getScenario(scenarioNumber: Int): ScenarioInfo =
         scenarioDao.getScenario(scenarioNumber).toDomain()
@@ -33,16 +44,12 @@ class ScenarioRepository @Inject constructor(
             TeamScenarioBd(
                 teamId = teamId,
                 scenarioNumber = scenario.scenarioNumber,
-                scenarioName = scenario.scenarioName,
-                scenarioRequirements = scenario.scenarioRequirements.condition,
-                location = scenario.location,
-                pack = scenario.pack.name
             )
         )
     }
 
     suspend fun completeTeamScenario(teamId: Int, scenarioId: Int) {
-        teamScenarioDao.getTeamScenario(teamId, scenarioId).let {
+        teamScenarioDao.getTeamScenarioClear(teamId, scenarioId).let {
             teamScenarioDao.update(it.copy(completed = true))
         }
     }
