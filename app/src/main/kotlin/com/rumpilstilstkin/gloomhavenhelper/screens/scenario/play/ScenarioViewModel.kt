@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
@@ -23,13 +24,15 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @HiltViewModel(assistedFactory = ScenarioViewModel.Factory::class)
 class ScenarioViewModel @AssistedInject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
-    @Assisted private val scenarioNumber: Int,
+    @Assisted private val scenarioNumber: Int?,
+    @Assisted private val monsters: List<Monster>,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -50,7 +53,7 @@ class ScenarioViewModel @AssistedInject constructor(
 
     private fun loadScenario() {
         viewModelScope.launch {
-            getScenarioInfoUseCase(scenarioNumber).onSuccess { battleInfo ->
+            getScenarioInfoUseCase(scenarioNumber, monsters).onSuccess { battleInfo ->
                 _logicState.update {
                     ScenarioLogicState(
                         scenarioInfo = battleInfo,
@@ -65,84 +68,111 @@ class ScenarioViewModel @AssistedInject constructor(
     }
 
     fun onAction(action: ScenarioActions) {
-        val state = _logicState.value ?: return
-        viewModelScope.launch(Dispatchers.Default) {
-            val newState = state.let {
-                when (action) {
-                    is ScenarioActions.AddMonster -> it
-                        .addMonster(action.monsterIds)
+        viewModelScope.launch {
+            when (action) {
+                is ScenarioActions.AddMonster -> updateState {
+                    it.addMonster(action.monsterIds)
                         .copy(showMonsterDialog = false)
+                }
 
-                    is ScenarioActions.RemoveMonster -> it.removeMonster(action.monsterId)
-                    is ScenarioActions.AddUnits -> it.addUnits(
+                is ScenarioActions.RemoveMonster -> updateState { it.removeMonster(action.monsterId) }
+                is ScenarioActions.AddUnits -> updateState {
+                    it.addUnits(
                         numbers = action.numbers,
                         monsterId = action.monsterId,
                         isSpecial = action.isElite
                     )
+                }
 
-                    is ScenarioActions.RemoveUnit -> it.removeUnit(
+                is ScenarioActions.RemoveUnit -> updateState {
+                    it.removeUnit(
                         number = action.number,
                         monsterId = action.monsterId
                     )
+                }
 
-                    is ScenarioActions.UpdateUnitLife -> it.updateUnitLife(
+                is ScenarioActions.UpdateUnitLife -> updateState {
+                    it.updateUnitLife(
                         number = action.unitNumber,
                         monsterId = action.monsterId,
                         newValue = action.newValue
                     )
+                }
 
-                    is ScenarioActions.NextRound -> it.nextRound()
-                    is ScenarioActions.SwitchUnitEffect -> it.addEffect(
+                is ScenarioActions.NextRound -> updateState { it.nextRound() }
+                is ScenarioActions.SwitchUnitEffect -> updateState {
+                    it.addEffect(
                         number = action.unitNumber,
                         monsterId = action.monsterId,
                         effect = action.effect
                     )
+                }
 
-                    is ScenarioActions.CompleteScenario -> {
+                is ScenarioActions.CompleteScenario -> {
+                    if (scenarioNumber != null) {
                         viewModelScope.launch {
                             completeScenarioUseCase(scenarioNumber)
                             _navigationEvents.emit(GlHelperEvent.Back)
                         }
-                        it
-                    }
-
-                    ScenarioActions.CloseMonstersDialog -> it.copy(
-                        showMonsterDialog = false
-                    )
-
-                    ScenarioActions.OpenMonstersDialog -> it.copy(
-                        showMonsterDialog = true
-                    )
-
-                    is ScenarioActions.UpdateMagic -> it.updateMagic(action.magic)
-                    ScenarioActions.CloseUnitLevelDialog -> it.copy(
-                        showUnitLevelDialog = false
-                    )
-
-                    ScenarioActions.ShowUnitLevelDialog -> it.copy(
-                        showUnitLevelDialog = true
-                    )
-
-                    is ScenarioActions.UpdateUnitLevel -> {
-                        val newStats = getMonsterStatsForLevelUseCase(
-                            action.monsterId,
-                            action.level,
-                            action.isElite
-                        )
-                        it.updateUnitStats(
-                            monsterId = action.monsterId,
-                            number = action.unitNumber,
-                            stats = newStats
-                        )
                     }
                 }
+
+                ScenarioActions.CloseMonstersDialog -> updateState {
+                    it.copy(
+                        showMonsterDialog = false
+                    )
+                }
+
+                ScenarioActions.OpenMonstersDialog -> updateState {
+                    it.copy(
+                        showMonsterDialog = true
+                    )
+                }
+
+                is ScenarioActions.UpdateMagic -> updateState { it.updateMagic(action.magic) }
+                ScenarioActions.CloseUnitLevelDialog -> updateState {
+                    it.copy(
+                        showUnitLevelDialog = false
+                    )
+                }
+
+                ScenarioActions.ShowUnitLevelDialog -> updateState {
+                    it.copy(
+                        showUnitLevelDialog = true
+                    )
+                }
+
+                is ScenarioActions.UpdateUnitLevel -> updateState {
+                    val newStats = getMonsterStatsForLevelUseCase(
+                        action.monsterId,
+                        action.level,
+                        action.isElite
+                    )
+                    it.updateUnitStats(
+                        monsterId = action.monsterId,
+                        number = action.unitNumber,
+                        stats = newStats
+                    )
+                }
             }
+        }
+    }
+
+    private suspend fun updateState(
+        update: suspend (ScenarioLogicState) -> ScenarioLogicState
+    ) {
+        val state = _logicState.value ?: return
+        withContext(Dispatchers.Default) {
+            val newState = update(state)
             _logicState.update { newState }
         }
     }
 
     @AssistedFactory
     interface Factory {
-        fun create(scenarioNumber: Int): ScenarioViewModel
+        fun create(
+            scenarioNumber: Int?,
+            monsters: List<Monster>
+        ): ScenarioViewModel
     }
 }

@@ -11,27 +11,20 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GetScenarioInfoUseCase @Inject constructor(
+class GetMonsterForScenarioUseCase @Inject constructor(
+    private val monsterRepository: MonsterRepository,
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
     private val levelInfoRepository: LevelInfoRepository,
 ) {
     suspend operator fun invoke(
-        scenarioNumber: Int?,
-        monsters: List<Monster>,
-    ): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
+        scenarioNumber: Int
+    ): Result<List<Monster>> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
                 val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
-                ScenarioBattleInfo(
-                    name = scenarioNumber?.let { number ->
-                        team.activeScenario.firstOrNull { it.scenarioNumber == number }?.scenarioName
-                    } ?: "Своя карта",
-                    monsters = monsters,
-                    golds = levelInfo?.goldCount ?: 0,
-                    exp = levelInfo?.experience ?: 0,
-                    trapDamage = levelInfo?.trapDamage ?: 0,
-                    gamersCount = team.characters.size,
-                    monsterLevel = levelInfo?.monsterLevel ?: 0
+                monsterRepository.getMonstersForScenario(
+                    scenarioNumber = scenarioNumber,
+                    level = levelInfo?.monsterLevel ?: 0
                 ).toResult()
             } else {
                 Result.failure(IllegalStateException("Team is null"))

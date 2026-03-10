@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.navigation
 
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import kotlinx.serialization.Serializable
 
 sealed interface GlHelperScreens {
@@ -10,7 +11,7 @@ sealed interface GlHelperScreens {
     data object EditCurrentTeam : GlHelperScreens
 
     @Serializable
-    data class Scenario(val scenarioId: Int) : GlHelperScreens
+    data class Scenario(val scenarioId: Int?, val monsters: List<Monster>) : GlHelperScreens
 
     @Serializable
     data class CharacterDetails(val characterId: Int) : GlHelperScreens

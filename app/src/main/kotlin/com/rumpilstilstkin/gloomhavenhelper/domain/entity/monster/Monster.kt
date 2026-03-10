@@ -1,5 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Monster(
     val id: Int,
     val name: String,

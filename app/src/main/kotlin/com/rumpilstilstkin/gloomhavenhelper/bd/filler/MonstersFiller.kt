@@ -1461,6 +1461,74 @@ object MonstersFiller {
             MonsterStatsBd(colorlessId, 6, false, 17, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
             MonsterStatsBd(colorlessId, 7, false, 19, listOf(Action(MOVE, "5"), Action(ATTACK, "7"), Text("Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"), Text("Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"))),
         )
+
+        // Эстер разведчик
+        val aestherScoutId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Эстер-разведчик",
+                deckName = "scout",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(aestherScoutId, 0, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(aestherScoutId, 0, true, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(aestherScoutId, 1, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(aestherScoutId, 1, true, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(MUDDLE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 2, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(aestherScoutId, 2, true, 17, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(MUDDLE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 3, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(MUDDLE, ""))),
+            MonsterStatsBd(aestherScoutId, 3, true, 19, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(MUDDLE, ""), Action(CURSE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 4, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(MUDDLE, ""))),
+            MonsterStatsBd(aestherScoutId, 4, true, 23, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(MUDDLE, ""), Action(CURSE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 5, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(MUDDLE, ""), Action(CURSE, ""))),
+            MonsterStatsBd(aestherScoutId, 5, true, 26, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(MUDDLE, ""), Action(CURSE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 6, false, 21, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(MUDDLE, ""), Action(CURSE, ""))),
+            MonsterStatsBd(aestherScoutId, 6, true, 29, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(MUDDLE, ""), Action(CURSE, ""))),
+
+            MonsterStatsBd(aestherScoutId, 7, false, 24, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(MUDDLE, ""), Action(CURSE, ""))),
+            MonsterStatsBd(aestherScoutId, 7, true, 33, listOf(Action(MOVE, "5"), Action(ATTACK, "6"), Action(MUDDLE, ""), Action(CURSE, ""))),
+        )
+
+        // Валрат варвар
+        val valrathSavageId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Валрат-варвар",
+                deckName = "savage",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(valrathSavageId, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "2"))),
+            MonsterStatsBd(valrathSavageId, 0, true, 10, listOf(Action(MOVE, "2"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(valrathSavageId, 1, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(valrathSavageId, 1, true, 12, listOf(Action(MOVE, "2"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(valrathSavageId, 2, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(valrathSavageId, 2, true, 14, listOf(Action(MOVE, "2"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(valrathSavageId, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(valrathSavageId, 3, true, 16, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Text("Все союзники на соседних клетка добавляют +1 ко всем атакам"))),
+
+            MonsterStatsBd(valrathSavageId, 4, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "2"))),
+            MonsterStatsBd(valrathSavageId, 4, true, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Text("Все союзники на соседних клетка добавляют +1 ко всем атакам"))),
+
+            MonsterStatsBd(valrathSavageId, 5, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(valrathSavageId, 5, true, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Text("Все союзники на соседних клетка добавляют +2 ко всем атакам"))),
+
+            MonsterStatsBd(valrathSavageId, 6, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(SHIELD, "2"))),
+            MonsterStatsBd(valrathSavageId, 6, true, 24, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Text("Все союзники на соседних клетка добавляют +2 ко всем атакам"))),
+
+            MonsterStatsBd(valrathSavageId, 7, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(SHIELD, "3"))),
+            MonsterStatsBd(valrathSavageId, 7, true, 28, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Text("Все союзники на соседних клетка добавляют +2 ко всем атакам"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -1810,6 +1878,18 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_6.webp", initiative = 51),
             MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_7.webp", initiative = 31),
             MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_8.webp", needsShuffle = true, initiative = 68),
+        )
+
+        // savage deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_1.webp", initiative = 13),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_2.webp", initiative = 17, needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_3.webp", initiative = 28),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_4.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_5.webp", initiative = 46),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_6.webp", initiative = 46),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_7.webp", initiative = 60),
+            MonsterAbilityCardBd(deckName = "savage", imageName = "ic_deck_ma_sv_8.webp", needsShuffle = true, initiative = 72),
         )
     }
 }

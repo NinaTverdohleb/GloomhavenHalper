@@ -6,15 +6,17 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
 
 @Composable
 fun ScenarioRoute(
     navController: NavHostController,
-    scenarioId: Int,
+    scenarioId: Int?,
+    monsters: List<Monster>,
     viewModel: ScenarioViewModel = hiltViewModel<ScenarioViewModel, ScenarioViewModel.Factory> { factory ->
-        factory.create(scenarioId)
+        factory.create(scenarioId, monsters)
     }
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
