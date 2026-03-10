@@ -32,7 +32,7 @@ class ScenarioViewModel @AssistedInject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     @Assisted private val scenarioNumber: Int?,
-    @Assisted private val monsters: List<Monster>,
+    @Assisted private val monsters: List<String>,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -172,7 +172,7 @@ class ScenarioViewModel @AssistedInject constructor(
     interface Factory {
         fun create(
             scenarioNumber: Int?,
-            monsters: List<Monster>
+            monsters: List<String>
         ): ScenarioViewModel
     }
 }

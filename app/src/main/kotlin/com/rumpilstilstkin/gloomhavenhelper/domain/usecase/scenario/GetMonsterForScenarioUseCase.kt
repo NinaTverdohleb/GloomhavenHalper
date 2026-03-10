@@ -1,9 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
-import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.utils.toResult
 import kotlinx.coroutines.Dispatchers
@@ -14,17 +11,14 @@ import javax.inject.Inject
 class GetMonsterForScenarioUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
-    private val levelInfoRepository: LevelInfoRepository,
 ) {
     suspend operator fun invoke(
         scenarioNumber: Int
-    ): Result<List<Monster>> = withContext(Dispatchers.Default) {
+    ): Result<List<String>> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
-                val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
-                monsterRepository.getMonstersForScenario(
+                monsterRepository.getMonsterNamesForScenario(
                     scenarioNumber = scenarioNumber,
-                    level = levelInfo?.monsterLevel ?: 0
                 ).toResult()
             } else {
                 Result.failure(IllegalStateException("Team is null"))

@@ -13,13 +13,38 @@ class MonsterRepository @Inject constructor(
     val monsterDao: MonsterDao,
     val scenarioDao: ScenarioDao,
 ) {
-    suspend fun getMonstersForScenario(
+    suspend fun getMonsterNamesForScenario(
         scenarioNumber: Int,
-        level: Int
-    ): List<Monster> =
+    ): List<String> =
         scenarioDao.getScenario(
             scenarioNumber = scenarioNumber
         ).monsters
+
+    suspend fun getMonsterStats(monsterId: Int, level: Int, isElite: Boolean): MonsterStats {
+        val monster = monsterDao.getMonsterById(monsterId)
+        val stats = monsterDao.getStats(
+            monsterId = monster.monsterId,
+            level = level,
+            isElite = isElite
+        )
+        return MonsterStats(
+            monsterId = monster.monsterId,
+            level = level,
+            isElite = isElite,
+            life = stats.life,
+            stats = stats.stats,
+        )
+    }
+
+    suspend fun getMonstersForPacks(packs: List<String>): List<String> =
+        monsterDao.getMonstersByPacks(packs).map { monster -> monster.name }
+
+
+    suspend fun getMonstersByNames(
+        names: List<String>,
+        level: Int
+    ): List<Monster> =
+        names
             .map { monsterName ->
                 val monster = monsterDao.getMonsterByName(monsterName)
                 val regularStats = monsterDao.getStats(
@@ -52,20 +77,4 @@ class MonsterRepository @Inject constructor(
                     level = level
                 )
             }
-
-    suspend fun getMonsterStats(monsterId: Int, level: Int, isElite: Boolean): MonsterStats {
-        val monster = monsterDao.getMonsterById(monsterId)
-        val stats = monsterDao.getStats(
-            monsterId = monster.monsterId,
-            level = level,
-            isElite = isElite
-        )
-        return MonsterStats(
-            monsterId = monster.monsterId,
-            level = level,
-            isElite = isElite,
-            life = stats.life,
-            stats = stats.stats,
-        )
-    }
 }

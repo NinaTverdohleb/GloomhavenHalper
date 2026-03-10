@@ -1,20 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
-
-fun TeamScenarioBd.toDomain() = ScenarioShortInfo(
-    scenarioNumber = this.scenarioNumber,
-    scenarioName = this.scenarioName,
-    scenarioRequirements = LogicalCondition(this.scenarioRequirements),
-    isCompleted = this.completed,
-    location = this.location,
-    pack = PackType.valueOf(this.pack)
-)
 
 fun ScenarioBd.toDomain() = ScenarioInfo(
     scenarioNumber = this.scenarioNumber,
@@ -25,14 +15,18 @@ fun ScenarioBd.toDomain() = ScenarioInfo(
     teamAchievements = this.teamAchievement.split(","),
     globalAchievements = this.globalAchievement.split(","),
     location = this.location,
-    pack = PackType.valueOf(this.pack)
+    pack = PackType.valueOf(this.pack),
+    monsters = this.monsters
 )
 
-fun ScenarioBd.toShortDomain() = ScenarioShortInfo(
+fun ScenarioBd.toShortDomain(
+    isCompleted: Boolean
+) = ScenarioShortInfo(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.name,
     scenarioRequirements = LogicalCondition(this.requirements),
     location = this.location,
     pack = PackType.valueOf(this.pack),
-    isCompleted = false,
+    isCompleted = isCompleted,
+    monsters = this.monsters
 )

@@ -20,8 +20,9 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 @Composable
 fun GloomVariantCard(
     modifier: Modifier = Modifier,
+    active: Boolean = false,
     content: @Composable ColumnScope.() -> Unit,
-) =
+) {
     Card(
         modifier = modifier,
         colors = cardColors(
@@ -29,7 +30,7 @@ fun GloomVariantCard(
         ),
         border = BorderStroke(
             1.dp,
-            MaterialTheme.colorScheme.outline
+            if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
         )
     ) {
         Column(
@@ -37,6 +38,7 @@ fun GloomVariantCard(
             content = content
         )
     }
+}
 
 
 @Preview

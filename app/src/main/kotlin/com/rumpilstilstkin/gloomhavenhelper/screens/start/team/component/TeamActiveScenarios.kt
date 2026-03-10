@@ -96,12 +96,7 @@ private fun ScenarioBlockPreview() {
     GloomhavenHalperTheme {
         ScenarioBlock(
             scenarios = listOf(
-                ShortScenarioUI(
-                    scenarioNumber = 1,
-                    scenarioName = "Scenario 1",
-                    scenarioRequirements = "Requirements 1",
-                    location = "Глубокая жопа"
-                )
+                ShortScenarioUI.fixture(1)
             ),
             completeScenario = {},
             startScenario = {},

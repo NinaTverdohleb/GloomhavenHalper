@@ -97,7 +97,7 @@ class TeamTabViewModel @Inject constructor(
                 }
 
                 TeamTabAction.AddScenario -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
+                    _navigationEvents.emit(Screen(GlHelperScreens.ScenarioConstructor))
                 }
 
                 TeamTabAction.OpenGlobalAchievements -> {

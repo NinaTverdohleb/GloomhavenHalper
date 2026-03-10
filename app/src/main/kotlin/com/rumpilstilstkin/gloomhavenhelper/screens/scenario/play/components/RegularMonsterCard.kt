@@ -42,7 +42,11 @@ fun RegularMonsterCard(
             name = item.name,
             isFly = item.isFly,
             delete = { delete(item.id) },
-            onAddUnit = { showSpawnDialog = true }
+            onAddUnit = if (item.isBoss) {
+                null
+            } else {
+                { showSpawnDialog = true }
+            }
         )
         HorizontalDivider(
             thickness = 1.dp,
@@ -137,12 +141,12 @@ private fun RegularMonsterCardPreview() {
         RegularMonsterCard(
             item = MonsterItem(
                 id = 1,
+                isBoss = true,
                 name = "Хвостожабка",
                 currentCard = null,
                 isFly = true,
                 units = persistentListOf(
-                    MonsterUnit.fixture(2),
-                    MonsterUnit.fixture(3),
+                    MonsterUnit.fixture(1),
                 )
             ),
             delete = {},

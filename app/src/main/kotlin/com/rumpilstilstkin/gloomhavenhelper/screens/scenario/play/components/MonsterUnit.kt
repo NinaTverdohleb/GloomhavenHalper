@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,7 +56,7 @@ fun MonsterUnitCard(
     levelClick: (unit: MonsterUnit) -> Unit,
     deleteUnit: (unitNumber: Int) -> Unit
 ) {
-    UnitCard(modifier = modifier) {
+    UnitCard(modifier = modifier.clickable { levelClick(unit) }) {
         if (unit.immunity.isNotEmpty()) {
             Row(
                 modifier = Modifier
@@ -101,17 +102,6 @@ fun MonsterUnitCard(
                 )
 
             }
-
-            Spacer(
-                modifier.width(16.dp)
-            )
-
-            RoundButton(
-                text = unit.level.toString(),
-                onClick = { levelClick(unit) },
-                size = GloomSize.S
-            )
-
             if (!isBoss) {
                 Spacer(
                     modifier.width(8.dp)
