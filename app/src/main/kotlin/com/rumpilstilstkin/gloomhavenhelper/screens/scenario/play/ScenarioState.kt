@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
@@ -25,6 +26,7 @@ data class ScenarioLogicState(
     val activeMonsters: ImmutableList<MonsterItem> = persistentListOf(),
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
+    val showUnitLevelDialog: Boolean = false,
     val magicChargeMap: ImmutableMap<Magic, MagicValue> = persistentMapOf(
         Magic.FIRE to MagicValue(),
         Magic.FROST to MagicValue(),
@@ -67,7 +69,8 @@ data class ScenarioLogicState(
                     currentCard = null,
                 )
             },
-            magicChargeList = magicChargeMap
+            magicChargeList = magicChargeMap,
+            showUnitLevelDialog = showUnitLevelDialog
         )
     }
 
@@ -91,6 +94,7 @@ data class ScenarioLogicState(
                                 EffectItem.fromCardAction(it)
                             }.toImmutableList(),
                             isSpecial = false,
+                            level = newMonster.level,
                             immunity = newMonster
                                 .immunity
                                 .map { ActionUi.fromMonsterStatType(it) }
@@ -134,6 +138,7 @@ data class ScenarioLogicState(
                 stats = stats.map { EffectItem.fromCardAction(it) }
                     .toImmutableList(),
                 isSpecial = isSpecial,
+                level = monster.level
             )
         }
         return this.copy(
@@ -184,6 +189,34 @@ data class ScenarioLogicState(
             magicChargeMap = chargeList
         )
 
+    }
+
+    fun updateUnitStats(monsterId: Int, number: Int, stats: MonsterStats): ScenarioLogicState {
+        return this.copy(
+            activeMonsters = activeMonsters.map { monsterItem ->
+                if (monsterItem.id == monsterId) {
+                    monsterItem.copy(
+                        units = monsterItem.units
+                            .map { monsterUnit ->
+                                if (monsterUnit.number == number) {
+                                    monsterUnit.copy(
+                                        stats = stats.stats.map { EffectItem.fromCardAction(it) }
+                                            .toImmutableList(),
+                                        currentLife = stats.life,
+                                        maxLife = stats.life,
+                                        level = stats.level
+                                    )
+                                } else {
+                                    monsterUnit
+                                }
+                            }
+                            .toImmutableList()
+                    )
+                } else {
+                    monsterItem
+                }
+            }.toImmutableList()
+        )
     }
 
     fun updateUnitLife(monsterId: Int, number: Int, newValue: Int): ScenarioLogicState {
@@ -265,7 +298,8 @@ data class ScenarioLogicState(
                 } else {
                     it
                 }
-            }.toImmutableList(),
+            }.sortedBy { it.currentCard?.initiative ?: 0 }
+                .toImmutableList(),
             availableCards = newAvaliableCards.toImmutableList()
         )
     }
@@ -280,7 +314,8 @@ data class ScenarioUIState(
     val showMonsterDialog: Boolean = false,
     val monsters: List<MonsterItem> = emptyList(),
     val monstersForAdd: List<MonsterItem> = emptyList(),
-    val magicChargeList: Map<Magic, MagicValue> = emptyMap()
+    val magicChargeList: Map<Magic, MagicValue> = emptyMap(),
+    val showUnitLevelDialog: Boolean = false
 )
 
 enum class Magic(val icon: GameIcon) {
@@ -340,4 +375,13 @@ sealed interface ScenarioActions {
     data object OpenMonstersDialog : ScenarioActions
     data object CloseMonstersDialog : ScenarioActions
     data class UpdateMagic(val magic: Magic) : ScenarioActions
+    data class UpdateUnitLevel(
+        val monsterId: Int,
+        val unitNumber: Int,
+        val level: Int,
+        val isElite: Boolean
+    ) : ScenarioActions
+
+    data object ShowUnitLevelDialog : ScenarioActions
+    data object CloseUnitLevelDialog : ScenarioActions
 }

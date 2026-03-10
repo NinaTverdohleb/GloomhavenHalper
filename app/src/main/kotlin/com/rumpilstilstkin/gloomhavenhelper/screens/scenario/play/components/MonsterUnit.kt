@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -39,6 +40,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
@@ -50,6 +52,7 @@ fun MonsterUnitCard(
     isBoss: Boolean = false,
     changeLife: (unitNumber: Int, life: Int) -> Unit,
     switchEffect: (unitNumber: Int, effect: ActionUi) -> Unit,
+    levelClick: (unit: MonsterUnit) -> Unit,
     deleteUnit: (unitNumber: Int) -> Unit
 ) {
     UnitCard(modifier = modifier) {
@@ -99,7 +102,20 @@ fun MonsterUnitCard(
 
             }
 
+            Spacer(
+                modifier.width(16.dp)
+            )
+
+            RoundButton(
+                text = unit.level.toString(),
+                onClick = { levelClick(unit) },
+                size = GloomSize.S
+            )
+
             if (!isBoss) {
+                Spacer(
+                    modifier.width(8.dp)
+                )
                 IconButton(
                     onClick = { deleteUnit(unit.number) },
                     modifier = Modifier.size(24.dp),
@@ -119,7 +135,7 @@ fun MonsterUnitCard(
 
         Row(
             modifier = Modifier
-                .padding(vertical = 4.dp, horizontal = 16.dp)
+                .padding(vertical = 8.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
@@ -134,11 +150,11 @@ fun MonsterUnitCard(
                     }
                 IconButton(
                     onClick = { switchEffect(unit.number, effect) },
-                    modifier = Modifier.size(32.dp),
+                    modifier = Modifier.size(36.dp),
                 ) {
 
                     Icon(
-                        modifier = Modifier.size(32.dp),
+                        modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = effect.icon.imageRes),
                         contentDescription = null,
                         tint = tint
@@ -308,33 +324,12 @@ private fun UnitNumberBadge(
 private fun MonsterUnitPreview() {
     GloomhavenHalperTheme {
         MonsterUnitCard(
-            unit = MonsterUnit(
-                number = 2,
-                isSpecial = true,
-                currentLife = 10,
-                maxLife = 10,
-                stats = persistentListOf(
-                    EffectItem.Action(
-                        type = ActionUi.MOVE,
-                        modifier = "3"
-                    ),
-                    EffectItem.Action(
-                        type = ActionUi.ATTACK,
-                        modifier = "4"
-                    ),
-                    EffectItem.Action(
-                        type = ActionUi.SHIELD,
-                        modifier = "2"
-                    ),
-                ),
-                effects = persistentListOf(
-                    ActionUi.POISON
-                )
-            ),
+            unit = MonsterUnit.fixture(1),
             isBoss = false,
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
-            deleteUnit = { _ -> }
+            deleteUnit = { _ -> },
+            levelClick = {}
         )
     }
 }
@@ -344,35 +339,12 @@ private fun MonsterUnitPreview() {
 private fun MonsterUnitBossPreview() {
     GloomhavenHalperTheme {
         MonsterUnitCard(
-            unit = MonsterUnit(
-                number = 1,
-                isSpecial = true,
-                currentLife = 10,
-                maxLife = 10,
-                stats = persistentListOf(
-                    EffectItem.Action(
-                        type = ActionUi.MOVE,
-                        modifier = "3"
-                    ),
-                    EffectItem.Action(
-                        type = ActionUi.ATTACK,
-                        modifier = "4"
-                    ),
-                    EffectItem.Text(
-                        content = "Способность 1: Призывает Невыносимый ужас, атакует -3 #33"
-                    ),
-                    EffectItem.Text(
-                        content = "Способность 2: #20: Убивает всех"
-                    )
-                ),
-                immunity = persistentListOf(
-                    ActionUi.POISON
-                )
-            ),
+            unit = MonsterUnit.fixture(1),
             isBoss = true,
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
-            deleteUnit = { _ -> }
+            deleteUnit = { _ -> },
+            levelClick = {}
         )
     }
 }

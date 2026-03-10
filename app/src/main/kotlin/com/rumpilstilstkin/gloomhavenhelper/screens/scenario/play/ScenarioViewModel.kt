@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import dagger.assisted.Assisted
@@ -22,12 +23,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @HiltViewModel(assistedFactory = ScenarioViewModel.Factory::class)
 class ScenarioViewModel @AssistedInject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
+    private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     @Assisted private val scenarioNumber: Int,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -36,11 +37,7 @@ class ScenarioViewModel @AssistedInject constructor(
     private val _logicState = MutableStateFlow<ScenarioLogicState?>(null)
     val uiState: StateFlow<ScenarioUIState> = _logicState
         .filterNotNull()
-        .map {
-            withContext(Dispatchers.Default) {
-                it.toUIState()
-            }
-        }
+        .map { it.toUIState() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
@@ -53,7 +50,7 @@ class ScenarioViewModel @AssistedInject constructor(
 
     private fun loadScenario() {
         viewModelScope.launch {
-            getScenarioInfoUseCase(scenarioNumber).onSuccess {battleInfo ->
+            getScenarioInfoUseCase(scenarioNumber).onSuccess { battleInfo ->
                 _logicState.update {
                     ScenarioLogicState(
                         scenarioInfo = battleInfo,
@@ -118,6 +115,26 @@ class ScenarioViewModel @AssistedInject constructor(
                     )
 
                     is ScenarioActions.UpdateMagic -> it.updateMagic(action.magic)
+                    ScenarioActions.CloseUnitLevelDialog -> it.copy(
+                        showUnitLevelDialog = false
+                    )
+
+                    ScenarioActions.ShowUnitLevelDialog -> it.copy(
+                        showUnitLevelDialog = true
+                    )
+
+                    is ScenarioActions.UpdateUnitLevel -> {
+                        val newStats = getMonsterStatsForLevelUseCase(
+                            action.monsterId,
+                            action.level,
+                            action.isElite
+                        )
+                        it.updateUnitStats(
+                            monsterId = action.monsterId,
+                            number = action.unitNumber,
+                            stats = newStats
+                        )
+                    }
                 }
             }
             _logicState.update { newState }

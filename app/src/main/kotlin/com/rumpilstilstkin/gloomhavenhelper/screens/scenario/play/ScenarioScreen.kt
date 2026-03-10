@@ -52,8 +52,9 @@ internal fun ScenarioScreen(
     switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
     nextRound: () -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isElite: Boolean) -> Unit,
-    clickMagic: (magic: Magic) -> Unit
-) = Scaffold(
+    clickMagic: (magic: Magic) -> Unit,
+    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit,
+    ) = Scaffold(
     topBar = {
         CombatToolbar(
             roundNumber = state.round,
@@ -85,7 +86,8 @@ internal fun ScenarioScreen(
             deleteUnit = deleteUnit,
             updateUnitLife = updateUnitLife,
             switchUnitEffect = switchUnitEffect,
-            addMonsterUnit = addMonsterUnit
+            addMonsterUnit = addMonsterUnit,
+            changeUnitLevel = changeUnitLevel
         )
         if (state.monsters.isNotEmpty()) {
             Button(
@@ -183,6 +185,7 @@ fun ScenarioScreenContent(
     updateUnitLife: (unitNumber: Int, monsterId: Int, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isElite: Boolean) -> Unit,
+    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -228,7 +231,8 @@ fun ScenarioScreenContent(
                     deleteUnit = deleteUnit,
                     updateUnitLife = updateUnitLife,
                     switchUnitEffect = switchUnitEffect,
-                    addMonsterUnit = addMonsterUnit
+                    addMonsterUnit = addMonsterUnit,
+                    changeUnitLevel = changeUnitLevel
                 )
             }
         }
@@ -273,7 +277,8 @@ private fun ScenarioScreenPreview() {
             switchUnitEffect = { _, _, _ -> },
             nextRound = {},
             addMonsterUnit = { _, _, _ -> },
-            clickMagic = {}
+            clickMagic = {},
+            changeUnitLevel = { _, _, _ -> }
         )
     }
 }
@@ -295,7 +300,8 @@ private fun ScenarioScreenEmptyPreview() {
             switchUnitEffect = { _, _, _ -> },
             nextRound = {},
             addMonsterUnit = { _, _, _ -> },
-            clickMagic = {}
+            clickMagic = {},
+            changeUnitLevel = { _, _, _ -> }
         )
     }
 }

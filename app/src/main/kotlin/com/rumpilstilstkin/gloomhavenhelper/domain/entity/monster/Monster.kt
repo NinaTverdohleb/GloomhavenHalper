@@ -12,4 +12,14 @@ data class Monster(
     val isBoss: Boolean,
     val immunity: List<MonsterStatType>,
     val isFly: Boolean,
+    val level: Int,
+)
+
+
+data class MonsterStats(
+    val monsterId: Int,
+    val level: Int,
+    val isElite: Boolean,
+    val life: Int,
+    val stats: List<MonsterAction>,
 )

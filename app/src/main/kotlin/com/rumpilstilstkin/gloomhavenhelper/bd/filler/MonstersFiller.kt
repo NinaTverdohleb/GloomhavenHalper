@@ -1466,350 +1466,350 @@ object MonstersFiller {
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
         // Boss deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_1.webp"),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_2.webp"),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_4.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_5.webp"),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_6.webp"),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_7.webp"),
-            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_8.webp"),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_1.webp", initiative = 11),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_2.webp", initiative = 14),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_3.webp", needsShuffle = true, initiative = 17),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_4.webp", needsShuffle = true, initiative = 85),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_5.webp", initiative = 79),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_6.webp", initiative = 73),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_7.webp", initiative = 36),
+            MonsterAbilityCardBd(deckName = "boss", imageName = "ic_deck_ma_bo_8.webp", initiative = 52),
         )
 
         // living-bones deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_1.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_3.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_4.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_5.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_6.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_7.webp"),
-            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_1.webp", initiative = 64),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_2.webp", needsShuffle = true, initiative = 20),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_3.webp", initiative = 25),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_4.webp", initiative = 45),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_5.webp", initiative = 45),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_6.webp", initiative = 81),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_7.webp", initiative = 74),
+            MonsterAbilityCardBd(deckName = "living-bones", imageName = "ic_deck_ma_lb_8.webp", needsShuffle = true, initiative = 12),
         )
 
         // guard deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_1.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_2.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_3.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_4.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_5.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_6.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_7.webp"),
-            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_1.webp", needsShuffle = true, initiative = 15),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_2.webp", initiative = 30),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_3.webp", initiative = 35),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_4.webp", initiative = 50),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_5.webp", initiative = 50),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_6.webp", initiative = 70),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_7.webp", initiative = 55),
+            MonsterAbilityCardBd(deckName = "guard", imageName = "ic_deck_ma_gu_8.webp", needsShuffle = true, initiative = 15),
         )
 
         // archer deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_1.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_2.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_3.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_4.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_5.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_7.webp"),
-            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_1.webp", initiative = 16),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_2.webp", initiative = 31),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_3.webp", initiative = 32),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_4.webp", initiative = 44),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_5.webp", initiative = 56),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_6.webp", needsShuffle = true, initiative = 68),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_7.webp", initiative = 14),
+            MonsterAbilityCardBd(deckName = "archer", imageName = "ic_deck_ma_ar_8.webp", needsShuffle = true, initiative = 29),
         )
 
         // living-corpse deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_1.webp"),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_2.webp"),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_4.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_5.webp"),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_6.webp"),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_7.webp"),
-            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_8.webp"),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_1.webp", initiative = 21),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_2.webp", initiative = 47),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_3.webp", needsShuffle = true, initiative = 66),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_4.webp", needsShuffle = true, initiative = 66),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_5.webp", initiative = 82),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_6.webp", initiative = 91),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_7.webp", initiative = 71),
+            MonsterAbilityCardBd(deckName = "living-corpse", imageName = "ic_deck_ma_lc_8.webp", initiative = 32),
         )
 
         // shaman deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_1.webp"),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_2.webp"),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_4.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_5.webp"),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_6.webp"),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_7.webp"),
-            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_8.webp"),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_1.webp", initiative = 8),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_2.webp", initiative = 8),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_3.webp", needsShuffle = true, initiative = 23),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_4.webp", needsShuffle = true, initiative = 23),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_5.webp", initiative = 62),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_6.webp", initiative = 74),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_7.webp", initiative = 89),
+            MonsterAbilityCardBd(deckName = "shaman", imageName = "ic_deck_ma_sh_8.webp", initiative = 9),
         )
 
         // cultist deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_1.webp"),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_2.webp"),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_3.webp"),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_4.webp"),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_5.webp"),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_7.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_8.webp"),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_1.webp", initiative = 10),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_2.webp", initiative = 10),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_3.webp", initiative = 27),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_4.webp", initiative = 27),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_5.webp", initiative = 39),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_6.webp", needsShuffle = true, initiative = 63),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_7.webp", needsShuffle = true, initiative = 63),
+            MonsterAbilityCardBd(deckName = "cultist", imageName = "ic_deck_ma_cu_8.webp", initiative = 31),
         )
 
         // earth-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_1.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_3.webp"),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_4.webp"),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_5.webp"),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_6.webp"),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_7.webp"),
-            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_8.webp"),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_1.webp", needsShuffle = true, initiative = 40),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_2.webp", needsShuffle = true, initiative = 42),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_3.webp", initiative = 62),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_4.webp", initiative = 71),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_5.webp", initiative = 83),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_6.webp", initiative = 93),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_7.webp", initiative = 79),
+            MonsterAbilityCardBd(deckName = "earth-demon", imageName = "ic_deck_ma_ed_8.webp", initiative = 87),
         )
 
         // wind-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_1.webp"),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_4.webp"),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_5.webp"),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_6.webp"),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_7.webp"),
-            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_8.webp"),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_1.webp", initiative = 9),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_2.webp", needsShuffle = true, initiative = 21),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_3.webp", needsShuffle = true, initiative = 21),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_4.webp", initiative = 29),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_5.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_6.webp", initiative = 43),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_7.webp", initiative = 43),
+            MonsterAbilityCardBd(deckName = "wind-demon", imageName = "ic_deck_ma_wd_8.webp", initiative = 2),
         )
 
         // living-spirit deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_1.webp"),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_2.webp"),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_3.webp"),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_4.webp"),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_7.webp"),
-            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_8.webp"),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_1.webp", initiative = 22),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_2.webp", initiative = 33),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_3.webp", initiative = 48),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_4.webp", initiative = 48),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_5.webp", needsShuffle = true, initiative = 61),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_6.webp", needsShuffle = true, initiative = 75),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_7.webp", initiative = 5),
+            MonsterAbilityCardBd(deckName = "living-spirit", imageName = "ic_deck_ma_ls_8.webp", initiative = 67),
         )
 
         // night-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_1.webp"),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_2.webp"),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_3.webp"),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_4.webp"),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_7.webp"),
-            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_8.webp"),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_1.webp", initiative = 4),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_2.webp", initiative = 7),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_3.webp", initiative = 22),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_4.webp", initiative = 26),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_5.webp", needsShuffle = true, initiative = 46),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_6.webp", needsShuffle = true, initiative = 41),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_7.webp", initiative = 35),
+            MonsterAbilityCardBd(deckName = "night-demon", imageName = "ic_deck_ma_nd_8.webp", initiative = 15),
         )
 
         // flame-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_1.webp"),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_2.webp"),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_4.webp"),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_5.webp"),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_6.webp"),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_7.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_8.webp"),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_1.webp", initiative = 3),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_2.webp", initiative = 24),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_3.webp", needsShuffle = true, initiative = 46),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_4.webp", initiative = 49),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_5.webp", initiative = 67),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_6.webp", initiative = 77),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_7.webp", needsShuffle = true, initiative = 30),
+            MonsterAbilityCardBd(deckName = "flame-demon", imageName = "ic_deck_ma_fld_8.webp", initiative = 8),
         )
 
         // frost-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_1.webp"),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_2.webp"),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_3.webp"),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_4.webp"),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_7.webp"),
-            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_8.webp"),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_1.webp", initiative = 18),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_2.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_3.webp", initiative = 58),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_4.webp", initiative = 58),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_5.webp", needsShuffle = true, initiative = 78),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_6.webp", needsShuffle = true, initiative = 78),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_7.webp", initiative = 58),
+            MonsterAbilityCardBd(deckName = "frost-demon", imageName = "ic_deck_ma_frd_8.webp", initiative = 18),
         )
 
         // imp deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_1.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_2.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_3.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_4.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_6.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_7.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_8.webp"),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_1.webp", initiative = 5),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_2.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_3.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_4.webp", initiative = 42),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_5.webp", needsShuffle = true, initiative = 43),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_6.webp", initiative = 76),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_7.webp", needsShuffle = true, initiative = 43),
+            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_im_8.webp", initiative = 24),
         )
 
         // cave-bear deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_1.webp"),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_2.webp"),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_4.webp"),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_5.webp"),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_7.webp"),
-            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_8.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_1.webp", initiative = 13),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_2.webp", initiative = 14),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_3.webp", needsShuffle = true, initiative = 34),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_4.webp", initiative = 41),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_5.webp", initiative = 60),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_6.webp", needsShuffle = true, initiative = 80),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_7.webp", initiative = 61),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_8.webp", initiative = 3),
         )
 
         // hound deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_1.webp"),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_2.webp"),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_4.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_5.webp"),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_6.webp"),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_7.webp"),
-            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_8.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_1.webp", initiative = 6),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_2.webp", initiative = 7),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_3.webp", needsShuffle = true, initiative = 19),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_4.webp", needsShuffle = true, initiative = 19),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_5.webp", initiative = 26),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_6.webp", initiative = 26),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_7.webp", initiative = 83),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_8.webp", initiative = 72),
         )
 
         // scout deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_1.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_2.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_3.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_4.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_5.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_7.webp"),
-            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_1.webp", initiative = 29),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_2.webp", initiative = 40),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_3.webp", initiative = 53),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_4.webp", initiative = 54),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_5.webp", initiative = 69),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_6.webp", needsShuffle = true, initiative = 1192),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_7.webp", initiative = 79),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_8.webp", needsShuffle = true, initiative = 35),
         )
 
         // sun-demon deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_1.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_2.webp"),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_3.webp"),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_4.webp"),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_6.webp"),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_7.webp"),
-            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_8.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_1.webp", needsShuffle = true, initiative = 17),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_2.webp", initiative = 36),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_3.webp", initiative = 36),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_4.webp", initiative = 68),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_5.webp", needsShuffle = true, initiative = 73),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_6.webp", initiative = 95),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_7.webp", initiative = 88),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_8.webp", initiative = 50),
         )
 
         // stone-golem deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_1.webp"),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_2.webp"),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_4.webp"),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_5.webp"),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_7.webp"),
-            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_8.webp"),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_1.webp", initiative = 11),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_2.webp", initiative = 28),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_3.webp", needsShuffle = true, initiative = 51),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_4.webp", initiative = 65),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_5.webp", initiative = 72),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_6.webp", needsShuffle = true, initiative = 90),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_7.webp", initiative = 83),
+            MonsterAbilityCardBd(deckName = "stone-golem", imageName = "ic_deck_ma_sg_8.webp", initiative = 28),
         )
 
         // spitting-drake deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_1.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_2.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_4.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_5.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_6.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_7.webp"),
-            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_1.webp", initiative = 32),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_2.webp", initiative = 52),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_3.webp", needsShuffle = true, initiative = 57),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_4.webp", initiative = 27),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_5.webp", initiative = 87),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_6.webp", initiative = 89),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_7.webp", initiative = 6),
+            MonsterAbilityCardBd(deckName = "spitting-drake", imageName = "ic_deck_ma_spd_8.webp", needsShuffle = true, initiative = 89),
         )
 
         // savvas-icestorm deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_1.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_2.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_3.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_4.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_5.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_6.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_7.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_1.webp", initiative = 70),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_2.webp", initiative = 98),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_3.webp", initiative = 98),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_4.webp", initiative = 19),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_5.webp", initiative = 14),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_6.webp", initiative = 14),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_7.webp", needsShuffle = true, initiative = 47),
+            MonsterAbilityCardBd(deckName = "savvas-icestorm", imageName = "ic_deck_ma_si_8.webp", needsShuffle = true, initiative = 35),
         )
 
         // harrower-infester deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_1.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_2.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_3.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_4.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_6.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_7.webp"),
-            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_1.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_2.webp", initiative = 7),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_3.webp", initiative = 16),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_4.webp", initiative = 16),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_5.webp", needsShuffle = true, initiative = 2),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_6.webp", initiative = 30),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_7.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "harrower-infester", imageName = "ic_deck_ma_hi_8.webp", needsShuffle = true, initiative = 7),
         )
 
         // giant-viper deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_1.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_3.webp"),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_4.webp"),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_5.webp"),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_6.webp"),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_7.webp"),
-            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_8.webp"),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_1.webp", needsShuffle = true, initiative = 32),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_2.webp", needsShuffle = true, initiative = 32),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_3.webp", initiative = 11),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_4.webp", initiative = 43),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_5.webp", initiative = 58),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_6.webp", initiative = 58),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_7.webp", initiative = 43),
+            MonsterAbilityCardBd(deckName = "giant-viper", imageName = "ic_deck_ma_gv_8.webp", initiative = 23),
         )
 
         // ooze deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_1.webp"),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_2.webp"),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_3.webp"),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_4.webp"),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_5.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_7.webp"),
-            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_8.webp"),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_1.webp", initiative = 36),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_2.webp", initiative = 57),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_3.webp", initiative = 59),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_4.webp", initiative = 66),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_5.webp", needsShuffle = true, initiative = 94),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_6.webp", needsShuffle = true, initiative = 94),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_7.webp", initiative = 66),
+            MonsterAbilityCardBd(deckName = "ooze", imageName = "ic_deck_ma_oo_8.webp", initiative = 85),
         )
 
         // ancient-artillery deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_1.webp"),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_4.webp"),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_5.webp"),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_6.webp"),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_7.webp"),
-            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_8.webp"),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_1.webp", initiative = 46),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_2.webp", needsShuffle = true, initiative = 71),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_3.webp", needsShuffle = true, initiative = 71),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_4.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_5.webp", initiative = 37),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_6.webp", initiative = 95),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_7.webp", initiative = 17),
+            MonsterAbilityCardBd(deckName = "ancient-artillery", imageName = "ic_deck_ma_aa_8.webp", initiative = 46),
         )
 
         // rending-drake deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_1.webp"),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_3.webp"),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_4.webp"),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_5.webp"),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_6.webp"),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_7.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_8.webp"),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_1.webp", initiative = 12),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_2.webp", needsShuffle = true, initiative = 13),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_3.webp", initiative = 25),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_4.webp", initiative = 39),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_5.webp", initiative = 54),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_6.webp", initiative = 59),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_7.webp", needsShuffle = true, initiative = 72),
+            MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_8.webp", initiative = 6),
         )
 
         // deep-terror deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_1.webp"),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_2.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_4.webp"),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_5.webp"),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_6.webp"),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_7.webp"),
-            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_8.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_1.webp", initiative = 65),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_2.webp", needsShuffle = true, initiative = 60),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_3.webp", needsShuffle = true, initiative = 60),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_4.webp", initiative = 84),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_5.webp", initiative = 75),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_6.webp", initiative = 75),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_7.webp", initiative = 96),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_8.webp", initiative = 54),
         )
 
         // lurker deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_1.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_2.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_3.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_4.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_5.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_6.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_7.webp"),
-            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_1.webp", needsShuffle = true, initiative = 11),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_2.webp", initiative = 28),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_3.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_4.webp", initiative = 38),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_5.webp", initiative = 61),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_6.webp", initiative = 64),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_7.webp", initiative = 41),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_8.webp", needsShuffle = true, initiative = 23),
         )
 
         // savvas-lavaflow deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_1.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_2.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_3.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_4.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_5.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_6.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_7.webp"),
-            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_8.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_1.webp", initiative = 97),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_2.webp", initiative = 97),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_3.webp", initiative = 22),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_4.webp", needsShuffle = true, initiative = 68),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_5.webp", initiative = 41),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_6.webp", initiative = 51),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_7.webp", initiative = 31),
+            MonsterAbilityCardBd(deckName = "savvas-lavaflow", imageName = "ic_deck_ma_sl_8.webp", needsShuffle = true, initiative = 68),
         )
     }
 }

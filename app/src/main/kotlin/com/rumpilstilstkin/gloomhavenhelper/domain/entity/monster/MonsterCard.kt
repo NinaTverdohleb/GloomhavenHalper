@@ -5,4 +5,5 @@ data class MonsterCard(
     val cardId: Int,
     val imageName: String,
     val needsShuffle: Boolean = false,
+    val initiative: Int
 )

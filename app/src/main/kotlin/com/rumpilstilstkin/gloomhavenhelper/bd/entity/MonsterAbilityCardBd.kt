@@ -15,4 +15,5 @@ data class MonsterAbilityCardBd(
     val deckName: String,
     val imageName: String,
     val needsShuffle: Boolean = false,
+    val initiative: Int,
 )
