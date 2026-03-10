@@ -20,6 +20,7 @@ fun ScenarioActionDialog(
     scenarioName: String,
     scenarioRequirements: String,
     location: String,
+    confirmText: String = "Играть",
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
     startScenario: () -> Unit
@@ -29,7 +30,7 @@ fun ScenarioActionDialog(
         onConfirmRequest = startScenario,
         onNeutralRequest = null,
         onNegativeRequest = completeScenario,
-        confirmText = "Играть",
+        confirmText = confirmText,
         negativeText = "Завершить",
         content = {
             ScenarioInfoItem(

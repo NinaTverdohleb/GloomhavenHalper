@@ -96,8 +96,8 @@ class TeamTabViewModel @Inject constructor(
                     completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
                 }
 
-                TeamTabAction.AddScenario -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.ScenarioConstructor))
+                is TeamTabAction.AddScenario -> {
+                    _navigationEvents.emit(Screen(GlHelperScreens.ScenarioConstructor(null)))
                 }
 
                 TeamTabAction.OpenGlobalAchievements -> {
@@ -117,7 +117,7 @@ sealed interface TeamTabAction {
     data class CompleteScenario(val scenarioId: Int) : TeamTabAction
     data class UpdateReputation(val value: Int) : TeamTabAction
     data class UpdateProsperity(val value: Int) : TeamTabAction
-    data object AddScenario : TeamTabAction
+    data class AddScenario(val scenarioNumber: Int?) : TeamTabAction
     data object OpenTeamAchievements : TeamTabAction
     data object OpenGlobalAchievements : TeamTabAction
 }

@@ -32,7 +32,7 @@ fun ScenarioBlock(
     modifier: Modifier = Modifier,
     completeScenario: (Int) -> Unit,
     startScenario: (Int) -> Unit,
-    addScenario: () -> Unit,
+    addScenario: (Int?) -> Unit,
 ) = Column(
     modifier = modifier
 ) {
@@ -47,7 +47,7 @@ fun ScenarioBlock(
             color = MaterialTheme.colorScheme.primary
         )
 
-        IconButton(onClick = addScenario) {
+        IconButton(onClick = {addScenario(null)}) {
             Icon(
                 Icons.Default.Add,
                 contentDescription = null,
@@ -77,13 +77,18 @@ fun ScenarioBlock(
             scenarioName = scenario.scenarioName,
             scenarioRequirements = scenario.scenarioRequirements,
             onDismiss = { selectedScenario = null },
+            confirmText = if (scenario.canPlay) "Играть" else "Конструктор",
             completeScenario = {
                 completeScenario(scenario.scenarioNumber)
                 selectedScenario = null
             },
             location = scenario.location,
             startScenario = {
-                startScenario(scenario.scenarioNumber)
+                if (scenario.canPlay) {
+                    startScenario(scenario.scenarioNumber)
+                } else {
+                    addScenario(scenario.scenarioNumber)
+                }
                 selectedScenario = null
             }
         )

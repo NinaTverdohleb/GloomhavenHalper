@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -29,7 +28,7 @@ internal fun TeamTabScreen(
     startScenario: (Int) -> Unit,
     updateProsperity: (Int) -> Unit,
     updateReputation: (Int) -> Unit,
-    addScenario: () -> Unit,
+    addScenario: (Int?) -> Unit,
     openTeamAchievements: () -> Unit,
     openGlobalAchievements: () -> Unit,
 ) {
