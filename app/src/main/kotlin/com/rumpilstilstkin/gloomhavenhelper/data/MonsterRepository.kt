@@ -4,6 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -47,7 +48,24 @@ class MonsterRepository @Inject constructor(
                     deckName = monster.deckName,
                     isBoss = monster.isBoss,
                     immunity = monster.immunity,
-                    isFly = monster.fly
+                    isFly = monster.fly,
+                    level = level
                 )
             }
+
+    suspend fun getMonsterStats(monsterId: Int, level: Int, isElite: Boolean): MonsterStats {
+        val monster = monsterDao.getMonsterById(monsterId)
+        val stats = monsterDao.getStats(
+            monsterId = monster.monsterId,
+            level = level,
+            isElite = isElite
+        )
+        return MonsterStats(
+            monsterId = monster.monsterId,
+            level = level,
+            isElite = isElite,
+            life = stats.life,
+            stats = stats.stats,
+        )
+    }
 }

@@ -75,6 +75,16 @@ fun ScenarioRoute(
         },
         clickMagic = { magic ->
             viewModel.onAction(ScenarioActions.UpdateMagic((magic)))
+        },
+        changeUnitLevel = { monsterId, unit, level ->
+            viewModel.onAction(
+                ScenarioActions.UpdateUnitLevel(
+                    monsterId = monsterId,
+                    unitNumber = unit.number,
+                    level = level,
+                    isElite = unit.isSpecial
+                )
+            )
         }
     )
 

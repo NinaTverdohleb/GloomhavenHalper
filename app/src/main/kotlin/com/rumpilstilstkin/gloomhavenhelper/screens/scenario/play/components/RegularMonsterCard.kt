@@ -32,8 +32,10 @@ fun RegularMonsterCard(
     updateUnitLife: (unitNumber: Int, monsterId: Int, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isSpecial: Boolean) -> Unit,
+    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit
 ) {
     var showSpawnDialog by remember { mutableStateOf(false) }
+    var selectedUnit by remember { mutableStateOf<MonsterUnit?>(null) }
 
     GloomCard(modifier) {
         MonsterCardHeader(
@@ -87,11 +89,30 @@ fun RegularMonsterCard(
                                 item.id,
                                 life
                             )
+                        },
+                        levelClick = {
+                            selectedUnit = it
                         }
                     )
                 }
             }
         }
+    }
+
+    selectedUnit?.let {
+        MonsterLevelDialog(
+            unitLevel = it.level,
+            monsterName = item.name,
+            dismiss = { selectedUnit = null },
+            changeLevel = { level ->
+                changeUnitLevel(
+                    item.id,
+                    it,
+                    level
+                )
+                selectedUnit = null
+            }
+        )
     }
 
     if (showSpawnDialog) {
@@ -128,7 +149,8 @@ private fun RegularMonsterCardPreview() {
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
-            addMonsterUnit = { _, _, _ -> }
+            addMonsterUnit = { _, _, _ -> },
+            changeUnitLevel = { _, _, _ -> }
         )
     }
 }

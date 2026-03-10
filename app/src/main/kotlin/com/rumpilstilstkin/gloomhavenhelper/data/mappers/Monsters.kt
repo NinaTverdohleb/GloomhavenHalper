@@ -7,5 +7,6 @@ fun MonsterAbilityCardBd.toDomain(): MonsterCard = MonsterCard(
     cardId = cardId,
     imageName = imageName,
     needsShuffle = needsShuffle,
-    deckName = deckName
+    deckName = deckName,
+    initiative = initiative
 )

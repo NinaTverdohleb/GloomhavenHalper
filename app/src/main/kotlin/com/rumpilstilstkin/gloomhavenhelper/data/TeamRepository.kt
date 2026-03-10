@@ -16,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
@@ -51,7 +52,8 @@ class TeamRepository @Inject constructor(
     }
 
     fun getTeamWithScenarioFlow(id: Int): Flow<TeamInfoWithScenario> {
-        return teamDao.getTeamWithScenariosFlow(id).map { it.toDomain() }
+        return teamDao.getTeamWithScenariosFlow(id)
+            .map { it.toDomain() }
     }
 
     suspend fun setCurrentTeam(teamId: Int) {

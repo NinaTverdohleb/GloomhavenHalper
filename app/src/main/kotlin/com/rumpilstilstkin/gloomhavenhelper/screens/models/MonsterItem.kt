@@ -41,16 +41,18 @@ data class MonsterUnit(
     val stats: ImmutableList<EffectItem>,
     val isSpecial: Boolean,
     val effects: ImmutableList<ActionUi> = persistentListOf(),
-    val immunity: ImmutableList<ActionUi> = persistentListOf()
+    val immunity: ImmutableList<ActionUi> = persistentListOf(),
+    val level: Int,
 ){
     companion object {
         fun fixture(
-            number: Int
+            number: Int = 1
         ) = MonsterUnit(
             number = number,
             isSpecial = true,
             currentLife = 10,
             maxLife = 10,
+            level = 1,
             stats = persistentListOf(
                 EffectItem.Action(
                     type = ActionUi.MOVE,
@@ -73,7 +75,8 @@ data class MonsterUnit(
 data class MonsterAbilityCard(
     val id: Int,
     val imageName: String,
-    val needsShuffle: Boolean = false
+    val needsShuffle: Boolean = false,
+    val initiative: Int
 ) {
     val imagePath
         get() = "file:///android_asset/image/monster_cards/$imageName"
@@ -82,7 +85,8 @@ data class MonsterAbilityCard(
         fun createFromMonsterCard(card: MonsterCard) = MonsterAbilityCard(
             id = card.cardId,
             imageName = card.imageName,
-            needsShuffle = card.needsShuffle
+            needsShuffle = card.needsShuffle,
+            initiative = card.initiative
         )
     }
 }

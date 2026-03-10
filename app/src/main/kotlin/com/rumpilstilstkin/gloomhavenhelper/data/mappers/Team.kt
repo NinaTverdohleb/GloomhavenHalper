@@ -19,7 +19,7 @@ fun TeamWithScenariosBd.toDomain() = TeamInfoWithScenario(
     globalAchievement = this.team.globalAchievement,
     reputation = this.team.reputation,
     prosperity = this.team.prosperity,
-    scenario = this.scenarios.map { it.toDomain() },
+    scenario = this.scenarios.filter { it.pack in team.packs }.map { it.toDomain() },
     packs = this.team.packs.map { PackType.valueOf(it) }
 )
 

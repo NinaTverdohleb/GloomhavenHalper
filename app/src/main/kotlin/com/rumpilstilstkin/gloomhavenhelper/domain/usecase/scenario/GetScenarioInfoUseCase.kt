@@ -23,7 +23,7 @@ class GetScenarioInfoUseCase @Inject constructor(
                 val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
                 val monsters = monsterRepository.getMonstersForScenario(
                     scenarioNumber = scenarioNumber,
-                    level = team.level
+                    level = levelInfo?.monsterLevel ?: 0
                 )
                 ScenarioBattleInfo(
                     number = scenarioNumber,
