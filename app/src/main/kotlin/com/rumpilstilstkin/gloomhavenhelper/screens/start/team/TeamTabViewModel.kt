@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterForScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
@@ -29,6 +30,7 @@ class TeamTabViewModel @Inject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val updateTeamProsperityUseCase: UpdateTeamProsperityUseCase,
     private val updateTeamReputationUseCase: UpdateTeamReputationUseCase,
+    private val getMonstersForScenarioUseCase: GetMonsterForScenarioUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -78,7 +80,16 @@ class TeamTabViewModel @Inject constructor(
                 }
 
                 is TeamTabAction.StartScenario -> {
-                    _navigationEvents.emit(Screen(Scenario(scenarioId = action.scenarioId)))
+                    getMonstersForScenarioUseCase(action.scenarioId).onSuccess { monsters ->
+                        _navigationEvents.emit(
+                            Screen(
+                                Scenario(
+                                    scenarioId = action.scenarioId,
+                                    monsters = monsters
+                                )
+                            )
+                        )
+                    }
                 }
 
                 is TeamTabAction.CompleteScenario -> {
@@ -92,6 +103,7 @@ class TeamTabViewModel @Inject constructor(
                 TeamTabAction.OpenGlobalAchievements -> {
                     _navigationEvents.emit(Screen(GlHelperScreens.GlobalAchievements))
                 }
+
                 TeamTabAction.OpenTeamAchievements -> {
                     _navigationEvents.emit(Screen(GlHelperScreens.TeamAchievements))
                 }

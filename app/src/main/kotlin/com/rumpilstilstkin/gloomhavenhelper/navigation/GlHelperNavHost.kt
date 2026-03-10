@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
+import com.rumpilstilstkin.gloomhavenhelper.navigation.navtypes.MonsterListType
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
@@ -20,6 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAchievementsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
+import kotlin.reflect.typeOf
 
 @Composable
 fun GlHelperNavHost(
@@ -43,11 +46,16 @@ fun GlHelperNavHost(
                 navController = navController
             )
         }
-        composable<GlHelperScreens.Scenario> {
+        composable<GlHelperScreens.Scenario>(
+            typeMap = mapOf(
+                typeOf<List<Monster>>() to MonsterListType
+            )
+        ) {
             val args = it.toRoute<GlHelperScreens.Scenario>()
             ScenarioRoute(
                 navController = navController,
-                scenarioId = args.scenarioId
+                scenarioId = args.scenarioId,
+                monsters = args.monsters
             )
         }
         composable<GlHelperScreens.CharacterDetails> {

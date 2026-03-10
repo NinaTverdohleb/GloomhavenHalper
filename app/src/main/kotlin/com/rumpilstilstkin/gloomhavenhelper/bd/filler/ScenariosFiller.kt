@@ -733,6 +733,7 @@ object ScenariosFiller {
             ScenarioBd(
                 scenarioNumber = 51,
                 name = "Пустота",
+                newScenarios = "96",
                 requirements = "Конец упадка",
                 globalAchievement = "Конец эпохи Мрака",
                 monsters = listOf(
@@ -1297,6 +1298,90 @@ object ScenariosFiller {
                 ),
                 location = "Мертволесье",
                 pack = PackType.MAIN.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 96,
+                name = "Неожиданные посетители",
+                requirements = "Конец эпохи Мрака",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Огненный демон",
+                    "Морозный демон",
+                    "Воздушный демон"
+                ),
+                location = "Мрачная гавань",
+                newScenarios = "97",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 97,
+                newScenarios = "98, 99, 100, 101",
+                name = "Утраченные знания",
+                monsters = listOf(
+                    "Черный бес",
+                    "Ожившие кости",
+                    "Оживший труп",
+                    "Эстер-разведчик",
+                    "Невыносимый ужас"
+                ),
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 98,
+                newScenarios = "",
+                name = "Утраченные знания",
+                monsters = listOf(
+                    "Древняя пушка",
+                    "Разбойник-лучница",
+                    "Разбойник-страж",
+                    "Шипящий дрейк",
+                ),
+                location = "Мрачная гавань",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 99,
+                name = "Отголоски прошлого",
+                monsters = listOf(
+                    "Черный бес",
+                    "Культист",
+                    "Невыносимый ужас",
+                    "Валрат-варвар",
+                ),
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 100,
+                name = "Поворотный механизм",
+                monsters = listOf(
+                    "Каменный голем",
+                    "Оживший дух",
+                ),
+                location = "Перемещение между измерениями",
+                globalAchievement = "Знание-сила",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 101,
+                newScenarios = "108, 109",
+                name = "Затопленный склеп",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Шипящий дрейк",
+                    "Ожившие кости",
+                    "Оживший труп",
+                ),
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+            ScenarioBd(
+                scenarioNumber = 103,
+                name = "Нужный момент",
+                monsters = listOf(),
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
             ),
         )
     }

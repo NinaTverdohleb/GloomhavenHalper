@@ -119,6 +119,40 @@ object AchievementsFiller {
                 pack = PackType.MAIN.name,
                 isGlobal = true
             ),
+            AchievementBd(
+                name = "Путь через портал",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true
+            ),
+            AchievementBd(
+                name = "Разорванные узы",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true
+            ),
+            AchievementBd(
+                name = "Знание-сила",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true,
+                maxRang = 4
+            ),
+            AchievementBd(
+                name = "Устранение угрозы",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true,
+                maxRang = 4
+            ),
+            AchievementBd(
+                name = "Части артефакта",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true,
+                maxRang = 3
+            ),
+            AchievementBd(
+                name = "Торжество технологий",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+                isGlobal = true,
+                maxRang = 3
+            ),
         )
     }
 
@@ -291,6 +325,11 @@ object AchievementsFiller {
             ),
             AchievementBd(
                 name = "Храбрость",
+                pack = PackType.MAIN.name,
+                isGlobal = false
+            ),
+            AchievementBd(
+                name = "Помощь Диамаре",
                 pack = PackType.MAIN.name,
                 isGlobal = false
             ),
