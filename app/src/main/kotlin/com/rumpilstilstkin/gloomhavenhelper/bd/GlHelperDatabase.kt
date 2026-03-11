@@ -16,6 +16,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioGameStateDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamCharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
@@ -33,6 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioGameStateBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamCharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
@@ -42,6 +44,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConvert
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeConverter
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ScenarioConverters
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConverter
 
 @TypeConverters(
@@ -50,6 +53,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
     MonsterStatTypeConverter::class,
     StringListTypeConverter::class,
     AchievementConverter::class,
+    ScenarioConverters::class
 )
 @Database(
     entities = [
@@ -70,6 +74,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         TeamCharacterClassBd::class,
         TeamGoodBd::class,
         AchievementBd::class,
+        ScenarioGameStateBd::class
     ],
     version = 1
 )
@@ -89,6 +94,7 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun teamCharacterClassDao(): TeamCharacterClassDao
     abstract fun teamGoodDao(): TeamGoodDao
     abstract fun achievementDao(): AchievementDao
+    abstract fun scenarioGameStateDao(): ScenarioGameStateDao
 }
 
 fun createGlHelperDatabase(

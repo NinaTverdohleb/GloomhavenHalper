@@ -14,9 +14,9 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Mon
 fun ScenarioRoute(
     navController: NavHostController,
     scenarioId: Int?,
-    monsters: List<String>,
+    restore: Boolean,
     viewModel: ScenarioViewModel = hiltViewModel<ScenarioViewModel, ScenarioViewModel.Factory> { factory ->
-        factory.create(scenarioId, monsters)
+        factory.create(scenarioId, restore)
     }
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)

@@ -1,0 +1,16 @@
+package com.rumpilstilstkin.gloomhavenhelper.bd.entity
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
+
+@Entity
+data class ScenarioGameStateBd(
+    @PrimaryKey val name: String,
+    val monsterNames: List<String>,
+    val round: Int = 0,
+    val availableCards: List<Int>,
+    val activeMonsters: List<ScenarioGameStateMonsterItem>,
+    val magicChargeMap: List<ScenarioGameStateMagic>
+)

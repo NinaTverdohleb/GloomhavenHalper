@@ -7,7 +7,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Immutable
 data class MonsterItem(
     val id: Int,
@@ -33,6 +35,7 @@ data class MonsterItem(
     }
 }
 
+@Serializable
 @Immutable
 data class MonsterUnit(
     val number: Int,
@@ -71,6 +74,7 @@ data class MonsterUnit(
     }
 }
 
+@Serializable
 @Immutable
 data class MonsterAbilityCard(
     val id: Int,

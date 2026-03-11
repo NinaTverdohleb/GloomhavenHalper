@@ -85,7 +85,7 @@ class TeamTabViewModel @Inject constructor(
                             Screen(
                                 Scenario(
                                     scenarioId = action.scenarioId,
-                                    monsters = monsters
+                                    restore = false
                                 )
                             )
                         )

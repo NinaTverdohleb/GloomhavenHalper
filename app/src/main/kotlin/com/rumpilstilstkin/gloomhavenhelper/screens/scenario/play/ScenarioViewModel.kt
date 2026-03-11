@@ -32,7 +32,7 @@ class ScenarioViewModel @AssistedInject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     @Assisted private val scenarioNumber: Int?,
-    @Assisted private val monsters: List<String>,
+    @Assisted private val restore: Boolean,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -53,15 +53,9 @@ class ScenarioViewModel @AssistedInject constructor(
 
     private fun loadScenario() {
         viewModelScope.launch {
-            getScenarioInfoUseCase(scenarioNumber, monsters).onSuccess { battleInfo ->
+            getScenarioInfoUseCase(scenarioNumber, restore).onSuccess { battleInfo ->
                 _logicState.update {
-                    ScenarioLogicState(
-                        scenarioInfo = battleInfo,
-                        availableCards = battleInfo.monsters.flatMap { it.cards }.distinct()
-                            .toImmutableList(),
-                        activeMonsters = persistentListOf(),
-                        round = 0
-                    )
+                    ScenarioLogicState.restore(battleInfo)
                 }
             }
         }
@@ -172,7 +166,7 @@ class ScenarioViewModel @AssistedInject constructor(
     interface Factory {
         fun create(
             scenarioNumber: Int?,
-            monsters: List<String>
+            restore: Boolean
         ): ScenarioViewModel
     }
 }

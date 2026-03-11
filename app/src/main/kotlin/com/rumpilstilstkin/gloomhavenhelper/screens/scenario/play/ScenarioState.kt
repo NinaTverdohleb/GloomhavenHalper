@@ -11,6 +11,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.Magic
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
@@ -18,16 +19,18 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
+import kotlinx.serialization.Serializable
+import kotlin.collections.Map
 
-@Immutable
+@Serializable
 data class ScenarioLogicState(
     val scenarioInfo: ScenarioBattleInfo,
-    val availableCards: ImmutableList<MonsterCard>,
-    val activeMonsters: ImmutableList<MonsterItem> = persistentListOf(),
+    val availableCards: List<MonsterCard>,
+    val activeMonsters: List<MonsterItem> = listOf(),
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
     val showUnitLevelDialog: Boolean = false,
-    val magicChargeMap: ImmutableMap<Magic, MagicValue> = persistentMapOf(
+    val magicChargeMap: Map<Magic, MagicValue> = mapOf(
         Magic.FIRE to MagicValue(),
         Magic.FROST to MagicValue(),
         Magic.AIR to MagicValue(),
@@ -40,7 +43,7 @@ data class ScenarioLogicState(
         val currentValue = magicChargeMap[magic] ?: return this
         val newValue = currentValue.update()
         return this.copy(
-            magicChargeMap = magicChargeMap.plus(magic to newValue).toImmutableMap()
+            magicChargeMap = magicChargeMap.plus(magic to newValue)
         )
     }
 
@@ -59,7 +62,7 @@ data class ScenarioLogicState(
                             .thenBy { it.number }
                     ).toImmutableList()
                 )
-            },
+            }.toImmutableList(),
             showMonsterDialog = showMonsterDialog,
             monstersForAdd = scenarioInfo.monsters.filter { it.id !in existingIds }.map {
                 MonsterItem(
@@ -68,8 +71,8 @@ data class ScenarioLogicState(
                     isFly = it.isFly,
                     currentCard = null,
                 )
-            },
-            magicChargeList = magicChargeMap,
+            }.toImmutableList(),
+            magicChargeList = magicChargeMap.toImmutableMap(),
             showUnitLevelDialog = showUnitLevelDialog
         )
     }
@@ -138,7 +141,9 @@ data class ScenarioLogicState(
                 stats = stats.map { EffectItem.fromCardAction(it) }
                     .toImmutableList(),
                 isSpecial = isSpecial,
-                level = monster.level
+                level = monster.level,
+                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }
+                    .toImmutableList()
             )
         }
         return this.copy(
@@ -290,21 +295,71 @@ data class ScenarioLogicState(
             availableCards
         }
         return this.copy(
-            activeMonsters = activeMonsters.map {
-                if (it.id == monsterId) {
-                    it.copy(
+            activeMonsters = activeMonsters.map { item ->
+                if (item.id == monsterId) {
+                    item.copy(
                         currentCard = card?.let { MonsterAbilityCard.createFromMonsterCard(it) }
                     )
                 } else {
-                    it
+                    item
                 }
             }.sortedBy { it.currentCard?.initiative ?: 0 }
                 .toImmutableList(),
             availableCards = newAvaliableCards.toImmutableList()
         )
     }
+
+    companion object {
+        fun restore(state: ScenarioBattleInfo): ScenarioLogicState =
+            ScenarioLogicState(
+                scenarioInfo = state,
+                availableCards = state.availableCards,
+                activeMonsters = state.activeMonsters.map { item ->
+                    val monster = state.monsters.first { monster -> monster.id == item.id }
+                    MonsterItem(
+                        id = item.id,
+                        name = monster.name,
+                        currentCard = item.currentCard?.let { cardId ->
+                            state.availableCards.firstOrNull { card -> card.cardId == cardId }
+                                ?.let {
+                                    MonsterAbilityCard.createFromMonsterCard(it)
+                                }
+                        },
+                        isFly = monster.isFly,
+                        isBoss = monster.isBoss,
+                        units = item.units.map { stateUnit ->
+                            val maxLife = if (stateUnit.isElite) monster.eliteLife else monster.life
+                            val stats = if (stateUnit.isElite) monster.eliteStats else monster.stats
+                            MonsterUnit(
+                                number = stateUnit.number,
+                                maxLife = maxLife,
+                                currentLife = stateUnit.currentLife,
+                                stats = stats.map { EffectItem.fromCardAction(it) }
+                                    .toImmutableList(),
+                                isSpecial = stateUnit.isElite,
+                                level = monster.level,
+                                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }
+                                    .toImmutableList()
+                            )
+                        }.toImmutableList()
+                    )
+                },
+                round = state.round,
+                showMonsterDialog = false,
+                showUnitLevelDialog = false,
+                magicChargeMap = mapOf(
+                    Magic.FIRE to MagicValue(state.magicCharges[Magic.FIRE.name] ?: 0),
+                    Magic.FROST to MagicValue(state.magicCharges[Magic.FROST.name] ?: 0),
+                    Magic.AIR to MagicValue(state.magicCharges[Magic.AIR.name] ?: 0),
+                    Magic.EARTH to MagicValue(state.magicCharges[Magic.EARTH.name] ?: 0),
+                    Magic.SUN to MagicValue(state.magicCharges[Magic.SUN.name] ?: 0),
+                    Magic.MOON to MagicValue(state.magicCharges[Magic.MOON.name] ?: 0),
+                )
+            )
+    }
 }
 
+@Immutable
 data class ScenarioUIState(
     val name: String = "",
     val exp: Int = 0,
@@ -312,9 +367,9 @@ data class ScenarioUIState(
     val trapDamage: Int = 0,
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
-    val monsters: List<MonsterItem> = emptyList(),
-    val monstersForAdd: List<MonsterItem> = emptyList(),
-    val magicChargeList: Map<Magic, MagicValue> = emptyMap(),
+    val monsters: ImmutableList<MonsterItem> = persistentListOf(),
+    val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
+    val magicChargeList: ImmutableMap<Magic, MagicValue> = persistentMapOf(),
     val showUnitLevelDialog: Boolean = false
 )
 
@@ -327,6 +382,7 @@ enum class Magic(val icon: GameIcon) {
     MOON(GameIcon.MOON),
 }
 
+@Serializable
 data class MagicValue(
     val value: Int = 0
 ) {
