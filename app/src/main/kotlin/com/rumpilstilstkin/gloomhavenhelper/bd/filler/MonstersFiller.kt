@@ -1616,6 +1616,27 @@ object MonstersFiller {
             MonsterStatsBd(valrathCommanderId, 6, false, 28, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(RANGE, "4"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
             MonsterStatsBd(valrathCommanderId, 7, false, 33, listOf(Action(MOVE, "4"), Action(ATTACK, "7"), Action(RANGE, "5"), Action(WOUND, ""), Action(POISON, ""), Text("Способность 1: Призывает валрата-следопыта. Движение -1, лечение 2 на всех союзников на соседних клетках."), Text("Способность 2: Движение +0, атака +0. Призывает валрата-варвара"))),
         )
+
+        val selaNaberisId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Села Наберис",
+                deckName = "tracker",
+                lifeMultiple = false,
+                isBoss = true,
+                immunity = listOf(STUN, DISARM),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(selaNaberisId, 0, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(PIERCE, "10"), Text("Цели - количество персонажей"))),
+            MonsterStatsBd(selaNaberisId, 1, false, 11, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(PIERCE, "10"), Text("Цели - количество персонажей"))),
+            MonsterStatsBd(selaNaberisId, 2, false, 12, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(PIERCE, "11"), Text("Цели - количество персонажей"))),
+            MonsterStatsBd(selaNaberisId, 3, false, 14, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(RANGE, "6"), Action(PIERCE, "11"), Text("Цели - количество персонажей"), Action(PUSH, "1"))),
+            MonsterStatsBd(selaNaberisId, 4, false, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "7"), Action(PIERCE, "12"), Text("Цели - количество персонажей"), Action(PUSH, "1"))),
+            MonsterStatsBd(selaNaberisId, 5, false, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "7"), Action(PIERCE, "12"), Text("Цели - количество персонажей"), Action(PUSH, "1"))),
+            MonsterStatsBd(selaNaberisId, 6, false, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "8"), Action(PIERCE, "12"), Text("Цели - количество персонажей"), Action(PUSH, "2"))),
+            MonsterStatsBd(selaNaberisId, 7, false, 24, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "8"), Action(PIERCE, "13"), Text("Цели - количество персонажей"), Action(PUSH, "2"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
