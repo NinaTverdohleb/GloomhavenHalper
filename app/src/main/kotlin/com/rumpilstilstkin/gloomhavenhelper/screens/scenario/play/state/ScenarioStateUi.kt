@@ -13,6 +13,7 @@ data class ScenarioStateUi(
     val exp: Int = 0,
     val gold: Int = 0,
     val trapDamage: Int = 0,
+    val level: Int = 0,
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
     val monsters: ImmutableList<MonsterItem> = persistentListOf(),
