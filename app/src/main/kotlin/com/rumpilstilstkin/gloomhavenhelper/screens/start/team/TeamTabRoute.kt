@@ -37,6 +37,7 @@ fun TeamTabRoute(
         updateProsperity = { newValue -> viewModel.onAction(TeamTabAction.UpdateProsperity(newValue)) },
         updateReputation = { newValue -> viewModel.onAction(TeamTabAction.UpdateReputation(newValue)) },
         openTeamAchievements = { viewModel.onAction(TeamTabAction.OpenTeamAchievements) },
-        openGlobalAchievements = { viewModel.onAction(TeamTabAction.OpenGlobalAchievements) }
+        openGlobalAchievements = { viewModel.onAction(TeamTabAction.OpenGlobalAchievements) },
+        restore = { viewModel.onAction(TeamTabAction.RestoreLastScenario) }
     )
 }

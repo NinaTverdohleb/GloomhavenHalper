@@ -21,6 +21,7 @@ data class TeamUI(
     val teamScenario: ImmutableList<ShortScenarioUI>,
     val characters: ImmutableList<CharacterUI>,
     val canAddCharacter: Boolean = false,
+    val hasActiveScenario: Boolean,
 ) {
     companion object {
         fun fixture() = TeamUI(
@@ -45,6 +46,7 @@ data class TeamUI(
             characters = persistentListOf(
                 CharacterUI.fixture()
             ),
+            hasActiveScenario = true
         )
     }
 }

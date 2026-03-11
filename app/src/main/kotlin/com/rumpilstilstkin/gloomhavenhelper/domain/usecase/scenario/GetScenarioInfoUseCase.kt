@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
 import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
@@ -17,6 +18,7 @@ class GetScenarioInfoUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
     private val scenarioRepository: ScenarioRepository,
     private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
+    private val scenarioGameStateRepository: ScenarioGameStateRepository,
 ) {
     suspend operator fun invoke(
         scenarioNumber: Int?,
@@ -28,6 +30,7 @@ class GetScenarioInfoUseCase @Inject constructor(
                 if (needRestore) {
                     restoreScenarioStateUseCase(team, levelInfo)
                 } else {
+                    scenarioGameStateRepository.delete()
                     val monsters = scenarioNumber?.let { number ->
                         scenarioRepository.getScenario(number).monsters
                     } ?: emptyList()

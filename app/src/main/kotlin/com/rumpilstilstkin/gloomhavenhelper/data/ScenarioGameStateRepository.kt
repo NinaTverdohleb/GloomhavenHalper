@@ -13,6 +13,9 @@ class ScenarioGameStateRepository @Inject constructor(
     suspend fun get(): ScenarioGameState? =
         scenarioGameStateDao.get()?.toDomain()
 
+    fun getFlow() =
+        scenarioGameStateDao.getFlow()
+
     suspend fun getByName(name: String): ScenarioGameState? =
         scenarioGameStateDao.getByName(name)?.toDomain()
 
