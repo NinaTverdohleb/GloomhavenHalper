@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -14,7 +13,7 @@ import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.constructor.ScenarioConstructorRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters.ScenarioConstructorRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global.GlobalAchievementsRoute
@@ -22,7 +21,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAc
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
-import kotlin.reflect.typeOf
 
 @Composable
 fun GlHelperNavHost(
@@ -96,9 +94,7 @@ fun GlHelperNavHost(
             )
         }
         composable<GlHelperScreens.ScenarioConstructor> {
-            val args = it.toRoute<GlHelperScreens.ScenarioConstructor>()
             ScenarioConstructorRoute(
-                scenarioId = args.scenarioId,
                 navController = navController
             )
         }

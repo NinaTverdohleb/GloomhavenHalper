@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.constructor
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
@@ -21,5 +21,5 @@ data class ScenarioConstructorStateLogic(
 sealed interface ScenarioConstructorAction {
     data object Back : ScenarioConstructorAction
     data class ToggleMonster(val monster: String) : ScenarioConstructorAction
-    data class StartScenario(val scenarioId: Int?) : ScenarioConstructorAction
+    data object AddMonsters : ScenarioConstructorAction
 }

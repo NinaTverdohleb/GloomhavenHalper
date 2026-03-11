@@ -53,7 +53,8 @@ data class MonsterUnit(
             monster: Monster,
             number: Int,
             isElite: Boolean,
-            currentLife: Int? = null
+            currentLife: Int? = null,
+            effects: ImmutableList<ActionUi> = persistentListOf()
         ): MonsterUnit {
             val maxLife = if (isElite) monster.eliteLife else monster.life
             val stats = if (isElite) monster.eliteStats else monster.stats
@@ -64,7 +65,11 @@ data class MonsterUnit(
                 stats = stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
                 isSpecial = isElite,
                 level = monster.level,
-                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }.toImmutableList()
+                effects = effects,
+                immunity = monster
+                    .immunity
+                    .map { ActionUi.fromMonsterStatType(it) }
+                    .toImmutableList()
             )
         }
 
@@ -80,7 +85,8 @@ data class MonsterUnit(
                 stats = monster.stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
                 isSpecial = false,
                 level = monster.level,
-                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }.toImmutableList()
+                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }
+                    .toImmutableList()
             )
         }
 
@@ -150,12 +156,14 @@ sealed interface EffectItem {
             is MonsterAction.Action -> Action(
                 type = ActionUi.fromMonsterStatType(action.statType),
                 modifier = action.modifier,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }?.toImmutableList()
+                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
+                    ?.toImmutableList()
             )
 
             is MonsterAction.Text -> Text(
                 content = action.content,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }?.toImmutableList()
+                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
+                    ?.toImmutableList()
             )
         }
     }

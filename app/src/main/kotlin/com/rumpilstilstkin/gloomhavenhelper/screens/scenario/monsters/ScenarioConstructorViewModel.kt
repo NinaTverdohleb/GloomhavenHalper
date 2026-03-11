@@ -1,13 +1,15 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.constructor
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.AddMonstersForCurrentScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetAvailableMonstersForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,6 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ScenarioConstructorViewModel @Inject constructor(
     private val getAvailableMonstersForTeamUseCase: GetAvailableMonstersForTeamUseCase,
+    private val addMonstersForCurrentScenarioUseCase: AddMonstersForCurrentScenarioUseCase
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -80,18 +83,13 @@ class ScenarioConstructorViewModel @Inject constructor(
                     }
                 }
 
-                is ScenarioConstructorAction.StartScenario -> {
-                    val selectedMonsters = logicState.value.selectedMonsters.toList()
-                    if (selectedMonsters.isNotEmpty()) {
-                        _navigationEvents.emit(
-                            GlHelperEvent.Screen(
-                                GlHelperScreens.Scenario(
-                                    scenarioId = action.scenarioId,
-                                    restore = false
-                                )
-                            )
+                is ScenarioConstructorAction.AddMonsters -> {
+                    async {
+                        addMonstersForCurrentScenarioUseCase(
+                            logicState.value.selectedMonsters.toList()
                         )
-                    }
+                    }.await()
+                    _navigationEvents.emit(GlHelperEvent.Back)
                 }
             }
         }

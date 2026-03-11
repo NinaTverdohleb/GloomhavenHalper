@@ -44,7 +44,8 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 activeMonsters = state.activeMonsters,
                 magicCharges = state.magicCharges.associate {
                     it.name to it.value
-                }
+                },
+                scenarioNumber = state.scenarioNumber
             )
         } ?: ScenarioBattleInfo(
             name = "Своя карта",
@@ -53,7 +54,8 @@ class RestoreScenarioStateUseCase @Inject constructor(
             exp = levelInfo?.experience ?: 0,
             trapDamage = levelInfo?.trapDamage ?: 0,
             gamersCount = team.characters.size,
-            monsterLevel = levelInfo?.monsterLevel ?: 0
+            monsterLevel = levelInfo?.monsterLevel ?: 0,
+            scenarioNumber = null
         )
     }
 }

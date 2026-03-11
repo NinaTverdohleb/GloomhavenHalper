@@ -36,6 +36,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioStatsRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
@@ -76,7 +78,11 @@ internal fun ScenarioScreen(
         ScenarioHeader(
             title = state.name,
             magics = state.magicChargeList,
-            clickMagic = clickMagic
+            clickMagic = clickMagic,
+            level = state.exp,
+            exp = state.exp,
+            gold = state.gold,
+            trapDamage = state.trapDamage
         )
 
         Spacer(
@@ -130,55 +136,6 @@ private fun CombatToolbar(
         }
     }
 )
-
-@Composable
-private fun ScenarioHeader(
-    magics: Map<Magic, MagicValue>,
-    title: String,
-    modifier: Modifier = Modifier,
-    clickMagic: (magic: Magic) -> Unit,
-) = Column(
-    modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.headlineSmall,
-        color = MaterialTheme.colorScheme.onSurface
-    )
-    Spacer(
-        modifier = Modifier.height(16.dp)
-    )
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        magics.keys.forEach { magic ->
-            IconButton(
-                onClick = { clickMagic(magic) },
-                modifier = Modifier.size(52.dp),
-            ) {
-                magics[magic]?.getChargeImage()?.let { image ->
-                    Icon(
-                        painter = painterResource(id = image),
-                        contentDescription = null,
-                        modifier = modifier
-                            .size(52.dp),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-
-                Icon(
-                    painter = painterResource(id = magic.icon.imageRes),
-                    contentDescription = magic.icon.title,
-                    modifier = modifier
-                        .size(32.dp),
-                    tint = magic.icon.color
-                )
-            }
-        }
-    }
-}
 
 @Composable
 fun ScenarioScreenContent(
@@ -272,7 +229,7 @@ private fun ScenarioScreenPreview() {
             nextRound = {},
             addMonsterUnit = { _, _, _ -> },
             clickMagic = {},
-            changeUnitLevel = { _, _, _ -> }
+            changeUnitLevel = { _, _, _ -> },
         )
     }
 }
@@ -295,7 +252,7 @@ private fun ScenarioScreenEmptyPreview() {
             nextRound = {},
             addMonsterUnit = { _, _, _ -> },
             clickMagic = {},
-            changeUnitLevel = { _, _, _ -> }
+            changeUnitLevel = { _, _, _ -> },
         )
     }
 }
