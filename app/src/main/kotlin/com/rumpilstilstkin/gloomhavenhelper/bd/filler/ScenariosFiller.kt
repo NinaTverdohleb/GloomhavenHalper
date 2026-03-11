@@ -1478,7 +1478,7 @@ object ScenariosFiller {
                     "Городской страж",
                     "Огненный демон",
                     "Саввас Поток лавы",
-                    "Неберис",
+                    "Села Наберис",
                     "Шрака мудрый",
                 ),
                 pack = PackType.FORGOTTEN_CIRCLES.name,
