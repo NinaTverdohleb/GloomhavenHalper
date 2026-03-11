@@ -46,16 +46,12 @@ fun GlHelperNavHost(
                 navController = navController
             )
         }
-        composable<GlHelperScreens.Scenario>(
-            typeMap = mapOf(
-                typeOf<List<String>>() to NavType.StringListType
-            )
-        ) {
+        composable<GlHelperScreens.Scenario> {
             val args = it.toRoute<GlHelperScreens.Scenario>()
             ScenarioRoute(
                 navController = navController,
                 scenarioId = args.scenarioId,
-                monsters = args.monsters
+                restore = args.restore
             )
         }
         composable<GlHelperScreens.CharacterDetails> {

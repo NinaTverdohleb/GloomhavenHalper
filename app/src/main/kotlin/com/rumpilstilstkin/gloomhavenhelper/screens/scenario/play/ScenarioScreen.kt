@@ -39,6 +39,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Reg
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableMap
 
 @Composable
 internal fun ScenarioScreen(
@@ -246,20 +248,10 @@ private fun ScenarioScreenPreview() {
         ScenarioScreen(
             state = ScenarioUIState(
                 name = "Гиблая лужa",
-                monsters = listOf(
-                    MonsterItem(
-                        id = 1,
-                        isFly = true,
-                        name = "Хвостожабка",
-                        currentCard = null,
-                        units = persistentListOf(
-                            MonsterUnit.fixture(2),
-                            MonsterUnit.fixture(3),
-                            MonsterUnit.fixture(5),
-                        )
-                    )
+                monsters = persistentListOf(
+                    MonsterItem.fixture()
                 ),
-                magicChargeList = mapOf(
+                magicChargeList = persistentMapOf(
                     Magic.FIRE to MagicValue(0),
                     Magic.FROST to MagicValue(2),
                     Magic.AIR to MagicValue(0),

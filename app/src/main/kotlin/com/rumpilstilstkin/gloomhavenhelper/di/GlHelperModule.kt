@@ -92,4 +92,8 @@ object GlHelperModule {
     @Singleton
     @Provides
     fun provideAchievementDao(db: GlHelperDatabase) = db.achievementDao()
+
+    @Singleton
+    @Provides
+    fun provideScenarioGameStateDao(db: GlHelperDatabase) = db.scenarioGameStateDao()
 }
