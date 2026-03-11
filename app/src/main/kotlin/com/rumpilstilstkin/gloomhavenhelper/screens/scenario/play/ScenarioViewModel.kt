@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
-import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.ClearCurrent
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.SaveScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
@@ -21,6 +19,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.async
@@ -41,16 +40,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @OptIn(FlowPreview::class)
-@HiltViewModel(assistedFactory = ScenarioViewModel.Factory::class)
-class ScenarioViewModel @AssistedInject constructor(
+@HiltViewModel
+class ScenarioViewModel @Inject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
     private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
-    private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
-    @Assisted private val scenarioNumber: Int?,
-    @Assisted private val restore: Boolean,
 ) : ViewModel(), DefaultLifecycleObserver {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -66,10 +62,7 @@ class ScenarioViewModel @AssistedInject constructor(
         )
 
     override fun onResume(owner: LifecycleOwner) {
-        val needRestore = if(logicState.value == null) restore else true
-        loadScenario(
-            needRestore
-        )
+        loadScenario()
         logicState
             .filterNotNull()
             .debounce(500)
@@ -83,11 +76,9 @@ class ScenarioViewModel @AssistedInject constructor(
             .launchIn(viewModelScope)
     }
 
-    private fun loadScenario(
-        needRestore: Boolean
-    ) {
+    private fun loadScenario() {
         viewModelScope.launch {
-            getScenarioInfoUseCase(scenarioNumber, needRestore).onSuccess { battleInfo ->
+            getScenarioInfoUseCase().onSuccess { battleInfo ->
                 logicState.update {
                     ScenarioLogicState.restore(battleInfo)
                 }
@@ -208,13 +199,5 @@ class ScenarioViewModel @AssistedInject constructor(
             val newState = update(state)
             logicState.update { newState }
         }
-    }
-
-    @AssistedFactory
-    interface Factory {
-        fun create(
-            scenarioNumber: Int?,
-            restore: Boolean
-        ): ScenarioViewModel
     }
 }

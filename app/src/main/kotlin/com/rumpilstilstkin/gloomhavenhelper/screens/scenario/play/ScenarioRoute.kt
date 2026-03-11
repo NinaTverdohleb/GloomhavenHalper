@@ -8,7 +8,6 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
@@ -16,11 +15,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Scenario
 @Composable
 fun ScenarioRoute(
     navController: NavHostController,
-    scenarioId: Int?,
-    restore: Boolean,
-    viewModel: ScenarioViewModel = hiltViewModel<ScenarioViewModel, ScenarioViewModel.Factory> { factory ->
-        factory.create(scenarioId, restore)
-    }
+    viewModel: ScenarioViewModel = hiltViewModel()
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

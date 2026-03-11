@@ -15,40 +15,13 @@ import javax.inject.Inject
 class GetScenarioInfoUseCase @Inject constructor(
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
     private val levelInfoRepository: LevelInfoRepository,
-    private val monsterRepository: MonsterRepository,
-    private val scenarioRepository: ScenarioRepository,
     private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
-    private val scenarioGameStateRepository: ScenarioGameStateRepository,
 ) {
-    suspend operator fun invoke(
-        scenarioNumber: Int?,
-        needRestore: Boolean
-    ): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
+    suspend operator fun invoke(): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
                 val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
-                if (needRestore) {
-                    restoreScenarioStateUseCase(team, levelInfo)
-                } else {
-                    scenarioGameStateRepository.delete()
-                    val monsters = scenarioNumber?.let { number ->
-                        scenarioRepository.getScenario(number).monsters
-                    } ?: emptyList()
-                    val scenarioMonsters =
-                        monsterRepository.getMonstersByNames(monsters, team.level)
-                    ScenarioBattleInfo(
-                        name = scenarioNumber?.let { number ->
-                            team.activeScenario.firstOrNull { it.scenarioNumber == number }?.scenarioName
-                        } ?: "Своя карта",
-                        monsters = scenarioMonsters,
-                        golds = levelInfo?.goldCount ?: 0,
-                        exp = levelInfo?.experience ?: 0,
-                        trapDamage = levelInfo?.trapDamage ?: 0,
-                        gamersCount = team.characters.size,
-                        monsterLevel = levelInfo?.monsterLevel ?: 0,
-                        scenarioNumber = scenarioNumber,
-                    )
-                }.toResult()
+                restoreScenarioStateUseCase(team, levelInfo).toResult()
             } else {
                 Result.failure(IllegalStateException("Team is null"))
             }
