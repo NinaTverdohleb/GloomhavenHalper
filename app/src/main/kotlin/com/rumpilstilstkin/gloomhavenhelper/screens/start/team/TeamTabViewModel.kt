@@ -51,7 +51,8 @@ class TeamTabViewModel @Inject constructor(
                     globalAchievements = team.globalAchievement.toImmutableList(),
                     characters = team.characters.map { it.toUi() }.toImmutableList(),
                     canAddCharacter = team.characters.size < 4,
-                    shopDiscount = team.shopDiscount
+                    shopDiscount = team.shopDiscount,
+                    hasActiveScenario = team.hasActiveScenario
                 ),
             )
         }
@@ -100,6 +101,17 @@ class TeamTabViewModel @Inject constructor(
                 TeamTabAction.OpenTeamAchievements -> {
                     _navigationEvents.emit(Screen(GlHelperScreens.TeamAchievements))
                 }
+
+                TeamTabAction.RestoreLastScenario -> {
+                    _navigationEvents.emit(
+                        Screen(
+                            Scenario(
+                                scenarioId = null,
+                                restore = true
+                            )
+                        )
+                    )
+                }
             }
         }
     }
@@ -112,4 +124,5 @@ sealed interface TeamTabAction {
     data class UpdateProsperity(val value: Int) : TeamTabAction
     data object OpenTeamAchievements : TeamTabAction
     data object OpenGlobalAchievements : TeamTabAction
+    data object RestoreLastScenario : TeamTabAction
 }

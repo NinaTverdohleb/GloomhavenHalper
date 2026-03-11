@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,9 +31,11 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 @Composable
 fun ScenarioBlock(
     scenarios: List<ShortScenarioUI>,
+    canRestore: Boolean,
     modifier: Modifier = Modifier,
     completeScenario: (Int) -> Unit,
     startScenario: (Int?) -> Unit,
+    restoreScenario: () -> Unit,
 ) = Column(
     modifier = modifier
 ) {
@@ -46,12 +50,21 @@ fun ScenarioBlock(
             color = MaterialTheme.colorScheme.primary
         )
 
-        IconButton(onClick = {startScenario(null)}) {
+        IconButton(onClick = { startScenario(null) }) {
             Icon(
                 Icons.Default.Add,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface
             )
+        }
+    }
+    if(canRestore) {
+        Button(
+            modifier = Modifier
+                .fillMaxWidth(),
+            onClick = { restoreScenario() },
+        ) {
+            Text("Продолжить")
         }
     }
     Spacer(modifier = Modifier.height(16.dp))
@@ -98,8 +111,10 @@ private fun ScenarioBlockPreview() {
             scenarios = listOf(
                 ShortScenarioUI.fixture(1)
             ),
+            canRestore = true,
             completeScenario = {},
             startScenario = {},
+            restoreScenario = {},
         )
     }
 }

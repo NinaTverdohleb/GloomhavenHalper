@@ -11,7 +11,8 @@ data class TeamInfo(
     val characters: List<CharacterInfo>,
     val shopDiscount: Int,
     val prosperity: Prosperity,
-    val packs: List<PackType>
+    val packs: List<PackType>,
+    val hasActiveScenario: Boolean,
 )
 
 data class Prosperity(

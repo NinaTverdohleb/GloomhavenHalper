@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.toLevel
@@ -18,29 +19,34 @@ class GetCurrentTeamUseCase @Inject constructor(
     private val getDiscountByReputation: GetDiscountByReputationUseCase,
     private val getTeamProsperityUseCase: GetTeamProsperityUseCase,
     private val filterTeamScenariosUseCase: FilterTeamScenariosUseCase,
+    private val scenarioGameStateRepository: ScenarioGameStateRepository
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamInfo?> =
         teamRepository.currentTeam.flatMapLatest { currentTeam ->
             currentTeam?.let { team ->
-                characterRepository.getCharacterByTeamId(team.teamId)
-                    .combine(teamRepository.getTeamWithScenarioFlow(team.teamId)) { characters, team ->
-                        val activeCharacters = characters.filter { it.isAlive }
-                        val teamScenarios = filterTeamScenariosUseCase(team)
-                        TeamInfo(
-                            id = team.teamId,
-                            name = team.name,
-                            level = activeCharacters.map { it.level }.toLevel(),
-                            teamAchievement = team.teamAchievement,
-                            globalAchievement = team.globalAchievement,
-                            reputation = team.reputation,
-                            prosperity = getTeamProsperityUseCase(team.prosperity),
-                            activeScenario = teamScenarios.activeScenarios,
-                            characters = activeCharacters,
-                            shopDiscount = getDiscountByReputation(team.reputation),
-                            packs = team.packs
-                        )
-                    }
+                combine(
+                    characterRepository.getCharacterByTeamId(team.teamId),
+                    teamRepository.getTeamWithScenarioFlow(team.teamId),
+                    scenarioGameStateRepository.getFlow()
+                ) { characters, team, activeScenario ->
+                    val activeCharacters = characters.filter { it.isAlive }
+                    val teamScenarios = filterTeamScenariosUseCase(team)
+                    TeamInfo(
+                        id = team.teamId,
+                        name = team.name,
+                        level = activeCharacters.map { it.level }.toLevel(),
+                        teamAchievement = team.teamAchievement,
+                        globalAchievement = team.globalAchievement,
+                        reputation = team.reputation,
+                        prosperity = getTeamProsperityUseCase(team.prosperity),
+                        activeScenario = teamScenarios.activeScenarios,
+                        characters = activeCharacters,
+                        shopDiscount = getDiscountByReputation(team.reputation),
+                        packs = team.packs,
+                        hasActiveScenario = activeScenario != null
+                    )
+                }
             } ?: flowOf(null)
         }
 }
