@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterForScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetTeamScenariosUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
@@ -28,7 +29,7 @@ import javax.inject.Inject
 class ScenariosTabViewModel @Inject constructor(
     getTeamScenariosUseCase: GetTeamScenariosUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
-    private val getMonstersForScenarioUseCase: GetMonsterForScenarioUseCase
+    private val createActiveScenarioUseCase: CreateActiveScenarioUseCase
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -97,15 +98,8 @@ class ScenariosTabViewModel @Inject constructor(
             }
 
             is ScenariosTabAction.StartScenario -> {
-                getMonstersForScenarioUseCase(action.scenarioId).onSuccess { monsters ->
-                    _navigationEvents.emit(
-                        Screen(
-                            Scenario(
-                                scenarioId = action.scenarioId,
-                                restore = false
-                            )
-                        )
-                    )
+                createActiveScenarioUseCase(action.scenarioId).onSuccess {
+                    _navigationEvents.emit(Screen(Scenario))
                 }
             }
 
