@@ -79,7 +79,7 @@ internal fun ScenarioScreen(
             title = state.name,
             magics = state.magicChargeList,
             clickMagic = clickMagic,
-            level = state.exp,
+            level = state.level,
             exp = state.exp,
             gold = state.gold,
             trapDamage = state.trapDamage

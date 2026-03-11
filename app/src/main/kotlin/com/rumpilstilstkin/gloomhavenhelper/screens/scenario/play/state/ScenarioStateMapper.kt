@@ -21,6 +21,7 @@ object ScenarioStateMapper {
             exp = state.scenarioInfo.exp,
             gold = state.scenarioInfo.golds,
             trapDamage = state.scenarioInfo.trapDamage,
+            level = state.scenarioInfo.monsterLevel,
             round = state.round,
             monsters = state.activeMonsters.map { monster ->
                 monster.copy(
