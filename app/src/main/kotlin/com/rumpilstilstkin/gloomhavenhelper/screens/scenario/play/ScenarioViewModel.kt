@@ -1,11 +1,17 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
+import android.util.Log
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.ClearCurrentActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.SaveScenarioStateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioLogicState
@@ -17,6 +23,7 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,9 +47,11 @@ class ScenarioViewModel @AssistedInject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
+    private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
+    private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
     @Assisted private val scenarioNumber: Int?,
     @Assisted private val restore: Boolean,
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -56,8 +65,11 @@ class ScenarioViewModel @AssistedInject constructor(
             initialValue = ScenarioStateUi()
         )
 
-    init {
-        loadScenario()
+    override fun onResume(owner: LifecycleOwner) {
+        val needRestore = if(logicState.value == null) restore else true
+        loadScenario(
+            needRestore
+        )
         logicState
             .filterNotNull()
             .debounce(500)
@@ -71,9 +83,11 @@ class ScenarioViewModel @AssistedInject constructor(
             .launchIn(viewModelScope)
     }
 
-    private fun loadScenario() {
+    private fun loadScenario(
+        needRestore: Boolean
+    ) {
         viewModelScope.launch {
-            getScenarioInfoUseCase(scenarioNumber, restore).onSuccess { battleInfo ->
+            getScenarioInfoUseCase(scenarioNumber, needRestore).onSuccess { battleInfo ->
                 logicState.update {
                     ScenarioLogicState.restore(battleInfo)
                 }
@@ -123,12 +137,15 @@ class ScenarioViewModel @AssistedInject constructor(
                 }
 
                 is ScenarioActions.CompleteScenario -> {
-                    if (scenarioNumber != null) {
-                        viewModelScope.launch {
-                            completeScenarioUseCase(scenarioNumber)
-                            _navigationEvents.emit(GlHelperEvent.Back)
+                    viewModelScope.async {
+                        val number = logicState.value?.scenarioInfo?.scenarioNumber
+                        if (number != null) {
+                            completeScenarioUseCase(number)
+                        } else {
+                            clearCurrentActiveScenarioUseCase()
                         }
-                    }
+                    }.await()
+                    _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
                 ScenarioActions.CloseMonstersDialog -> updateState {
@@ -166,6 +183,17 @@ class ScenarioViewModel @AssistedInject constructor(
                         monsterId = action.monsterId,
                         number = action.unitNumber,
                         stats = newStats
+                    )
+                }
+
+                ScenarioActions.AddNewMonsters -> {
+                    updateState {
+                        it.copy(
+                            showMonsterDialog = false
+                        )
+                    }
+                    _navigationEvents.emit(
+                        GlHelperEvent.Screen(GlHelperScreens.ScenarioConstructor)
                     )
                 }
             }

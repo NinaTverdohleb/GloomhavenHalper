@@ -29,4 +29,5 @@ sealed interface ScenarioActions {
 
     data object ShowUnitLevelDialog : ScenarioActions
     data object CloseUnitLevelDialog : ScenarioActions
+    data object AddNewMonsters : ScenarioActions
 }

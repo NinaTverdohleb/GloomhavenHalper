@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.constructor
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,7 +11,6 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 @Composable
 fun ScenarioConstructorRoute(
     navController: NavHostController,
-    scenarioId: Int?,
     viewModel: ScenarioConstructorViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -30,6 +29,6 @@ fun ScenarioConstructorRoute(
         state = uiState,
         back = { viewModel.onAction(ScenarioConstructorAction.Back) },
         toggleMonster = { viewModel.onAction(ScenarioConstructorAction.ToggleMonster(it)) },
-        startScenario = { viewModel.onAction(ScenarioConstructorAction.StartScenario(scenarioId)) },
+        startScenario = { viewModel.onAction(ScenarioConstructorAction.AddMonsters) },
     )
 }

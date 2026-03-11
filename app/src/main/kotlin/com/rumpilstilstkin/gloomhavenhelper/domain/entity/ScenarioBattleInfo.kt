@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ScenarioBattleInfo(
+    val scenarioNumber: Int?,
     val name: String,
     val monsters: List<Monster>,
     val golds: Int,

@@ -5,6 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
@@ -56,7 +57,7 @@ object ScenarioStateMapper {
                     id = item.id,
                     name = monster.name,
                     currentCard = item.currentCard?.let { cardId ->
-                        battleInfo.availableCards
+                        battleInfo.monsters.flatMap { it.cards }
                             .firstOrNull { card -> card.cardId == cardId }
                             ?.let { MonsterAbilityCard.createFromMonsterCard(it) }
                     },
@@ -67,7 +68,10 @@ object ScenarioStateMapper {
                             monster = monster,
                             number = stateUnit.number,
                             isElite = stateUnit.isElite,
-                            currentLife = stateUnit.currentLife
+                            currentLife = stateUnit.currentLife,
+                            effects = stateUnit.effects.map {
+                                ActionUi.fromMonsterStatType(it)
+                            }.toImmutableList()
                         )
                     }.toImmutableList()
                 )
@@ -93,7 +97,8 @@ object ScenarioStateMapper {
                             number = unit.number,
                             currentLife = unit.currentLife,
                             level = unit.level,
-                            isElite = unit.isSpecial
+                            isElite = unit.isSpecial,
+                            effects = unit.effects.map { it.toLogic() }
                         )
                     },
                 )
@@ -103,6 +108,7 @@ object ScenarioStateMapper {
                     name = name,
                     value = value
                 )
-            }
+            },
+            scenarioNumber = state.scenarioInfo.scenarioNumber
         )
 }

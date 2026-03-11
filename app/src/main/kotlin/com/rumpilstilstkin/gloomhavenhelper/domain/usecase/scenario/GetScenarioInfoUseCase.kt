@@ -45,7 +45,8 @@ class GetScenarioInfoUseCase @Inject constructor(
                         exp = levelInfo?.experience ?: 0,
                         trapDamage = levelInfo?.trapDamage ?: 0,
                         gamersCount = team.characters.size,
-                        monsterLevel = levelInfo?.monsterLevel ?: 0
+                        monsterLevel = levelInfo?.monsterLevel ?: 0,
+                        scenarioNumber = scenarioNumber
                     )
                 }.toResult()
             } else {

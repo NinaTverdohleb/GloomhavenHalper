@@ -69,6 +69,29 @@ enum class ActionUi(
     )
     ;
 
+    fun toLogic(): MonsterStatType = when (this) {
+        ATTACK -> MonsterStatType.ATTACK
+        MOVE -> MonsterStatType.MOVE
+        RANGED_ATTACK -> MonsterStatType.RANGE
+        SHIELD -> MonsterStatType.SHIELD
+        RETALIATE -> MonsterStatType.RETALIATE
+        TARGET -> MonsterStatType.TARGET
+        POISON -> MonsterStatType.POISON
+        WOUND -> MonsterStatType.WOUND
+        MUDDLE -> MonsterStatType.MUDDLE
+        STUN -> MonsterStatType.STUN
+        IMMOBILIZE -> MonsterStatType.IMMOBILIZE
+        DISARM -> MonsterStatType.DISARM
+        CURSE -> MonsterStatType.CURSE
+        STRENGTH -> MonsterStatType.STRENGTHEN
+        INVISIBLE -> MonsterStatType.INVISIBLE
+        HEAL -> MonsterStatType.HEAL
+        PUSH -> MonsterStatType.PUSH
+        BLESS -> MonsterStatType.BLESS
+        PULL -> MonsterStatType.PULL
+        PIERCE -> MonsterStatType.PIERCE
+    }
+
     companion object {
 
         fun fromMonsterStatType(type: MonsterStatType): ActionUi = when (type) {

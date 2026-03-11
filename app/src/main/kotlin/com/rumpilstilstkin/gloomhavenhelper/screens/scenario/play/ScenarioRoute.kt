@@ -1,9 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
@@ -22,6 +24,13 @@ fun ScenarioRoute(
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        lifecycleOwner.lifecycle.addObserver(viewModel)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(viewModel)
+        }
+    }
 
     LaunchedEffect(navigationEvents) {
         navigationEvents?.let { event ->
@@ -96,6 +105,7 @@ fun ScenarioRoute(
             monsters = uiState.monstersForAdd,
             selectMonster = { viewModel.onAction(ScenarioActions.AddMonster(it)) },
             onDismiss = { viewModel.onAction(ScenarioActions.CloseMonstersDialog) },
+            addNewMonsters = { viewModel.onAction(ScenarioActions.AddNewMonsters) }
         )
     }
 }

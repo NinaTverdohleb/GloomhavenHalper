@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +39,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun MonsterListDialog(
     monsters: List<MonsterItem>,
     selectMonster: (List<Int>) -> Unit,
+    addNewMonsters: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     var selectedIds by remember { mutableStateOf(emptyList<Int>()) }
@@ -69,6 +71,16 @@ fun MonsterListDialog(
                             }
                         },
                     )
+                }
+
+                item {
+                    Button(
+                        onClick = addNewMonsters,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Text("Добавить монстров")
+                    }
                 }
             }
 
@@ -129,6 +141,7 @@ private fun MonsterListDialogPreview() {
             ),
             onDismiss = {},
             selectMonster = {},
+            addNewMonsters = {}
         )
     }
 }

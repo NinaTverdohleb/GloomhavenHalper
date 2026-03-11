@@ -32,5 +32,5 @@ sealed interface GlHelperScreens {
     @Serializable
     data object GlobalAchievements : GlHelperScreens
     @Serializable
-    data class ScenarioConstructor(val scenarioId: Int?) : GlHelperScreens
+    data object ScenarioConstructor : GlHelperScreens
 }
