@@ -21,6 +21,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Главарь разбойников",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, IMMOBILIZE, CURSE),
                 pack = PackType.MAIN.name,
@@ -552,6 +553,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Инокс-телохранитель - 1",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(DISARM, MUDDLE, POISON, STUN)
             )
@@ -578,6 +580,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Инокс-телохранитель - 2",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(DISARM, MUDDLE, POISON, STUN)
             )
@@ -670,6 +673,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Жестокий надзиратель",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, WOUND, DISARM, CURSE)
             )
@@ -796,6 +800,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Начальник стражи",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, DISARM, WOUND, MUDDLE)
             )
@@ -822,6 +827,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Джексера",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, DISARM, CURSE, WOUND)
             )
@@ -1083,6 +1089,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Архидемон",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, IMMOBILIZE, DISARM, MUDDLE, POISON, WOUND)
             )
@@ -1308,6 +1315,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Дрейк-патриарх",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, IMMOBILIZE, DISARM, PUSH, PULL, POISON, WOUND)
             )
@@ -1334,6 +1342,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Крылатый ужас",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, DISARM, CURSE, MUDDLE, POISON)
             )
@@ -1360,6 +1369,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Невидящее око",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, PUSH, PULL, DISARM, CURSE, MUDDLE)
             )
@@ -1387,6 +1397,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Темный всадник",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, IMMOBILIZE, DISARM, POISON)
             )
@@ -1407,6 +1418,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Мрак",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, IMMOBILIZE, DISARM, CURSE, MUDDLE, POISON, WOUND)
             )
@@ -1427,6 +1439,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Предатель",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, WOUND, DISARM, CURSE, POISON)
             )
@@ -1447,6 +1460,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Бесцветный",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, WOUND, POISON, CURSE, MUDDLE)
             )
@@ -1567,6 +1581,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Полководец людей",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, DISARM, POISON, WOUND, IMMOBILIZE, CURSE),
             )
@@ -1586,6 +1601,7 @@ object MonstersFiller {
             MonsterBd(
                 name = "Полководец валратов",
                 deckName = "boss",
+                lifeMultiple = true,
                 isBoss = true,
                 immunity = listOf(STUN, DISARM, MUDDLE, WOUND, IMMOBILIZE, CURSE),
             )

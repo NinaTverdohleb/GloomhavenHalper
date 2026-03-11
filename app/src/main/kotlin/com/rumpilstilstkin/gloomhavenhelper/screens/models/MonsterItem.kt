@@ -77,7 +77,7 @@ data class MonsterUnit(
             monster: Monster,
             gamersCount: Int
         ): MonsterUnit {
-            val maxLife = monster.life * gamersCount
+            val maxLife = if(monster.lifeMultiple) monster.life * gamersCount else monster.life
             return MonsterUnit(
                 number = 1,
                 maxLife = maxLife,

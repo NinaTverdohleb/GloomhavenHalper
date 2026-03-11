@@ -16,6 +16,7 @@ data class Monster(
     val immunity: List<MonsterStatType>,
     val isFly: Boolean,
     val level: Int,
+    val lifeMultiple: Boolean,
 )
 
 

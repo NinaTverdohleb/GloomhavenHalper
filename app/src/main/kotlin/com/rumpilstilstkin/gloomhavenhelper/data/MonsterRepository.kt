@@ -74,7 +74,8 @@ class MonsterRepository @Inject constructor(
                     isBoss = monster.isBoss,
                     immunity = monster.immunity,
                     isFly = monster.fly,
-                    level = level
+                    level = level,
+                    lifeMultiple = monster.lifeMultiple,
                 )
             }
 }
