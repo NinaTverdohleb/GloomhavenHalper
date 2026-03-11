@@ -1455,6 +1455,34 @@ object ScenariosFiller {
                 ),
                 pack = PackType.FORGOTTEN_CIRCLES.name,
             ),
+            ScenarioBd(
+                scenarioNumber = 109,
+                requirements = "Знание-сила", // 2
+                name = "Исход войны",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Городской лучник",
+                    "Городской страж",
+                    "Валрат-варвар",
+                    "Валрат-следопыт",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+
+            ScenarioBd(
+                scenarioNumber = 110,
+                name = "Исход войны",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Городской страж",
+                    "Огненный демон",
+                    "Саввас Поток лавы",
+                    "Неберис",
+                    "Шрака мудрый",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
         )
     }
 }

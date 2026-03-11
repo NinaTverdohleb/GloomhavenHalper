@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "50430fe9db9fc9331f9992f12b6c7876",
+    "identityHash": "b8fc3175797bfd3979014a7bd7534893",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -701,7 +701,7 @@
       },
       {
         "tableName": "MonsterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL, `isBoss` INTEGER NOT NULL, `fly` INTEGER NOT NULL, `immunity` TEXT NOT NULL, `pack` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `deckName` TEXT NOT NULL, `isBoss` INTEGER NOT NULL, `fly` INTEGER NOT NULL, `lifeMultiple` INTEGER NOT NULL, `immunity` TEXT NOT NULL, `pack` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "monsterId",
@@ -730,6 +730,12 @@
           {
             "fieldPath": "fly",
             "columnName": "fly",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lifeMultiple",
+            "columnName": "lifeMultiple",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -1084,7 +1090,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50430fe9db9fc9331f9992f12b6c7876')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b8fc3175797bfd3979014a7bd7534893')"
     ]
   }
 }
