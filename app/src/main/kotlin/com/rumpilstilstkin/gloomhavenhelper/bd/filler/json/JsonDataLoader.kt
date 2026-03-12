@@ -46,15 +46,5 @@ class JsonDataLoader @Inject constructor(
 
     fun loadMonsters(version: Int): List<MonsterJson> = load("v${version}_monsters.json")
 
-    fun loadMonsterStats(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_main.json")
-    
-    fun loadMonsterStatsPart2(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_main_part2.json")
-
-    fun loadMonsterStatsPart3(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_main_part3.json")
-
-    fun loadBossStats(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_bosses_main.json")
-
-    fun loadFCMonsterStats(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_forgotten_circles.json")
-
-    fun loadFCBossStats(version: Int): List<MonsterStatsJson> = load("v${version}_monster_stats_bosses_forgotten_circles.json")
+    fun loadMonsterStats(version: Int, pack: String, type: String): List<MonsterStatsJson> = load("v${version}_${pack}_${type}stats.json")
 }
