@@ -8,14 +8,14 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Пройдите три сценария с названием Склеп",
         "count": 3
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 1,
         "text": "Откройте и пройдите полностью сенарий 52 - \"Жуткий погреб\""
@@ -31,35 +31,35 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "В инвентаре есть два предмета типа \"Голова\"",
         "count": 2
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 2,
         "priority": 0,
         "text": "В инвентаре есть два предмета типа \"Тело\"",
         "count": 2
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 3,
         "priority": 0,
         "text": "В инвентаре есть два предмета типа \"Ноги\"",
         "count": 2
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 4,
         "priority": 0,
         "text": "В инвентаре есть три предмета типа \"Одноручное\" или \"Двуручное\"",
         "count": 3
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 5,
         "priority": 0,
         "text": "В инвентаре есть четыре предмета типа \"Маленький предмет\"",
@@ -76,7 +76,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Иметь 200 золотых в личном запасе.",
@@ -93,14 +93,14 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить 8 лесных бесов",
         "count": 8
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 1,
         "text": "Откройте и пройдите полностью сенарий 59 - \"Забытая роща\""
@@ -116,7 +116,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Стать свидетелем того, как члены вашего отряда (кроме вас) 15 раз становятся изнуренными",
@@ -133,7 +133,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить суммарно 20 разбойников и культистов",
@@ -150,7 +150,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить 15 вермленгов",
@@ -167,7 +167,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить 20 разных типов монстров",
@@ -184,7 +184,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 15 разных сценариев",
@@ -201,7 +201,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Получить 15 галочек за выполнение боевых заданий",
@@ -218,7 +218,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Найти \"Топор порчи черепов\" находящийся в \"Прибежище некромантки\", и с его помощью убить 7 оживших костей, оживших трупов и оживших духов.",
@@ -235,14 +235,14 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 3 сценария с названием в Кинжальном лесу",
         "count": 3
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 1,
         "text": "Откройте и пройдите полностью сенарий 55 - \"Туманные заросли\""
@@ -258,7 +258,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 3 сценария c номером больше 51",
@@ -275,37 +275,37 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 1,
         "priority": 0,
         "text": "убить 1 огненного демона"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 0,
         "text": "убить 1 морозного демона"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 3,
         "priority": 0,
         "text": "убить 1 воздушного демона"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 4,
         "priority": 0,
         "text": "убить 1 земляного демона"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 5,
         "priority": 0,
         "text": "убить 1 ночного демона"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 6,
         "priority": 0,
         "text": "убить 1 солнечного демона"
@@ -321,7 +321,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить 20 мощных монстров",
@@ -338,7 +338,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Пожертвуйте 120 золотых святилищу Великого дуба",
@@ -356,14 +356,14 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 4 сценария с названием в Мрачной гавани",
         "count": 4
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 1,
         "text": "Откройте и пройдите полностью сенарий 57 - \"Расследование\""
@@ -379,7 +379,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Стать изнуренным 12 раз",
@@ -396,7 +396,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 4 разных сценария с боссами",
@@ -413,14 +413,14 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Успешно завершить 2 разных сценария в Вечнотопком болоте",
         "count": 2
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 1,
         "text": "Откройте и пройдите полностью сенарий 51 - \"Исчезающий маяк\""
@@ -436,7 +436,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Купите 4 усиления способностей",
@@ -453,37 +453,37 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 1,
         "priority": 0,
         "text": "Завершить сценарий в Мрачной гавани"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 2,
         "priority": 0,
         "text": "Завершить сценарий в Кинжальном лесу"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 3,
         "priority": 0,
         "text": "Завершить сценарий в Вечнотопком болоте"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 4,
         "priority": 0,
         "text": "Завершить сценарий в Сторожевых горах"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 5,
         "priority": 0,
         "text": "Завершить сценарий в Медных хрептах"
       },
       {
-        "kind": "check",
+        "taskType": "Check",
         "id": 6,
         "priority": 0,
         "text": "Завершить сценарий в Туманном море"
@@ -499,7 +499,7 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Стать свидетелем того как 2 друких персонажа выполняют свои личные задания",
@@ -516,21 +516,21 @@
     "pack": "MAIN",
     "tasks": [
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 1,
         "priority": 0,
         "text": "Убить 3 слизи",
         "count": 3
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 2,
         "priority": 0,
         "text": "Убить 3 скрытня",
         "count": 3
       },
       {
-        "kind": "count",
+        "taskType": "Count",
         "id": 3,
         "priority": 0,
         "text": "Убить 3 шипящих дрейка",
