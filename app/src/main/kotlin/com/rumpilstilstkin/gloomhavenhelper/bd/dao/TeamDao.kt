@@ -19,10 +19,10 @@ interface TeamDao {
     @Query("SELECT * FROM TeamBd")
     fun getAllFlow(): Flow<List<TeamBd>>
 
-    @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
-    suspend fun findById(id: Int): TeamBd
+    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
+    suspend fun findById(id: Int): TeamBd?
 
-    @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
+    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
     fun getTeamFlow(id: Int): Flow<TeamBd>
 
     @Upsert
@@ -36,11 +36,11 @@ interface TeamDao {
     suspend fun update(team: TeamBd)
 
     @Transaction
-    @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
+    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
     fun getTeamWithScenariosFlow(id: Int): Flow<TeamWithScenariosBd>
 
     @Transaction
-    @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
+    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
     suspend fun getTeamWithScenarios(id: Int): TeamWithScenariosBd
 
     @Transaction

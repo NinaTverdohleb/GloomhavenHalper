@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods
 
 import javax.inject.Inject
 
-class GetGoodsForLevelUseCase @Inject constructor() {
+class GetGoodNumbersForLevelUseCase @Inject constructor() {
     operator fun invoke(prosperityLevel: Int): List<Int> = when(prosperityLevel){
         1 -> (1..14).toList()
         2 -> (15..21).toList()

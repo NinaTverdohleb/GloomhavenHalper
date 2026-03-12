@@ -8,7 +8,7 @@ data class TeamInfo(
     val globalAchievement: List<Achievement>,
     val reputation: Int,
     val activeScenario: List<ScenarioShortInfo>,
-    val characters: List<CharacterInfo>,
+    val aliveCharacters: List<CharacterInfo>,
     val shopDiscount: Int,
     val prosperity: Prosperity,
     val packs: List<PackType>,
@@ -34,11 +34,19 @@ data class Prosperity(
     }
 }
 
+data class Team(
+    val teamId: Int,
+    val name: String,
+    val packs: List<PackType>
+)
+
+
 data class ShortTeamInfo(
     val teamId: Int,
     val name: String,
     val teamAchievement: List<Achievement>,
     val globalAchievement: List<Achievement>,
+    val aliveCharacterIds: List<Int>,
     val reputation: Int,
     val prosperity: Int,
     val packs: List<PackType>
@@ -54,7 +62,8 @@ data class ShortTeamInfo(
             globalAchievement = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
             reputation = 10,
             prosperity = 20,
-            packs = listOf(PackType.MAIN)
+            packs = listOf(PackType.MAIN),
+            aliveCharacterIds = listOf(1, 2, 3)
         )
     }
 }

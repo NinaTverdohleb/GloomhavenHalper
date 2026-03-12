@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -11,7 +12,7 @@ class GetCurrentTeamWithTeamsUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    operator fun invoke(): Flow<Pair<ShortTeamInfo?, List<ShortTeamInfo>>> =
+    operator fun invoke(): Flow<Pair<Team?, List<Team>>> =
         combine(
             teamRepository.currentTeam,
             teamRepository.getTeams()
@@ -19,7 +20,12 @@ class GetCurrentTeamWithTeamsUseCase @Inject constructor(
             if (team == null) {
                 null to emptyList()
             } else {
-                team to (teams - team)
+                val currentTeam = Team(
+                    teamId = team.teamId,
+                    name = team.name,
+                    packs = team.packs
+                )
+                currentTeam to (teams - currentTeam)
             }
         }
 }

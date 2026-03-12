@@ -2,16 +2,16 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodsToTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForLevelUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodsToTeamByNumbersUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodNumbersForLevelUseCase
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class UpdateTeamProsperityUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val getTeamProsperityUseCase: GetTeamProsperityUseCase,
-    private val getGoodsForLevelUseCase: GetGoodsForLevelUseCase,
-    private val addGoodsToTeamUseCase: AddGoodsToTeamUseCase,
+    private val getGoodsForLevelUseCase: GetGoodNumbersForLevelUseCase,
+    private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
 ) {
     suspend operator fun invoke(
         prosperity: Prosperity,

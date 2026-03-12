@@ -7,7 +7,9 @@ import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasourc
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
 import kotlinx.coroutines.CoroutineScope
@@ -39,7 +41,14 @@ class TeamRepository @Inject constructor(
         _currentTeam
             .flatMapLatest { result ->
                 result.fold(
-                    onSuccess = { teamId -> teamDao.getTeamFlow(teamId).map { it.toDomain() } },
+                    onSuccess = { teamId ->
+                        combine(
+                            teamDao.getTeamFlow(teamId),
+                            characterDao.findByTeamIdFlow(teamId),
+                        ) { team, characters ->
+                            team.toDomain(characters.filter { it.isAlive }.map { it.characterId })
+                        }
+                    },
                     onFailure = { flowOf(null) }
                 )
             }
@@ -63,8 +72,23 @@ class TeamRepository @Inject constructor(
         updateCurrentTeam()
     }
 
-    fun getTeams(): Flow<List<ShortTeamInfo>> =
-        teamDao.getAllFlow().map { teams -> teams.map { it.toDomain() } }
+    fun getTeams(): Flow<List<Team>> =
+        teamDao.getAllFlow().map { teams ->
+            teams.map { teamBd ->
+                Team(
+                    teamId = teamBd.teamId,
+                    name = teamBd.name,
+                    packs = teamBd.packs.map { PackType.valueOf(it) }
+                )
+            }
+        }
+
+    suspend fun getTeamInfo(teamId: Int): ShortTeamInfo? =
+        teamDao.findById(teamId)?.let { team ->
+            val characters = characterDao.findByTeamId(team.teamId).filter { it.isAlive }.map { it.characterId }
+            team.toDomain(characters)
+        }
+
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
@@ -98,13 +122,12 @@ class TeamRepository @Inject constructor(
     }
 
     private suspend fun updateCurrentTeam() {
-        val currentTeam = currentTeamDatasource.getCurrentTeam()
-        if (currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
-            teamDao.findById(currentTeam).let { team ->
-                _currentTeam.emit(
-                    Result.success(team.teamId)
-                )
-            }
+        val currentTeamId = currentTeamDatasource.getCurrentTeam()
+        val team = teamDao.findById(currentTeamId)
+        if (currentTeamId != CurrentTeamDatasource.EMPTY_TEAM && team != null) {
+            _currentTeam.emit(
+                Result.success(team.teamId)
+            )
         } else {
             _currentTeam.emit(Result.failure(NotFoundException()))
         }

@@ -7,7 +7,8 @@ class LevelUpUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
     suspend operator fun invoke(characterId: Int) {
-        val character = characterRepository.getCharacterById(characterId)
-        characterRepository.updateLevel(characterId, character.level + 1)
+        characterRepository.getCharacterById(characterId)?.also { character ->
+            characterRepository.updateLevel(characterId, character.level + 1)
+        }
     }
 }

@@ -3,13 +3,14 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodToTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetAdditionalGoodsForTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetAvaliableGoodsForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,7 +24,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddGoodsForTeamViewModel @Inject constructor(
-    getGoodsUseCase: GetAdditionalGoodsForTeamUseCase,
+    getGoodsUseCase: GetAvaliableGoodsForTeamUseCase,
     private val addGoodToTeamUseCase: AddGoodToTeamUseCase,
 ) : ViewModel() {
 
@@ -73,9 +74,10 @@ class AddGoodsForTeamViewModel @Inject constructor(
                 }
 
                 is AddGoodsForTeamAction.AddSelectedGoods -> {
-                    logicState.value.selectedGoods.forEach { good ->
-                        addGoodToTeamUseCase(good.number)
-                    }
+                    async {
+                        val goodIds = logicState.value.selectedGoods.map { it.id }
+                        addGoodToTeamUseCase(goodIds)
+                    }.await()
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 

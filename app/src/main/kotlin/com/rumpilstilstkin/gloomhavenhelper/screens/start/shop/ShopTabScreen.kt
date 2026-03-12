@@ -31,7 +31,7 @@ import kotlinx.collections.immutable.persistentListOf
 internal fun ShopTabScreen(
     state: ShopTabStateUi,
     addItems: () -> Unit,
-    deleteItem: (goodNumber: Int) -> Unit,
+    deleteItem: (goodId: Int) -> Unit,
     selectFilter: (type: GoodType) -> Unit,
     enterSearchText: (text: String) -> Unit
 ) {
@@ -62,7 +62,7 @@ internal fun ShopTabScreen(
             GoodDetailsDialog(
                 dismiss = { selectedGood = null },
                 confirm = {
-                    deleteItem(good.number)
+                    deleteItem(good.id)
                     selectedGood = null
                 },
                 isActionPositive = false,

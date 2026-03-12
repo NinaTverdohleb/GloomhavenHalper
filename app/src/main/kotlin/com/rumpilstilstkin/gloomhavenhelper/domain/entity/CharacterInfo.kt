@@ -17,7 +17,7 @@ data class CharacterInfo(
     val characterType: CharacterClassType,
     val isAlive: Boolean,
     val id: Int,
-    val team: ShortTeamInfo?,
+    val team: Team?,
     val experience: Int,
     val goldCount: Int,
     val checkMarkCount: Int,

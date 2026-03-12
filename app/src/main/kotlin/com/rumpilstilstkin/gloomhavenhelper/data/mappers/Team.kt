@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamWithScenariosBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
@@ -26,14 +25,17 @@ fun TeamBd.toDomain(
     packs = this.packs.map { PackType.valueOf(it) }
 )
 
-fun TeamBd.toDomain() = ShortTeamInfo(
+fun TeamBd.toDomain(
+    characterIds: List<Int>
+) = ShortTeamInfo(
     teamId = this.teamId,
     name = this.name,
     teamAchievement = this.teamAchievement,
     globalAchievement = this.globalAchievement,
     reputation = this.reputation,
     prosperity = this.prosperity,
-    packs = this.packs.map { PackType.valueOf(it) }
+    packs = this.packs.map { PackType.valueOf(it) },
+    aliveCharacterIds = characterIds
 )
 
 fun ShortTeamInfo.toBd() = TeamBd(

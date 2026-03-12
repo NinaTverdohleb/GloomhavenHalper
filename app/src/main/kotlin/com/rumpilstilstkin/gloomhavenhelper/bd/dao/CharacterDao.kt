@@ -15,16 +15,16 @@ interface CharacterDao {
     @Query("SELECT * FROM CharacterBd")
     fun getAllCharacters(): Flow<List<CharacterBd>>
 
-    @Query("SELECT * FROM CharacterBd WHERE teamId LIKE :teamId")
+    @Query("SELECT * FROM CharacterBd WHERE teamId = :teamId")
     suspend fun findByTeamId(teamId: Int): List<CharacterBd>
 
-    @Query("SELECT * FROM CharacterBd WHERE characterId LIKE :characterId LIMIT 1")
-    suspend fun getCharacterById(characterId: Int): CharacterBd
+    @Query("SELECT * FROM CharacterBd WHERE characterId = :characterId LIMIT 1")
+    suspend fun getCharacterById(characterId: Int): CharacterBd?
 
-    @Query("SELECT * FROM CharacterBd WHERE teamId LIKE :teamId")
+    @Query("SELECT * FROM CharacterBd WHERE teamId = :teamId")
     fun findByTeamIdFlow(teamId: Int): Flow<List<CharacterBd>>
 
-    @Query("SELECT * FROM CharacterBd WHERE characterId LIKE :characterId LIMIT 1")
+    @Query("SELECT * FROM CharacterBd WHERE characterId = :characterId LIMIT 1")
     fun getCharacterByIdFlow(characterId: Int): Flow<CharacterBd?>
 
     @Insert

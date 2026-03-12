@@ -10,9 +10,10 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetAdditionalGoodsForTeamUseCase @Inject constructor(
+class GetAvaliableGoodsForTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val goodsRepository: GoodsRepository,
+    private val getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
@@ -20,7 +21,7 @@ class GetAdditionalGoodsForTeamUseCase @Inject constructor(
             .flatMapLatest { team ->
                 team?.let {
                     val allGoods = goodsRepository.getGoods(team.packs.toSet())
-                    goodsRepository.getGoodsForTeam(team.teamId)
+                    getGoodsForCurrentTeamUseCase()
                         .map { goods -> (allGoods - goods.toSet()) }
                 } ?: flowOf(emptyList())
             }

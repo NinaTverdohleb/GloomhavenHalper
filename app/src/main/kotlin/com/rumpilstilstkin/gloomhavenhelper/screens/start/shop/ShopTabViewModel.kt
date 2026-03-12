@@ -3,9 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.shop
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.RemoveGoodFromTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.RemoveGoodFromCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.CharacterDetails
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -25,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ShopTabViewModel @Inject constructor(
     getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
-    private val removeGoodFromTeamUseCase: RemoveGoodFromTeamUseCase
+    private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -62,7 +61,8 @@ class ShopTabViewModel @Inject constructor(
             is ShopTabAction.AddGood -> viewModelScope.launch {
                 _navigationEvents.emit(Screen(GlHelperScreens.AddGoodsForTeam))
             }
-            is ShopTabAction.RemoveGood -> viewModelScope.launch { removeGoodFromTeamUseCase(action.number) }
+
+            is ShopTabAction.RemoveGood -> viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
             is ShopTabAction.SearchTextChange -> logicState.update { it.copy(searchText = action.text) }
             is ShopTabAction.SelectFilter -> logicState.update {
                 val newFilter = if (it.selectedFilter == action.type) {

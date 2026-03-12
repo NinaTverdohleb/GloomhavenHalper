@@ -2,9 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.DeleteCharacterGoodsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetCharacterGoodsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.SellGoodCharacterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.DeleteCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.SellGoodCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
@@ -45,12 +45,16 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
             when (action) {
                 is CharacterItemsTabActions.DeleteGood -> {
                     deleteCharacterGoodsUseCase(
-                        characterGoodId = action.characterGoodId
+                        goodId = action.goodId,
+                        characterId = id
                     )
                 }
 
                 is CharacterItemsTabActions.SellGood -> {
-                    sellGoodCharacterUseCase(characterId = id, characterGoodId = action.characterGoodId)
+                    sellGoodCharacterUseCase(
+                        goodId = action.goodId,
+                        characterId = id
+                    )
                 }
 
                 CharacterItemsTabActions.AddGood -> {
