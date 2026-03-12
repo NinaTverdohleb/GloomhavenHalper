@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models
 
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.serialization.Serializable
@@ -13,7 +14,17 @@ data class MonsterJson(
     val lifeMultiple: Boolean = false,
     val immunity: List<MonsterStatType> = emptyList(),
     val pack: String
-)
+){
+    fun toEntity() = MonsterBd(
+        name = name,
+        deckName = deckName,
+        isBoss = isBoss,
+        fly = fly,
+        lifeMultiple = lifeMultiple,
+        immunity = immunity,
+        pack = pack
+    )
+}
 
 @Serializable
 data class MonsterStatsJson(

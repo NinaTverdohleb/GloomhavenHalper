@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import javax.inject.Inject
 
@@ -15,13 +16,26 @@ class MonsterJsonFiller @Inject constructor(
         monsterDao.insertMonsters(*entities.toTypedArray())
     }
 
-    private fun MonsterJson.toEntity() = MonsterBd(
-        name = name,
-        deckName = deckName,
-        isBoss = isBoss,
-        fly = fly,
-        lifeMultiple = lifeMultiple,
-        immunity = immunity,
-        pack = pack
-    )
+    suspend fun fillStats(version: Int, type: String, pack: String) {
+        val allMonsters = monsterDao.getAllMonsters()
+        val nameToId = allMonsters.associate { it.name to it.monsterId }
+
+        val allStats =
+            jsonDataLoader.loadMonsterStats(version, type, pack)
+
+        val entities = allStats.flatMap { monsterStat ->
+            val monsterId = nameToId[monsterStat.monsterName]
+                ?: throw IllegalStateException("Monster not found: ${monsterStat.monsterName}")
+            monsterStat.stats.map { levelStat ->
+                MonsterStatsBd(
+                    monsterId = monsterId,
+                    scenarioLevel = levelStat.level,
+                    isElite = levelStat.isElite,
+                    life = levelStat.life,
+                    stats = levelStat.stats
+                )
+            }
+        }
+        monsterDao.insertAllStats(*entities.toTypedArray())
+    }
 }
