@@ -2,21 +2,17 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.AchievementDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.AchievementJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GameLevelInfoJsonFiller
-import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.JsonDataLoader
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.ScenarioJsonFiller
 import javax.inject.Inject
 
 //TODO fill from json
 class DatabaseFiller @Inject constructor(
-    private val scenarioDao: ScenarioDao,
     private val preferences: SharedPreferences,
     private val goodsDao: GoodsDao,
     private val perksDao: PerksDao,
@@ -24,6 +20,7 @@ class DatabaseFiller @Inject constructor(
     private val monsterDao: MonsterDao,
     private val gameLevelInfoJsonFiller: GameLevelInfoJsonFiller,
     private val achievementJsonFiller: AchievementJsonFiller,
+    private val scenarioJsonFiller: ScenarioJsonFiller,
 ) {
     val version = preferences.getInt(PREFS_VERSION, 0)
 
@@ -36,7 +33,7 @@ class DatabaseFiller @Inject constructor(
 
     private suspend fun startFill() {
         gameLevelInfoJsonFiller.fill(1)
-        ScenariosFiller.fill_v1(scenarioDao)
+        scenarioJsonFiller.fill(1)
         GoodsFiller.fill_v1(goodsDao)
         PerksFiller.fill_v1(perksDao)
         QuestsFiller.fill_v1(personalQuestDao)
