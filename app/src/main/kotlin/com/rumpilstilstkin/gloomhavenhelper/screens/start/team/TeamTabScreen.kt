@@ -31,6 +31,7 @@ internal fun TeamTabScreen(
     openTeamAchievements: () -> Unit,
     openGlobalAchievements: () -> Unit,
     restore: () -> Unit,
+    donate: () -> Unit
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
@@ -59,7 +60,10 @@ internal fun TeamTabScreen(
                 item {
                     TeamProsperity(
                         prosperity = team.prosperity,
-                        updateProsperity = updateProsperity
+                        updateProsperity = updateProsperity,
+                        churchValue = team.churchValue,
+                        churchValueForNextProsperity = team.churchValueForNextProsperity,
+                        donate = donate
                     )
                 }
 
@@ -104,7 +108,8 @@ private fun TeamTabScreenPreview() {
             updateReputation = {},
             openTeamAchievements = {},
             openGlobalAchievements = {},
-            restore = {}
+            restore = {},
+            donate = {}
         )
     }
 }

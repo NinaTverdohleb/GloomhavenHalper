@@ -38,6 +38,7 @@ fun TeamTabRoute(
         updateReputation = { newValue -> viewModel.onAction(TeamTabAction.UpdateReputation(newValue)) },
         openTeamAchievements = { viewModel.onAction(TeamTabAction.OpenTeamAchievements) },
         openGlobalAchievements = { viewModel.onAction(TeamTabAction.OpenGlobalAchievements) },
-        restore = { viewModel.onAction(TeamTabAction.RestoreLastScenario) }
+        restore = { viewModel.onAction(TeamTabAction.RestoreLastScenario) },
+        donate = { viewModel.onAction(TeamTabAction.Donate) }
     )
 }

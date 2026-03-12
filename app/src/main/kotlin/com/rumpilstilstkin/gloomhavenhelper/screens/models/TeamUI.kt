@@ -1,9 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -22,6 +20,8 @@ data class TeamUI(
     val characters: ImmutableList<CharacterUI>,
     val canAddCharacter: Boolean = false,
     val hasActiveScenario: Boolean,
+    val churchValue: Int,
+    val churchValueForNextProsperity: Int,
 ) {
     companion object {
         fun fixture() = TeamUI(
@@ -46,7 +46,9 @@ data class TeamUI(
             characters = persistentListOf(
                 CharacterUI.fixture()
             ),
-            hasActiveScenario = true
+            hasActiveScenario = true,
+            churchValue = 100,
+            churchValueForNextProsperity = 150
         )
     }
 }

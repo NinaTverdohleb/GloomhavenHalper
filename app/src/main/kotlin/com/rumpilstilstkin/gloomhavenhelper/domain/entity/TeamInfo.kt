@@ -13,6 +13,7 @@ data class TeamInfo(
     val prosperity: Prosperity,
     val packs: List<PackType>,
     val hasActiveScenario: Boolean,
+    val churchValue: Int,
 )
 
 data class Prosperity(
@@ -49,7 +50,8 @@ data class ShortTeamInfo(
     val aliveCharacterIds: List<Int>,
     val reputation: Int,
     val prosperity: Int,
-    val packs: List<PackType>
+    val packs: List<PackType>,
+    val churchValue: Int,
 ) {
     companion object {
         fun fixture(
@@ -63,7 +65,8 @@ data class ShortTeamInfo(
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN),
-            aliveCharacterIds = listOf(1, 2, 3)
+            aliveCharacterIds = listOf(1, 2, 3),
+            churchValue = 100
         )
     }
 }
@@ -76,7 +79,8 @@ data class TeamInfoWithScenario(
     val reputation: Int,
     val prosperity: Int,
     val scenario: List<ScenarioShortInfo>,
-    val packs: List<PackType>
+    val packs: List<PackType>,
+    val churchValue: Int,
 )
 
 data class TeamInfoForSave(

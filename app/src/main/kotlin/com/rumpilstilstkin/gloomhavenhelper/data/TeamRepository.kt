@@ -109,6 +109,15 @@ class TeamRepository @Inject constructor(
         teamDao.updateProsperity(teamId, prosperity)
     }
 
+    suspend fun donate(teamId: Int): Int =
+        teamDao.findById(teamId)?.let { team ->
+            val newTeam = team.copy(
+                churchValue = team.churchValue + 10
+            )
+            teamDao.update(newTeam)
+            newTeam.churchValue
+        } ?: 0
+
     suspend fun updateTeam(team: ShortTeamInfo) {
         teamDao.update(team.toBd())
     }

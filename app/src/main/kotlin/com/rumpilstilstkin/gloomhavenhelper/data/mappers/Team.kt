@@ -22,7 +22,8 @@ fun TeamBd.toDomain(
     reputation = this.reputation,
     prosperity = this.prosperity,
     scenario = scenarios,
-    packs = this.packs.map { PackType.valueOf(it) }
+    packs = this.packs.map { PackType.valueOf(it) },
+    churchValue = this.churchValue
 )
 
 fun TeamBd.toDomain(
@@ -35,7 +36,8 @@ fun TeamBd.toDomain(
     reputation = this.reputation,
     prosperity = this.prosperity,
     packs = this.packs.map { PackType.valueOf(it) },
-    aliveCharacterIds = characterIds
+    aliveCharacterIds = characterIds,
+    churchValue = this.churchValue
 )
 
 fun ShortTeamInfo.toBd() = TeamBd(

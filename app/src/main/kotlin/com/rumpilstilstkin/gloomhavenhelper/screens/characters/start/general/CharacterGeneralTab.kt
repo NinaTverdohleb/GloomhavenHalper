@@ -104,9 +104,7 @@ fun CharacterGeneralTabContent(
 
         GoldRow(
             goldCount = content.goldCount,
-            isDonateAvailable = content.isDonateAvailable,
             onGoldChanged = { onAction(GeneralTabActions.GoldChanged(it)) },
-            onDonate = { onAction(GeneralTabActions.Donate) }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -336,11 +334,9 @@ fun CheckMarkRow(
 @Composable
 fun GoldRow(
     goldCount: Int,
-    isDonateAvailable: Boolean,
     modifier: Modifier = Modifier,
     goldRange: IntRange = 0..1000000,
     onGoldChanged: (Int) -> Unit,
-    onDonate: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -361,16 +357,6 @@ fun GoldRow(
                 intRange = goldRange,
                 onValueChange = onGoldChanged
             )
-
-            Button(
-                onClick = onDonate,
-                enabled = isDonateAvailable
-            ) {
-                Text(
-                    text = "Пожертвовать",
-                    textAlign = TextAlign.Center
-                )
-            }
         }
     }
 }

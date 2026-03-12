@@ -14,10 +14,10 @@ class UpdateTeamProsperityUseCase @Inject constructor(
     private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
 ) {
     suspend operator fun invoke(
-        prosperity: Prosperity,
         newProsperityLevelValue: Int
     ) {
-        val teamId = teamRepository.currentTeam.first()?.teamId ?: return
+        val team = teamRepository.currentTeam.first() ?: return
+        val prosperity = getTeamProsperityUseCase(team.prosperity)
 
         if (prosperity.isStartValue && newProsperityLevelValue == 0 || prosperity.isMax) {
             return
@@ -34,10 +34,10 @@ class UpdateTeamProsperityUseCase @Inject constructor(
                 .plus(newProsperityLevelValue)
         }
 
-        teamRepository.updateProsperity(teamId, prosperityValue)
+        teamRepository.updateProsperity(team.teamId, prosperityValue)
         val newProsperity = getTeamProsperityUseCase(newProsperityLevelValue)
         if (newProsperity.prosperityLevel > prosperity.prosperityLevel) {
-            addGoodsToTeamUseCase(teamId, getGoodsForLevelUseCase(newProsperity.prosperityLevel))
+            addGoodsToTeamUseCase(team.teamId, getGoodsForLevelUseCase(newProsperity.prosperityLevel))
         }
     }
 }
