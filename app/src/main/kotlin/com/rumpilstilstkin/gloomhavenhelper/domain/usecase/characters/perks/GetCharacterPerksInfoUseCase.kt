@@ -15,14 +15,20 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
 
     operator fun invoke(characterId: Int, ): Flow<CharacterPerksInfo> {
         return characterRepository.getCharacterPerksFlow(characterId).map { perks ->
-            val character = characterRepository.getCharacterById(characterId)
-            val avaliablePerks = perksRepository.getPerksForCharacterClass(character.characterType)
-                .filter { perk -> perk.id !in perks.map { it.id } }
-            val allCount = character.level + character.checkMarkCount.div(3)
-            CharacterPerksInfo(
-                characterPerks = perks,
-                avaliablePerks = avaliablePerks,
-                avaliablePerksCount = max(0, allCount - perks.size)
+            characterRepository.getCharacterById(characterId)?.let { character ->
+                val avaliablePerks =
+                    perksRepository.getPerksForCharacterClass(character.characterType)
+                        .filter { perk -> perk.id !in perks.map { it.id } }
+                val allCount = character.level + character.checkMarkCount.div(3)
+                CharacterPerksInfo(
+                    characterPerks = perks,
+                    avaliablePerks = avaliablePerks,
+                    avaliablePerksCount = max(0, allCount - perks.size)
+                )
+            } ?: CharacterPerksInfo(
+                characterPerks = emptyList(),
+                avaliablePerks = emptyList(),
+                avaliablePerksCount = 0
             )
         }
     }

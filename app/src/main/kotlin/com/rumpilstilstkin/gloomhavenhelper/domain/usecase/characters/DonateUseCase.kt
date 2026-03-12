@@ -7,7 +7,8 @@ class DonateUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
     suspend operator fun invoke(characterId: Int) {
-        val character = characterRepository.getCharacterById(characterId)
-        characterRepository.updateGold(characterId, character.goldCount - 10)
+        characterRepository.getCharacterById(characterId)?.also { character ->
+            characterRepository.updateGold(characterId, character.goldCount - 10)
+        }
     }
 }

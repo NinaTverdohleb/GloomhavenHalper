@@ -5,13 +5,12 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class RemoveGoodFromTeamUseCase @Inject constructor(
-    private val teamRepository: TeamRepository,
+class RemoveGoodFromCurrentTeamUseCase @Inject constructor(
     private val goodsRepository: GoodsRepository,
+    private val teamRepository: TeamRepository,
 ) {
-
-    suspend operator fun invoke(goodNumber: Int) {
-        val teamId = teamRepository.currentTeam.first()?.teamId ?: return
-        goodsRepository.removeGoodFromTeam(teamId, goodNumber)
+    suspend operator fun invoke(goodId: Int) {
+        val team = teamRepository.currentTeam.first() ?: return
+        goodsRepository.removeGoodFromTeam(team.teamId, goodId)
     }
 }

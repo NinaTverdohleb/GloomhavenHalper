@@ -5,8 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.getExpForLevel
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
 
 fun CharacterForSave.toBd() = CharacterBd(
     name = this.name,
@@ -18,7 +17,7 @@ fun CharacterForSave.toBd() = CharacterBd(
 )
 
 fun CharacterBd.toDomain(
-    team: ShortTeamInfo?
+    team: Team?
 ) = CharacterInfo(
     name = this.name,
     level = this.level,

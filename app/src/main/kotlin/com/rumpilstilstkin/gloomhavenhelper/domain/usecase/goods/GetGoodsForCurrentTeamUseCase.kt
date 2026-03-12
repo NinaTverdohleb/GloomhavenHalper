@@ -5,11 +5,10 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import kotlin.collections.distinctBy
 import kotlin.collections.emptyList
 
 class GetGoodsForCurrentTeamUseCase @Inject constructor(
@@ -22,8 +21,12 @@ class GetGoodsForCurrentTeamUseCase @Inject constructor(
         teamRepository.currentTeam
             .flatMapLatest { team ->
                 team?.let {
+                    combine(
+                    goodsRepository.getCharacterGoodIds(team.aliveCharacterIds),
                     goodsRepository.getGoodsForTeam(team.teamId)
-                        .map { goods -> goods.distinctBy { it.number } }
+                    ){ characterGoodIds, allGoods ->
+                        allGoods.filter { good -> good.id !in characterGoodIds }
+                    }
                 } ?: flowOf(emptyList())
             }
 }

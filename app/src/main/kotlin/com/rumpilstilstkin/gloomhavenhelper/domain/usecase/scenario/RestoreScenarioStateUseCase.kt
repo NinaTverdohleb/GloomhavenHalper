@@ -3,15 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import javax.inject.Inject
-import kotlin.Int
 
 class RestoreScenarioStateUseCase @Inject constructor(
     private val scenarioGameStateRepository: ScenarioGameStateRepository,
@@ -36,7 +30,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 golds = levelInfo?.goldCount ?: 0,
                 exp = levelInfo?.experience ?: 0,
                 trapDamage = levelInfo?.trapDamage ?: 0,
-                gamersCount = team.characters.size,
+                gamersCount = team.aliveCharacters.size,
                 monsterLevel = levelInfo?.monsterLevel ?: 0,
                 round = state.round,
                 monsters = scenarioMonsters,
@@ -53,7 +47,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
             golds = levelInfo?.goldCount ?: 0,
             exp = levelInfo?.experience ?: 0,
             trapDamage = levelInfo?.trapDamage ?: 0,
-            gamersCount = team.characters.size,
+            gamersCount = team.aliveCharacters.size,
             monsterLevel = levelInfo?.monsterLevel ?: 0,
             scenarioNumber = null
         )

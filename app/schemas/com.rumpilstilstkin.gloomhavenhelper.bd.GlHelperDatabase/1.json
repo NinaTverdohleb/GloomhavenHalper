@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b8fc3175797bfd3979014a7bd7534893",
+    "identityHash": "9fb418b80619caea165d95c428e0124a",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -936,7 +936,7 @@
       },
       {
         "tableName": "TeamGoodBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER NOT NULL, `goodNumber` INTEGER NOT NULL, PRIMARY KEY(`teamId`, `goodNumber`), FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER NOT NULL, `goodId` INTEGER NOT NULL, PRIMARY KEY(`teamId`, `goodId`), FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "teamId",
@@ -945,8 +945,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "goodNumber",
-            "columnName": "goodNumber",
+            "fieldPath": "goodId",
+            "columnName": "goodId",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -955,7 +955,7 @@
           "autoGenerate": false,
           "columnNames": [
             "teamId",
-            "goodNumber"
+            "goodId"
           ]
         },
         "indices": [
@@ -969,13 +969,13 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamGoodBd_teamId` ON `${TABLE_NAME}` (`teamId`)"
           },
           {
-            "name": "index_TeamGoodBd_goodNumber",
+            "name": "index_TeamGoodBd_goodId",
             "unique": false,
             "columnNames": [
-              "goodNumber"
+              "goodId"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamGoodBd_goodNumber` ON `${TABLE_NAME}` (`goodNumber`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamGoodBd_goodId` ON `${TABLE_NAME}` (`goodId`)"
           }
         ],
         "foreignKeys": [
@@ -1090,7 +1090,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b8fc3175797bfd3979014a7bd7534893')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9fb418b80619caea165d95c428e0124a')"
     ]
   }
 }

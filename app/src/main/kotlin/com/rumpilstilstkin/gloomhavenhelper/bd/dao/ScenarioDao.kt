@@ -10,7 +10,7 @@ interface ScenarioDao {
     @Query("SELECT * FROM ScenarioBd")
     suspend fun getAll(): List<ScenarioBd>
 
-    @Query("SELECT * FROM ScenarioBd WHERE scenarioNumber LIKE :scenarioNumber LIMIT 1")
+    @Query("SELECT * FROM ScenarioBd WHERE scenarioNumber = :scenarioNumber LIMIT 1")
     suspend fun getScenario(scenarioNumber: Int): ScenarioBd
 
     @Insert

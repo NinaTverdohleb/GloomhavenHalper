@@ -1532,7 +1532,7 @@ object ScenariosFiller {
             ),
 
             ScenarioBd(
-                scenarioNumber = 114,
+                scenarioNumber = 115,
                 name = "Будущее туманно",
                 location = "Перемещение между измерениями",
                 pack = PackType.FORGOTTEN_CIRCLES.name,

@@ -3,9 +3,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.AddGoodForCharacterUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.BuyGoodForCharacterUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetAvailableCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodForCharacterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.BuyGoodForCharacterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetDiscountByReputationUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetTeamInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -30,8 +32,10 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     private val addCharacterGoodsUseCase: AddGoodForCharacterUseCase,
     private val buyGoodForCharacterUseCase: BuyGoodForCharacterUseCase,
-    getGodsForCharacterUseCase: GetAvailableCharacterGoodsUseCase,
+    getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
     private val getCharacterGeneralInfoUseCase: GetCharacterGeneralInfoUseCase,
+    private val getDiscountByReputationUseCase: GetDiscountByReputationUseCase,
+    private val getTeamUseCase: GetTeamInfoUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -41,7 +45,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
 
     val uiState: StateFlow<AddGoodsForCharacterScreenUiState> = combine(
         logicState,
-        getGodsForCharacterUseCase(id),
+        getGoodsForCurrentTeamUseCase(),
     ) { state, all ->
         val availableGoods: List<GoodUi> = all
             .filter { it.filterResult(state.selectedFilter, state.searchText) }
@@ -58,7 +62,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                 searchText = state.searchText,
             ),
             allGold = state.allGold,
-            goodsGold = selectedGoods.sumOf { it.cost }
+            goodsGold = selectedGoods.sumOf { it.cost } + state.discount,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -68,11 +72,16 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
-            val totalGold = getCharacterGeneralInfoUseCase(id).goldCount
-            logicState.update {
-                it.copy(
-                    allGold = totalGold
-                )
+            getCharacterGeneralInfoUseCase(id)?.also { characterInfo ->
+                val teamInfo = characterInfo.teamId?.let { getTeamUseCase(characterInfo.teamId) }
+                val totalGold = characterInfo.goldCount
+                val discount = getDiscountByReputationUseCase(teamInfo?.reputation ?: 0)
+                logicState.update {
+                    it.copy(
+                        allGold = totalGold,
+                        discount = discount
+                    )
+                }
             }
         }
     }
@@ -98,9 +107,11 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                 }
 
                 is AddGoodsForCharacterScreenActions.BuySelectedGoods -> {
+                    val cost = uiState.value.goodsGold
                     buyGoodForCharacterUseCase(
-                        logicState.value.selectedGoods.map { it.number to it.cost },
-                        id
+                        goodIds = logicState.value.selectedGoods.map { it.id },
+                        cost = cost,
+                        characterId = id
                     ).onSuccess {
                         _navigationEvents.emit(GlHelperEvent.Back)
                     }

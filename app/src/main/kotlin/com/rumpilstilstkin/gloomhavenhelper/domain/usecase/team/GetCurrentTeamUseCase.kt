@@ -41,7 +41,7 @@ class GetCurrentTeamUseCase @Inject constructor(
                         reputation = team.reputation,
                         prosperity = getTeamProsperityUseCase(team.prosperity),
                         activeScenario = teamScenarios.activeScenarios,
-                        characters = activeCharacters,
+                        aliveCharacters = activeCharacters,
                         shopDiscount = getDiscountByReputation(team.reputation),
                         packs = team.packs,
                         hasActiveScenario = activeScenario != null

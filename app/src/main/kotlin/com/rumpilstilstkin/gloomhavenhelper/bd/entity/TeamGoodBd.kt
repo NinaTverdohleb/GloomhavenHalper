@@ -1,12 +1,14 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
+import androidx.room.Relation
 
 @Entity(
-    primaryKeys = ["teamId", "goodNumber"],
+    primaryKeys = ["teamId", "goodId"],
     foreignKeys = [
         ForeignKey(
             entity = TeamBd::class,
@@ -17,10 +19,19 @@ import androidx.room.Index
     ],
     indices = [
         Index("teamId"),
-        Index("goodNumber"),
+        Index("goodId"),
     ]
 )
 data class TeamGoodBd(
     val teamId: Int,
-    val goodNumber: Int,
+    val goodId: Int,
+)
+
+data class TeamGoodBdDetailsBd(
+    @Embedded val teamGood: TeamGoodBd,
+    @Relation(
+        parentColumn = "goodId",
+        entityColumn = "goodId"
+    )
+    val good: GoodBd
 )

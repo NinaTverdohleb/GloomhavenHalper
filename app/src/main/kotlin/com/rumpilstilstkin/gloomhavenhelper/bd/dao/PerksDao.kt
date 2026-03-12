@@ -15,7 +15,7 @@ interface PerksDao {
     suspend fun insertAll(vararg users: PerkBd)
 
     @Transaction
-    @Query("SELECT * FROM PerkBd WHERE characterType LIKE :characterType")
+    @Query("SELECT * FROM PerkBd WHERE characterType = :characterType")
     suspend fun getPerksByCharacterClass(characterType: String): List<PerkBd>
 
 }

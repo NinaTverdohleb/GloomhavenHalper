@@ -11,7 +11,7 @@ interface PersonalQuestDao  {
     @Query("SELECT * FROM PersonalQuestBd")
     fun getQuestsFlow(): Flow<List<PersonalQuestBd>>
 
-    @Query("SELECT * FROM PersonalQuestBd WHERE questId LIKE :questId LIMIT 1")
+    @Query("SELECT * FROM PersonalQuestBd WHERE questId = :questId LIMIT 1")
     suspend fun getQuest(questId: String): PersonalQuestBd
 
     @Insert

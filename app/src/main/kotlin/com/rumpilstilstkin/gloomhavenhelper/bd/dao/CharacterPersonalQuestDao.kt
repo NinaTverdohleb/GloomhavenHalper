@@ -14,16 +14,16 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterPersonalQuestDao {
 
     @Transaction
-    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId LIMIT 1")
+    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId = :characterId LIMIT 1")
     fun getCharacterPersonalQuestFlow(characterId: Int): Flow<CharacterPersonalQuestDetailsBd?>
 
     @Insert
     suspend fun insert(characterPerk: CharacterPersonalQuestBd)
 
-    @Query("DELETE FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId")
+    @Query("DELETE FROM CharacterPersonalQuestBd WHERE characterId = :characterId")
     suspend fun deleteByCharacterId(characterId: Int)
 
     @Transaction
-    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId LIMIT 1")
+    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId = :characterId LIMIT 1")
     suspend fun getCharacterQuestById(characterId: Int): CharacterPersonalQuestDetailsBd?
 }

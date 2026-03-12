@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterForScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
@@ -51,8 +50,8 @@ class TeamTabViewModel @Inject constructor(
                     prosperity = team.prosperity,
                     teamAchievements = team.teamAchievement.toImmutableList(),
                     globalAchievements = team.globalAchievement.toImmutableList(),
-                    characters = team.characters.map { it.toUi() }.toImmutableList(),
-                    canAddCharacter = team.characters.size < 4,
+                    characters = team.aliveCharacters.map { it.toUi() }.toImmutableList(),
+                    canAddCharacter = team.aliveCharacters.size < 4,
                     shopDiscount = team.shopDiscount,
                     hasActiveScenario = team.hasActiveScenario
                 ),

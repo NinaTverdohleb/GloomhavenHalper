@@ -17,7 +17,7 @@ fun GoodBd.toDomain() = Good(
 )
 
 fun CharacterGoodDetailsBd.toDomain() = Good(
-    id = this.characterGood.goodId,
+    id = this.good.goodId,
     number = this.good.number,
     name = this.good.name,
     type = GoodType.valueOf(this.good.type),

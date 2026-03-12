@@ -14,7 +14,8 @@ data class AddGoodsForCharacterScreenLogicState(
     val selectedGoods: List<GoodUi> = emptyList(),
     val selectedFilter: GoodType? = null,
     val searchText: String = "",
-    val allGold: Int = 0,
+    val discount: Int = 0,
+    val allGold: Int = 0
 )
 
 sealed interface AddGoodsForCharacterScreenActions {
