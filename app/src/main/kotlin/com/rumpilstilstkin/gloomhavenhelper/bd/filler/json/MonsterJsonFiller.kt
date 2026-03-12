@@ -10,6 +10,16 @@ class MonsterJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
     private val monsterDao: MonsterDao
 ) {
+    suspend fun fillDecks(
+        version: Int
+    ){
+        val decks = jsonDataLoader.loadMonsterDeck(version)
+        decks.forEach { deck ->
+            val entities = deck.toEntity()
+            monsterDao.insertCards(*entities.toTypedArray())
+        }
+    }
+
     suspend fun fillMonsters(version: Int) {
         val monsters = jsonDataLoader.loadMonsters(version)
         val entities = monsters.map { it.toEntity() }
@@ -21,7 +31,11 @@ class MonsterJsonFiller @Inject constructor(
         val nameToId = allMonsters.associate { it.name to it.monsterId }
 
         val allStats =
-            jsonDataLoader.loadMonsterStats(version, type, pack)
+            jsonDataLoader.loadMonsterStats(
+                version = version,
+                pack = pack,
+                type = type
+            )
 
         val entities = allStats.flatMap { monsterStat ->
             val monsterId = nameToId[monsterStat.monsterName]

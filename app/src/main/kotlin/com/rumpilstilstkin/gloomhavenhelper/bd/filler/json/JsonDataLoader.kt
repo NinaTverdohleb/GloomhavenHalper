@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 import android.content.Context
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.AchievementJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.CharacterPerksJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.DeckJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GameLevelJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GoodJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
@@ -21,7 +22,7 @@ class JsonDataLoader @Inject constructor(
     private val json = Json {
         ignoreUnknownKeys = true
         encodeDefaults = true
-        classDiscriminator = "kind"
+        coerceInputValues = true
     }
 
     private inline fun <reified T> load(fileName: String): T {
@@ -46,5 +47,7 @@ class JsonDataLoader @Inject constructor(
 
     fun loadMonsters(version: Int): List<MonsterJson> = load("v${version}_monsters.json")
 
-    fun loadMonsterStats(version: Int, pack: String, type: String): List<MonsterStatsJson> = load("v${version}_${pack}_${type}stats.json")
+    fun loadMonsterStats(version: Int, pack: String, type: String): List<MonsterStatsJson> = load("v${version}_${pack}_${type}_stats.json")
+
+    fun loadMonsterDeck(version: Int): List<DeckJson> = load("v${version}_ability_decks.json")
 }
