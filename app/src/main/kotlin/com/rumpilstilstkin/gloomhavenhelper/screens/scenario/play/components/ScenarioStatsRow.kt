@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -55,12 +56,12 @@ fun ScenarioStatsRow(
 
 
 @Composable
-private fun StatItem(
+internal fun StatItem(
     value: String,
     image: Int,
 ) {
     Row {
-        Icon(painter = painterResource(id = image), contentDescription = null)
+        Icon(painter = painterResource(id = image), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
         Spacer(modifier = Modifier.width(4.dp))
         Text(value)
     }

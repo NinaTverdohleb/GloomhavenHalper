@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9fb418b80619caea165d95c428e0124a",
+    "identityHash": "cc09369af7e3a1b94be4f89128595a85",
     "entities": [
       {
         "tableName": "TeamBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL, `packs` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL, `churchValue` INTEGER NOT NULL, `packs` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "teamId",
@@ -41,6 +41,12 @@
           {
             "fieldPath": "prosperity",
             "columnName": "prosperity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "churchValue",
+            "columnName": "churchValue",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -1090,7 +1096,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9fb418b80619caea165d95c428e0124a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cc09369af7e3a1b94be4f89128595a85')"
     ]
   }
 }

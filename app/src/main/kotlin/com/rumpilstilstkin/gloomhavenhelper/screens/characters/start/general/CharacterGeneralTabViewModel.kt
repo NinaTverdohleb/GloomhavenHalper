@@ -30,7 +30,6 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterUseCase: GetCharacterDetailsInfoUseCase,
     private val levelUpUseCase: LevelUpUseCase,
-    private val donateUseCase: DonateUseCase,
     private val updateGoldUseCase: UpdateGoldUseCase,
     private val experienceChangeUseCase: ExperienceChangeUseCase,
     private val checkedChangeUseCase: MarksCheckedChangeUseCase,
@@ -73,10 +72,6 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
 
                 is GeneralTabActions.GoldChanged -> {
                     updateGoldUseCase.invoke(id, action.goldCount)
-                }
-
-                is GeneralTabActions.Donate -> {
-                    donateUseCase.invoke(id)
                 }
 
                 is GeneralTabActions.ExperienceChanged -> {

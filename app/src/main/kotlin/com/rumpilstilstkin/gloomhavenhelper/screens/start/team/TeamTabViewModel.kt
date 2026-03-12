@@ -2,9 +2,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetNextChurchValueUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
@@ -30,7 +32,9 @@ class TeamTabViewModel @Inject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val updateTeamProsperityUseCase: UpdateTeamProsperityUseCase,
     private val updateTeamReputationUseCase: UpdateTeamReputationUseCase,
-    private val createActiveScenarioUseCase: CreateActiveScenarioUseCase
+    private val createActiveScenarioUseCase: CreateActiveScenarioUseCase,
+    private val donateUseCase: DonateUseCase,
+    private val getNextChurchValueUseCase: GetNextChurchValueUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -53,7 +57,9 @@ class TeamTabViewModel @Inject constructor(
                     characters = team.aliveCharacters.map { it.toUi() }.toImmutableList(),
                     canAddCharacter = team.aliveCharacters.size < 4,
                     shopDiscount = team.shopDiscount,
-                    hasActiveScenario = team.hasActiveScenario
+                    hasActiveScenario = team.hasActiveScenario,
+                    churchValue = team.churchValue,
+                    churchValueForNextProsperity = getNextChurchValueUseCase(churchValue = team.churchValue)
                 ),
             )
         }
@@ -69,7 +75,6 @@ class TeamTabViewModel @Inject constructor(
             when (action) {
                 is TeamTabAction.UpdateProsperity -> {
                     updateTeamProsperityUseCase(
-                        prosperity = state.currentTeam.prosperity,
                         newProsperityLevelValue = action.value
                     )
                 }
@@ -101,6 +106,10 @@ class TeamTabViewModel @Inject constructor(
                 TeamTabAction.RestoreLastScenario -> {
                     _navigationEvents.emit(Screen(Scenario))
                 }
+
+                TeamTabAction.Donate -> donateUseCase(
+                    oldChurchValue = state.currentTeam.churchValue
+                )
             }
         }
     }
@@ -114,4 +123,5 @@ sealed interface TeamTabAction {
     data object OpenTeamAchievements : TeamTabAction
     data object OpenGlobalAchievements : TeamTabAction
     data object RestoreLastScenario : TeamTabAction
+    data object Donate : TeamTabAction
 }

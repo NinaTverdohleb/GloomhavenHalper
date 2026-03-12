@@ -6,7 +6,6 @@ sealed interface GeneralTabActions {
     data object LevelUp : GeneralTabActions
     data class ExperienceChanged(val experience: Int) : GeneralTabActions
     data class GoldChanged(val goldCount: Int) : GeneralTabActions
-    data object Donate : GeneralTabActions
     data class CheckedChange(val isChecked: Boolean) : GeneralTabActions
     data class NotesChanged(val notes: String) : GeneralTabActions
     data object ChoosePersonalQuest: GeneralTabActions

@@ -44,7 +44,8 @@ class GetCurrentTeamUseCase @Inject constructor(
                         aliveCharacters = activeCharacters,
                         shopDiscount = getDiscountByReputation(team.reputation),
                         packs = team.packs,
-                        hasActiveScenario = activeScenario != null
+                        hasActiveScenario = activeScenario != null,
+                        churchValue = team.churchValue
                     )
                 }
             } ?: flowOf(null)
