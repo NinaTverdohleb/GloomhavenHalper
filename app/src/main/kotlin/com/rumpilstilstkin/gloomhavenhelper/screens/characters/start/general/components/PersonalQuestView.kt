@@ -8,17 +8,12 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,9 +32,9 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.quests.QuestDetailsD
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -55,7 +50,10 @@ fun PersonalQuestView(
     QuestDetailsDialog(
         quest = quest,
         showDialog = showDetailsDialog,
-        onAction = { selectNewQuest() },
+        onAction = {
+            selectNewQuest()
+            showDetailsDialog = false
+        },
         onDismiss = { showDetailsDialog = false },
         buttonText = "Сменить"
     )
@@ -170,7 +168,7 @@ private fun CountTask(
                 size = GloomSize.S,
                 value = questTask.currentCount,
                 intRange = IntRange(0, questTask.count),
-                onValueChange = {value ->
+                onValueChange = { value ->
                     onTaskCountChanged(questTask, value)
                 }
             )
@@ -220,7 +218,7 @@ private fun PersonalQuestViewPreview() {
             ),
             selectNewQuest = {},
             onTaskCheckedChange = {},
-            onTaskCountChanged = {i, k -> }
+            onTaskCountChanged = { i, k -> }
         )
     }
 }
