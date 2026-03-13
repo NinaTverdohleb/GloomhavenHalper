@@ -22,7 +22,7 @@ data class Prosperity(
     val prosperityLevel: Int,
     val prosperityRange: IntRange,
 ) {
-    val isStartValue = prosperityLevel == 0 && prosperityLevelValue == 0
+    val isStartValue = prosperityLevel == 1 && prosperityLevelValue == 0
     val isMax = prosperityLevel == 9
 
     companion object {

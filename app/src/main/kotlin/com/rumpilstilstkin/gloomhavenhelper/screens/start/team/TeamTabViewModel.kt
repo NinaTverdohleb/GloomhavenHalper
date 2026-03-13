@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DonateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
