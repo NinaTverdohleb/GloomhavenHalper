@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DonateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.ExperienceChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterDetailsInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase

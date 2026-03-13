@@ -9,12 +9,13 @@ class GetNextChurchValueUseCase @Inject constructor() {
         churchValue < 250 -> 250
         churchValue < 300 -> 300
         churchValue < 350 -> 350
-        churchValue < 400 -> 500
-        churchValue < 500 -> 600
-        churchValue < 600 -> 700
-        churchValue < 700 -> 800
-        churchValue < 800 -> 900
-        churchValue < 900 -> 1000
+        churchValue < 400 -> 400
+        churchValue < 500 -> 500
+        churchValue < 600 -> 600
+        churchValue < 700 -> 700
+        churchValue < 800 -> 800
+        churchValue < 900 -> 900
+        churchValue < 1000 -> 1000
         else -> -1
     }
 }
