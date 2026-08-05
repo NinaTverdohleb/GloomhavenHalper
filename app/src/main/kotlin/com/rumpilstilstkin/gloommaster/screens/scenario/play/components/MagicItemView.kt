@@ -31,10 +31,9 @@ fun ChargeIcon(
     charge: ChargeLevel,
     assets: ChargeIconAssets,
     modifier: Modifier = Modifier,
-    iconSize: Dp = 40.dp,
 ) {
-    val padding = iconSize * 0.2f
-    val totalSize = iconSize + padding * 2
+    val padding = assets.iconSize * 0.2f
+    val totalSize = assets.iconSize + padding * 2
     val energy = charge.level.toFloat()
     Box(
         modifier = modifier.size(totalSize),
@@ -45,7 +44,7 @@ fun ChargeIcon(
 
             assets.glowBrushes[charge]?.let { brush ->
                 val glowStrength = (energy / 2f).coerceIn(0f, 1f)
-                val glowRadius = (iconSize.toPx() / 2f) * (1.5f + 0.1f * glowStrength)
+                val glowRadius = (assets.iconSize.toPx() / 2f) * (1.5f + 0.1f * glowStrength)
                 drawCircle(brush = brush, radius = glowRadius, center = center)
             }
 
@@ -72,13 +71,13 @@ fun ChargeIcon(
             painter = icon.painter(),
             contentDescription = null,
             tint = icon.tintColor,
-            modifier = Modifier.size(iconSize),
+            modifier = Modifier.size(assets.iconSize),
         )
     }
 }
 
 @Composable
-fun rememberChargeIconAssets(iconSize: Dp = 40.dp): ChargeIconAssets {
+fun rememberChargeIconAssets(iconSize: Dp = 36.dp): ChargeIconAssets {
     val density = LocalDensity.current
     val glowColor = MaterialTheme.colorScheme.surfaceTint
     return remember(iconSize, density) {
@@ -114,6 +113,7 @@ fun rememberChargeIconAssets(iconSize: Dp = 40.dp): ChargeIconAssets {
                 }
 
             ChargeIconAssets(
+                iconSize = iconSize,
                 glowBrushes = brushes,
                 ringGeometry =
                     RingGeometry(
@@ -129,6 +129,7 @@ fun rememberChargeIconAssets(iconSize: Dp = 40.dp): ChargeIconAssets {
 
 @Stable
 class ChargeIconAssets(
+    val iconSize: Dp,
     val glowBrushes: Map<ChargeLevel, Brush?>,
     val ringGeometry: RingGeometry,
 )
