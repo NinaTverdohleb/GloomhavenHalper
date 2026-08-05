@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GloomhavenHalper">
+        android:theme="@style/Theme.GloomMaster">
 
         <profileable android:shell="true" />
 
@@ -18,7 +18,7 @@
             android:name=".screens.MainActivity"
             android:configChanges="locale|layoutDirection|uiMode|screenSize|orientation"
             android:exported="true"
-            android:theme="@style/Theme.GloomhavenHalper">
+            android:theme="@style/Theme.GloomMaster.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
