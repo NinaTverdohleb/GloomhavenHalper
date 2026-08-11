@@ -28,6 +28,7 @@ class UpdateUnitLevelUseCase @Inject constructor(
                 currentLife = newCurrentLife,
                 level = stats.level,
                 maxLife = maxMonsterLife,
+                stats = stats.stats,
             )
         }
     }

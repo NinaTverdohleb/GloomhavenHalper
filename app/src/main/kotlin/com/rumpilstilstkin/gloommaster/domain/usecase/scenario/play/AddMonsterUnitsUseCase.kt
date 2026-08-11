@@ -14,7 +14,6 @@ class AddMonsterUnitsUseCase @Inject constructor() {
         isElite: Boolean,
     ): ScenarioBattleState {
         val monster = state.monsters.getValue(slug)
-        val effects = (state.availableEffects - monster.immunity).associateWith { false }
         val newUnits =
             numbers
                 .map { number ->
@@ -23,7 +22,7 @@ class AddMonsterUnitsUseCase @Inject constructor() {
                         number = number,
                         isElite = isElite,
                         gamersCount = state.gamersCount,
-                        effects = effects,
+                        availableEffects = state.availableEffects,
                     )
                 }.associateBy { it.number }
         return state.copy(
