@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloommaster.domain.usecase.scenario.play
 
 import com.rumpilstilstkin.gloommaster.domain.entity.monster.Monster
+import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.CardPicker
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.MonsterUnit
@@ -20,7 +21,14 @@ class AddMonsterToBattleUseCase @Inject constructor() {
                     val monster = state.monsters.getValue(slug)
                     val units =
                         if (monster.isBoss) {
-                            mapOf(1 to createBossUnit(monster, state.gamersCount))
+                            mapOf(
+                                1 to
+                                    createBossUnit(
+                                        monster,
+                                        state.gamersCount,
+                                        state.availableEffects,
+                                    ),
+                            )
                         } else {
                             emptyMap()
                         }
@@ -55,17 +63,13 @@ class AddMonsterToBattleUseCase @Inject constructor() {
     private fun createBossUnit(
         monster: Monster,
         gamersCount: Int,
-    ): MonsterUnit {
-        val maxLife = if (monster.lifeMultiple) monster.life * gamersCount else monster.life
-        return MonsterUnit(
+        availableEffects: Set<MonsterStatType>,
+    ): MonsterUnit =
+        MonsterUnit.create(
+            monster = monster,
             number = 1,
-            maxLife = maxLife,
-            currentLife = maxLife,
-            stats = monster.stats,
-            isSpecial = false,
-            level = monster.level,
-            immunity = monster.immunity,
-            lifeMultiple = monster.lifeMultiple,
+            isElite = false,
+            gamersCount = gamersCount,
+            availableEffects = availableEffects,
         )
-    }
 }

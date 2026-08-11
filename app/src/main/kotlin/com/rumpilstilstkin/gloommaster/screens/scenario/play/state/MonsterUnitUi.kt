@@ -55,6 +55,9 @@ data class MonsterUnitUi(
                         statType = MonsterStatType.POISON,
                         modifier = "",
                     ),
+                    MonsterAction.Text(
+                        content = "Super special text",
+                    ),
                 ),
             effects =
                 (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack)

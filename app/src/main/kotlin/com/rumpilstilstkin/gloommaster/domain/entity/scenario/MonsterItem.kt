@@ -34,7 +34,8 @@ data class MonsterItem(
     }
 }
 
-data class MonsterUnit(
+@ExposedCopyVisibility
+data class MonsterUnit private constructor(
     val number: Int,
     val currentLife: Int,
     val maxLife: Int,
@@ -52,8 +53,10 @@ data class MonsterUnit(
             number: Int,
             isElite: Boolean,
             currentLife: Int? = null,
+            maxLife: Int? = null,
+            effects: Set<MonsterStatType> = emptySet(),
             gamersCount: Int,
-            effects: Map<MonsterStatType, Boolean> = mapOf(),
+            availableEffects: Set<MonsterStatType>,
             isNew: Boolean = true,
         ): MonsterUnit {
             val maxMonsterLife =
@@ -65,19 +68,26 @@ data class MonsterUnit(
                     monster.life
                 }
             val stats = if (isElite) monster.eliteStats else monster.stats
+
+            val newCurrentLife =
+                maxMonsterLife -
+                    maxOf(
+                        (maxLife ?: maxMonsterLife) - (currentLife ?: maxMonsterLife),
+                        0,
+                    )
+            val unitEffects =
+                (availableEffects - monster.immunity).associateWith { effect ->
+                    effects.contains(effect)
+                }
             return MonsterUnit(
                 number = number,
                 maxLife = maxMonsterLife,
-                currentLife = currentLife ?: maxMonsterLife,
-                stats = stats.toImmutableList(),
+                currentLife = newCurrentLife,
+                stats = stats,
                 isSpecial = isElite,
                 level = monster.level,
-                effects = effects,
-                immunity =
-                    monster
-                        .immunity
-                        .map { it }
-                        .toImmutableSet(),
+                effects = unitEffects,
+                immunity = monster.immunity,
                 isNew = isNew,
                 lifeMultiple = monster.lifeMultiple,
             )

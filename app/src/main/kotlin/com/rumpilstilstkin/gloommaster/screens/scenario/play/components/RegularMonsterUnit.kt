@@ -79,6 +79,9 @@ fun RegularMonsterUnit(
                     effects = unit.effects,
                     onToggle = switchEffect,
                 )
+                TextActionsRow(
+                    actions = unit.stats,
+                )
             }
         }
         if (unit.immunity.isNotEmpty()) {
@@ -162,6 +165,23 @@ private fun ActionsRow(actions: ImmutableList<MonsterAction>) {
                         color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun TextActionsRow(actions: ImmutableList<MonsterAction>) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        actions.forEach { stat ->
+            if (stat is MonsterAction.Text) {
+                Text(
+                    text = stat.content,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
             }
         }
     }
